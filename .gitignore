@@ -1,0 +1,11 @@
+BackEnd/node_modules
+
+# ignore image
+BackEnd/data/images/articles/*
+BackEnd/data/images/projects/*
+
+# log files
+*.log
+
+# configuration variable
+BackEnd/config/environnementconf.js
