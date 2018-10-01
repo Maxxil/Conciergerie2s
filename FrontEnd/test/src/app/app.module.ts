@@ -7,10 +7,13 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import {ServicesPage} from "../pages/services/services";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
+import { ServiceProvider } from '../providers/service/service';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import {LoginPage} from "../pages/login/login";
     ContactPage,
     HomePage,
     LoginPage,
+    ServicesPage,
     TabsPage
   ],
   imports: [
@@ -32,12 +36,16 @@ import {LoginPage} from "../pages/login/login";
     ContactPage,
     HomePage,
     LoginPage,
+    ServicesPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServiceProvider,
+    HttpClient,
+    HttpHandler
   ]
 })
 export class AppModule {}

@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SigninPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Inscription</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nom d'utilisateur</ion-label>
+      <ion-input type="text" name="username" id="username" value="{{login.username}}"/>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" name="email" id="email" value="{{login.email}}"/>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email confirmation</ion-label>
+      <ion-input type="email" name="emailConfirmation" id="emailConfirmation" value="{{login.emailConfirmation}}"/>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Mot de passe</ion-label>
+      <ion-input type="password" name="password" id="password" value="{{login.password}}"/>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Mot de passe confirmation</ion-label>
+      <ion-input type="password" name="passwordConfirmation" id="passwordConfirmation" value="{{login.passwordConfirmation}}"/>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full (click)="signin()">Enregistrer</button>
+</ion-content>

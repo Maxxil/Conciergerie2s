@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginModel} from './../../model/LoginModel';
+import {TabsPage} from "../tabs/tabs";
+import {SigninPage} from '../signin/signin';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,7 +19,9 @@ import {LoginModel} from './../../model/LoginModel';
 export class LoginPage {
 
   public login: LoginModel;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController
+    , public navParams: NavParams) {
     this.login = new LoginModel();
   }
 
@@ -27,6 +31,7 @@ export class LoginPage {
 
   connect(){
 
+    this.navCtrl.push(TabsPage, {profile: {nom: "KADI", prenom: "Massil", email: "massilkadi@gmail.com"}});
   }
 
   facebookConnect(){
@@ -34,7 +39,7 @@ export class LoginPage {
   }
 
   signin(){
-
+    this.navCtrl.push(SigninPage);
   }
 
 }
