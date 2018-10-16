@@ -10,6 +10,6 @@ var connectionString =
     + ':' + dbconf.port
     + '/' + dbconf.dbname;
 
-var dbPromise = mongoose.createConnection(connectionString);
+var dbPromise = mongoose.connect(connectionString, { useNewUrlParser: true });
 
 module.exports = dbPromise;

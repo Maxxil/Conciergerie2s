@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ServicesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <h3>
+      SERVICES
+      <img src="../../assets/icon/add.png" width="40" height="40" (click)="displayAddService()" >
+    </h3>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <img src="http://www.archimag.com/sites/archimag.com/files/styles/article/public/web_articles/image/service-1019821_1920.jpg?itok=dtqg8yQ-"/>
+  <button ion-button color="white" class="buttonService" disabled>Services</button>
+  <ion-row col-md-12>
+    <ion-col col-md-6 *ngFor="let element of services">
+      <!--<ion-card (click)="displayService(element.id)">-->
+      <ion-card>
+        <img src="{{serviceImageUrl + element.image}}" (click)="getPrestations(element)"/>
+        <ion-card-title text-center (click)="getPrestations(element)">{{element.nom}}</ion-card-title>
+        <ion-icon float-end float-right name="create" (click)="updateService(element)"></ion-icon>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,12 +1,15 @@
 var express = require("express");
-var mongoose = require("mongoose");
 var cors = require("cors");
 var app = express();
 
-var envConfig = require("./config/environnementconf");
+var envConfig = require("./config/environnement");
+var utilisateurBusiness = require('./business/utilisateurBusiness');
+var roleEnum = require("./helper/roleEnum");
+var db = require('./config/db');
+
 
 var port = envConfig.getListeningPort();
-var domain = {
+var domains = {
 
 };
 
@@ -17,11 +20,25 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use('/project/image' , express.static(__dirname + '/data/images/projects'));
+app.use('/service/image' , express.static(__dirname + '/data/images/service'));
 app.use('/article/image' , express.static(__dirname + '/data/images/articles'));
 
 app.use('/' , require('./controller'));
 
 app.listen(port, function() {
     console.log("API is running on port: " + port);
+
+    utilisateurBusiness.any().exec(function(err, result){
+        if(result == null || result.length == 0)
+        {
+            console.log("Ajour de l'admin");
+            var user = {
+                nomUtilisateur : "admin",
+                motDePasse : "admin",
+                role : roleEnum.role.ADMIN
+            };
+            utilisateurBusiness.create(user);
+        }
+    });
+    
 });

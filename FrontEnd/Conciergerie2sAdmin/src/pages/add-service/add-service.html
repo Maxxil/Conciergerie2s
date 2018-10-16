@@ -1,0 +1,41 @@
+<!--
+  Generated template for the ServiceAddModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="isCreateModal()">Ajout d'un service</ion-title>
+    <ion-title *ngIf="isUpdateModal()">Modifier d'un service</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="success" *ngIf="isSaved">
+    La savegarde s'est terminée avec succés.
+  </div>
+  <div>
+    <label float-left>Choissisez votre image</label>
+    <img src="{{serviceImageUrl+service.image}}" (click)="importImage()">
+    <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
+  </div>
+
+  <div>
+    <label float-left>Donnez le nom du service</label>
+    <input ion-input name="nom" id="nom" [(ngModel)]="service.nom" required/>
+  </div>
+
+  <div>
+    <label float-left>Donnez la description du service</label>
+    <input ion-input name="description" id="description" [(ngModel)]="service.description" required/>
+  </div>
+
+  <button ion-button [color]="" (click)="save()" *ngIf="isCreateModal()">Enregistrer</button>
+  <button ion-button [color]="" (click)="update()" *ngIf="isUpdateModal()">Modifier</button>
+  <button ion-button [color]="danger" (click)="annul()" >Annuler</button>
+
+</ion-content>

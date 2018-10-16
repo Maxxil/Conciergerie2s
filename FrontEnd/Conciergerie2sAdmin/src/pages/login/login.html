@@ -1,0 +1,20 @@
+<ion-content padding>
+  <div class="title">
+      <h1 class="textCenter">Bienvenue sur</h1>
+      <h2 class="textCenter">Conciergerie du second souffle - Administrateur</h2>
+  </div>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Nom d'utilisateur ou email</ion-label>
+      <ion-input type="text" [(ngModel)]="login.username" name="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="login.password" name="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button full (click)="connect()">Se connecter</button>
+</ion-content>
