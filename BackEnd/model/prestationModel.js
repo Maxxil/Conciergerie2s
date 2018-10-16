@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var prestation = new mongoose.Schema({
     image : 'String',
     nom : 'String',
+    description: 'String',
     prestataire : [{type: Schema.Types.ObjectId, ref:'Prestataire'}],
 });
 

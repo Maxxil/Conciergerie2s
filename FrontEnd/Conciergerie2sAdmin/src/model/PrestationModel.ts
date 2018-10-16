@@ -1,6 +1,6 @@
 export class PrestationModel{
   nom : string;
-  prestataire : string;
   image : string;
+  description: string;
   prestataires : object[];
 }

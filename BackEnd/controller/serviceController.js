@@ -64,7 +64,8 @@ router.post('/image' , upload.single('file') , function(req, res){
         var service = new Service({
             nom : req.params.name,
             description : req.params.description,
-            image : filename
+            image : filename,
+            prestations : []
         });
         serviceBusiness.add(service);
         res.end();

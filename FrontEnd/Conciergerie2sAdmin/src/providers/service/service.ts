@@ -3,7 +3,6 @@ import { BACK_URL } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServiceModel } from './../../model/ServiceModel'
-import { ServiceResult } from '../../model/ServiceResult';
 import { Observable } from 'rxjs/Observable';
 
 /*
