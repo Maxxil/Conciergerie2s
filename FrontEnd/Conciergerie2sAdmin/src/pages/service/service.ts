@@ -1,11 +1,9 @@
 import { ServiceModel } from './../../model/ServiceModel';
 import { PrestationPage } from './../prestation/prestation';
-import { ServiceResult } from './../../model/ServiceResult';
-import { BACK_URL } from './../../model/Url';
+import { SERVICE_IMAGE_URL } from './../../model/Url';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import {AddServicePage} from "../add-service/add-service";
-import { ServiceModel } from '../../model/ServiceModel';
 import { ServiceModalType } from '../../model/ServiceModalTypeEnum';
 import { ServiceProvider } from '../../providers/service/service';
 
@@ -25,7 +23,7 @@ export class ServicePage {
 
   services : ServiceModel[];
   ServiceModalType = ServiceModalType;
-  private serviceImageUrl : string = (new BACK_URL()).SERVICE_IMAGE_URL;
+  public serviceImageUrl : string = SERVICE_IMAGE_URL;
 
   constructor(
     public navCtrl: NavController
@@ -57,7 +55,7 @@ export class ServicePage {
   }
 
   getPrestations(service: ServiceModel){
-    this.navCtrl.push(PrestationPage, {Prestations : service.prestations})
+    this.navCtrl.push(PrestationPage, {IdService: service._id})
   }
 
 }

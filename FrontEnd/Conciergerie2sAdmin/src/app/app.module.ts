@@ -13,14 +13,18 @@ import { LoginPage } from '../pages/login/login';
 import { ServicePage } from '../pages/service/service';
 import { ServiceProvider } from '../providers/service/service';
 import { PrestationProvider } from '../providers/prestation/prestation';
+import { MenuPage } from '../pages/menu/menu';
+import { AddPrestationPage } from '../pages/add-prestation/add-prestation';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
+    MenuPage,
     ServicePage,
-    AddServicePage
+    AddServicePage,
+    AddPrestationPage,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +36,10 @@ import { PrestationProvider } from '../providers/prestation/prestation';
     MyApp,
     HomePage,
     LoginPage,
+    MenuPage,
     ServicePage,
-    AddServicePage
+    AddServicePage,
+    AddPrestationPage,
   ],
   providers: [
     StatusBar,

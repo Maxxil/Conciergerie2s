@@ -1,0 +1,44 @@
+<!--
+  Generated template for the AddPrestationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle *ngIf="!isUpdateModal()" ><ion-icon name="menu"></ion-icon></button>
+      <button ion-button menuToggle *ngIf="isUpdateModal()" (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title *ngIf="!isUpdateModal()" >Ajout d'une prestation</ion-title>
+    <ion-title *ngIf="isUpdateModal()" >Modification d'une prestation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="success" *ngIf="isSaved">
+        La savegarde s'est terminée avec succés.
+      </div>
+      <div>
+        <label float-left>Choissisez votre image</label>
+        <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()">
+        <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
+      </div>
+
+      <div>
+        <label float-left>Donnez le nom de la prestation</label>
+        <input ion-input name="nom" id="nom" [(ngModel)]="prestation.nom" required/>
+      </div>
+
+      <div>
+        <label float-left>Donnez la description de la prestation</label>
+        <input ion-input name="description" id="description" [(ngModel)]="prestation.description" required/>
+      </div>
+
+      <ion-buttons start>
+          <button ion-button [color]="" (click)="save()" *ngIf="!isUpdateModal()">Enregistrer</button>
+          <button ion-button [color]="" (click)="update()" *ngIf="isUpdateModal()">Modifier</button>
+          <button ion-button color="light" (click)="close()" *ngIf="isUpdateModal()">Annuler</button>
+      </ion-buttons>
+</ion-content>

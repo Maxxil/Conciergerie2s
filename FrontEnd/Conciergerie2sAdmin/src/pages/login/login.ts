@@ -1,8 +1,8 @@
+import { MenuPage } from './../menu/menu';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginModel } from '../../model/LoginModel';
 import { LoginProvider } from '../../providers/login/login';
-import { ServicePage } from '../service/service';
 
 /**
  * Generated class for the LoginPage page.
@@ -46,7 +46,7 @@ export class LoginPage {
       }
       else
       {
-        this.navCtrl.push(ServicePage);
+        this.navCtrl.push(MenuPage);
       }
     });
   }

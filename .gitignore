@@ -1,4 +1,7 @@
 BackEnd/node_modules
+FrontEnd/Conciergerie2sAdmin/node_modules
+FrontEnd/Conciergerie2s/node_modules
+node_modules
 
 # ignore image
 BackEnd/data/images/articles/*

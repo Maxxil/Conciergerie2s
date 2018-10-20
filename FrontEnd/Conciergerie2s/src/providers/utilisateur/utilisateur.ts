@@ -1,5 +1,7 @@
+import { UTILISATEUR_URL } from './../../model/UrlConstants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UtilisateurModel } from '../../model/UtilisateurModel';
 
 /*
   Generated class for the UtilisateurProvider provider.
@@ -12,6 +14,10 @@ export class UtilisateurProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello UtilisateurProvider Provider');
+  }
+
+  add(utilisateur: UtilisateurModel) {
+    this.http.put(UTILISATEUR_URL, utilisateur)
   }
 
 }

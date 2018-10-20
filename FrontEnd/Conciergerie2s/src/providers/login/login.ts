@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { LOGIN_URL } from './../../model/UrlConstants';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { LoginModel } from '../../model/LoginModel';
-import { BACK_URL, LOGIN_URL } from '../../model/Url';
 
 /*
   Generated class for the LoginProvider provider.
@@ -13,16 +13,17 @@ import { BACK_URL, LOGIN_URL } from '../../model/Url';
 @Injectable()
 export class LoginProvider {
 
-  urls: BACK_URL;
   constructor(public http: HttpClient) {
     console.log('Hello LoginProvider Provider');
-    this.urls = new BACK_URL();
   }
 
   public connect(login : LoginModel) : Observable<string>
   {
-    return this.http.post<string>(LOGIN_URL,
-      login, this.urls.HTTP_OPTIONS);
+    return this.http.post<string>(LOGIN_URL, login,{
+      headers: new HttpHeaders({
+          'Content-Type':  'application/json'
+      })
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { BACK_URL } from './../../model/Url';
+import { SERVICE_IMAGE_URL } from './../../model/Url';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
@@ -23,9 +23,8 @@ export class AddServicePage {
   modalType : ServiceModalType;
   public isSaved : boolean = false;
   public service : ServiceModel;
-  private event;
   public file : File = null;
-  private serviceImageUrl : string = (new BACK_URL()).SERVICE_IMAGE_URL;
+  public serviceImageUrl : string = SERVICE_IMAGE_URL;
   private isImageUploaded : boolean = false;
 
   constructor(
@@ -63,7 +62,6 @@ export class AddServicePage {
     reader.onload = (event: any) => {
       this.service.image = event.target.result.toString();
     }
-    this.event = e;
     reader.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
   }

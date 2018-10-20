@@ -5,11 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title *ngIf="isCreateModal()">Ajout d'un service</ion-title>
-    <ion-title *ngIf="isUpdateModal()">Modifier d'un service</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button menuToggle *ngIf="!isUpdateModal()" ><ion-icon name="menu"></ion-icon></button>
+      <button ion-button menuToggle *ngIf="isUpdateModal()" (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title *ngIf="!isUpdateModal()">Ajout d'un service</ion-title>
+    <ion-title *ngIf="isUpdateModal()">Modification d'un service</ion-title>
+  </ion-toolbar>
 
 </ion-header>
 
@@ -20,7 +23,7 @@
   </div>
   <div>
     <label float-left>Choissisez votre image</label>
-    <img src="{{serviceImageUrl+service.image}}" (click)="importImage()">
+    <img src="{{serviceImageUrl + service.image}}" (click)="importImage()">
     <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
   </div>
 
@@ -34,8 +37,8 @@
     <input ion-input name="description" id="description" [(ngModel)]="service.description" required/>
   </div>
 
-  <button ion-button [color]="" (click)="save()" *ngIf="isCreateModal()">Enregistrer</button>
+  <button ion-button [color]="" (click)="save()" *ngIf="!isUpdateModal()">Enregistrer</button>
   <button ion-button [color]="" (click)="update()" *ngIf="isUpdateModal()">Modifier</button>
-  <button ion-button [color]="danger" (click)="annul()" >Annuler</button>
+  <button ion-button color="danger" (click)="annul()" >Annuler</button>
 
 </ion-content>

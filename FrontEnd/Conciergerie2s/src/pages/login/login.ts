@@ -30,7 +30,6 @@ export class LoginPage {
   }
 
   connect(){
-
     this.navCtrl.push(TabsPage, {profile: {nom: "KADI", prenom: "Massil", email: "massilkadi@gmail.com"}});
   }
 
