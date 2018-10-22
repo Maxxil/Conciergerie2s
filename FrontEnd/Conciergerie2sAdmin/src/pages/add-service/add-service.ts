@@ -1,9 +1,10 @@
+import { ServiceResult } from './../../model/Results/ServiceResult';
 import { SERVICE_IMAGE_URL } from './../../model/Url';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 
-import { ServiceModel } from './../../model/ServiceModel';
-import { ServiceModalType } from '../../model/ServiceModalTypeEnum';
+import { ServiceModel } from '../../model/Models/ServiceModel';
+import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { ServiceProvider } from '../../providers/service/service';
 
 /**
@@ -31,8 +32,8 @@ export class AddServicePage {
     public navCtrl: NavController
     , public navParams: NavParams
     , public viewCtrl : ViewController
-    , public serviceProv : ServiceProvider) {
-    console.log("Constructor");
+    , public serviceProv : ServiceProvider
+    , public alertCtrl : AlertController) {
     this.modalType = this.navParams.get("ModalType");
     if(this.isUpdateModal()){
       this.service = this.navParams.get("ServiceModel");
@@ -89,8 +90,29 @@ export class AddServicePage {
     this.viewCtrl.dismiss();
   }
 
-  manageDisplaySuccessOrError(result){
-    this.isSaved = true;
+  manageDisplaySuccessOrError(result : ServiceResult){
+    var alert = this.alertCtrl.create();
+
+    if(result.success){
+      alert.setTitle('Succes');
+      alert.setSubTitle('Le service a été ajouté correctement.');
+      alert.addButton({
+        text : 'OK',
+        handler : data => {
+          this.annul();
+        }
+      })
+    }
+    else{
+      alert.setTitle('Erreur');
+      alert.setSubTitle("Le service n'a pas pu être inséré correctement. Contactez le service technique pour plus d'information.");
+      alert.addButton({
+        text : 'OK'
+      })
+    }
+
+    alert.present();
+
   }
 
 }

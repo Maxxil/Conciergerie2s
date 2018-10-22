@@ -6,6 +6,7 @@ var loginBusiness = require('./../business/loginBusiness');
 var jwt = require('./../helper/tokenHelper');
 var serviceBusiness = require('./../business/serviceBusiness');
 var Service = require('./../model/serviceModel');
+var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
@@ -60,15 +61,29 @@ router.post('/' , function(req, res){
 
 router.post('/image' , upload.single('file') , function(req, res){
     serviceBusiness.getById(req.params._id).exec(function(err, result){
-        serviceBusiness.deleteImage(result.image);
-        var service = new Service({
-            nom : req.params.name,
-            description : req.params.description,
-            image : filename,
-            prestations : []
-        });
-        serviceBusiness.add(service);
-        res.end();
+        if(err)
+        {
+            res.json({
+                success : false,
+                error : errorEnum.error.SERVICE_INSERT_ERROR
+            });
+            res.end();
+        }
+        else{
+            serviceBusiness.deleteImage(result.image);
+            var service = new Service({
+                nom : req.params.name,
+                description : req.params.description,
+                image : filename,
+                prestations : []
+            });
+            serviceBusiness.add(service);
+            res.json({
+                success : true,
+                error : errorEnum.error.AUCUNE_ERREUR
+            })
+            res.end();
+        }
     });
 });
 

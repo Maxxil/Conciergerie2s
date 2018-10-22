@@ -1,8 +1,8 @@
-import { ServiceResult } from './../../model/ServiceResult';
+import { ServiceResult } from '../../model/Results/ServiceResult';
 import { SERVICE_URL, SERVICE_UPDATE_UPLOADED_IMAGE } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ServiceModel } from './../../model/ServiceModel'
+import { ServiceModel } from '../../model/Models/ServiceModel'
 import { Observable } from 'rxjs/Observable';
 
 /*

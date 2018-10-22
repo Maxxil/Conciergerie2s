@@ -1,13 +1,11 @@
 import { HttpHeaders } from "@angular/common/http";
 
-export class BACK_URL{
-
-    HTTP_OPTIONS = {
+export const HTTP_OPTIONS = {
         headers: new HttpHeaders({
             'Content-Type':  'application/json'
         })
-    }
-}
+    };
+
 
 export const SERVER_URL : string = "http://localhost:4444"
 export const LOGIN_URL: string = SERVER_URL + '/login';

@@ -1,10 +1,10 @@
-import { ServiceModel } from './../../model/ServiceModel';
+import { ServiceModel } from '../../model/Models/ServiceModel';
 import { PrestationPage } from './../prestation/prestation';
 import { SERVICE_IMAGE_URL } from './../../model/Url';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import {AddServicePage} from "../add-service/add-service";
-import { ServiceModalType } from '../../model/ServiceModalTypeEnum';
+import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { ServiceProvider } from '../../providers/service/service';
 
 /**

@@ -1,8 +1,8 @@
 import { MenuPage } from './../menu/menu';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { LoginModel } from '../../model/LoginModel';
 import { LoginProvider } from '../../providers/login/login';
+import { UserModel } from '../../model/Models/UserModel';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,26 +17,40 @@ import { LoginProvider } from '../../providers/login/login';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  private login: LoginModel;
+  public user: UserModel;
   constructor(
      public navCtrl: NavController
     ,public navParams: NavParams
     ,public loginProvider: LoginProvider
     ,public alertCtrl: AlertController) {
-      this.login = new LoginModel();
+      this.user = new UserModel();
+      this.tryConnect();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  tryConnect(){
+    var promise = this.loginProvider.tryConnect();
+    if(promise != null){
+      promise.subscribe((result) => {
+        if(result.success){
+          this.navCtrl.push(MenuPage);
+        }
+      })
+    }
+
+  }
+
   connect(){
-    this.loginProvider.connect(this.login)
+    console.log("Connect");
+    this.loginProvider.connect(this.user)
     .subscribe((result) => {
       console.log(result);
-      if(result == "" || result == null)
+      if(result == null || !result.success )
       {
-        this.login.password = "";
+        this.user.password = "";
         let modal = this.alertCtrl.create({
           title: "Erreur",
           message: "Le login ou le mot de passe est incorrect.",
@@ -46,6 +60,8 @@ export class LoginPage {
       }
       else
       {
+        console.log(result.data);
+        localStorage.setItem('Token', result.data);
         this.navCtrl.push(MenuPage);
       }
     });

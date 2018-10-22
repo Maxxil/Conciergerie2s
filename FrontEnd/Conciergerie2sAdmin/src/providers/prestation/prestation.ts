@@ -1,9 +1,9 @@
-import { PrestationModel } from './../../model/PrestationModel';
 import { Observable } from 'rxjs/Observable';
 import { PRESTATION_URL } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {PrestationResult} from './../../model/PrestationResult';
+import {PrestationResult} from '../../model/Results/PrestationResult';
+import { PrestationModel } from '../../model/Models/PrestationModel';
 
 /*
   Generated class for the PrestationProvider provider.
@@ -27,7 +27,7 @@ export class PrestationProvider {
     return this.http.get<PrestationResult>(PRESTATION_URL + "/" + idService);
   }
 
-  add(prestation:PrestationModel, image) : Observable<PrestationResult>{
+  add(prestation:PrestationModel, image: File) : Observable<PrestationResult>{
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('file',image, 'image');
@@ -37,7 +37,7 @@ export class PrestationProvider {
     return this.http.put<PrestationResult>(PRESTATION_URL, {prestation : prestation});
   }
 
-  update(prestation:PrestationModel, image) : Observable<PrestationResult>{
+  update(prestation:PrestationModel, image: File) : Observable<PrestationResult>{
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('file',image, 'image');

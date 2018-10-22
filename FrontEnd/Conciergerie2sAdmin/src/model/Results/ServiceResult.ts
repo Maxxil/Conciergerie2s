@@ -1,5 +1,4 @@
-import { ServiceModel } from "./Models/ServiceModel";
-
+import { ServiceModel } from '../Models/ServiceModel';
 export class ServiceResult {
   success: boolean;
   error: Error;

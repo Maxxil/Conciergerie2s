@@ -9,17 +9,22 @@ var db = require('./config/db');
 
 
 var port = envConfig.getListeningPort();
-var domains = {
-
-};
+var domains = [
+    'http://localhost:8100'
+];
 
 var corsOptions = {
-    origin: domains,
+    origin: '*',
     allowedHeaders : 'Origin, X-Requested-With, Content-Type, Accept',
     credentials: true
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
+app.use(function(req,res,next){
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8100');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,text/plain, */*');
+    next();
+});
 app.use('/service/image' , express.static(__dirname + '/data/images/service'));
 app.use('/article/image' , express.static(__dirname + '/data/images/articles'));
 
@@ -27,7 +32,6 @@ app.use('/' , require('./controller'));
 
 app.listen(port, function() {
     console.log("API is running on port: " + port);
-
     utilisateurBusiness.any().exec(function(err, result){
         if(result == null || result.length == 0)
         {

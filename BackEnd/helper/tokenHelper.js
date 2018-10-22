@@ -19,5 +19,8 @@ module.exports = {
             security.generatePayload(user)
             , security.jwtSecret
         );
+    },
+    decode : function(token){
+        return jwt.verify(token, security.jwtSecret);
     }
 };

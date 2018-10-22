@@ -1,11 +1,11 @@
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
 import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { PrestatairePage } from './../prestataire/prestataire';
-import { PrestationModel } from './../../model/PrestationModel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { PrestationProvider } from '../../providers/prestation/prestation';
-import { ServiceModalType } from '../../model/ServiceModalTypeEnum';
+import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
+import { PrestationModel } from '../../model/Models/PrestationModel';
 
 /**
  * Generated class for the PrestationPage page.
