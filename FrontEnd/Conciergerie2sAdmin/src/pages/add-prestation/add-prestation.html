@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-buttons left>
       <button ion-button menuToggle *ngIf="!isUpdateModal()" ><ion-icon name="menu"></ion-icon></button>
-      <button ion-button menuToggle *ngIf="isUpdateModal()" (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
+      <button ion-button *ngIf="isUpdateModal()" (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
     </ion-buttons>
     <ion-title *ngIf="!isUpdateModal()" >Ajout d'une prestation</ion-title>
     <ion-title *ngIf="isUpdateModal()" >Modification d'une prestation</ion-title>
@@ -22,7 +22,7 @@
       </div>
       <div>
         <label float-left>Choissisez votre image</label>
-        <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()">
+        <img src="{{prestation.image}}" (click)="importImage()">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
       </div>
 

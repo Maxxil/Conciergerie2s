@@ -25,7 +25,6 @@ export class AddServicePage {
   public isSaved : boolean = false;
   public service : ServiceModel;
   public file : File = null;
-  public serviceImageUrl : string = SERVICE_IMAGE_URL;
   private isImageUploaded : boolean = false;
 
   constructor(
@@ -72,7 +71,6 @@ export class AddServicePage {
   }
 
   save(){
-    console.log(this.service);
     this.serviceProv.add(this.file, this.service)
       .subscribe((result) => {
         this.manageDisplaySuccessOrError(result);
@@ -94,18 +92,28 @@ export class AddServicePage {
     var alert = this.alertCtrl.create();
 
     if(result.success){
-      alert.setTitle('Succes');
-      alert.setSubTitle('Le service a été ajouté correctement.');
-      alert.addButton({
-        text : 'OK',
-        handler : data => {
-          this.annul();
-        }
-      })
+      if(this.isUpdateModal()){
+        alert.setTitle('Succes');
+        alert.setSubTitle('Le service a été ajouté correctement.');
+        alert.addButton({
+          text : 'OK'
+        })
+      }
+      else {
+        alert.setTitle('Succes');
+        alert.setSubTitle('Le service a été modifié correctement.');
+        alert.addButton({
+          text : 'OK',
+          handler : data => {
+            this.annul();
+          }
+        })
+      }
+
     }
     else{
       alert.setTitle('Erreur');
-      alert.setSubTitle("Le service n'a pas pu être inséré correctement. Contactez le service technique pour plus d'information.");
+      alert.setSubTitle("Le service n'a pas pu être inséré ou modifié correctement. Contactez le service technique pour plus d'information.");
       alert.addButton({
         text : 'OK'
       })

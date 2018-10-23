@@ -39,6 +39,7 @@ export class AddPrestationPage {
     }
     else{
       this.prestation = new PrestationModel();
+      this.prestation.image = "../../assets/icon/pic.png";
     }
   }
 
@@ -56,7 +57,7 @@ export class AddPrestationPage {
     const reader = new FileReader();
     reader.onload = (event: any) => {
       this.prestation.image = event.target.result.toString();
-    }
+    };
     reader.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
   }
@@ -81,14 +82,26 @@ export class AddPrestationPage {
     var alert = this.alertCtrl.create();
 
     if(result.success){
-      alert.setTitle('Succes');
-      alert.setSubTitle('Le service a été ajouté correctement.');
-      alert.addButton({
-        text : 'OK',
-        handler : data => {
-          this.close();
-        }
-      })
+      if(this.isUpdateModal()){
+        alert.setTitle('Succes');
+        alert.setSubTitle('Le service a été modifié correctement.');
+        alert.addButton({
+          text : 'OK',
+          handler : data => {
+            this.close();
+          }
+        })
+      }
+      else{
+        alert.setTitle('Succes');
+        alert.setSubTitle('Le service a été inséré correctement.');
+        alert.addButton({
+          text : 'OK',
+          handler : data => {
+          }
+        })
+      }
+
     }
     else{
       alert.setTitle('Erreur');

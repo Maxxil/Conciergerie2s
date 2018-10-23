@@ -7,6 +7,10 @@
 <ion-header>
 
   <ion-toolbar>
+    <ion-buttons>
+      <button *ngIf="isUpdateModal()" ion-button (click)="before()"><ion-icon name="arrow-back"></ion-icon></button>
+      <button *ngIf="!isUpdateModal()" ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    </ion-buttons>
     <ion-title>Prestation</ion-title>
   </ion-toolbar>
 

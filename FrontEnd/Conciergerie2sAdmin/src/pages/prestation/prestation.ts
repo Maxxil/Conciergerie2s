@@ -23,15 +23,26 @@ export class PrestationPage {
 
   public prestations: PrestationModel[];
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+  private idService;
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , private prestationPrvd: PrestationProvider
     , private modalCtrl : ModalController) {
-    const idService = this.navParams.get("IdService");
-    this.prestationPrvd.getByIdService(idService).subscribe((result) => {
-      this.prestations = result.data;
-    });
+    this.idService = this.navParams.get("IdService");
+    if(this.idService != null)
+    {
+      this.prestationPrvd.getByIdService(this.idService).subscribe((result) => {
+        this.prestations = result.data;
+      });
+    }
+    else {
+      this.prestationPrvd.getAll().subscribe((results) =>
+      {
+        this.prestations = results.data;
+      })
+    }
+
   }
 
   ionViewDidLoad() {
@@ -56,6 +67,14 @@ export class PrestationPage {
 
   update(file: File, prestation : PrestationModel, isImageUploaded : boolean){
 
+  }
+
+  before(){
+    this.navCtrl.pop();
+  }
+
+  isUpdateModal(){
+    return this.idService != null;
   }
 
 }

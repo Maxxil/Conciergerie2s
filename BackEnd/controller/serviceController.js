@@ -96,6 +96,10 @@ router.put('/' , upload.single('file'), function(req, res){
     });
 
     serviceBusiness.add(service);
+    res.json({
+        success : true,
+        error : errorEnum.error.AUCUNE_ERREUR
+    });
     res.end();
 });
 

@@ -8,7 +8,7 @@ var Prestation = require('./../model/prestationModel');
 var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, './data/images/utilisateur');
+        cb(null, './data/images/prestation');
     },
     filename : function(req, file,cb){
         console.log(file);
@@ -42,13 +42,14 @@ router.get('/:id' , function(req , res){
         if(result != null && result.length > 0){
             res.json({
                 data : result
-            })
+            });
             res.end();
         }
     })
 });
 
 router.put('/' , upload.single('image'), function(req, res){
+    console.log(filename);
     var prestation = new Prestation({
         image : filename,
         nom : req.body.nom,
@@ -56,6 +57,9 @@ router.put('/' , upload.single('image'), function(req, res){
         prestataire : []
     });
     prestationBusiness.add(prestation);
+    res.json({
+        success : true
+    });
     res.end();
 });
 
