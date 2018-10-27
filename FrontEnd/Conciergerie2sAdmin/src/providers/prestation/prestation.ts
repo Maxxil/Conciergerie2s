@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { PRESTATION_URL } from './../../model/Url';
+import {LIER_SERVICE_PRESTATION_URL, PRESTATION_URL} from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {PrestationResult} from '../../model/Results/PrestationResult';
@@ -24,7 +24,7 @@ export class PrestationProvider {
   }
 
   getByIdService(idService : number) : Observable<PrestationResult>{
-    return this.http.get<PrestationResult>(PRESTATION_URL + "/" + idService);
+    return this.http.get<PrestationResult>(LIER_SERVICE_PRESTATION_URL + "/" + idService);
   }
 
   add(prestation:PrestationModel, image: File) : Observable<PrestationResult>{

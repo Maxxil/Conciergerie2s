@@ -23,8 +23,14 @@ module.exports = {
     getById: function(id){
         return Service.findById(id);
     },
+    getByIdWithPrestations: function(id){
+        return this.getById(id).populate('prestations');
+    },
     getByName: function(name){
         return Service.find({name: name});
+    },
+    getAllWithPrestation : function(){
+        return Service.find({}).where('prestations').ne([]).populate('prestations');
     },
     deleteImage: function(filename){
         const filepath = "./data/images/service" + filename;

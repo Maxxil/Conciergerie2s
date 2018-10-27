@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import {PrestationPage} from "../prestation/prestation";
+import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
 
 /**
  * Generated class for the MenuPage page.
@@ -42,6 +43,10 @@ export class MenuPage {
 
   openPrestationPage(){
     this.rootPage = PrestationPage;
+  }
+
+  openPageLierServicePrestation(){
+    this.rootPage = LinkServicePrestationPage;
   }
 
 }

@@ -1,5 +1,5 @@
 import { ServiceResult } from '../../model/Results/ServiceResult';
-import { SERVICE_URL, SERVICE_UPDATE_UPLOADED_IMAGE } from './../../model/Url';
+import { SERVICE_URL, SERVICE_UPDATE_UPLOADED_IMAGE, LIER_SERVICE_PRESTATION_URL } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServiceModel } from '../../model/Models/ServiceModel'
@@ -21,6 +21,10 @@ export class ServiceProvider {
 
   getAll() : Observable<ServiceResult>{
     return this.http.get<ServiceResult>(SERVICE_URL);
+  }
+
+  getServiceWithPrestation(){
+    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL);
   }
 
   update(image: File, service: ServiceModel, isImageUploaded: boolean): Observable<ServiceResult>{
@@ -49,4 +53,7 @@ export class ServiceProvider {
     return this.http.put<ServiceResult>(url, formData);
   }
 
+  linkServiceToPrestation(idService, idPrestation){
+    return this.http.post<ServiceResult>(LIER_SERVICE_PRESTATION_URL, {idService: idService, idPrestation : idPrestation});
+  }
 }

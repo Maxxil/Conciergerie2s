@@ -7,6 +7,7 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Lier une prestation à un service</ion-title>
   </ion-navbar>
 
@@ -15,16 +16,46 @@
 
 <ion-content padding>
 
-  <ion-select>
-    <ion-option *ngFor="let element of services">
+  <ion-list>
+    <ion-item>
+      <ion-label>Services</ion-label>
+      <ion-select [(ngModel)]="selectedService">
+        <ion-option *ngFor="let element of services" value="{{element._id}}">
+          {{element.nom}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
 
-    </ion-option>
-  </ion-select>
+    <ion-item>
+      <ion-label>Prestations</ion-label>
+      <ion-select  [(ngModel)]="selectedPrestation">
+        <ion-option *ngFor="let element of prestations" value="{{element._id}}">
+          {{element.nom}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 
-  <ion-select>
-    <ion-option *ngFor="let element of prestations">
+  <button ion-button (click)="linkServiceToPrestation()">Ajouter</button>
 
-    </ion-option>
-  </ion-select>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom service</th>
+        <th>Nom prestation</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+    <ng-template ngFor let-service [ngForOf]="serviceWithPrestations" let-serviceIndex="index">
+      <ng-template ngFor let-prestation [ngForOf]="service.prestations" let-prestationIndex="index">
+        <tr>
+          <td>{{service.nom}}</td>
+          <td>{{prestation.nom}}</td>
+        </tr>
+      </ng-template>
+    </ng-template>
+    </tbody>
+  </table>
 
 </ion-content>

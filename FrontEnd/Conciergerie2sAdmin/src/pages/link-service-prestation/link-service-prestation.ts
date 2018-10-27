@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ServiceModel} from "../../model/Models/ServiceModel";
 import {PrestationModel} from "../../model/Models/PrestationModel";
+import {ServiceProvider} from "../../providers/service/service";
+import {PrestationProvider} from "../../providers/prestation/prestation";
 
 /**
  * Generated class for the LinkServicePrestationPage page.
@@ -19,11 +21,49 @@ export class LinkServicePrestationPage {
 
   public services : ServiceModel[];
   public prestations : PrestationModel[];
+  public serviceWithPrestations : ServiceModel[];
+  public selectedService : number;
+  public selectedPrestation : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController
+    , public navParams: NavParams
+    , public  servicePvd : ServiceProvider
+    , public  prestationPvd : PrestationProvider) {
+
+    this.initialize();
+
   }
 
+  public initialize(){
+    this.getServices();
+    this.getPrestations();
+    this.getServiceWithPrestations();
+  }
 
+  public  getServices(){
+    this.servicePvd.getAll().subscribe((results) =>{
+      this.services = results.data
+    })
+  }
+
+  public  getPrestations(){
+    this.prestationPvd.getAll().subscribe((results) =>{
+      this.prestations = results.data;
+    })
+  }
+
+  public getServiceWithPrestations(){
+    this.servicePvd.getServiceWithPrestation().subscribe((results) =>{
+      this.serviceWithPrestations = results.data;
+    })
+  }
+
+  public linkServiceToPrestation(){
+    this.servicePvd.linkServiceToPrestation(this.selectedService, this.selectedPrestation).subscribe((results) =>{
+      console.log(results);
+    })
+  }
 
 
 }

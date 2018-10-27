@@ -16,6 +16,7 @@ import { PrestationProvider } from '../providers/prestation/prestation';
 import { MenuPage } from '../pages/menu/menu';
 import { AddPrestationPage } from '../pages/add-prestation/add-prestation';
 import {PrestationPage} from "../pages/prestation/prestation";
+import {LinkServicePrestationPage} from "../pages/link-service-prestation/link-service-prestation";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {PrestationPage} from "../pages/prestation/prestation";
     ServicePage,
     AddServicePage,
     AddPrestationPage,
-    PrestationPage
+    PrestationPage,
+    LinkServicePrestationPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {PrestationPage} from "../pages/prestation/prestation";
     ServicePage,
     AddServicePage,
     AddPrestationPage,
-    PrestationPage
+    PrestationPage,
+    LinkServicePrestationPage
   ],
   providers: [
     StatusBar,
