@@ -30,11 +30,13 @@ export class PrestationProvider {
   add(prestation:PrestationModel, image: File) : Observable<PrestationResult>{
     const token = localStorage.getItem('token');
     const formData = new FormData();
+    console.log(image);
     formData.append('file',image, 'image');
     formData.append('nom' , prestation.nom);
     formData.append('description' , prestation.description);
     formData.append('token' , token);
-    return this.http.put<PrestationResult>(PRESTATION_URL, {prestation : prestation});
+    console.log(formData);
+    return this.http.put<PrestationResult>(PRESTATION_URL, formData);
   }
 
   update(prestation:PrestationModel, image: File) : Observable<PrestationResult>{
@@ -44,7 +46,7 @@ export class PrestationProvider {
     formData.append('nom' , prestation.nom);
     formData.append('description' , prestation.description);
     formData.append('token' , token);
-    return this.http.put<PrestationResult>(PRESTATION_URL, {prestation : prestation});
+    return this.http.put<PrestationResult>(PRESTATION_URL, formData);
   }
 
 }

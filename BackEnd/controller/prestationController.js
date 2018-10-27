@@ -5,6 +5,8 @@ var multer = require('multer');
 var prestationBusiness = require('./../business/prestationBusiness');
 var Prestation = require('./../model/prestationModel');
 
+router.use(bodyParser.json());
+
 var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
@@ -22,7 +24,6 @@ var upload = multer({
     storage : storage
 });
 
-router.use(bodyParser.json());
 
 router.get('/' , function(req , res){
     var promise = prestationBusiness.getAll();
@@ -48,7 +49,8 @@ router.get('/:id' , function(req , res){
     })
 });
 
-router.put('/' , upload.single('image'), function(req, res){
+router.put('/' , upload.single('file'), function(req, res){
+    console.log("Add Prestation");
     console.log(filename);
     var prestation = new Prestation({
         image : filename,

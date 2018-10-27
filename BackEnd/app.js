@@ -26,7 +26,7 @@ app.use(function(req,res,next){
     next();
 });
 app.use('/service/image' , express.static(__dirname + '/data/images/service'));
-app.use('/article/image' , express.static(__dirname + '/data/images/articles'));
+app.use('/prestation/image' , express.static(__dirname + '/data/images/prestation'));
 
 app.use('/' , require('./controller'));
 
