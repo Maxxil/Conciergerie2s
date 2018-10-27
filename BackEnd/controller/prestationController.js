@@ -4,6 +4,7 @@ var multer = require('multer');
 
 var prestationBusiness = require('./../business/prestationBusiness');
 var Prestation = require('./../model/prestationModel');
+var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
@@ -49,16 +50,25 @@ router.get('/:id' , function(req , res){
 });
 
 router.put('/' , upload.single('file'), function(req, res){
-    var prestation = new Prestation({
-        image : filename,
-        nom : req.body.nom,
-        description: req.body.description,
-        prestataire : []
-    });
-    prestationBusiness.add(prestation);
-    res.json({
-        success : true
-    });
+    try{
+        var prestation = new Prestation({
+            image : filename,
+            nom : req.body.nom,
+            description: req.body.description,
+            prestataire : []
+        });
+        prestationBusiness.add(prestation);
+        res.json({
+            success : true
+        });
+    }
+    catch(ex){
+        res.json({
+            success: false,
+            error: errorEnum.error.PRESTATION_INSERT_ERROR
+        });
+    }
+    
     res.end();
 });
 
