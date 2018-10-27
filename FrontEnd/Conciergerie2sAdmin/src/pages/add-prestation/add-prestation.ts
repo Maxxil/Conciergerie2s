@@ -84,7 +84,7 @@ export class AddPrestationPage {
     if(result.success){
       if(this.isUpdateModal()){
         alert.setTitle('Succes');
-        alert.setSubTitle('Le service a été modifié correctement.');
+        alert.setSubTitle('La prestation a été modifié correctement.');
         alert.addButton({
           text : 'OK',
           handler : data => {
@@ -94,7 +94,7 @@ export class AddPrestationPage {
       }
       else{
         alert.setTitle('Succes');
-        alert.setSubTitle('Le service a été inséré correctement.');
+        alert.setSubTitle('La prestation a été inséré correctement.');
         alert.addButton({
           text : 'OK',
           handler : data => {
@@ -105,7 +105,7 @@ export class AddPrestationPage {
     }
     else{
       alert.setTitle('Erreur');
-      alert.setSubTitle("Le service n'a pas pu être inséré correctement. Contactez le service technique pour plus d'information.");
+      alert.setSubTitle("La prestation n'a pas pu être inséré correctement. Contactez le service technique pour plus d'information.");
       alert.addButton({
         text : 'OK'
       })
