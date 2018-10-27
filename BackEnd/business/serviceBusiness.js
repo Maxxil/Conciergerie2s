@@ -3,34 +3,48 @@ var fs = require('fs');
 var Service = require('./../model/serviceModel');
 
 module.exports = {
-    add(service){
+    add: function(service){
         this.getByName(service.nom).exec(function(err, result){
             if(result != null && result.length == 0){
                 service.save();
             }
         });
     },
-    update(service){
+    update: function(service){
         this.getById(service._id).exec(function(err, result){
             if(result != null && result.length > 0){
                 service.update();
             }
         })
     },
-    getAll(){
+    getAll: function(){
         return Service.find({});
     },
-    getById(id){
+    getById: function(id){
         return Service.findById(id);
     },
-    getByName(name){
+    getByName: function(name){
         return Service.find({name: name});
     },
-    deleteImage(filename){
+    deleteImage: function(filename){
         const filepath = "./data/images/service" + filename;
         fs.unlink(filepath).exec();
     },
-    delete(id){
+    delete: function(id){
         Service.deleteOne({_id : id}).exec();
+    },
+    addPrestation: function(idService, idPrestation){
+        var promise = getById(idService);
+        promise.exec(function (err, result) {
+            if(result != null && result != []){
+                if(result.prestations == null){
+                    result.prestations = [idPrestation];
+                }else{
+                    result.prestations.push(idPrestation)
+                }
+                result.save();
+            }
+
+        })
     }
-}
+};

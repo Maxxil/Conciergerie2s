@@ -1,9 +1,9 @@
-import { LOGIN_URL } from './../../../../Conciergerie2s/src/model/UrlConstants';
 import { LoginResult } from './../../model/Results/LoginResult';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from '../../model/Models/UserModel';
+import { LOGIN_URL } from '../../model/Url';
 
 /*
   Generated class for the LoginProvider provider.
