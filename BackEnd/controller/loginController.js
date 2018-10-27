@@ -21,9 +21,7 @@ router.get("/:token" , function (req, res) {
 router.post("/", function (req, res) {
     var promise = loginBusiness.existUser(req.body.username, req.body.password);
     promise.exec(function(err,result){
-        console.log(result);
         if(result == null || result == []){
-            console.log("false");
             res.json({
                 success : false,
                 error : errorEnum.error.AUCUNE_ERREUR,
@@ -33,7 +31,6 @@ router.post("/", function (req, res) {
         }
         else{
             var token = jwt.generateToken(result);
-            console.log(token);
             res.json({
                 success : true,
                 error : errorEnum.error.AUCUNE_ERREUR,

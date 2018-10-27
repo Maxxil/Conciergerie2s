@@ -88,7 +88,6 @@ router.post('/image' , upload.single('file') , function(req, res){
 });
 
 router.put('/' , upload.single('file'), function(req, res){
-    console.log(req.body);
     var service = new Service({
         nom : req.body.nom,
         description : req.body.description,

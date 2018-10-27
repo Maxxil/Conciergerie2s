@@ -4,8 +4,8 @@ FrontEnd/Conciergerie2s/node_modules
 node_modules
 
 # ignore image
-BackEnd/data/images/articles/*
-BackEnd/data/images/projects/*
+BackEnd/data/images/prestation/*
+BackEnd/data/images/service/*
 
 # log files
 *.log

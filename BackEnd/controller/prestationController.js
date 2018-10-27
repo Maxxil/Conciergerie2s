@@ -13,7 +13,6 @@ var storage = multer.diskStorage({
         cb(null, './data/images/prestation');
     },
     filename : function(req, file,cb){
-        console.log(file);
         var datetimestamp = Date.now();
         filename = file.fieldname + '-' + datetimestamp + '.jpg';
         cb(null,filename);
@@ -50,8 +49,6 @@ router.get('/:id' , function(req , res){
 });
 
 router.put('/' , upload.single('file'), function(req, res){
-    console.log("Add Prestation");
-    console.log(filename);
     var prestation = new Prestation({
         image : filename,
         nom : req.body.nom,

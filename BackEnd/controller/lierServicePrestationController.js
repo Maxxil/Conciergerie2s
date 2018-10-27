@@ -23,7 +23,6 @@ router.get('/:idService' , function(req, res){
 
     var promise = serviceBusiness.getByIdWithPrestations(req.params.idService);
     promise.exec(function(err, result){
-        console.log(result);
         if(result != null){
             res.json({
                 success : true,
@@ -36,7 +35,6 @@ router.get('/:idService' , function(req, res){
 });
 
 router.post('/' , function(req , res){
-    console.log(req.body);
     var promise = serviceBusiness.getById(req.body.idService);
     promise.exec(function(err, result){
         if(result != null ){

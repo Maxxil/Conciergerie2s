@@ -11,7 +11,6 @@ var storage = multer.diskStorage({
         cb(null, './data/images/utilisateur');
     },
     filename : function(req, file,cb){
-        console.log(file);
         var datetimestamp = Date.now();
         filename = file.fieldname + '-' + datetimestamp + '.jpg';
         cb(null,filename);
