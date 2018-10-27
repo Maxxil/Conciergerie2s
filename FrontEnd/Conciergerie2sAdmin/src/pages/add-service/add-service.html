@@ -8,7 +8,7 @@
   <ion-toolbar>
     <ion-buttons left>
       <button ion-button menuToggle *ngIf="!isUpdateModal()" ><ion-icon name="menu"></ion-icon></button>
-      <button ion-button menuToggle *ngIf="isUpdateModal()" (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
+      <button ion-button menuToggle *ngIf="isUpdateModal()" (click)="annul();"><ion-icon name="arrow-back"></ion-icon></button>
     </ion-buttons>
     <ion-title *ngIf="!isUpdateModal()">Ajout d'un service</ion-title>
     <ion-title *ngIf="isUpdateModal()">Modification d'un service</ion-title>
@@ -23,7 +23,8 @@
   </div>
   <div>
     <label float-left>Choissisez votre image</label>
-    <img src="{{service.image}}" (click)="importImage()">
+    <img src="{{service.image}}" (click)="importImage()" *ngIf="!isUpdateModal()">
+    <img src="{{serverImage + service.image}}" (click)="importImage()" *ngIf="isUpdateModal()">
     <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
   </div>
 

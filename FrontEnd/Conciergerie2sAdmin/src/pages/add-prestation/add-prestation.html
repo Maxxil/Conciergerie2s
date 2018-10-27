@@ -22,7 +22,8 @@
       </div>
       <div>
         <label float-left>Choissisez votre image</label>
-        <img src="{{prestation.image}}" (click)="importImage()">
+        <img src="{{prestation.image}}" (click)="importImage()" *ngIf="!isUpdateModal()">
+        <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()" *ngIf="isUpdateModal()">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
       </div>
 

@@ -26,6 +26,7 @@ export class AddServicePage {
   public service : ServiceModel;
   public file : File = null;
   private isImageUploaded : boolean = false;
+  public serverImage : string = SERVICE_IMAGE_URL;
 
   constructor(
     public navCtrl: NavController
