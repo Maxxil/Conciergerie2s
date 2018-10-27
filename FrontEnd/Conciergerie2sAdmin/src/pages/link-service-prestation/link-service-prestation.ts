@@ -62,6 +62,7 @@ export class LinkServicePrestationPage {
   public linkServiceToPrestation(){
     this.servicePvd.linkServiceToPrestation(this.selectedService, this.selectedPrestation).subscribe((results) =>{
       console.log(results);
+      this.getServiceWithPrestations();
     })
   }
 
