@@ -12,3 +12,7 @@ BackEnd/data/images/service/*
 
 # configuration variable
 BackEnd/config/environnementconf.js
+
+# mon ide
+deployment.xml
+profiles_settings.xml

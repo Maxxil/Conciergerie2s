@@ -38,24 +38,35 @@
 
   <button ion-button (click)="linkServiceToPrestation()">Ajouter</button>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Nom service</th>
-        <th>Nom prestation</th>
-        <th>Supprimer</th>
-      </tr>
-    </thead>
-    <tbody>
-    <ng-template ngFor let-service [ngForOf]="serviceWithPrestations" let-serviceIndex="index">
-      <ng-template ngFor let-prestation [ngForOf]="service.prestations" let-prestationIndex="index">
-        <tr>
-          <td>{{service.nom}}</td>
-          <td>{{prestation.nom}}</td>
-        </tr>
-      </ng-template>
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+            Service
+          </ion-col>
+          <ion-col>
+            Prestation
+          </ion-col>
+          <ion-col>
+              Supprimer
+            </ion-col>
+        </ion-row>
+        <ng-template ngFor let-service [ngForOf]="serviceWithPrestations" let-serviceIndex="index">
+            <ng-template ngFor let-prestation [ngForOf]="service.prestations" let-prestationIndex="index">
+         
+      <ion-row>
+        <ion-col>
+            {{service.nom}}
+        </ion-col>
+        <ion-col>
+            {{prestation.nom}}
+        </ion-col>
+        <ion-col>
+            x
+          </ion-col>
+      </ion-row>
     </ng-template>
-    </tbody>
-  </table>
+  </ng-template>
+  </ion-grid>   
+ 
 
 </ion-content>

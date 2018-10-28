@@ -77,4 +77,10 @@ export class PrestationPage {
     return this.idService != null;
   }
 
+  displayAddPrestation()
+  {
+    const modal = this.modalCtrl.create(AddPrestationPage , {ModalType: ServiceModalType.CREATE});
+    modal.present();
+  }
+
 }

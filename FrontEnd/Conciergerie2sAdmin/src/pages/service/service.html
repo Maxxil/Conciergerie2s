@@ -9,14 +9,13 @@
     <ion-buttons left>
       <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
-    <ion-title>SERVICES</ion-title>
+    <ion-title>SERVICES</ion-title>    
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-  <img src="http://www.archimag.com/sites/archimag.com/files/styles/article/public/web_articles/image/service-1019821_1920.jpg?itok=dtqg8yQ-"/>
-  <button ion-button color="white" class="buttonService" disabled>Services</button>
+<ion-content padding class="animated fadeIn">
+  <img src="assets/imgs/service.jpg"/>  
   <ion-row col-md-12>
     <ion-col col-md-6 *ngFor="let element of services">
       <!--<ion-card (click)="displayService(element.id)">-->
@@ -27,4 +26,7 @@
       </ion-card>
     </ion-col>
   </ion-row>
+  <ion-fab right top>
+      <button ion-fab color="primary" (click)="displayAddService()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
