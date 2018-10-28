@@ -7,28 +7,35 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Conciergerie2s Admin</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list>
-      <button ion-item menuClose (click)="openPageHome()" >
-        Tous les services
-      </button>
-      <button ion-item menuClose (click)="openPageAddService()">
-        Ajout d'un service
-      </button>
-      <button ion-item menuClose (click)="openPrestationPage()">
-        Toutes les prestations
-      </button>     
-      <button ion-item menuClose (click)="openPageAddPrestation()">
-        Ajout d'une prestation
-      </button>
-      <button ion-item menuClose (click)="openPageLierServicePrestation()">
-        Lier un service à une prestation
-      </button>
-    </ion-list>
+     <ion-row justify-content-center padding>
+        <img width="80" height="80" src="assets/imgs/logo.png" text-center>        
+     </ion-row>
+     <ion-row>
+        <ion-list>
+            <button ion-item menuClose (click)="openPageHome()" >
+              Tous les services
+            </button>
+            <button ion-item menuClose (click)="openPageAddService()">
+              Ajout d'un service
+            </button>
+            <button ion-item menuClose (click)="openPrestationPage()">
+              Toutes les prestations
+            </button>     
+            <button ion-item menuClose (click)="openPageAddPrestation()">
+              Ajout d'une prestation
+            </button>
+            <button ion-item menuClose (click)="openPageLierServicePrestation()">
+              Lier un service à une prestation
+            </button>
+          </ion-list>
+     </ion-row>
+    
   </ion-content>
 </ion-menu>
+
 
 <ion-nav #content [root]="rootPage"></ion-nav>
