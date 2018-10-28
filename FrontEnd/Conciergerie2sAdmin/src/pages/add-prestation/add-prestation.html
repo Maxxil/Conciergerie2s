@@ -18,28 +18,29 @@
 
 <ion-content padding>
     <div class="success" *ngIf="isSaved">
-        La savegarde s'est terminée avec succés.
-      </div>
-      <div>
-        <label float-left>Choissisez votre image</label>
+        La sauvegarde s'est terminée avec succés.
+    </div>
+
+    <ion-list>
+      <ion-item text-center>        
         <img src="{{prestation.image}}" (click)="importImage()" *ngIf="!isUpdateModal()">
         <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()" *ngIf="isUpdateModal()">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
-      </div>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Nom de la prestation</ion-label>
+        <ion-input type="text" required name="nom" id="nom" [(ngModel)]="prestation.nom"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea rows="3" required [(ngModel)]="prestation.description"id="description" name="desctiption"></ion-textarea>
+      </ion-item>
+    </ion-list>
+     
 
-      <div>
-        <label float-left>Donnez le nom de la prestation</label>
-        <input ion-input name="nom" id="nom" [(ngModel)]="prestation.nom" required/>
-      </div>
-
-      <div>
-        <label float-left>Donnez la description de la prestation</label>
-        <input ion-input name="description" id="description" [(ngModel)]="prestation.description" required/>
-      </div>
-
-      <ion-buttons start>
+    <div text-center>
           <button ion-button [color]="" (click)="save()" *ngIf="!isUpdateModal()">Enregistrer</button>
           <button ion-button [color]="" (click)="update()" *ngIf="isUpdateModal()">Modifier</button>
-          <button ion-button color="light" (click)="close()" *ngIf="isUpdateModal()">Annuler</button>
-      </ion-buttons>
+          <button ion-button color="danger" (click)="close()">Annuler</button>
+    </div>
 </ion-content>
