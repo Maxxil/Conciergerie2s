@@ -4,10 +4,14 @@ FrontEnd/Conciergerie2s/node_modules
 node_modules
 
 # ignore image
-
+BackEnd/data/images
 
 # log files
 *.log
 
 # configuration variable
 BackEnd/config/environnementconf.js
+
+# mon ide
+deployment.xml
+profiles_settings.xml
