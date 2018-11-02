@@ -23,7 +23,7 @@ export class PrestationProvider {
     return this.http.get<PrestationResult>(PRESTATION_URL)
   }
 
-  getByIdService(idService : number) : Observable<PrestationResult>{
+  getByIdService(idService : string) : Observable<PrestationResult>{
     return this.http.get<PrestationResult>(LIER_SERVICE_PRESTATION_URL + "/" + idService);
   }
 
@@ -34,6 +34,11 @@ export class PrestationProvider {
     formData.append('file',image, 'image');
     formData.append('nom' , prestation.nom);
     formData.append('description' , prestation.description);
+    formData.append('prix', prestation.prix);
+    formData.append('typeprix', prestation.typeprix);
+    for (var i = 0; i <prestation.details.length; i++) {
+      formData.append('details[]', prestation.details[i]);
+    }    
     formData.append('token' , token);
     console.log(formData);
     return this.http.put<PrestationResult>(PRESTATION_URL, formData);
@@ -45,8 +50,11 @@ export class PrestationProvider {
     formData.append('file',image, 'image');
     formData.append('nom' , prestation.nom);
     formData.append('description' , prestation.description);
+    formData.append('prix', prestation.prix);
+    formData.append('typeprix', prestation.typeprix);
     formData.append('token' , token);
-    return this.http.put<PrestationResult>(PRESTATION_URL, formData);
+    console.log(formData); 
+    return this.http.post<PrestationResult>(PRESTATION_URL, formData);
   }
 
 }

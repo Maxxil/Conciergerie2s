@@ -13,7 +13,7 @@ module.exports = {
     update : function(prestation){
         this.getById(prestation._id).exec(function(err , result){
             if(result != null && result.length > 0){
-                prestation.save();
+                prestation.update();
             }
         });
     }

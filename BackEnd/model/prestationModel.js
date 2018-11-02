@@ -6,6 +6,9 @@ var prestation = new mongoose.Schema({
     nom : 'String',
     description: 'String',
     prestataire : [{type: Schema.Types.ObjectId, ref:'Prestataire'}],
+    details: [String],
+    prix: 'Number',
+    typeprix: 'String'  // horaire ou forfait ou sur devis  
 });
 
 module.exports = mongoose.model("Prestation" , prestation);

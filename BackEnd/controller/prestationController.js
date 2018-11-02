@@ -49,13 +49,33 @@ router.get('/:id' , function(req , res){
     })
 });
 
+router.post('/' , function(req, res){
+    var prestation = new Prestation({
+        image : filename,
+        nom : req.body.nom,
+        description: req.body.description,
+        prix: req.body.prix,
+        typeprix: req.body.typeprix,
+        prestataire : []
+    });
+    prestationBusiness.update(prestation).exec(function(err, result){
+        res.json({
+            data : result
+        });
+        res.end();
+    })
+});
+
 router.put('/' , upload.single('file'), function(req, res){
     try{
         var prestation = new Prestation({
             image : filename,
             nom : req.body.nom,
             description: req.body.description,
-            prestataire : []
+            prix: req.body.prix,
+            typeprix: req.body.typeprix,
+            prestataire : [],
+            details: req.body.details
         });
         prestationBusiness.add(prestation);
         res.json({
@@ -71,5 +91,6 @@ router.put('/' , upload.single('file'), function(req, res){
     
     res.end();
 });
+
 
 module.exports = router;
