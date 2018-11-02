@@ -12,7 +12,7 @@
       <button *ngIf="!isUpdateModal()" ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
     <ion-title *ngIf="!isUpdateModal()">Prestations</ion-title>
-    <ion-title *ngIf="isUpdateModal()">Service test : {{service.nom}} </ion-title>
+    <ion-title *ngIf="isUpdateModal()">{{service.nom}} </ion-title>
     <ion-buttons right>
       <ion-badge item-end>{{nbprestation}}</ion-badge>
     </ion-buttons>  
@@ -23,16 +23,16 @@
 
 <ion-content padding>
   <img src="assets/imgs/prestation.jpg"/>
-  <ion-row col-md-12>
-    <ion-col col-md-6 *ngFor="let element of prestations">
+ 
+   
       <!--<ion-card (click)="displayService(element.id)">-->
-      <ion-card>
+      <ion-card *ngFor="let element of prestations">
         <img src="{{prestationImageUrl + element.image}}" /><!-- (click)="getPrestataires(element)" -->
         <ion-card-title text-center >{{element.nom}}</ion-card-title><!-- (click)="getPrestataires(element)" -->
         <ion-icon float-end float-right name="create" (click)="updatePrestation(element)"></ion-icon>
       </ion-card>
-    </ion-col>
-  </ion-row>  
+   
+   
   <ion-fab right top>
       <button ion-fab color="primary" (click)="displayAddPrestation()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
