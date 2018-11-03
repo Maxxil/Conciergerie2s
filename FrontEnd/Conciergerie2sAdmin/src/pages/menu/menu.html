@@ -31,10 +31,31 @@
             <button ion-item menuClose (click)="openPageLierServicePrestation()">
               Lier un service à une prestation
             </button>
+            <button ion-item menuClose>
+                Les commandes
+            </button>
+            <button ion-item menuClose>
+                Les devis
+            </button> 
+           <!--  <button ion-item menuClose (click)="openPageDashboard()" >
+              Dashboard
+            </button>  -->
           </ion-list>
      </ion-row>
     
   </ion-content>
+
+  <ion-footer>
+      <ion-grid>
+          <ion-row>
+     <ion-col text-center>
+          <button ion-button icon-only>
+            <ion-icon name="power"></ion-icon>
+          </button>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
 </ion-menu>
 
 

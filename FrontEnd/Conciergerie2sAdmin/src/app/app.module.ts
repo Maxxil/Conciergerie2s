@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginProvider } from '../providers/login/login';
 import { LoginPage } from '../pages/login/login';
 import { ServicePage } from '../pages/service/service';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ServiceProvider } from '../providers/service/service';
 import { PrestationProvider } from '../providers/prestation/prestation';
 import { MenuPage } from '../pages/menu/menu';
@@ -25,12 +26,13 @@ import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-pres
     HomePage,
     LoginPage,
     MenuPage,
-    ServicePage,
+   ServicePage,
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
     LinkServicePrestationPage,
-    AddPrestationDetailPage
+    AddPrestationDetailPage,
+    DashboardPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-pres
     AddPrestationPage,
     PrestationPage,
     LinkServicePrestationPage,
-    AddPrestationDetailPage
+    AddPrestationDetailPage,
+    DashboardPage
   ],
   providers: [
     StatusBar,
