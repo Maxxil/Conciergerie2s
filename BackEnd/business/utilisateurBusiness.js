@@ -23,7 +23,8 @@ module.exports = {
         //promise.save();
     },
     getAllPrestataire : function(){
-        return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE).select('nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email');
+        return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE)
+            .select('nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');
     },
     existByUsername: function(user){
         return Utilisateur.find({userName : user.nomUtilisateur});

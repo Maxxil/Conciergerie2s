@@ -1,5 +1,4 @@
 export enum StatusEnum{
-    CREE = 1,
-    VALIDE = 2,
-
+  EN_ATTENTE_VALIDATION = 1,
+  VALIDE = 2
 }

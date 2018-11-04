@@ -50,7 +50,7 @@ export class LoginPage {
       console.log(result);
       if(result == null || !result.success )
       {
-        this.user.password = "";
+        this.user.motDePasse = "";
         let modal = this.alertCtrl.create({
           title: "Erreur",
           message: "Le login ou le mot de passe est incorrect.",

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
-import {UtilisateurModel} from "../../../../Conciergerie2s/src/model/UtilisateurModel";
+import {StatusEnum} from "../../model/Enums/StatusEnum";
+import {PrestationProvider} from "../../providers/prestation/prestation";
+import {UserModel} from "../../model/Models/UserModel";
 
 /**
  * Generated class for the ValiderPrestatairePage page.
@@ -17,12 +19,14 @@ import {UtilisateurModel} from "../../../../Conciergerie2s/src/model/Utilisateur
 })
 export class ValiderPrestatairePage {
 
-  public prestataires : UtilisateurModel[];
+  public prestataires : UserModel[];
 
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
-    , public prestatairePvd : PrestataireProvider) {
+    , public prestatairePvd : PrestataireProvider
+    , public  prestationPvd : PrestationProvider) {
+    this.getAllPrestataire();
 
   }
 
@@ -35,5 +39,29 @@ export class ValiderPrestatairePage {
       this.prestataires = results.data;
     })
   }
+
+  displayPrestataire(element){
+
+  }
+
+  estValidePrestataire(status){
+    if(status == StatusEnum.VALIDE){
+      return true;
+    }
+    return false;
+  }
+
+  validerPrestataire(element){
+    this.prestatairePvd.valider(element).subscribe((result) =>{
+
+    })
+  }
+
+  devaliderPrestataire(element){
+    this.prestatairePvd.devalider(element).subscribe((result) =>{
+
+    })
+  }
+
 
 }

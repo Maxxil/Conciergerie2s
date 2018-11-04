@@ -15,5 +15,18 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-item >
+      <button ion-item *ngFor="let element of prestataires" (click)="displayPrestataire(element)">
+        {{element.nom + " " + element.prenom}}
+        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </button>
+        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)">
+          <ion-icon name="close-circle"></ion-icon>
+        </button>
+      </button>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { PrestationProvider } from '../../providers/prestation/prestation';
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { PrestationModel } from '../../model/Models/PrestationModel';
+import { ServiceModel } from '../../model/Models/ServiceModel';
 
 /**
  * Generated class for the PrestationPage page.
@@ -14,32 +15,40 @@ import { PrestationModel } from '../../model/Models/PrestationModel';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-prestation',
   templateUrl: 'prestation.html',
 })
 export class PrestationPage {
 
-  public prestations: PrestationModel[];
-  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
-  private idService;
+  public prestations: Array<PrestationModel>;
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL; 
+  public service : ServiceModel;
+  public nbprestation = 0;
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , private prestationPrvd: PrestationProvider
     , private modalCtrl : ModalController) {
-    this.idService = this.navParams.get("IdService");
-    if(this.idService != null)
+    this.service = this.navParams.get("service");
+    
+    if(this.service != null)
     {
-      this.prestationPrvd.getByIdService(this.idService).subscribe((result) => {
-        this.prestations = result.data;
+      
+     
+      this.prestationPrvd.getByIdService(this.service._id).subscribe((result) => {
+        this.prestations = result.data;               
+        this.nbprestation = result.data.length;
       });
+
+      
     }
     else {
       this.prestationPrvd.getAll().subscribe((results) =>
       {
         this.prestations = results.data;
+        this.nbprestation = results.data.length;
       })
     }
 
@@ -74,7 +83,7 @@ export class PrestationPage {
   }
 
   isUpdateModal(){
-    return this.idService != null;
+    return this.service != null; 
   }
 
   displayAddPrestation()

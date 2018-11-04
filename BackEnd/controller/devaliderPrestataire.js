@@ -13,7 +13,7 @@ router.post('/:id', function(req, res){
     var promise = prestataireBusiness.getById(req.params.id);
     promise.exec(function(err, result){
         if(result != null){
-            result.status = Status.status.VALIDE;
+            result.status = Status.status.EN_ATTENTE_VALIDATION;
             result.save();
         }
         res.json({

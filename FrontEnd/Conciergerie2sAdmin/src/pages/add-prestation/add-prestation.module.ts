@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule, ModalController } from 'ionic-angular';
 import { AddPrestationPage } from './add-prestation';
 
 @NgModule({
@@ -10,4 +10,6 @@ import { AddPrestationPage } from './add-prestation';
     IonicPageModule.forChild(AddPrestationPage),
   ],
 })
-export class AddPrestationPageModule {}
+export class AddPrestationPageModule {
+  constructor(public modalCtrl: ModalController) {}
+}

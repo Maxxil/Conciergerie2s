@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginProvider } from '../providers/login/login';
 import { LoginPage } from '../pages/login/login';
 import { ServicePage } from '../pages/service/service';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ServiceProvider } from '../providers/service/service';
 import { PrestationProvider } from '../providers/prestation/prestation';
 import { MenuPage } from '../pages/menu/menu';
@@ -18,6 +19,8 @@ import { AddPrestationPage } from '../pages/add-prestation/add-prestation';
 import {PrestationPage} from "../pages/prestation/prestation";
 import {LinkServicePrestationPage} from "../pages/link-service-prestation/link-service-prestation";
 import { PrestataireProvider } from '../providers/prestataire/prestataire';
+import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-prestation-detail';
+import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prestataire";
 
 @NgModule({
   declarations: [
@@ -25,11 +28,14 @@ import { PrestataireProvider } from '../providers/prestataire/prestataire';
     HomePage,
     LoginPage,
     MenuPage,
-    ServicePage,
+   ServicePage,
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
-    LinkServicePrestationPage
+    LinkServicePrestationPage,
+    AddPrestationDetailPage,
+    DashboardPage,
+    ValiderPrestatairePage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,10 @@ import { PrestataireProvider } from '../providers/prestataire/prestataire';
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
-    LinkServicePrestationPage
+    LinkServicePrestationPage,
+    AddPrestationDetailPage,
+    DashboardPage,
+    ValiderPrestatairePage
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>      
+      <button ion-button (click)="close();"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+    <ion-title>Ajout d'un détail</ion-title>    
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>    
+    <ion-list>      
+      <ion-item>        
+        <ion-label floating>Contenu</ion-label>
+        <ion-input type="text" required name="contenu" id="contenu"  [(ngModel)]="detailContenu"></ion-input>
+      </ion-item>           
+    </ion-list>
+        
+    <div text-center>
+          <button ion-button [color]="" (click)="add()">Enregistrer</button>          
+          <button ion-button color="danger" (click)="close()">Annuler</button>
+    </div>
+</ion-content>

@@ -17,3 +17,5 @@ export const PRESTATAIRE_URL : string = SERVER_URL + '/prestataire/';
 export const PRESTATION_IMAGE_URL : string = PRESTATION_URL + '/image/';
 export const LIER_SERVICE_PRESTATION_URL: string = SERVER_URL + '/lierServicePrestation';
 export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestation';
+export const VALIDER_PRESTATAIRE : string = SERVER_URL + '/validerPrestataire';
+export const  DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';

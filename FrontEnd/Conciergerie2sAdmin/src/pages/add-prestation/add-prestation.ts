@@ -2,10 +2,10 @@ import { PrestationResult } from './../../model/Results/PrestationResult';
 import { PrestationProvider } from './../../providers/prestation/prestation';
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
+import {  NavController, NavParams, ViewController, AlertController, ModalController } from 'ionic-angular';
 import { PRESTATION_IMAGE_URL } from '../../model/Url';
 import { PrestationModel } from '../../model/Models/PrestationModel';
-
+import {AddPrestationDetailPage} from "../add-prestation-detail/add-prestation-detail";
 /**
  * Generated class for the AddPrestationPage page.
  *
@@ -13,7 +13,6 @@ import { PrestationModel } from '../../model/Models/PrestationModel';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-add-prestation',
   templateUrl: 'add-prestation.html',
@@ -31,6 +30,7 @@ export class AddPrestationPage {
       public viewCtrl: ViewController
       ,public navCtrl: NavController
       , public navParams: NavParams
+      , private modalCtrl : ModalController
       , private prestationPvd : PrestationProvider
       , private alertCtrl : AlertController) {
     this.modalType = this.navParams.get("ModalType");
@@ -39,12 +39,31 @@ export class AddPrestationPage {
     }
     else{
       this.prestation = new PrestationModel();
+      this.prestation.details = [];
+      this.prestation.typeprix="heure";
       this.prestation.image = "../../assets/icon/pic.png";
     }
   }
 
   isUpdateModal(){
     return this.modalType == ServiceModalType.UPDATE;
+  }
+
+  displayAddPrestationDetail()
+  {
+    const modal = this.modalCtrl.create(
+      AddPrestationDetailPage , {ModalType: ServiceModalType.CREATE});
+      modal.onDidDismiss(data => {
+        console.log(data);
+        this.prestation.details.push(data.contenu);
+        console.log(this.prestation);
+      });
+    modal.present();
+  }
+
+  deletePrestationDetail(index) {   
+    if(index > -1)
+      this.prestation.details.splice(index,1);       
   }
 
   importImage()
@@ -62,7 +81,8 @@ export class AddPrestationPage {
     this.file = e.target.files[0];
   }
 
-  save(){
+  add(){
+    console.log(this.prestation);
     this.prestationPvd.add(this.prestation, this.file).subscribe((result) => {
       this.manageDisplaySuccessOrError(result);
     })
@@ -84,7 +104,7 @@ export class AddPrestationPage {
     if(result.success){
       if(this.isUpdateModal()){
         alert.setTitle('Succes');
-        alert.setSubTitle('La prestation a été modifié correctement.');
+        alert.setSubTitle('La prestation a été modifiée correctement.');
         alert.addButton({
           text : 'OK',
           handler : data => {
@@ -94,7 +114,7 @@ export class AddPrestationPage {
       }
       else{
         alert.setTitle('Succes');
-        alert.setSubTitle('La prestation a été inséré correctement.');
+        alert.setSubTitle('La prestation a été insérée correctement.');
         alert.addButton({
           text : 'OK',
           handler : data => {

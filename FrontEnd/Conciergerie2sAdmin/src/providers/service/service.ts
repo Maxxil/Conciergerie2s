@@ -27,6 +27,18 @@ export class ServiceProvider {
     return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL);
   }
 
+  
+  add(image: File, service: ServiceModel): Observable<ServiceResult>{
+    const token = localStorage.getItem('token');
+    const url = SERVICE_URL;
+    const formData = new FormData();
+    formData.append('file',image, 'image');
+    formData.append('nom' , service.nom);
+    formData.append('description' , service.description);
+    formData.append('token' , token);
+    return this.http.put<ServiceResult>(url, formData);
+  }
+
   update(image: File, service: ServiceModel, isImageUploaded: boolean): Observable<ServiceResult>{
     const token = localStorage.getItem('token');
     let url = SERVICE_URL;
@@ -42,16 +54,6 @@ export class ServiceProvider {
 
   }
 
-  add(image: File, service: ServiceModel): Observable<ServiceResult>{
-    const token = localStorage.getItem('token');
-    const url = SERVICE_URL;
-    const formData = new FormData();
-    formData.append('file',image, 'image');
-    formData.append('nom' , service.nom);
-    formData.append('description' , service.description);
-    formData.append('token' , token);
-    return this.http.put<ServiceResult>(url, formData);
-  }
 
   linkServiceToPrestation(idService, idPrestation){
     return this.http.post<ServiceResult>(LIER_SERVICE_PRESTATION_URL, {idService: idService, idPrestation : idPrestation});

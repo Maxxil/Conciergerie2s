@@ -3,5 +3,8 @@ export class PrestationModel{
   nom : string;
   image : string;
   description: string;
+  prix: string;
+  typeprix: string;
   prestataires : object[];
+  details: string[];
 }

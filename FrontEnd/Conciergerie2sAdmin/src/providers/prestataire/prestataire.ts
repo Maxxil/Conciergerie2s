@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {UtilisateurModel} from "../../../../Conciergerie2s/src/model/UtilisateurModel";
-import {PRESTATAIRE_URL} from "../../model/Url";
+import {DEVALIDER_PRESTATAIRE, PRESTATAIRE_URL, VALIDER_PRESTATAIRE} from "../../model/Url";
 import {Observable} from "rxjs/Observable";
-import {LoginResult} from "../../model/Results/LoginResult";
+import {Result} from "../../model/Results/Result";
+import {PrestataireResult} from "../../model/Results/PrestataireResult";
 
 /*
   Generated class for the PrestataireProvider provider.
@@ -20,6 +20,14 @@ export class PrestataireProvider {
 
   public getAllPrestataire(): Observable<PrestataireResult>{
     return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
+  }
+
+  valider(prestataire) : Observable<Result> {
+    return this.http.post<Result>(VALIDER_PRESTATAIRE, {id: prestataire._id});
+  }
+
+  devalider(prestataire): Observable<Result>{
+    return this.http.post<Result>(DEVALIDER_PRESTATAIRE, {id:prestataire._id});
   }
 
 }

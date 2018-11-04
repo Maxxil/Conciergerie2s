@@ -14,18 +14,18 @@
 </ion-header>
 
 
-<ion-content padding class="animated fadeIn">
-  <img src="assets/imgs/service.jpg"/>  
-  <ion-row col-md-12>
-    <ion-col col-md-6 *ngFor="let element of services">
+<ion-content padding class="animated fadeIn card-background-page">
+  <!-- <img src="assets/imgs/service.jpg"/>   -->
+ 
       <!--<ion-card (click)="displayService(element.id)">-->
-      <ion-card>
+      <ion-card *ngFor="let element of services">
+        
         <img src="{{serviceImageUrl + element.image}}" (click)="getPrestations(element)"/>
+        
         <ion-card-title text-center (click)="getPrestations(element)">{{element.nom}}</ion-card-title>
         <ion-icon float-end float-right name="create" (click)="updateService(element)"></ion-icon>
       </ion-card>
-    </ion-col>
-  </ion-row>
+  
   <ion-fab right top>
       <button ion-fab color="primary" (click)="displayAddService()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>

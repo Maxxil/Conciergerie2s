@@ -55,7 +55,7 @@ export class ServicePage {
   }
 
   getPrestations(service: ServiceModel){
-    this.navCtrl.push(PrestationPage, {IdService: service._id})
+    this.navCtrl.push(PrestationPage, {service: service})
   }
 
 }
