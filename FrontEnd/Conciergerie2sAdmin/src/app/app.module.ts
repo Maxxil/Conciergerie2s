@@ -17,6 +17,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { AddPrestationPage } from '../pages/add-prestation/add-prestation';
 import {PrestationPage} from "../pages/prestation/prestation";
 import {LinkServicePrestationPage} from "../pages/link-service-prestation/link-service-prestation";
+import { PrestataireProvider } from '../providers/prestataire/prestataire';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {LinkServicePrestationPage} from "../pages/link-service-prestation/link-s
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider,
     ServiceProvider,
-    PrestationProvider
+    PrestationProvider,
+    PrestataireProvider
   ]
 })
 export class AppModule {}

@@ -16,24 +16,52 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label floating>Nom d'utilisateur</ion-label>
-      <ion-input type="text" name="username" id="username" value="{{login.username}}"/>
+      <ion-label floating>Nom</ion-label>
+      <ion-input type="text" name="nom" id="nom" [(ngModel)]="user.nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Prenom</ion-label>
+      <ion-input type="text" name="prenom" id="prenom" [(ngModel)]="user.prenom"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="email" name="email" id="email" value="{{login.email}}"/>
+      <ion-input type="text" name="email" id="email" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Email confirmation</ion-label>
-      <ion-input type="email" name="emailConfirmation" id="emailConfirmation" value="{{login.emailConfirmation}}"/>
+      <ion-label floating>Nom d'utilisateur</ion-label>
+      <ion-input type="text" name="nomUtilisateur" id="nomUtilisateur" [(ngModel)]="user.nomUtilisateur"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Mot de passe</ion-label>
-      <ion-input type="password" name="password" id="password" value="{{login.password}}"/>
+      <ion-input type="password" name="motDePasse" id="motDePasse" [(ngModel)]="user.motDePasse"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Mot de passe confirmation</ion-label>
-      <ion-input type="password" name="passwordConfirmation" id="passwordConfirmation" value="{{login.passwordConfirmation}}"/>
+      <ion-label floating>Confirmation du mot de passe</ion-label>
+      <ion-input type="password" name="confirmationMotDePasse" id="confirmationMotDePasse" [(ngModel)]="confirmationMotDePasse"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Image</ion-label>
+      <img src="" (click)="importImage()">
+      <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Role</ion-label>
+      <ion-select [(ngModel)]="user.role">
+        <ion-option value="1">CLIENT</ion-option>
+        <ion-option value="2">PRESTATAIRE</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Addresse</ion-label>
+      <ion-input type="text" name="addresse" id="addresse" [(ngModel)]="user.addresse"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Telephone mobile</ion-label>
+      <ion-input type="text" name="telephoneMobile" id="telephoneMobile" [(ngModel)]="user.telephoneMobile"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Telephone fix</ion-label>
+      <ion-input type="text" name="telephoneFix" id="telephoneFix" [(ngModel)]="user.telephoneFix"></ion-input>
     </ion-item>
   </ion-list>
 

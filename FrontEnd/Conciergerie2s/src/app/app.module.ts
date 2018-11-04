@@ -15,6 +15,7 @@ import {LoginPage} from "../pages/login/login";
 import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
 import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
+import {SigninPage} from "../pages/signin/signin";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
     HomePage,
     LoginPage,
     ServicesPage,
-    TabsPage
+    TabsPage,
+    SigninPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
     HomePage,
     LoginPage,
     ServicesPage,
-    TabsPage
+    TabsPage,
+    SigninPage
   ],
   providers: [
     StatusBar,

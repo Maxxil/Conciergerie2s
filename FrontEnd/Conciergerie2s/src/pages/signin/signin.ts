@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginModel} from "../../model/LoginModel";
 import {TabsPage} from "../tabs/tabs";
+import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
+import {UtilisateurModel} from "../../model/UtilisateurModel";
+import {RoleEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/RoleEnum";
 
 /**
  * Generated class for the SigninPage page.
@@ -18,8 +21,15 @@ import {TabsPage} from "../tabs/tabs";
 export class SigninPage {
 
   public login: LoginModel;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public user : UtilisateurModel;
+  public confirmationMotDePasse : string;
+  public roleEnum : RoleEnum;
+  constructor(
+    public navCtrl: NavController
+    , public navParams: NavParams
+    , public utilisateurPvd : UtilisateurProvider) {
     this.login = new LoginModel();
+    this.user = new UtilisateurModel();
   }
 
   ionViewDidLoad() {
@@ -27,7 +37,9 @@ export class SigninPage {
   }
 
   signin(){
-    this.navCtrl.push(TabsPage, {profile: this.login});
+    this.utilisateurPvd.add(this.user).subscribe((result) =>{
+      console.log(result);
+    });
   }
 
 }

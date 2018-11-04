@@ -6,5 +6,6 @@ router.use("/prestation" , require('./prestationController'));
 router.use('/service' , require('./serviceController'));
 router.use('/lierServicePrestation' , require('./lierServicePrestationController'));
 router.use('/lierPrestationPrestation' , require('./lierPrestationPrestataire'));
+router.use('/prestataire', require('./prestataireController'));
 
 module.exports = router;

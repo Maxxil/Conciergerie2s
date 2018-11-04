@@ -10,7 +10,7 @@ export class UtilisateurModel {
     telephoneMobile: string;
     telephoneFix: string;
     email : string;
-    historique : [];
+    historique : object[];
 
 
 }

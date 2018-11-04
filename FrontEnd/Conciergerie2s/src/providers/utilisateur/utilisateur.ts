@@ -17,7 +17,7 @@ export class UtilisateurProvider {
   }
 
   add(utilisateur: UtilisateurModel) {
-    this.http.put(UTILISATEUR_URL, utilisateur)
+    return this.http.put(UTILISATEUR_URL, utilisateur)
   }
 
 }

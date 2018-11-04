@@ -6,6 +6,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import {PrestationPage} from "../prestation/prestation";
 import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
+import {ValiderPrestatairePage} from "../valider-prestataire/valider-prestataire";
 
 /**
  * Generated class for the MenuPage page.
@@ -49,4 +50,7 @@ export class MenuPage {
     this.rootPage = LinkServicePrestationPage;
   }
 
+  openPageValiderPrestataire(){
+    this.rootPage = ValiderPrestatairePage;
+  }
 }

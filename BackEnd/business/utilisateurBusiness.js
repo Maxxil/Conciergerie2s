@@ -1,4 +1,6 @@
 var Utilisateur = require('./../model/utilisateureModel');
+var statusEnum = require('./../helper/statusEnum');
+var roleEnum = require('./../helper/roleEnum');
 module.exports = {
     any: function()
     {
@@ -11,7 +13,7 @@ module.exports = {
             nom: user.nom,
             prenom : user.prenom,
             role : user.role,
-            status : user.status,
+            status : statusEnum.status.EN_ATTENTE_VALIDATION,
             addresse : user.addresse,
             telephoneMobile : user.telephoneMobile,
             telephoneFix : user.telephoneFix,
@@ -19,6 +21,9 @@ module.exports = {
         });
         Utilisateur.create(promise);
         //promise.save();
+    },
+    getAllPrestataire : function(){
+        return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE).select('nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email');
     },
     existByUsername: function(user){
         return Utilisateur.find({userName : user.nomUtilisateur});
