@@ -1,13 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import {
-  DEVALIDER_PRESTATAIRE, LIER_SERVICE_PRESTATION_URL, PRESTATION_URL,
-  VALIDER_PRESTATAIRE
+  LIER_SERVICE_PRESTATION_URL, PRESTATION_URL
 } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {PrestationResult} from '../../model/Results/PrestationResult';
 import { PrestationModel } from '../../model/Models/PrestationModel';
-import {Result} from "../../model/Results/Result";
 
 /*
   Generated class for the PrestationProvider provider.

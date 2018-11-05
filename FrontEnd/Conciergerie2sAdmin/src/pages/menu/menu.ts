@@ -2,7 +2,7 @@ import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { AddServicePage } from './../add-service/add-service';
 import { ServicePage } from './../service/service';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { NavController, NavParams, Nav } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import {PrestationPage} from "../prestation/prestation";
 import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
@@ -22,7 +22,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 })
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
-  public rootPage : Page= ServicePage;
+  public rootPage : Page= DashboardPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -31,6 +31,10 @@ export class MenuPage {
   }
 
   openPageHome(){
+    this.rootPage = DashboardPage;
+  }
+
+  openPageService(){
     this.rootPage = ServicePage;
   }
 

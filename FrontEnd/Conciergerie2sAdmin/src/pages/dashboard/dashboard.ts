@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {HomePage} from "../home/home";
+import {NotificationsPage} from "../notifications/notifications";
+import {ChatPage} from "../chat/chat";
 
 /**
  * Generated class for the DashboardPage page.
@@ -14,9 +17,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-  tab1Root = '';
-  tab2Root = ''; 
-  tab3Root = '';
+  tab1Root = HomePage;
+  tab2Root = NotificationsPage;
+  tab3Root = ChatPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
