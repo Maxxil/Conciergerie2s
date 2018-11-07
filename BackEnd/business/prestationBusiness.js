@@ -10,6 +10,9 @@ module.exports = {
     getById : function(id){
         return Prestation.find({_id : id});
     },
+    getWithPrestataire : function () {
+        return Prestation.find({}).where('prestataire').ne([]).populate('prestations');
+    },
     update : function(prestation){
         this.getById(prestation._id).exec(function(err , result){
             if(result != null && result.length > 0){

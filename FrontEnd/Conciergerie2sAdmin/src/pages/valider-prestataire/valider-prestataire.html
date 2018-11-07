@@ -18,11 +18,11 @@
   <ion-list>
     <ion-item >
       <button ion-item *ngFor="let element of prestataires" (click)="displayPrestataire(element)">
-        {{element.nom + " " + element.prenom}}
-        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
+        {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
+        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.utilisateur.status)">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
         </button>
-        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)">
+        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.utilisateur.status)">
           <ion-icon name="close-circle"></ion-icon>
         </button>
       </button>

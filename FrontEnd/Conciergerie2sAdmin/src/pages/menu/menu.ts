@@ -8,6 +8,7 @@ import {PrestationPage} from "../prestation/prestation";
 import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
 import {ValiderPrestatairePage} from "../valider-prestataire/valider-prestataire";
 import { DashboardPage } from '../dashboard/dashboard';
+import {LinkPrestatairePrestataionPage} from "../link-prestataire-prestataion/link-prestataire-prestataion";
 
 /**
  * Generated class for the MenuPage page.
@@ -60,6 +61,10 @@ export class MenuPage {
 
   openPageValiderPrestataire(){
     this.rootPage = ValiderPrestatairePage;
+  }
+
+  openPageLierPrestationPrestataire(){
+    this.rootPage = LinkPrestatairePrestataionPage;
   }
 
   openPageCommandes(){
