@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ServiceModel} from "../../model/Models/ServiceModel";
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {ServiceProvider} from "../../providers/service/service";
@@ -29,7 +29,8 @@ export class LinkServicePrestationPage {
     public navCtrl: NavController
     , public navParams: NavParams
     , public  servicePvd : ServiceProvider
-    , public  prestationPvd : PrestationProvider) {
+    , public  prestationPvd : PrestationProvider
+    , public alertCtrl : AlertController) {
 
     this.initialize();
 
@@ -64,6 +65,18 @@ export class LinkServicePrestationPage {
       console.log(results);
       this.getServiceWithPrestations();
     })
+  }
+
+  public manageSuccessOrError(result){
+    var alert = this.alertCtrl.create();
+    if(result.success){
+      alert.setTitle('Enregistrement réussi');
+      alert.setMessage("L'enregistrement s'est effectué sans erreur");
+    }else{
+      alert.setTitle('Enregistrement échoué');
+      alert.setMessage("L'enregistrement ne s'est pas effectuée.");
+    }
+    alert.present();
   }
 
 
