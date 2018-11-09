@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {PrestationModel} from "../../model/Models/PrestationModel";
-import {PrestataireModel} from "../../model/Models/PrestataireModel";
 import {PrestationProvider} from "../../providers/prestation/prestation";
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
+import {UserModel} from "../../model/Models/UserModel";
 
 /**
  * Generated class for the LinkPrestatairePrestataionPage page.
@@ -20,14 +20,14 @@ import {PrestataireProvider} from "../../providers/prestataire/prestataire";
 export class LinkPrestatairePrestataionPage {
 
   private prestations: PrestationModel[];
-  private prestataires : PrestataireModel[];
+  private prestataires : UserModel[];
   public prestationWithPrestataire : PrestationModel[];
   public selectedPrestataire : number;
   public selectedPrestation : number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public prestationPvd : PrestationProvider
               , public  prestatairePvd : PrestataireProvider) {
-    this.getPrestataires();
+    this.getPrestatairesValides();
     this.getPrestations();
     this.getPrestationsWithPrestataires();
 
@@ -43,8 +43,10 @@ export class LinkPrestatairePrestataionPage {
     })
   }
 
-  public getPrestataires(){
-    this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
+  public getPrestatairesValides(){
+    console.log("getPrestatairesValides");
+    this.prestatairePvd.getPrestatairesValides().subscribe((results) =>{
+      console.log(this.prestataires);
       this.prestataires = results.data;
     })
   }

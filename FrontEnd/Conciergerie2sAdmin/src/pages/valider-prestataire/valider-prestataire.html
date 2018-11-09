@@ -7,6 +7,7 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Validation des prestataire</ion-title>
   </ion-navbar>
 
@@ -16,16 +17,14 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item >
-      <button ion-item *ngFor="let element of prestataires" (click)="displayPrestataire(element)">
-        {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
-        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.utilisateur.status)">
+    <ion-item *ngFor="let element of prestataires">
+        {{element.nom + " " + element.prenom}}
+        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
         </button>
-        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.utilisateur.status)">
+        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)">
           <ion-icon name="close-circle"></ion-icon>
         </button>
-      </button>
     </ion-item>
   </ion-list>
 

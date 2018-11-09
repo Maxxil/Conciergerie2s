@@ -24,7 +24,14 @@ module.exports = {
     },
     getAllPrestataire : function(){
         return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE)
-            .select('nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');
+            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');
+    },
+    getAllPrestataireValides : function () {
+        return Utilisateur.find({'status' : statusEnum.status.VALIDE}).where('role').equals(roleEnum.role.PRESTATAIRE)
+            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status')
+    },
+    getById : function (id) {
+        return Utilisateur.findById(id);
     },
     existByUsername: function(user){
         return Utilisateur.find({userName : user.nomUtilisateur});

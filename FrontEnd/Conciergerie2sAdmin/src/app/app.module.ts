@@ -21,6 +21,7 @@ import {LinkServicePrestationPage} from "../pages/link-service-prestation/link-s
 import { PrestataireProvider } from '../providers/prestataire/prestataire';
 import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-prestation-detail';
 import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prestataire";
+import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prest
     LinkServicePrestationPage,
     AddPrestationDetailPage,
     DashboardPage,
-    ValiderPrestatairePage
+    ValiderPrestatairePage,
+    LinkPrestatairePrestataionPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prest
     LinkServicePrestationPage,
     AddPrestationDetailPage,
     DashboardPage,
-    ValiderPrestatairePage
+    ValiderPrestatairePage,
+    LinkPrestatairePrestataionPage
   ],
   providers: [
     StatusBar,

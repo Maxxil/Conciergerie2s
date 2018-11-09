@@ -22,7 +22,13 @@ export class PrestataireProvider {
     return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
   }
 
+  public getPrestatairesValides(): Observable<PrestataireResult>{
+    return this.http.get<PrestataireResult>(PRESTATAIRE_URL + '/valides');
+  }
+
   valider(prestataire) : Observable<Result> {
+    console.log("Valider prestataire");
+    console.log(VALIDER_PRESTATAIRE);
     return this.http.post<Result>(VALIDER_PRESTATAIRE, {id: prestataire._id});
   }
 

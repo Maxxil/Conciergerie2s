@@ -7,6 +7,7 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Lier une prestation à un prestataire</ion-title>
   </ion-navbar>
 
@@ -28,7 +29,7 @@
       <ion-label>Prestations</ion-label>
       <ion-select  [(ngModel)]="selectedPrestataire">
         <ion-option *ngFor="let element of prestataires" value="{{element._id}}">
-          {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
+          {{element.nom + " " + element.prenom}}
         </ion-option>
       </ion-select>
     </ion-item>

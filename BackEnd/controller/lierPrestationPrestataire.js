@@ -10,7 +10,7 @@ router.post('/' , function(req , res){
     var promise = prestationBusiness.getById(req.body.idPrestation);
     promise.exec(function(err, result){
         if(result != null ){
-            result.prestataire.push(res.body.idPrestataire);
+            result.prestataire.push(req.body.idPrestataire);
             result.save();
         }
     });
@@ -27,5 +27,16 @@ router.get('/' , function (req,res) {
         res.end();
     })
 });
+
+router.get('/:id', function (req, res) {
+    var promise = prestationBusiness.getByIdWithPrestataire(req.body.id);
+    promise.exec(function (err,result) {
+        res.json({
+            success: true,
+            error : errorEnum.error.AUCUNE_ERREUR,
+            data : result
+        })
+    })
+})
 
 module.exports = router;

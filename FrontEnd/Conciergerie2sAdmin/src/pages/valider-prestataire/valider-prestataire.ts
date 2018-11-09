@@ -4,7 +4,6 @@ import {PrestataireProvider} from "../../providers/prestataire/prestataire";
 import {StatusEnum} from "../../model/Enums/StatusEnum";
 import {PrestationProvider} from "../../providers/prestation/prestation";
 import {UserModel} from "../../model/Models/UserModel";
-import {PrestataireModel} from "../../model/Models/PrestataireModel";
 
 /**
  * Generated class for the ValiderPrestatairePage page.
@@ -20,7 +19,7 @@ import {PrestataireModel} from "../../model/Models/PrestataireModel";
 })
 export class ValiderPrestatairePage {
 
-  public prestataires : PrestataireModel[];
+  public prestataires : UserModel [];
 
   constructor(
     public navCtrl: NavController
@@ -55,6 +54,7 @@ export class ValiderPrestatairePage {
   }
 
   validerPrestataire(element){
+    console.log("Valider prestataire");
     this.prestatairePvd.valider(element).subscribe((result) =>{
       this.manageSuccessErrorValiderPrestataire(result);
     })

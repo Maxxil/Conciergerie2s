@@ -22,4 +22,16 @@ router.get('/' , function(req,res){
     })
 });
 
+router.get('/valides', function(req, res){
+    var promise = utilisateurBusiness.getAllPrestataireValides();
+    promise.exec(function (err,result) {
+        res.json({
+            success : true,
+            error : errorEnum.error.AUCUNE_ERREUR,
+            data : result
+        });
+        res.end();
+    })
+});
+
 module.exports = router;

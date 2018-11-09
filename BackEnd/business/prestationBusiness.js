@@ -8,10 +8,13 @@ module.exports = {
         return Prestation.find({});
     },
     getById : function(id){
-        return Prestation.find({_id : id});
+        return Prestation.findById(id);
     },
     getWithPrestataire : function () {
         return Prestation.find({}).where('prestataire').ne([]).populate('prestations');
+    },
+    getByIdWithPrestataire : function (id) {
+        return Prestation.findById(id).populate('prestataire.utilisateur');
     },
     update : function(prestation){
         this.getById(prestation._id).exec(function(err , result){
@@ -20,4 +23,4 @@ module.exports = {
             }
         });
     }
-}
+};
