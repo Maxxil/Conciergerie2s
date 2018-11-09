@@ -9,6 +9,7 @@ import {LinkServicePrestationPage} from "../link-service-prestation/link-service
 import {ValiderPrestatairePage} from "../valider-prestataire/valider-prestataire";
 import { DashboardPage } from '../dashboard/dashboard';
 import {LinkPrestatairePrestataionPage} from "../link-prestataire-prestataion/link-prestataire-prestataion";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the MenuPage page.
@@ -73,5 +74,10 @@ export class MenuPage {
 
   openPageDevis(){
 
+  }
+
+  deconnecter(){
+    localStorage.removeItem('Token');
+    this.navCtrl.push(LoginPage);
   }
 }

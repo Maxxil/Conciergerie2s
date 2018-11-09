@@ -32,6 +32,10 @@ export class ServiceProvider {
     );
   }
 
+  public getPreById(id){
+    //return
+  }
+
 
 
 }

@@ -44,7 +44,6 @@ export class LoginPage {
   }
 
   connect(){
-    console.log("Connect");
     this.loginProvider.connect(this.user)
     .subscribe((result) => {
       console.log(result);

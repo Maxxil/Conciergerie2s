@@ -65,8 +65,12 @@ export class PrestationProvider {
     return this.http.post<Result>(LIER_PRESTATION_PRESTATAIRE_URL , {idPrestation : idPrestation, idPrestataire : idPrestataire});
   }
 
-  getWithPrestataire(){
-    return this.http.get<PrestationResult>()
+  getWithPrestataire(): Observable<PrestationResult>{
+    return this.http.get<PrestationResult>(LIER_SERVICE_PRESTATION_URL);
+  }
+
+  getPrestationByIdWithPrestataire(idPrestation) : Observable<PrestationResult>{
+    return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL + '/' + idPrestation);
   }
 
 }
