@@ -22,8 +22,8 @@
     </div>
 
     <ion-list>
-        
-      <ion-item text-center>        
+
+      <ion-item text-center>
         <img src="{{prestation.image}}" (click)="importImage()" *ngIf="!isUpdateModal()">
         <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()" *ngIf="isUpdateModal()">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
@@ -32,15 +32,15 @@
     <ion-list>
       <ion-list-header class="list-header">Informations générales</ion-list-header>
       <ion-item>
-        
+
         <ion-label floating>Nom de la prestation</ion-label>
         <ion-input type="text" required name="nom" id="nom" [(ngModel)]="prestation.nom"></ion-input>
       </ion-item>
-      
+
       <ion-item>
         <ion-label floating>Description</ion-label>
         <ion-textarea rows="3" required [(ngModel)]="prestation.description"id="description" name="description"></ion-textarea>
-      </ion-item>       
+      </ion-item>
     </ion-list>
     <ion-list>
         <ion-list-header class="list-header">Tarif</ion-list-header>
@@ -51,21 +51,25 @@
           <ion-item>
             <ion-label floating>Type de prix (heure, forfait ou devis)</ion-label>
             <ion-select id="typeprix" name="typeprix" [(ngModel)]="prestation.typeprix">
-              <ion-option value="heure">Par heure</ion-option>
-              <ion-option value="forfait">Forfait</ion-option>
-              <ion-option value="devis">Sur devis</ion-option>
+              <ion-option value="{{typePrixEnum.HEURE}}">Par heure</ion-option>
+              <ion-option value="{{typePrixEnum.FORFAIT}}">Forfait</ion-option>
+              <ion-option value="{{typePrixEnum.DEVIS}}">Sur devis</ion-option>
             </ion-select>
           </ion-item>
     </ion-list>
-   
+
     <ion-list>
-      <ion-list-header class="list-header">Détails   <button ion-button item-end icon-only (click)="displayAddPrestationDetail()"><ion-icon name="add"></ion-icon></button></ion-list-header>
+      <ion-list-header class="list-header">Détails
+        <button ion-button item-end icon-only (click)="displayAddPrestationDetail()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-list-header>
      <ion-item>
         <ion-grid>
           <ion-row>
         <ion-col>
-            <ion-input type="text" required name="infoicon" id="infoicon" placeholder="icon"></ion-input>      
-        </ion-col>          
+            <ion-input type="text" required name="infoicon" id="infoicon" placeholder="icon"></ion-input>
+        </ion-col>
             <ion-col><ion-input type="text" required name="infocontenu" id="infocontenu" placeholder="contenu"></ion-input></ion-col>
           <ion-col>
              <button ion-button icon-only>
@@ -73,15 +77,15 @@
           </button>
           </ion-col></ion-row>
         </ion-grid>
-         
+
       </ion-item>
-      <ion-item *ngFor="let detail of prestation.details; let i = index">          
+      <ion-item *ngFor="let detail of prestation.details; let i = index">
           <ion-input [(ngModel)]="prestation.details[i]"></ion-input>
           <button ion-button item-right icon-only (click)="deletePrestationDetail(i)"><ion-icon name="trash"></ion-icon></button>
       </ion-item>
     </ion-list>
- 
-     
+
+
 
     <div text-center>
           <button ion-button [color]="" (click)="add()" *ngIf="!isUpdateModal()">Enregistrer</button>

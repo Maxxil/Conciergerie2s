@@ -39,6 +39,7 @@ export class ValiderPrestatairePage {
   getAllPrestataire(){
     this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
       this.prestataires = results.data;
+      console.log(this.prestataires);
     })
   }
 

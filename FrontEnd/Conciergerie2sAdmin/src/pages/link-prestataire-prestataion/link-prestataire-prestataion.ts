@@ -21,7 +21,7 @@ export class LinkPrestatairePrestataionPage {
 
   private prestations: PrestationModel[];
   private prestataires : PrestataireModel[];
-  public prestationWithPrestataire : PrestationModel;
+  public prestationWithPrestataire : PrestationModel[];
   public selectedPrestataire : number;
   public selectedPrestation : number;
 

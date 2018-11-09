@@ -6,6 +6,7 @@ import {  NavController, NavParams, ViewController, AlertController, ModalContro
 import { PRESTATION_IMAGE_URL } from '../../model/Url';
 import { PrestationModel } from '../../model/Models/PrestationModel';
 import {AddPrestationDetailPage} from "../add-prestation-detail/add-prestation-detail";
+import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
 /**
  * Generated class for the AddPrestationPage page.
  *
@@ -24,6 +25,7 @@ export class AddPrestationPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public isImageUploaded : boolean = false;
   public file : File;
+  public typePrixEnum = TypePrixEnum;
 
 
   constructor(
@@ -61,9 +63,9 @@ export class AddPrestationPage {
     modal.present();
   }
 
-  deletePrestationDetail(index) {   
+  deletePrestationDetail(index) {
     if(index > -1)
-      this.prestation.details.splice(index,1);       
+      this.prestation.details.splice(index,1);
   }
 
   importImage()

@@ -14,6 +14,11 @@ router.post('/:id', function(req, res){
     promise.exec(function(err, result){
         if(result != null){
             result.status = Status.status.VALIDE;
+            var prestataire = new Prestataire({
+                prix : 0,
+                utilisateur : result
+            });
+            prestataireBusiness.add(prestataire);
             result.save();
         }
         res.json({
