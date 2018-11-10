@@ -16,7 +16,9 @@ import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
 import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
 import {SigninPage} from "../pages/signin/signin";
-
+import {NotificationsPage} from "../pages/notifications/notifications";
+import {ProfilePage} from "../pages/profile/profile";
+import {ChatPage} from "../pages/chat/chat";
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +28,10 @@ import {SigninPage} from "../pages/signin/signin";
     LoginPage,
     ServicesPage,
     TabsPage,
-    SigninPage
+    SigninPage,
+    NotificationsPage,
+    ProfilePage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,10 @@ import {SigninPage} from "../pages/signin/signin";
     LoginPage,
     ServicesPage,
     TabsPage,
-    SigninPage
+    SigninPage,
+    NotificationsPage,
+    ProfilePage,
+    ChatPage
   ],
   providers: [
     StatusBar,
