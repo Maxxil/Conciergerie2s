@@ -22,6 +22,9 @@ import { PrestataireProvider } from '../providers/prestataire/prestataire';
 import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-prestation-detail';
 import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prestataire";
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
+import {NotificationsPage} from "../pages/notifications/notifications";
+import {ChatPage} from '../pages/chat/chat';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestata
     AddPrestationDetailPage,
     DashboardPage,
     ValiderPrestatairePage,
-    LinkPrestatairePrestataionPage
+    LinkPrestatairePrestataionPage,
+    NotificationsPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,9 @@ import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestata
     AddPrestationDetailPage,
     DashboardPage,
     ValiderPrestatairePage,
-    LinkPrestatairePrestataionPage
+    LinkPrestatairePrestataionPage,
+    NotificationsPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
@@ -71,3 +78,4 @@ import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestata
   ]
 })
 export class AppModule {}
+
