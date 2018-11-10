@@ -24,6 +24,9 @@ import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prest
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {ChatPage} from '../pages/chat/chat';
+import { ChatService } from "../providers/chat/chat-service";
+
+
 
 
 @NgModule({
@@ -74,7 +77,8 @@ import {ChatPage} from '../pages/chat/chat';
     LoginProvider,
     ServiceProvider,
     PrestationProvider,
-    PrestataireProvider
+    PrestataireProvider,
+    ChatService    
   ]
 })
 export class AppModule {}
