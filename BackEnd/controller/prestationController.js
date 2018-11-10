@@ -56,6 +56,7 @@ router.post('/' , function(req, res){
         description: req.body.description,
         prix: req.body.prix,
         typeprix: req.body.typeprix,
+        forfait: req.body.forfait,
         prestataire : []
     });
     prestationBusiness.update(prestation).exec(function(err, result){
@@ -74,6 +75,7 @@ router.put('/' , upload.single('file'), function(req, res){
             description: req.body.description,
             prix: req.body.prix,
             typeprix: req.body.typeprix,
+            forfait: req.body.forfait,
             prestataire : [],
             details: req.body.details
         });

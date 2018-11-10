@@ -5,6 +5,7 @@ export class PrestationModel{
   description: string;
   prix: string;
   typeprix: string;
+  forfait:string;
   prestataires : object[];
   details: string[];
 }
