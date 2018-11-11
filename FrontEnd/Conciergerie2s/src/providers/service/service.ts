@@ -21,7 +21,7 @@ export class ServiceProvider {
 
   public GetAll(): ServiceModel[]{
     return ServiceModel.GetDataTest();
-    //return this.http.get<ServiceModel>(SERVICE_PROVIDER);
+   // return this.http.get<ServiceModel>(SERVICE_PROVIDER);
   }
 
   public Add() : Observable<ErrorEnum>{

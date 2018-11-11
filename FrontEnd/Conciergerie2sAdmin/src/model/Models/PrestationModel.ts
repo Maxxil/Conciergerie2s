@@ -8,5 +8,6 @@ export class PrestationModel{
   prix: string;
   typeprix: string;
   prestataires : PrestataireModel[];
+  forfait:string;
   details: string[];
 }

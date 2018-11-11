@@ -49,7 +49,11 @@
             <ion-input type="number" required name="prix" id="prix" [(ngModel)]="prestation.prix"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>Type de prix (heure, forfait ou devis)</ion-label>
+              <ion-label floating>Forfait de la prestation</ion-label>
+              <ion-input type="number" required name="forfait" id="forfait" [(ngModel)]="prestation.forfait"></ion-input>
+            </ion-item>
+          <ion-item>
+            <ion-label floating>Type de prix par defaut (heure, forfait ou devis)</ion-label>
             <ion-select id="typeprix" name="typeprix" [(ngModel)]="prestation.typeprix">
               <ion-option value="{{typePrixEnum.HEURE}}">Par heure</ion-option>
               <ion-option value="{{typePrixEnum.FORFAIT}}">Forfait</ion-option>

@@ -8,13 +8,13 @@
 
   <ion-navbar>
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Dashboard</ion-title>
+    <ion-title>Conciergerie2s Admin</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-<ion-tabs>
+<ion-tabs selectedIndex="1">
       <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-      <ion-tab [root]="tab2Root" tabTitle="Notification" tabIcon="notifications"></ion-tab>
-      <ion-tab [root]="tab3Root" tabTitle="Chat" tabIcon="chatbubbles"></ion-tab>
+      <ion-tab [root]="tab2Root" tabTitle="Notification" tabIcon="notifications" tabBadge="14" tabBadgeStyle="danger"></ion-tab>
+      <ion-tab [root]="tab3Root" tabTitle="Chat" tabIcon="chatbubbles" tabBadge="7" tabBadgeStyle="danger"></ion-tab>
 </ion-tabs>

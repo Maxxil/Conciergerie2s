@@ -41,6 +41,7 @@ export class PrestationProvider {
     formData.append('nom', prestation.nom);
     formData.append('description', prestation.description);
     formData.append('prix', prestation.prix);
+    formData.append('forfait', prestation.forfait);
     formData.append('typeprix', prestation.typeprix);
     for (var i = 0; i < prestation.details.length; i++) {
       formData.append('details[]', prestation.details[i]);
@@ -57,6 +58,7 @@ export class PrestationProvider {
     formData.append('nom', prestation.nom);
     formData.append('description', prestation.description);
     formData.append('prix', prestation.prix);
+    formData.append('forfait', prestation.forfait);
     formData.append('typeprix', prestation.typeprix);
     formData.append('token', token);
     console.log(formData);

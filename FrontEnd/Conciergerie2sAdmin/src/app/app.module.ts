@@ -23,6 +23,9 @@ import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-pres
 import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prestataire";
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
 import {PrestatairePage} from "../pages/prestataire/prestataire";
+import {NotificationsPage} from "../pages/notifications/notifications";
+import {ChatPage} from '../pages/chat/chat';
+import { ChatService } from "../providers/chat/chat-service";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import {PrestatairePage} from "../pages/prestataire/prestataire";
     AddPrestationDetailPage,
     DashboardPage,
     ValiderPrestatairePage,
-    LinkPrestatairePrestataionPage
+    LinkPrestatairePrestataionPage,
+    NotificationsPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,9 @@ import {PrestatairePage} from "../pages/prestataire/prestataire";
     AddPrestationDetailPage,
     DashboardPage,
     ValiderPrestatairePage,
-    LinkPrestatairePrestataionPage
+    LinkPrestatairePrestataionPage,
+    NotificationsPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
@@ -70,7 +77,11 @@ import {PrestatairePage} from "../pages/prestataire/prestataire";
     LoginProvider,
     ServiceProvider,
     PrestationProvider,
-    PrestataireProvider
+    PrestataireProvider,
+    ChatService
   ]
 })
 export class AppModule {}
+
+
+

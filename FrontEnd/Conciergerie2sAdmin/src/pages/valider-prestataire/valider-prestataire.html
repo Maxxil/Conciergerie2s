@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Validation des prestataire</ion-title>
+    <ion-title>Validation des prestataires</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,15 +17,18 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item *ngFor="let element of prestataires">
-        {{element.nom + " " + element.prenom}}
-        <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
+    <button ion-item *ngFor="let element of prestataires">
+        <ion-label> {{element.nom + " " + element.prenom+ " "+element.status}}</ion-label>
+        <ion-checkbox (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)" color="secondary" checked="false"></ion-checkbox>
+        <ion-checkbox (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)" color="secondary" checked="true"></ion-checkbox>
+       
+        <!-- <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
         </button>
         <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)">
           <ion-icon name="close-circle"></ion-icon>
-        </button>
-    </ion-item>
+        </button> -->
+    </button>
   </ion-list>
 
 </ion-content>

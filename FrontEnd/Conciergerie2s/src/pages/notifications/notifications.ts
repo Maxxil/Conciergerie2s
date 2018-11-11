@@ -22,4 +22,4 @@ export class NotificationsPage {
     console.log('ionViewDidLoad NotificationsPage');
   }
 
-}
+} 
