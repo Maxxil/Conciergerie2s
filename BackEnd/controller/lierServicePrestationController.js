@@ -9,7 +9,6 @@ router.use(bodyParser.json());
 router.get('/' , function(req, res){
     var promise = serviceBusiness.getAllWithPrestation();
     promise.exec(function(err, result){
-        console.log(result);
         res.json({
             success: true,
             error : errorEnum.error.AUCUNE_ERREUR,

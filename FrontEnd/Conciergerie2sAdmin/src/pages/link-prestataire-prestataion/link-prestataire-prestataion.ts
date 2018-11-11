@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {PrestationProvider} from "../../providers/prestation/prestation";
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
-import {UserModel} from "../../model/Models/UserModel";
+import {PrestationInformationModel} from "../../model/Models/PrestationInformationModel";
+import {PrestataireModel} from "../../model/Models/PrestataireModel";
 
 /**
  * Generated class for the LinkPrestatairePrestataionPage page.
@@ -20,7 +21,7 @@ import {UserModel} from "../../model/Models/UserModel";
 export class LinkPrestatairePrestataionPage {
 
   private prestations: PrestationModel[];
-  private prestataires : UserModel[];
+  private prestataires : PrestataireModel[];
   public prestationWithPrestataire : PrestationModel[];
   public selectedPrestataire : number;
   public selectedPrestation : number;
@@ -29,6 +30,7 @@ export class LinkPrestatairePrestataionPage {
               , public  prestatairePvd : PrestataireProvider) {
     this.getPrestatairesValides();
     this.getPrestations();
+    console.log("Get PRESTATION with PRESTATAIRES");
     this.getPrestationsWithPrestataires();
 
   }
@@ -45,15 +47,16 @@ export class LinkPrestatairePrestataionPage {
 
   public getPrestatairesValides(){
     console.log("getPrestatairesValides");
-    this.prestatairePvd.getPrestatairesValides().subscribe((results) =>{
+    this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
       console.log(this.prestataires);
       this.prestataires = results.data;
     })
   }
 
   public getPrestationsWithPrestataires(){
-    this.prestationPvd.getWithPrestataire().subscribe((result) =>{
+    this.prestationPvd.getOnlyWithPrestataire().subscribe((result) =>{
       this.prestationWithPrestataire = result.data;
+      console.log(this.prestationWithPrestataire);
     })
   }
 

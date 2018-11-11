@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
 import {StatusEnum} from "../../model/Enums/StatusEnum";
-import {PrestationProvider} from "../../providers/prestation/prestation";
 import {UserModel} from "../../model/Models/UserModel";
 
 /**
@@ -25,7 +24,6 @@ export class ValiderPrestatairePage {
     public navCtrl: NavController
     , public navParams: NavParams
     , public prestatairePvd : PrestataireProvider
-    , public  prestationPvd : PrestationProvider
     , public alertCtrl : AlertController) {
     this.getAllPrestataire();
 
@@ -36,7 +34,7 @@ export class ValiderPrestatairePage {
   }
 
   getAllPrestataire(){
-    this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
+    this.prestatairePvd.getAllUtilisateurPrestataire().subscribe((results) =>{
       this.prestataires = results.data;
       console.log(this.prestataires);
     })

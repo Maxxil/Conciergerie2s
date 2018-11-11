@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {DEVALIDER_PRESTATAIRE, PRESTATAIRE_URL, VALIDER_PRESTATAIRE} from "../../model/Url";
+import {DEVALIDER_PRESTATAIRE, PRESTATAIRE_URL, UTILISATEUR_PRESTATAIRE, VALIDER_PRESTATAIRE} from "../../model/Url";
 import {Observable} from "rxjs/Observable";
 import {Result} from "../../model/Results/Result";
 import {PrestataireResult} from "../../model/Results/PrestataireResult";
@@ -18,12 +18,16 @@ export class PrestataireProvider {
     console.log('Hello PrestataireProvider Provider');
   }
 
+  getAllUtilisateurPrestataire() : Observable<PrestataireResult>{
+    return this.http.get<PrestataireResult>(UTILISATEUR_PRESTATAIRE);
+  }
+
   public getAllPrestataire(): Observable<PrestataireResult>{
     return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
   }
 
   public getPrestatairesValides(): Observable<PrestataireResult>{
-    return this.http.get<PrestataireResult>(PRESTATAIRE_URL + '/valides');
+    return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
   }
 
   valider(prestataire) : Observable<Result> {

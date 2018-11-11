@@ -22,6 +22,7 @@ import { PrestataireProvider } from '../providers/prestataire/prestataire';
 import { AddPrestationDetailPage } from '../pages/add-prestation-detail/add-prestation-detail';
 import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prestataire";
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
+import {PrestatairePage} from "../pages/prestataire/prestataire";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestata
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
+    PrestatairePage,
     LinkServicePrestationPage,
     AddPrestationDetailPage,
     DashboardPage,
@@ -54,6 +56,7 @@ import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestata
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
+    PrestatairePage,
     LinkServicePrestationPage,
     AddPrestationDetailPage,
     DashboardPage,

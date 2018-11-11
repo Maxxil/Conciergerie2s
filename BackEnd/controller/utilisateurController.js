@@ -23,6 +23,17 @@ var upload = multer({
 
 router.use(bodyParser.json());
 
+router.get('/prestataire' , function (req, res) {
+    var promise = utilisateurBusiness.getAllPrestataire();
+    promise.exec(function (err,result) {
+        res.json({
+            success : true,
+            data : result
+        });
+        res.end();
+    });
+});
+
 router.put('/' , upload.single('image'),function(req, res){
     var utilisateur = new Utilisateur({
         nom: req.body.nom,

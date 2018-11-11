@@ -29,7 +29,7 @@
       <ion-label>Prestations</ion-label>
       <ion-select  [(ngModel)]="selectedPrestataire">
         <ion-option *ngFor="let element of prestataires" value="{{element._id}}">
-          {{element.nom + " " + element.prenom}}
+          {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
         </ion-option>
       </ion-select>
     </ion-item>
@@ -44,7 +44,7 @@
     </ion-list-header>
 
     <ng-template ngFor let-prestation [ngForOf]="prestationWithPrestataire" let-prestationIndex="index">
-      <ng-template ngFor let-prestataire [ngForOf]="prestation.prestataires" let-prestataireIndex="index">
+      <ng-template ngFor let-prestataire [ngForOf]="prestation.prestataire" let-prestataireIndex="index">
         <ion-item>
           {{prestation.nom + ' || ' + prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}
         </ion-item>

@@ -12,9 +12,9 @@ module.exports = {
         });
     },
     getAll : function(){
-        return Prestataire.find({});
+        return Prestataire.find({}).populate({path : 'utilisateur', select: 'nom prenom'});
     },
     getById: function(id){
         return Prestataire.findById(id);
     }
-}
+};

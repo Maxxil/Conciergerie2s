@@ -6,8 +6,8 @@ export const HTTP_OPTIONS = {
         })
     };
 
-
-export const SERVER_URL : string = "http://localhost:4444"
+;
+export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';
 export const SERVICE_URL : string = SERVER_URL + '/service';
@@ -16,6 +16,8 @@ export const SERVICE_IMAGE_URL : string = SERVICE_URL + "/image/";
 export const PRESTATAIRE_URL : string = SERVER_URL + '/prestataire/';
 export const PRESTATION_IMAGE_URL : string = PRESTATION_URL + '/image/';
 export const LIER_SERVICE_PRESTATION_URL: string = SERVER_URL + '/lierServicePrestation';
-export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestation';
+export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestataire';
 export const VALIDER_PRESTATAIRE : string = SERVER_URL + '/validerPrestataire';
-export const  DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';
+export const DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';
+export const PRESTATION_INFORMATION : string  = SERVER_URL + '/prestationInformation';
+export const UTILISATEUR_PRESTATAIRE : string = SERVER_URL + '/utilisateur/prestataire';

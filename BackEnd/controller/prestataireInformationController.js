@@ -4,26 +4,14 @@ var multer = require('multer');
 
 var prestataireBusiness = require('./../business/prestataireBusiness');
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
-var errorEnum = require('./../helper/errorEnum');
 var Prestataire = require('./../model/prestataireModel');
 var Status = require('./../helper/statusEnum');
+var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
-router.get('/' , function(req,res){
-    var promise = prestataireBusiness.getAll();
-    promise.exec(function(err , result){
-        res.json({
-            success : true,
-            error : errorEnum.error.AUCUNE_ERREUR,
-            data : result
-        });
-        res.end();
-    })
-});
-
-router.get('/valides', function(req, res){
-    var promise = utilisateurBusiness.getAllPrestataireValides();
+router.get('/:id' , function(req,res){
+    var promise = prestataireBusiness.getById(req.params.id);
     promise.exec(function (err,result) {
         res.json({
             success : true,

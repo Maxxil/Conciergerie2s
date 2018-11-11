@@ -2,7 +2,7 @@ import { PRESTATION_IMAGE_URL } from './../../model/Url';
 import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { PrestatairePage } from './../prestataire/prestataire';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { PrestationProvider } from '../../providers/prestation/prestation';
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { PrestationModel } from '../../model/Models/PrestationModel';
@@ -23,7 +23,7 @@ import { ServiceModel } from '../../model/Models/ServiceModel';
 export class PrestationPage {
 
   public prestations: Array<PrestationModel>;
-  public prestationImageUrl : string = PRESTATION_IMAGE_URL; 
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public service : ServiceModel;
   public nbprestation = 0;
 
@@ -32,17 +32,17 @@ export class PrestationPage {
     , private prestationPrvd: PrestationProvider
     , private modalCtrl : ModalController) {
     this.service = this.navParams.get("service");
-    
+
     if(this.service != null)
     {
-      
-     
+
+
       this.prestationPrvd.getByIdService(this.service._id).subscribe((result) => {
-        this.prestations = result.data;               
+        this.prestations = result.data;
         this.nbprestation = result.data.length;
       });
 
-      
+
     }
     else {
       this.prestationPrvd.getAll().subscribe((results) =>
@@ -83,7 +83,7 @@ export class PrestationPage {
   }
 
   isUpdateModal(){
-    return this.service != null; 
+    return this.service != null;
   }
 
   displayAddPrestation()

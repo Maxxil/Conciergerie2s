@@ -2,29 +2,30 @@ var router = require('express').Router();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 
-var prestataireBusiness = require('./../business/prestataireBusiness');
-var utilisateurBusiness = require('./../business/utilisateurBusiness');
-var errorEnum = require('./../helper/errorEnum');
-var Prestataire = require('./../model/prestataireModel');
 var Status = require('./../helper/statusEnum');
+var errorEnum = require('./../helper/errorEnum');
+var prestationBusiness = require('./../business/prestationBusiness');
 
 router.use(bodyParser.json());
 
-router.get('/' , function(req,res){
-    var promise = prestataireBusiness.getAll();
-    promise.exec(function(err , result){
+router.get('/' , function (req, res) {
+    var promise = prestationBusiness.getWithPrestataire();
+    promise.exec(function (err ,result) {
+        console.log(result);
         res.json({
             success : true,
             error : errorEnum.error.AUCUNE_ERREUR,
             data : result
         });
         res.end();
-    })
+    });
 });
 
-router.get('/valides', function(req, res){
-    var promise = utilisateurBusiness.getAllPrestataireValides();
+router.get('/:id' , function(req,res){
+    console.log("PRESTATION INFORMATION ID");
+    var promise = prestationBusiness.getByIdWithPrestataire(req.params.id);
     promise.exec(function (err,result) {
+        console.log(result);
         res.json({
             success : true,
             error : errorEnum.error.AUCUNE_ERREUR,

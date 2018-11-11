@@ -17,8 +17,10 @@ router.post('/' , function(req , res){
 });
 
 router.get('/' , function (req,res) {
-    var promise = prestationBusiness.getWithPrestataire();
+    console.log("Prestation only with prestataire");
+    var promise = prestationBusiness.getOnlyWithPrestataires();
     promise.exec(function (err , result) {
+        console.log(result);
         res.json({
             success : true,
             error : errorEnum.error.AUCUNE_ERREUR,

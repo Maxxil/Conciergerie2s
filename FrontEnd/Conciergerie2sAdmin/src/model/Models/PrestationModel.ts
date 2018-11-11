@@ -1,3 +1,5 @@
+import {PrestataireModel} from "./PrestataireModel";
+
 export class PrestationModel{
   _id : string;
   nom : string;
@@ -5,6 +7,6 @@ export class PrestationModel{
   description: string;
   prix: string;
   typeprix: string;
-  prestataires : object[];
+  prestataires : PrestataireModel[];
   details: string[];
 }

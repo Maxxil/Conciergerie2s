@@ -11,10 +11,14 @@ module.exports = {
         return Prestation.findById(id);
     },
     getWithPrestataire : function () {
-        return Prestation.find({}).where('prestataire').ne([]).populate('prestations');
+        return Prestation.find({}).populate('prestataire');
+    },
+    getOnlyWithPrestataires : function(){
+        return Prestation.find({}).where("prestataire").ne([])
+            .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}})
     },
     getByIdWithPrestataire : function (id) {
-        return Prestation.findById(id).populate('prestataire.utilisateur');
+        return Prestation.findById(id).select('prestation prestataire.utilisateur.nom utilisateur.prenom _id prestation._id');
     },
     update : function(prestation){
         this.getById(prestation._id).exec(function(err , result){

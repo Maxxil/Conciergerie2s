@@ -1,13 +1,15 @@
 import { Observable } from 'rxjs/Observable';
 import {
   LIER_PRESTATION_PRESTATAIRE_URL,
-  LIER_SERVICE_PRESTATION_URL, PRESTATION_URL
+  LIER_SERVICE_PRESTATION_URL, PRESTATION_INFORMATION, PRESTATION_URL
 } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {PrestationResult} from '../../model/Results/PrestationResult';
 import { PrestationModel } from '../../model/Models/PrestationModel';
 import {Result} from "../../model/Results/Result";
+import {PrestationInformationResult} from "../../model/Results/PrestationInformationResult";
+import {PrestataireResult} from "../../model/Results/PrestataireResult";
 
 /*
   Generated class for the PrestationProvider provider.
@@ -65,12 +67,12 @@ export class PrestationProvider {
     return this.http.post<Result>(LIER_PRESTATION_PRESTATAIRE_URL , {idPrestation : idPrestation, idPrestataire : idPrestataire});
   }
 
-  getWithPrestataire(): Observable<PrestationResult>{
-    return this.http.get<PrestationResult>(LIER_SERVICE_PRESTATION_URL);
+  getOnlyWithPrestataire(): Observable<PrestationResult>{
+    return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL);
   }
 
-  getPrestationByIdWithPrestataire(idPrestation) : Observable<PrestationResult>{
-    return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL + '/' + idPrestation);
+  getPrestationByIdWithPrestataires(id) : Observable<PrestationInformationResult>{
+    return this.http.get<PrestationInformationResult>(PRESTATION_INFORMATION + '/' + id);
   }
 
 }

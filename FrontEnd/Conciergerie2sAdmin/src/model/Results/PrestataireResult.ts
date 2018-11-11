@@ -4,5 +4,5 @@ import {UserModel} from "../Models/UserModel";
 export class PrestataireResult{
   success: boolean;
   error: Error;
-  data : UserModel[];
+  data : PrestataireModel[];
 }
