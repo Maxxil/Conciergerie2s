@@ -21,6 +21,8 @@ import {ProfilePage} from "../pages/profile/profile";
 import {ChatPage} from "../pages/chat/chat";
 import {PrestationsPage} from "../pages/prestations/prestations";
 import { PrestationProvider } from '../providers/prestation/prestation';
+import {LoginProvider} from "../providers/login/login";
+import {CommandePage} from "../pages/commande/commande";
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +36,8 @@ import { PrestationProvider } from '../providers/prestation/prestation';
     SigninPage,
     NotificationsPage,
     ProfilePage,
-    ChatPage
+    ChatPage,
+    CommandePage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,9 @@ import { PrestationProvider } from '../providers/prestation/prestation';
     SigninPage,
     NotificationsPage,
     ProfilePage,
-    ChatPage
+    ChatPage,
+    CommandePage
+
   ],
   providers: [
     StatusBar,
@@ -62,7 +67,8 @@ import { PrestationProvider } from '../providers/prestation/prestation';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
     UtilisateurProvider,
-    PrestationProvider
+    PrestationProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}
