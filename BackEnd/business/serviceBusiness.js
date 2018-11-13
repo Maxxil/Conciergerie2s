@@ -24,7 +24,7 @@ module.exports = {
         return Service.findById(id);
     },
     getByIdWithPrestations: function(id){
-        return this.getById(id).populate('prestations');
+        return Service.find({_id : id}).populate('prestations');
     },
     getByName: function(name){
         return Service.find({name: name});

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalCmp, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ServiceModel} from "../../model/Model/ServiceModel";
 import {MaisonPage} from "../maison/maison";
 import {ServiceProvider} from "../../providers/service/service";
-import {ServiceAddModalPage} from "../service-add-modal/service-add-modal";
+import {PrestationsPage} from "../prestations/prestations";
+import {SERVICE_IMAGE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
 
 /**
  * Generated class for the ServicesPage page.
@@ -20,25 +21,26 @@ import {ServiceAddModalPage} from "../service-add-modal/service-add-modal";
 export class ServicesPage {
 
   services: ServiceModel[];
+  public imageUrl : string = SERVICE_IMAGE_URL;
 
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
-    , private serviceProvider: ServiceProvider
-    , private modalCtrl: ModalController) {
-    this.services = this.serviceProvider.GetAll();
+    , private serviceProvider: ServiceProvider) {
+    this.getAllServices();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicesPage');
+  getAllServices(){
+    this.serviceProvider.GetAll().subscribe(result =>{
+      this.services = result.data;
+    })
   }
 
   displayService(id){
     this.navCtrl.push(MaisonPage);
   }
 
-  displayAddService()  {
-    const modal = this.modalCtrl.create(ServiceAddModalPage);
-    modal.present();
+  displayPrestations(service){
+    this.navCtrl.push(PrestationsPage, {Service: service});
   }
 }

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {ServiceModel} from "../../model/Model/ServiceModel";
 import {Observable} from "rxjs/Observable";
-import {SERVICE_PROVIDER} from "./../../model/UrlConstants";
+import {ServiceResult} from "../../model/Result/ServiceResult";
+import {LIER_SERVICE_PRESTATION_URL, SERVICE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
 
 /*
   Generated class for the ServiceProvider provider.
@@ -16,28 +16,14 @@ export class ServiceProvider {
 
 
   constructor(public http: HttpClient) {
-    console.log('Hello ServiceProvider Provider');
   }
 
-  public GetAll(): ServiceModel[]{
-    return ServiceModel.GetDataTest();
-   // return this.http.get<ServiceModel>(SERVICE_PROVIDER);
-  }
-
-  public Add() : Observable<ErrorEnum>{
-    return this.http.put<ErrorEnum>(
-      SERVICE_PROVIDER,
-      {
-      }
-    );
-  }
-
-  public getPreById(id){
-    //return
+  public GetAll(): Observable<ServiceResult>{
+    return this.http.get<ServiceResult>(SERVICE_URL);
   }
 
   public getByIdWithPrestation(id) : Observable<ServiceResult>{
-    return this.http.get<ServiceResult>()
+    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + '/' + id);
   }
 
 

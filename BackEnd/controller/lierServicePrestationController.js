@@ -26,7 +26,7 @@ router.get('/:idService' , function(req, res){
             res.json({
                 success : true,
                 errorEnum : errorEnum.error.AUCUNE_ERREUR,
-                data : result.prestations
+                data : result
             });
         }
         res.end();

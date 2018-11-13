@@ -19,6 +19,8 @@ import {SigninPage} from "../pages/signin/signin";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {ProfilePage} from "../pages/profile/profile";
 import {ChatPage} from "../pages/chat/chat";
+import {PrestationsPage} from "../pages/prestations/prestations";
+import { PrestationProvider } from '../providers/prestation/prestation';
 @NgModule({
   declarations: [
     MyApp,
@@ -27,6 +29,7 @@ import {ChatPage} from "../pages/chat/chat";
     HomePage,
     LoginPage,
     ServicesPage,
+    PrestationsPage,
     TabsPage,
     SigninPage,
     NotificationsPage,
@@ -46,6 +49,7 @@ import {ChatPage} from "../pages/chat/chat";
     HomePage,
     LoginPage,
     ServicesPage,
+    PrestationsPage,
     TabsPage,
     SigninPage,
     NotificationsPage,
@@ -57,7 +61,8 @@ import {ChatPage} from "../pages/chat/chat";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
-    UtilisateurProvider
+    UtilisateurProvider,
+    PrestationProvider
   ]
 })
 export class AppModule {}

@@ -62,7 +62,9 @@ export class LinkPrestatairePrestataionPage {
 
   public linkPrestationToPRestataire(){
     this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
-
+      if(result.success){
+        this.getPrestationsWithPrestataires();
+      }
     })
   }
 

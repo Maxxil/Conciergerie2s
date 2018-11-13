@@ -1,0 +1,26 @@
+<!--
+  Generated template for the PrestationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>prestations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+      <ion-item *ngFor="let element of service.prestations" (click)="displayPrestataires(element)">
+          <ion-avatar item-start>
+            <img src="{{prestationImageUrl + element.image}}">
+          </ion-avatar>
+          <ion-label align-items-center>{{element.nom}}</ion-label>
+          <ion-note item-end class="balenced">{{element.prix}} €</ion-note>
+      </ion-item>
+  </ion-list>
+</ion-content>

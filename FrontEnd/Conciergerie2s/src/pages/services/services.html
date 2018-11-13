@@ -13,9 +13,9 @@
 </ion-header>
 
 
-<ion-content padding>   
-  <ion-card *ngFor="let element of services">        
-      <img src="{{element.image}}" />      
-      <ion-card-title text-center >{{element.name}}</ion-card-title>
-    </ion-card>
+<ion-content padding>
+  <ion-card *ngFor="let element of services" (click)="displayPrestations(element)">
+      <img src="{{imageUrl + element.image}}" />
+      <ion-card-title text-center >{{element.nom}}</ion-card-title>
+  </ion-card>
 </ion-content>
