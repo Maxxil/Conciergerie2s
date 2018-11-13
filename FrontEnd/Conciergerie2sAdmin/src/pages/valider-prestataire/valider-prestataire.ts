@@ -54,22 +54,23 @@ export class ValiderPrestatairePage {
   validerPrestataire(element){
     console.log("Valider prestataire");
     this.prestatairePvd.valider(element).subscribe((result) =>{
-      this.manageSuccessErrorValiderPrestataire(result);
+      this.manageSuccessErrorValiderPrestataire(result,element);
     })
   }
 
   devaliderPrestataire(element){
     this.prestatairePvd.devalider(element).subscribe((result) =>{
-      this.manageSuccessErrorDevaliderPrestataire(result);
+      this.manageSuccessErrorDevaliderPrestataire(result,element);
     })
   }
 
-  manageSuccessErrorValiderPrestataire(result){
+  manageSuccessErrorValiderPrestataire(result,prestataire : PrestataireModel){
     if(result.success){
       this.alertCtrl.create({
         title: "Validation du prestataire",
         subTitle : "La validation s'est correctement effectuée"
       }).present();
+      prestataire.utilisateur.status = StatusEnum.VALIDE;
     }
     else{
       this.alertCtrl.create({
@@ -79,12 +80,13 @@ export class ValiderPrestatairePage {
     }
   }
 
-  manageSuccessErrorDevaliderPrestataire(result){
+  manageSuccessErrorDevaliderPrestataire(result,prestataire : PrestataireModel){
     if(result.success){
       this.alertCtrl.create({
         title: "Dévalidation du prestataire",
         subTitle : "La dévalidation s'est correctement effectuée"
       }).present();
+      prestataire.utilisateur.status = StatusEnum.EN_ATTENTE_VALIDATION;
     }
     else{
       this.alertCtrl.create({
