@@ -2,8 +2,8 @@ import { LoginResult } from './../../model/Results/LoginResult';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { UserModel } from '../../model/Models/UserModel';
 import { LOGIN_URL } from '../../model/Url';
+import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
 
 /*
   Generated class for the LoginProvider provider.
@@ -18,7 +18,7 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
-  public connect(user : UserModel) : Observable<LoginResult>
+  public connect(user : UtilisateurModel) : Observable<LoginResult>
   {
     console.log(LOGIN_URL);
     return this.http.post<LoginResult>(LOGIN_URL,user, {headers : new HttpHeaders({

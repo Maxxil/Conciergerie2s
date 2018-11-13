@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {ServiceModel} from "../../model/ServiceModel";
+import {ServiceModel} from "../../model/Model/ServiceModel";
 
 /**
  * Generated class for the ServiceAddModalPage page.

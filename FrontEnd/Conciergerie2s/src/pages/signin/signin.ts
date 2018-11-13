@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {LoginModel} from "../../model/LoginModel";
+import {LoginModel} from "../../model/Model/LoginModel";
 import {TabsPage} from "../tabs/tabs";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
-import {UtilisateurModel} from "../../model/UtilisateurModel";
+import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {RoleEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/RoleEnum";
 
 /**

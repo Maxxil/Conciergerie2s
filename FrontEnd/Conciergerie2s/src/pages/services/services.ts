@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, ModalCmp, ModalController, NavController, NavParams} from 'ionic-angular';
-import {ServiceModel} from "../../model/ServiceModel";
+import {ServiceModel} from "../../model/Model/ServiceModel";
 import {MaisonPage} from "../maison/maison";
 import {ServiceProvider} from "../../providers/service/service";
 import {ServiceAddModalPage} from "../service-add-modal/service-add-modal";

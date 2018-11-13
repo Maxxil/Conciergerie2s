@@ -2,7 +2,7 @@ import { MenuPage } from './../menu/menu';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login';
-import { UserModel } from '../../model/Models/UserModel';
+import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,13 +17,13 @@ import { UserModel } from '../../model/Models/UserModel';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public user: UserModel;
+  public user: UtilisateurModel;
   constructor(
      public navCtrl: NavController
     ,public navParams: NavParams
     ,public loginProvider: LoginProvider
     ,public alertCtrl: AlertController) {
-      this.user = new UserModel();
+      this.user = new UtilisateurModel();
       this.tryConnect();
   }
 

@@ -10,6 +10,7 @@ import {ValiderPrestatairePage} from "../valider-prestataire/valider-prestataire
 import { DashboardPage } from '../dashboard/dashboard';
 import {LinkPrestatairePrestataionPage} from "../link-prestataire-prestataion/link-prestataire-prestataion";
 import {LoginPage} from "../login/login";
+import {UtilisateurPage} from "../utilisateur/utilisateur";
 
 /**
  * Generated class for the MenuPage page.
@@ -74,6 +75,10 @@ export class MenuPage {
 
   openPageDevis(){
 
+  }
+
+  openPageUtilisateur(){
+    this.rootPage = UtilisateurPage;
   }
 
   deconnecter(){

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
 import {StatusEnum} from "../../model/Enums/StatusEnum";
-import {UserModel} from "../../model/Models/UserModel";
+import {PrestataireModel} from "../../model/Models/PrestataireModel";
 
 /**
  * Generated class for the ValiderPrestatairePage page.
@@ -18,7 +18,7 @@ import {UserModel} from "../../model/Models/UserModel";
 })
 export class ValiderPrestatairePage {
 
-  public prestataires : UserModel [];
+  public prestataires : PrestataireModel [];
 
   constructor(
     public navCtrl: NavController

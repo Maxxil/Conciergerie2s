@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {ServiceModel} from "../../model/ServiceModel";
+import {ServiceModel} from "../../model/Model/ServiceModel";
 import {Observable} from "rxjs/Observable";
 import {SERVICE_PROVIDER} from "./../../model/UrlConstants";
 
@@ -34,6 +34,10 @@ export class ServiceProvider {
 
   public getPreById(id){
     //return
+  }
+
+  public getByIdWithPrestation(id) : Observable<ServiceResult>{
+    return this.http.get<ServiceResult>()
   }
 
 

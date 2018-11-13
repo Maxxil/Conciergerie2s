@@ -4,6 +4,7 @@ var multer = require('multer');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
 var Utilisateur = require('./../model/utilisateureModel');
+var Enums = require('./../helper/enums');
 
 var filename = '';
 var storage = multer.diskStorage({
@@ -22,6 +23,17 @@ var upload = multer({
 });
 
 router.use(bodyParser.json());
+
+router.get('/', function (req, res) {
+    var promise = utilisateurBusiness.getAll();
+    promise.exec(function (err, result) {
+        res.json({
+            success : true,
+            error : Enums.Error.AUCUNE_ERREUR,
+            data : result
+        });
+    })
+});
 
 router.get('/prestataire' , function (req, res) {
     var promise = utilisateurBusiness.getAllPrestataire();

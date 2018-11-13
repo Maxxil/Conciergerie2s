@@ -1,7 +1,8 @@
-import { UTILISATEUR_URL } from './../../model/UrlConstants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UtilisateurModel } from '../../model/Model/UtilisateurModel';
+import {UtilisateurResult} from "../../model/Results/UtilisateurResult";
+import {UTILISATEUR_URL} from "../../model/Url";
+import {Observable} from "rxjs/Observable";
 
 /*
   Generated class for the UtilisateurProvider provider.
@@ -16,8 +17,8 @@ export class UtilisateurProvider {
     console.log('Hello UtilisateurProvider Provider');
   }
 
-  add(utilisateur: UtilisateurModel) {
-    return this.http.put(UTILISATEUR_URL, utilisateur)
+  public getAll() : Observable<UtilisateurResult>{
+    return this.http.get<UtilisateurResult>(UTILISATEUR_URL);
   }
 
 }

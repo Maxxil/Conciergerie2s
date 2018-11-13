@@ -22,6 +22,9 @@ module.exports = {
         Utilisateur.create(promise);
         //promise.save();
     },
+    getAll : function () {
+        return Utilisateur.find({}).select("_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status role");
+    },
     getAllPrestataire : function(){
         return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE)
             .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {LoginModel} from "../../model/LoginModel";
+import {LoginModel} from "../../model/Model/LoginModel";
 
 /**
  * Generated class for the ProfilePage page.

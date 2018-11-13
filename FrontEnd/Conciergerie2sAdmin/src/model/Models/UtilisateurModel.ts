@@ -1,7 +1,7 @@
 import { RoleEnum } from "../Enums/RoleEnum";
 import { StatusEnum } from "../Enums/StatusEnum";
 
-export class UserModel{
+export class UtilisateurModel{
     _id: string;
     nom: string;
     prenom: string;

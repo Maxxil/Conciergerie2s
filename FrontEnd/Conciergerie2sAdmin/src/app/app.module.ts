@@ -26,6 +26,9 @@ import {PrestatairePage} from "../pages/prestataire/prestataire";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {ChatPage} from '../pages/chat/chat';
 import { ChatService } from "../providers/chat/chat-service";
+import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
+import {UtilisateurPage} from "../pages/utilisateur/utilisateur";
+import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-detail";
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { ChatService } from "../providers/chat/chat-service";
     ValiderPrestatairePage,
     LinkPrestatairePrestataionPage,
     NotificationsPage,
-    ChatPage
+    ChatPage,
+    UtilisateurPage,
+    UtilisateurDetailPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,9 @@ import { ChatService } from "../providers/chat/chat-service";
     ValiderPrestatairePage,
     LinkPrestatairePrestataionPage,
     NotificationsPage,
-    ChatPage
+    ChatPage,
+    UtilisateurPage,
+    UtilisateurDetailPage
   ],
   providers: [
     StatusBar,
@@ -78,7 +85,8 @@ import { ChatService } from "../providers/chat/chat-service";
     ServiceProvider,
     PrestationProvider,
     PrestataireProvider,
-    ChatService
+    ChatService,
+    UtilisateurProvider
   ]
 })
 export class AppModule {}

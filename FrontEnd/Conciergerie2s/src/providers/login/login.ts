@@ -2,7 +2,7 @@ import { LOGIN_URL } from './../../model/UrlConstants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { LoginModel } from '../../model/LoginModel';
+import { LoginModel } from '../../model/Model/LoginModel';
 
 /*
   Generated class for the LoginProvider provider.

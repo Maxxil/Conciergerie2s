@@ -20,4 +20,5 @@ export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPresta
 export const VALIDER_PRESTATAIRE : string = SERVER_URL + '/validerPrestataire';
 export const DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';
 export const PRESTATION_INFORMATION : string  = SERVER_URL + '/prestationInformation';
-export const UTILISATEUR_PRESTATAIRE : string = SERVER_URL + '/utilisateur/prestataire';
+export const UTILISATEUR_URL : string = SERVER_URL + '/utilisateur';
+export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire';

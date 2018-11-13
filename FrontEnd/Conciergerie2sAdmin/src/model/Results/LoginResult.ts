@@ -1,9 +1,9 @@
-import { UserModel } from './../Models/UserModel';
 import { LoginModel } from "../Models/LoginModel";
+import {UtilisateurModel} from "../Models/UtilisateurModel";
 
 export class LoginResult{
   success: boolean;
   error: Error;
   data : string;
-  user : UserModel;
+  user : UtilisateurModel;
 }
