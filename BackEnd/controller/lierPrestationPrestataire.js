@@ -10,7 +10,9 @@ router.use(bodyParser.json());
 router.post('/' , function(req , res){
     var promise = prestationBusiness.getById(req.body.idPrestation);
     promise.exec(function(err, result){
-        if(result != null && result.prestations.indexOf(req.body.idPrestation) == -1){
+        console.log(result);
+        console.log(result.prestataire.indexOf(req.body.idPrestation));
+        if(result != null && result.prestataire.indexOf(req.body.idPrestation) == -1){
             result.prestataire.push(req.body.idPrestataire);
             result.save();
             res.json({

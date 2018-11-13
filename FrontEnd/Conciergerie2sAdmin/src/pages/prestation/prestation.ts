@@ -39,6 +39,7 @@ export class PrestationPage {
     {
       this.servicePvd.getByIdWithPrestations(this.service._id).subscribe((result) => {
         this.service = result.data[0];
+        console.log(this.service);
         this.prestations = this.service.prestations;
         this.nbprestation = this.service.prestations.length;
       });
