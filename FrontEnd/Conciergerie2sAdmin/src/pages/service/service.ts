@@ -6,7 +6,6 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import {AddServicePage} from "../add-service/add-service";
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { ServiceProvider } from '../../providers/service/service';
-import {PrestatairePage} from "../prestataire/prestataire";
 
 /**
  * Generated class for the ServicePage page.

@@ -18,7 +18,9 @@ module.exports = {
             .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}})
     },
     getByIdWithPrestataire : function (id) {
-        return Prestation.findById(id).select('prestation prestataire.utilisateur.nom utilisateur.prenom _id prestation._id');
+        return Prestation.find({_id : id}).populate({
+            path : "prestataire" , populate: {path : "utilisateur" , select:"nom prenom"}
+        });
     },
     update : function(prestation){
         this.getById(prestation._id).exec(function(err , result){

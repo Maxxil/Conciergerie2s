@@ -20,8 +20,8 @@ import {PrestataireModel} from "../../model/Models/PrestataireModel";
 })
 export class LinkPrestatairePrestataionPage {
 
-  private prestations: PrestationModel[];
-  private prestataires : PrestataireModel[];
+  public prestations: PrestationModel[];
+  public prestataires : PrestataireModel[];
   public prestationWithPrestataire : PrestationModel[];
   public selectedPrestataire : number;
   public selectedPrestation : number;

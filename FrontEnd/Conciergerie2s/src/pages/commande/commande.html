@@ -15,4 +15,21 @@
 
 <ion-content padding>
 
+  <ion-buttons>
+    <button ion-button (click)="commander()">
+      Commander
+    </button>
+
+    <button ion-button (click)="devis()">
+      Devis
+    </button>
+  </ion-buttons>
+
+  <ion-list>
+    <ion-list-header>Liste des prestataires disponibles</ion-list-header>
+    <ion-item *ngFor="let element of prestation.prestataires">
+      <ion-label>{{element.utilisateur.nom + " " + element.utilisateur.prenom}}</ion-label>
+      <ion-note item-end>{{element.prix}}</ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>

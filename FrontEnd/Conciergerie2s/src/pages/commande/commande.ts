@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {PrestationModel} from "../../model/Model/PrestationModel";
+import {PrestationProvider} from "../../providers/prestation/prestation";
 
 /**
  * Generated class for the CommandePage page.
@@ -15,11 +17,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CommandePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public prestation : PrestationModel;
+
+  constructor(public navCtrl: NavController
+              , public navParams: NavParams
+              , public prestationPvd : PrestationProvider) {
+    this.prestation = this.navParams.get('Prestation');
+    this.getPrestationWithPrestataire();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandePage');
+  public getPrestationWithPrestataire(){
+    this.prestationPvd.getWithPrestataires(this.prestation._id).subscribe(result =>{
+      this.prestation = result.data[0];
+    })
   }
 
 }

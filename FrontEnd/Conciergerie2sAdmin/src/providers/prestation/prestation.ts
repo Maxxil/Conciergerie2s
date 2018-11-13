@@ -9,7 +9,6 @@ import {PrestationResult} from '../../model/Results/PrestationResult';
 import { PrestationModel } from '../../model/Models/PrestationModel';
 import {Result} from "../../model/Results/Result";
 import {PrestationInformationResult} from "../../model/Results/PrestationInformationResult";
-import {PrestataireResult} from "../../model/Results/PrestataireResult";
 
 /*
   Generated class for the PrestationProvider provider.

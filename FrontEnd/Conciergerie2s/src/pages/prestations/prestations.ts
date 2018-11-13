@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ServiceModel} from "../../model/Model/ServiceModel";
 import {ServiceProvider} from "../../providers/service/service";
 import {PRESTATION_IMAGE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
+import {CommandePage} from "../commande/commande";
 
 /**
  * Generated class for the PrestationsPage page.
@@ -35,8 +36,8 @@ export class PrestationsPage {
     })
   }
 
-  public displayPrestataires(prestation){
-
+  public commander(prestation){
+    this.navCtrl.push(CommandePage, {Prestation : prestation});
   }
 
 }
