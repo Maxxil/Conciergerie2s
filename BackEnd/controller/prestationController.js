@@ -5,6 +5,7 @@ var multer = require('multer');
 var prestationBusiness = require('./../business/prestationBusiness');
 var Prestation = require('./../model/prestationModel');
 var errorEnum = require('./../helper/errorEnum');
+var Enums = require('./../helper/enums');
 
 router.use(bodyParser.json());
 
@@ -69,29 +70,44 @@ router.post('/' , function(req, res){
 
 router.put('/' , upload.single('file'), function(req, res){
     try{
-        var prestation = new Prestation({
-            image : filename,
-            nom : req.body.nom,
-            description: req.body.description,
-            prix: req.body.prix,
-            typeprix: req.body.typeprix,
-            forfait: req.body.forfait,
-            prestataire : [],
-            details: req.body.details
-        });
-        prestationBusiness.add(prestation);
-        res.json({
-            success : true
-        });
+        var promise = prestationBusiness.getByNom(req.body.nom);
+        promise.exec(function (err,result) {
+            if(result == null || result.length == 0){
+                var prestation = new Prestation({
+                    image : filename,
+                    nom : req.body.nom,
+                    description: req.body.description,
+                    prix: req.body.prix,
+                    typeprix: req.body.typeprix,
+                    forfait: req.body.forfait,
+                    prestataire : [],
+                    details: req.body.details
+                });
+                prestationBusiness.add(prestation);
+                res.json({
+                    success : true
+                });
+            }
+            else{
+                res.json({
+                    success : false,
+                    error : Enums.Error.PRESTATION_DEJA_EXISTANTE
+                });
+            }
+            res.end();
+
+        })
+
     }
     catch(ex){
         res.json({
             success: false,
             error: errorEnum.error.PRESTATION_INSERT_ERROR
         });
+        res.end();
+
     }
     
-    res.end();
 });
 
 

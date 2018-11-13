@@ -86,6 +86,7 @@ export class AddPrestationPage {
   add(){
     console.log(this.prestation);
     this.prestationPvd.add(this.prestation, this.file).subscribe((result) => {
+      console.log(result);
       this.manageDisplaySuccessOrError(result);
     })
   }

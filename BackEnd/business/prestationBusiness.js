@@ -10,6 +10,9 @@ module.exports = {
     getById : function(id){
         return Prestation.findById(id);
     },
+    getByNom : function (nom) {
+        return Prestation.find({nom : nom});
+    },
     getWithPrestataire : function () {
         return Prestation.find({}).populate('prestataire');
     },
