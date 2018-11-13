@@ -28,9 +28,6 @@ export class PrestationProvider {
     return this.http.get<PrestationResult>(PRESTATION_URL)
   }
 
-  getByIdService(idService: string): Observable<PrestationResult> {
-    return this.http.get<PrestationResult>(LIER_SERVICE_PRESTATION_URL + "/" + idService);
-  }
 
   add(prestation: PrestationModel, image: File): Observable<PrestationResult> {
     const token = localStorage.getItem('token');

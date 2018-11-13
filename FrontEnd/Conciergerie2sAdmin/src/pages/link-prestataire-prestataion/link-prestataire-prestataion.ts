@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {PrestationProvider} from "../../providers/prestation/prestation";
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
 import {PrestationInformationModel} from "../../model/Models/PrestationInformationModel";
 import {PrestataireModel} from "../../model/Models/PrestataireModel";
+import {Result} from "../../model/Results/Result";
 
 /**
  * Generated class for the LinkPrestatairePrestataionPage page.
@@ -26,8 +27,11 @@ export class LinkPrestatairePrestataionPage {
   public selectedPrestataire : number;
   public selectedPrestation : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public prestationPvd : PrestationProvider
-              , public  prestatairePvd : PrestataireProvider) {
+  constructor(public navCtrl: NavController
+              , public navParams: NavParams
+              , public prestationPvd : PrestationProvider
+              , public  prestatairePvd : PrestataireProvider
+              , public alertCtrl : AlertController) {
     this.getPrestatairesValides();
     this.getPrestations();
     console.log("Get PRESTATION with PRESTATAIRES");
@@ -62,10 +66,30 @@ export class LinkPrestatairePrestataionPage {
 
   public linkPrestationToPRestataire(){
     this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
+      this.manageDisplaySuccessOrError(result);
       if(result.success){
         this.getPrestationsWithPrestataires();
       }
     })
+  }
+
+  manageDisplaySuccessOrError(result: Result) {
+    var alert = this.alertCtrl.create();
+
+    if (result.success) {
+      alert.setTitle('Succes');
+      alert.setSubTitle('Le prestataire et la prestation on été liés correctement.');
+      alert.addButton({
+        text: 'OK'
+      })
+    }
+    else {
+      alert.setTitle('Erreur');
+      alert.setSubTitle("Le prestataire et la prestation n'ont été liés correctement.");
+      alert.addButton({
+        text: 'OK'
+      })
+    }
   }
 
 }

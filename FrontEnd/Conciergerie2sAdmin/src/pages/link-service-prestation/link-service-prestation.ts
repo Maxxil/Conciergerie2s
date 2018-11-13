@@ -4,6 +4,7 @@ import {ServiceModel} from "../../model/Models/ServiceModel";
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {ServiceProvider} from "../../providers/service/service";
 import {PrestationProvider} from "../../providers/prestation/prestation";
+import {Result} from "../../model/Results/Result";
 
 /**
  * Generated class for the LinkServicePrestationPage page.
@@ -63,18 +64,26 @@ export class LinkServicePrestationPage {
   public linkServiceToPrestation(){
     this.servicePvd.linkServiceToPrestation(this.selectedService, this.selectedPrestation).subscribe((results) =>{
       console.log(results);
+      this.manageDisplaySuccessOrError(results);
       this.getServiceWithPrestations();
     })
   }
-
-  public manageSuccessOrError(result){
+  manageDisplaySuccessOrError(result: Result) {
     var alert = this.alertCtrl.create();
-    if(result.success){
-      alert.setTitle('Enregistrement réussi');
-      alert.setMessage("L'enregistrement s'est effectué sans erreur");
-    }else{
-      alert.setTitle('Enregistrement échoué');
-      alert.setMessage("L'enregistrement ne s'est pas effectuée.");
+
+    if (result.success) {
+      alert.setTitle('Succes');
+      alert.setSubTitle('Le service et la prestation on été liés correctement.');
+      alert.addButton({
+        text: 'OK'
+      })
+    }
+    else {
+      alert.setTitle('Erreur');
+      alert.setSubTitle("Le service et la prestation n'ont été liés correctement.");
+      alert.addButton({
+        text: 'OK'
+      })
     }
     alert.present();
   }

@@ -7,6 +7,7 @@ import { PrestationProvider } from '../../providers/prestation/prestation';
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { PrestationModel } from '../../model/Models/PrestationModel';
 import { ServiceModel } from '../../model/Models/ServiceModel';
+import {ServiceProvider} from "../../providers/service/service";
 
 /**
  * Generated class for the PrestationPage page.
@@ -28,21 +29,19 @@ export class PrestationPage {
   public nbprestation = 0;
 
   constructor(public navCtrl: NavController
-    , public navParams: NavParams
-    , private prestationPrvd: PrestationProvider
-    , private modalCtrl : ModalController) {
+              , public navParams: NavParams
+              , private prestationPrvd: PrestationProvider
+              , private servicePvd : ServiceProvider
+              , private modalCtrl : ModalController) {
     this.service = this.navParams.get("service");
 
     if(this.service != null)
     {
-
-
-      this.prestationPrvd.getByIdService(this.service._id).subscribe((result) => {
-        this.prestations = result.data;
-        this.nbprestation = result.data.length;
+      this.servicePvd.getByIdWithPrestations(this.service._id).subscribe((result) => {
+        this.service = result.data[0];
+        this.prestations = this.service.prestations;
+        this.nbprestation = this.service.prestations.length;
       });
-
-
     }
     else {
       this.prestationPrvd.getAll().subscribe((results) =>

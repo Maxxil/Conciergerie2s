@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 
 var serviceBusiness = require('./../business/serviceBusiness');
 var errorEnum = require('./../helper/errorEnum');
+var Enums = require('./../helper/enums');
 
 router.use(bodyParser.json());
 
@@ -36,9 +37,21 @@ router.get('/:idService' , function(req, res){
 router.post('/' , function(req , res){
     var promise = serviceBusiness.getById(req.body.idService);
     promise.exec(function(err, result){
-        if(result != null ){
+        if(result != null && result.prestations.indexOf(req.body.idPrestation)){
             result.prestations.push(req.body.idPrestation);
             result.save();
+            res.json({
+                success : true,
+                error: Enums.Error.AUCUNE_ERREUR
+            });
+            res.end();
+        }
+        else{
+            res.json({
+                success : false,
+                error : Enums.Error.PRESTATION_EXISTANTE_DANS_SERVICE
+            });
+            res.end();
         }
     });
 });

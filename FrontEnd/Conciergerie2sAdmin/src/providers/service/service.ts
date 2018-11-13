@@ -27,7 +27,7 @@ export class ServiceProvider {
     return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL);
   }
 
-  
+
   add(image: File, service: ServiceModel): Observable<ServiceResult>{
     const token = localStorage.getItem('token');
     const url = SERVICE_URL;
@@ -52,6 +52,10 @@ export class ServiceProvider {
     formData.append('token' , token);
     return this.http.post<ServiceResult>(url, formData);
 
+  }
+
+  getByIdWithPrestations(idService: string): Observable<ServiceResult> {
+    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + "/" + idService);
   }
 
 
