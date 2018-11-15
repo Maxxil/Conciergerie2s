@@ -38,7 +38,7 @@ router.put('/', function(req, res){
         date : req.body.date,
         dateCreation : Date.now()
     });
-    commandeForfaitBusiness.add(commande);
+    devisBusiness.add(commande);
     res.json({
         success : true
     });

@@ -17,11 +17,11 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>Information</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="devis.information"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="datetime"></ion-input>
+      <ion-input type="date" [(ngModel)]="devis.date"></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button (click)="commander()">Commander</button>
