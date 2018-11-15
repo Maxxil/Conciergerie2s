@@ -29,6 +29,9 @@ import { ChatService } from "../providers/chat/chat-service";
 import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
 import {UtilisateurPage} from "../pages/utilisateur/utilisateur";
 import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-detail";
+import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
+import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
+import { DevisProvider } from '../providers/devis/devis';
 
 @NgModule({
   declarations: [
@@ -86,7 +89,10 @@ import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-det
     PrestationProvider,
     PrestataireProvider,
     ChatService,
-    UtilisateurProvider
+    UtilisateurProvider,
+    CommandeHoraireProvider,
+    CommandeForfaitProvider,
+    DevisProvider
   ]
 })
 export class AppModule {}

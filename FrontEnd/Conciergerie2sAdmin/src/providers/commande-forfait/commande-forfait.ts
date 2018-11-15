@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {COMMANDE_FORFAIT_URL} from "../../model/UrlConstants";
-import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
+import {COMMANDE_FORFAIT_URL} from "../../model/Url";
 import {Observable} from "rxjs/Observable";
-import {CommandeForfaitResult} from "../../model/Result/CommandeForfaitResult";
+import {CommandeForfaitResult} from "../../model/Results/CommandeForfaitResult";
 
 /*
   Generated class for the CommandeForfaitProvider provider.
@@ -18,9 +17,7 @@ export class CommandeForfaitProvider {
     console.log('Hello CommandeForfaitProvider Provider');
   }
 
-  public add(commande : CommandeForfaitModel) : Observable<CommandeForfaitResult>{
-    commande.idClient = localStorage.getItem("IdUtilisateur");
-    return this.http.put<CommandeForfaitResult>(COMMANDE_FORFAIT_URL, commande);
+  getAll() : Observable<CommandeForfaitResult>{
+    return this.http.get<CommandeForfaitResult>(COMMANDE_FORFAIT_URL);
   }
-
 }
