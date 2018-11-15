@@ -8,8 +8,8 @@ module.exports = {
         id : ''
     },
     generatePayload : function (user) {
-        this.jwtSecret.name = user.username;
-        this.jwtSecret.id = user._id;
-        return this.jwtSecret;
+        var name = user.nomUtilisateur;
+        var id = user._id;
+        return {nomUtilisateur : user.nomUtilisateur, _id : user._id};
     }
 };

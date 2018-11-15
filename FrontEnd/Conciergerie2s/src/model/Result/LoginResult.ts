@@ -4,5 +4,5 @@ export class LoginResult{
   success: boolean;
   error: Error;
   data : string;
-  user : UtilisateurModel;
+  user : UtilisateurModel[];
 }

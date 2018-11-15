@@ -37,7 +37,9 @@ export class LoginPage {
     var promise = this.loginPvd.tryConnect();
     if(promise != null){
       promise.subscribe((result) => {
+        console.log(result);
         if(result.success){
+          localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           this.navCtrl.push(TabsPage);
         }
       })
@@ -47,7 +49,6 @@ export class LoginPage {
   connect(){
     this.loginPvd.connect(this.login)
       .subscribe((result) => {
-        console.log(result);
         if(result == null || !result.success )
         {
           this.login.motDePasse = "";
@@ -60,7 +61,8 @@ export class LoginPage {
         }
         else
         {
-          console.log(result.data);
+          console.log(result.user[0]._id);
+          localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           localStorage.setItem('Token', result.data);
           this.navCtrl.push(TabsPage);
         }

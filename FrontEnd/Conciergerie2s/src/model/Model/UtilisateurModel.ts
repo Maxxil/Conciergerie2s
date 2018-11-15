@@ -1,4 +1,5 @@
 export class UtilisateurModel {
+    _id : string;
     nom: string;
     prenom: string;
     nomUtilisateur : string;

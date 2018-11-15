@@ -3,7 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ServiceModel} from "../../model/Model/ServiceModel";
 import {ServiceProvider} from "../../providers/service/service";
 import {PRESTATION_IMAGE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
-import {CommandePage} from "../commande/commande";
+import {PrestationModel} from "../../model/Model/PrestationModel";
+import {TypePrixEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/TypePrixEnum";
+import {DevisPage} from "../devis/devis";
+import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
+import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
 
 /**
  * Generated class for the PrestationsPage page.
@@ -36,8 +40,18 @@ export class PrestationsPage {
     })
   }
 
-  public commander(prestation){
-    this.navCtrl.push(CommandePage, {Prestation : prestation});
+  public commander(prestation : PrestationModel){
+    if(prestation.typeprix == TypePrixEnum.DEVIS)
+    {
+      this.navCtrl.push(DevisPage, {Prestation : prestation});
+    }
+    if(prestation.typeprix == TypePrixEnum.FORFAIT){
+      this.navCtrl.push(CommandeForfaitPage, {Prestation : prestation});
+    }
+    if(prestation.typeprix == TypePrixEnum.HEURE)
+    {
+      this.navCtrl.push(CommandeHorairePage, {Prestation : prestation});
+    }
   }
 
 }

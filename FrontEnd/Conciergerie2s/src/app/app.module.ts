@@ -22,7 +22,12 @@ import {ChatPage} from "../pages/chat/chat";
 import {PrestationsPage} from "../pages/prestations/prestations";
 import { PrestationProvider } from '../providers/prestation/prestation';
 import {LoginProvider} from "../providers/login/login";
-import {CommandePage} from "../pages/commande/commande";
+import {CommandeHorairePage} from "../pages/commande-horaire/commande-horaire";
+import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
+import {DevisPage} from "../pages/devis/devis";
+import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
+import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
+import { DevisProvider } from '../providers/devis/devis';
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +42,9 @@ import {CommandePage} from "../pages/commande/commande";
     NotificationsPage,
     ProfilePage,
     ChatPage,
-    CommandePage
+    CommandeHorairePage,
+    CommandeForfaitPage,
+    DevisPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,9 @@ import {CommandePage} from "../pages/commande/commande";
     NotificationsPage,
     ProfilePage,
     ChatPage,
-    CommandePage
+    CommandeHorairePage,
+    CommandeForfaitPage,
+    DevisPage
 
   ],
   providers: [
@@ -68,7 +77,10 @@ import {CommandePage} from "../pages/commande/commande";
     ServiceProvider,
     UtilisateurProvider,
     PrestationProvider,
-    LoginProvider
+    LoginProvider,
+    CommandeForfaitProvider,
+    CommandeHoraireProvider,
+    DevisProvider
   ]
 })
 export class AppModule {}

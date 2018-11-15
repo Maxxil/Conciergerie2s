@@ -20,7 +20,6 @@ export class LoginProvider {
 
   public connect(user : UtilisateurModel) : Observable<LoginResult>
   {
-    console.log(LOGIN_URL);
     return this.http.post<LoginResult>(LOGIN_URL,user, {headers : new HttpHeaders({
       'Content-Type':  'application/json'
     })});

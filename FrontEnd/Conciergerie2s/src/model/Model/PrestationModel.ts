@@ -1,4 +1,5 @@
 import {PrestataireModel} from "./PrestataireModel";
+import {TypePrixEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/TypePrixEnum";
 
 export class PrestationModel{
   _id : string;
@@ -6,7 +7,7 @@ export class PrestationModel{
   image : string;
   description: string;
   prix: string;
-  typeprix: string;
+  typeprix: TypePrixEnum;
   prestataires : PrestataireModel[];
   forfait:string;
   details: string[];
