@@ -13,7 +13,7 @@ module.exports = {
         PRESTATION_DEJA_EXISTANTE : 6,
         UTILISATEUR_NON_CONNU : 7
     },
-    Commande : {
+    CommandeStatus : {
         EN_COURS_ANALYSE : 1,
         VALIDEE : 2,
         LIVREE : 3,

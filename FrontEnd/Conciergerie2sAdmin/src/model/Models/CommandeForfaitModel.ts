@@ -1,5 +1,6 @@
 import {UtilisateurModel} from "./UtilisateurModel";
 import {PrestationModel} from "./PrestationModel";
+import {CommandeStatus} from "../Enums/CommandeStatusEnum";
 
 export class CommandeForfaitModel{
   idClient : string;
@@ -9,4 +10,6 @@ export class CommandeForfaitModel{
   date : Date;
   heureDebut : string;
   heureFin : string;
+  status : CommandeStatus;
+
 }

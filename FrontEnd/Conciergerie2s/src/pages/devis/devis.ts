@@ -4,6 +4,7 @@ import {PrestationModel} from "../../model/Model/PrestationModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {DevisResult} from "../../model/Result/DevisResult";
+import {CommandeStatus} from "../../model/CommandeStatusEnum";
 
 /**
  * Generated class for the DevisPage page.
@@ -32,6 +33,7 @@ export class DevisPage {
   }
 
   commander(){
+    this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
     this.devisPvd.add(this.devis).subscribe(result =>{
       this.manageDisplaySuccessOrError(result);
     })

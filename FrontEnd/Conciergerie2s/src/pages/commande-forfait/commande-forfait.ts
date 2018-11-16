@@ -4,6 +4,7 @@ import {PrestationModel} from "../../model/Model/PrestationModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeForfaitResult} from "../../model/Result/CommandeForfaitResult";
+import {CommandeStatus} from "../../model/CommandeStatusEnum";
 
 /**
  * Generated class for the CommandeForfaitPage page.
@@ -32,11 +33,12 @@ export class CommandeForfaitPage {
   }
 
   public commander(){
+    this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
     this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
       this.manageDisplaySuccessOrError(result);
     })
   }
- 
+
   public annuler(){
     this.navCtrl.pop();
   }

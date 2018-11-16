@@ -4,6 +4,7 @@ import {PrestationModel} from "../../../../Conciergerie2sAdmin/src/model/Models/
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";
+import {CommandeStatus} from "../../model/CommandeStatusEnum";
 
 /**
  * Generated class for the CommandeHorairePage page.
@@ -32,6 +33,7 @@ export class CommandeHorairePage {
   }
 
   commander(){
+    this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
     this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result =>{
       this.manageDisplaySuccessOrError(result);
     });
@@ -39,7 +41,7 @@ export class CommandeHorairePage {
 
   annuler(){
     this.navCtrl.pop();
-  } 
+  }
 
   manageDisplaySuccessOrError(result : CommandeHoraireResult){
     var alert = this.alertCtrl.create();
