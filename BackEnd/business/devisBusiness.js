@@ -16,6 +16,6 @@ module.exports = {
         return Devis.find({_id : idDevis});
     },
     getAll : function () {
-        return Devis.find({}).sort('dateCreation',-1);
+        return Devis.find({}).populate('prestation client').sort([['dateCreation',-1]]);
     }
 };

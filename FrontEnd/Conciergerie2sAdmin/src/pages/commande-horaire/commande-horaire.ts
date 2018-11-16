@@ -27,6 +27,7 @@ export class CommandeHorairePage {
 
   public getAll(){
     this.commandePvd.getAll().subscribe(result =>{
+      console.log(result);
       if(result.success){
         this.commande = result.data;
       }

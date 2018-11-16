@@ -13,7 +13,6 @@ import {LoginPage} from "../login/login";
 import {UtilisateurPage} from "../utilisateur/utilisateur";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CommandePage} from "../commande/commande";
-import {DevisPage} from "../devis/devis";
 /**
  * Generated class for the MenuPage page.
  *
@@ -101,10 +100,6 @@ export class MenuPage {
 
   openPageCommandes(){
     this.rootPage = CommandePage;
-  }
-
-  openPageDevis(){
-    this.rootPage = DevisPage;
   }
 
   openPageUtilisateur(){

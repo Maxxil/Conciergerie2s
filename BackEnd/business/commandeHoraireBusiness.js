@@ -16,6 +16,6 @@ module.exports = {
         return CommandeHoraire.find({_id : idCommande});
     },
     getAll : function () {
-        return CommandeHoraire.find({}).populate('prestation').sort('dateCreation',-1);
+        return CommandeHoraire.find({}).populate('prestation client').sort([['dateCreation',-1]]);
     }
 };

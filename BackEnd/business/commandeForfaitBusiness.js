@@ -17,6 +17,6 @@ module.exports = {
         return CommandeForfait.find({_id : idCommande});
     },
     getAll : function () {
-        return CommandeForfait.find({}).populate('prestation').sort('dateCreation',-1);
+        return CommandeForfait.find({}).populate('prestation client prestataires').sort([['dateCreation',-1]]);
     }
 };

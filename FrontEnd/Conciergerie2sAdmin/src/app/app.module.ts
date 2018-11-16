@@ -35,6 +35,8 @@ import { DevisProvider } from '../providers/devis/devis';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommandePage} from '../pages/commande/commande';
 import {DevisPage} from '../pages/devis/devis';
+import {CommandeHorairePage} from "../pages/commande-horaire/commande-horaire";
+import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import {DevisPage} from '../pages/devis/devis';
     HomePage,
     LoginPage,
     MenuPage,
-   ServicePage,
+    ServicePage,
     AddServicePage,
     AddPrestationPage,
     PrestationPage,
@@ -57,7 +59,9 @@ import {DevisPage} from '../pages/devis/devis';
     UtilisateurPage,
     UtilisateurDetailPage,
     CommandePage,
-    DevisPage
+    DevisPage,
+    CommandeHorairePage,
+    CommandeForfaitPage,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,9 @@ import {DevisPage} from '../pages/devis/devis';
     UtilisateurPage,
     UtilisateurDetailPage,
     CommandePage,
-    DevisPage
+    DevisPage,
+    CommandeHorairePage,
+    CommandeForfaitPage,
   ],
   providers: [
     StatusBar,

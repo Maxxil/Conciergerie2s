@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
+import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
+import {DevisPage} from "../devis/devis";
 
 /**
  * Generated class for the CommandePage page.
@@ -15,11 +18,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CommandePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  tab1Root = CommandeForfaitPage;
+  tab2Root = CommandeHorairePage;
+  tab3Root = DevisPage;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandePage');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 }

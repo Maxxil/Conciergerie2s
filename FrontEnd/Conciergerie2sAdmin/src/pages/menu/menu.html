@@ -33,9 +33,6 @@
               <button ion-item menuClose (click)="openPageCommandes()">
                 Les commandes
               </button>
-              <button ion-item menuClose (click)="openPageDevis()">
-                Les devis
-              </button>
             </ion-list >
             <ion-list-header ion-item (click)="openSubMenuAjouter()">Ajouter</ion-list-header>
             <ion-list [@openClose]="isDisplayAjouter? 'open' : 'close'" [hidden]="isDisplayAjouter">
