@@ -18,6 +18,9 @@ module.exports = {
     getAll : function () {
         return Devis.find({}).populate('prestation client').sort([['dateCreation',-1]]);
     },
+    getByIdClient : function(idClient){
+        return CommandeForfait.populate('client').find({'client._id' : idClient});
+    },
     updateStatus : function (idCommande, status) {
         getById(idCommande).exec(function (err, result) {
             result[0].status = status;

@@ -14,5 +14,6 @@ router.use('/prestationInformation', require('./prestationInformationController'
 router.use('/commandeForfait', require('./commandeForfaitController'));
 router.use('/commandeHoraire', require('./commandeHoraireController'));
 router.use('/devis' , require('./devisController'));
+router.use('/commande' , require('./commandeController'));
 
 module.exports = router;

@@ -25,3 +25,4 @@ export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire'
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
 export const DEVIS_URL = SERVER_URL + '/devis';
+export const COMMANDE_URL = SERVER_URL + '/commande';
