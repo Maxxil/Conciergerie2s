@@ -28,6 +28,7 @@ import {DevisPage} from "../pages/devis/devis";
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
 import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
 import { DevisProvider } from '../providers/devis/devis';
+import {CommandesPage} from '../pages/commandes/commandes';
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +45,8 @@ import { DevisProvider } from '../providers/devis/devis';
     ChatPage,
     CommandeHorairePage,
     CommandeForfaitPage,
-    DevisPage
+    DevisPage,
+    CommandesPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { DevisProvider } from '../providers/devis/devis';
     ChatPage,
     CommandeHorairePage,
     CommandeForfaitPage,
-    DevisPage
+    DevisPage,
+    CommandesPage
 
   ],
   providers: [
