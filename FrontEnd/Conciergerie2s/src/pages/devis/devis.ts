@@ -50,7 +50,7 @@ export class DevisPage {
       alert.addButton({
         text : 'OK',
         handler : data => {
-          this.annul();
+          this.annuler();
         }
       })
     }
