@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController  } from 'ionic-angular';
 import {LoginModel} from "../../model/Model/LoginModel";
 
 /**
@@ -18,12 +18,16 @@ export class ProfilePage {
 
   isPasswordToUpdate: boolean = false;
   profile: LoginModel;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viecCtrl: ViewController) {
     this.profile = navParams.get("profile");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+  }
+
+  dismiss() {
+    this.viecCtrl.dismiss();
   }
 
 }

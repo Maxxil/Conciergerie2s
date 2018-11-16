@@ -6,14 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>profile</ion-title>
-  </ion-navbar>
+    <ion-toolbar>
+        <ion-title>
+          Profile
+        </ion-title>
+        <ion-buttons end>
+          <button ion-button (click)="dismiss()">  
+            <ion-icon name="md-close"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  Mon profil
+  Mon paramétrage
   <!-- <ion-row col-md-12>
     <ion-col col-md-6>
       <img src="{{profile.image}}">
