@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the CommandesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
+import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
+import {CommandeForfaitResult} from "../../model/Result/CommandeForfaitResult";
+import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";
 
 @IonicPage()
 @Component({
@@ -14,12 +11,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'commandes.html',
 })
 export class CommandesPage {
-  public commandes: [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public commandes: any[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public commandeForfaitPvd : CommandeForfaitProvider, 
+    public commandeHorairePvd : CommandeHoraireProvider) {
+       this.getMyCommandes(); 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandesPage');
+  }
+
+  getMyCommandes() {
+    /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
+    this.commandeHorairePvd.getAll().subscribe(result =>{
+      this.commandes = result.data;
+      console.dir(this.commandes);
+    })    
   }
 
 }

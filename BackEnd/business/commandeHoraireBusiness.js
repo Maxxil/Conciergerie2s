@@ -16,6 +16,6 @@ module.exports = {
         return CommandeHoraire.find({_id : idCommande});
     },
     getAll : function () {
-        return CommandeHoraire.find({});
+        return CommandeHoraire.find({}).populate('prestation');;
     }
 };

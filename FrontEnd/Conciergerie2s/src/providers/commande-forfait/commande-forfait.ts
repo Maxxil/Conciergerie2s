@@ -23,4 +23,8 @@ export class CommandeForfaitProvider {
     return this.http.put<CommandeForfaitResult>(COMMANDE_FORFAIT_URL, commande);
   }
 
+  getAll() : Observable<CommandeForfaitResult>{
+    return this.http.get<CommandeForfaitResult>(COMMANDE_FORFAIT_URL);
+  }
+
 }
