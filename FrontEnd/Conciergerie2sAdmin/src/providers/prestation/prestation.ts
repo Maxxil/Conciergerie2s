@@ -38,7 +38,7 @@ export class PrestationProvider {
     formData.append('description', prestation.description);
     formData.append('prix', prestation.prix);
     formData.append('forfait', prestation.forfait);
-    formData.append('typeprix', prestation.typeprix);
+    formData.append('typeprix', prestation.typeprix.toString());
     for (var i = 0; i < prestation.details.length; i++) {
       formData.append('details[]', prestation.details[i]);
     }
@@ -55,7 +55,7 @@ export class PrestationProvider {
     formData.append('description', prestation.description);
     formData.append('prix', prestation.prix);
     formData.append('forfait', prestation.forfait);
-    formData.append('typeprix', prestation.typeprix);
+    formData.append('typeprix', prestation.typeprix.toString());
     formData.append('token', token);
     console.log(formData);
     return this.http.post<PrestationResult>(PRESTATION_URL, formData);

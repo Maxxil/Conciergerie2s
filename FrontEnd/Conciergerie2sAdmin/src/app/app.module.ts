@@ -33,6 +33,8 @@ import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
 import { DevisProvider } from '../providers/devis/devis';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CommandePage} from '../pages/commande/commande';
+import {DevisPage} from '../pages/devis/devis';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NotificationsPage,
     ChatPage,
     UtilisateurPage,
-    UtilisateurDetailPage
+    UtilisateurDetailPage,
+    CommandePage,
+    DevisPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NotificationsPage,
     ChatPage,
     UtilisateurPage,
-    UtilisateurDetailPage
+    UtilisateurDetailPage,
+    CommandePage,
+    DevisPage
   ],
   providers: [
     StatusBar,

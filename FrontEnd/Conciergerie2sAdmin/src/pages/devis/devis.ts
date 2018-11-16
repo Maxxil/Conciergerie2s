@@ -25,12 +25,11 @@ export class DevisPage {
     this.getAll();
   }
 
-  public getAll(){
-    this.commandePvd.getAll().subscribe(result =>{
-      if(result.success){
+  public getAll() {
+    this.commandePvd.getAll().subscribe(result => {
+      if (result.success) {
         this.commande = result.data;
       }
     })
   }
-
 }

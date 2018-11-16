@@ -3,6 +3,7 @@ import { Events } from 'ionic-angular';
 import { map } from 'rxjs/operators/map';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { Socket } from "ng-socket-io"
 
 export class ChatMessage {
   messageId: string;
@@ -25,7 +26,9 @@ export class UserInfo {
 export class ChatService {
 
   constructor(private http: HttpClient,
-              private events: Events) {
+              private events: Events, private socket: Socket) {
+                this.socket.connect();
+                this.socket.emit('connection');
   }
 
   mockNewMsg(msg) {

@@ -8,7 +8,8 @@ var devis = new mongoose.Schema({
     information : 'String',
     heure : 'String',
     date : 'Date',
-    dateCreation : 'Date'
+    dateCreation : 'Date',
+    status : 'number'
 });
 
 module.exports = mongoose.model("Devis" , devis);

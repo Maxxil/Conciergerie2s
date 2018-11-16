@@ -37,8 +37,8 @@ export class DevisPage {
     })
   }
 
-  annul(){
-
+  annuler(){
+    this.navCtrl.pop();
   }
 
   manageDisplaySuccessOrError(result : DevisResult){
@@ -50,7 +50,7 @@ export class DevisPage {
       alert.addButton({
         text : 'OK',
         handler : data => {
-          this.annul();
+          this.annuler();
         }
       })
     }

@@ -17,7 +17,6 @@ export class PrestationModel{
     this.description = "";
     this.prix = "";
     this.forfait = "";
-    this.typeprix
     this.details = [];
     this.typeprix=TypePrixEnum.HEURE;
     this.image = "../../assets/icon/pic.png";

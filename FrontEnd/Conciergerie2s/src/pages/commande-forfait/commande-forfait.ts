@@ -36,8 +36,9 @@ export class CommandeForfaitPage {
       this.manageDisplaySuccessOrError(result);
     })
   }
-
+ 
   public annuler(){
+    this.navCtrl.pop();
   }
 
 

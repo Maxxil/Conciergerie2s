@@ -15,6 +15,9 @@
 
 <ion-content padding>
   <ion-list>
+      <ion-list-header>
+          <h1>{{service.nom}}</h1>
+       </ion-list-header>
       <ion-item *ngFor="let element of service.prestations" (click)="commander(element)">
           <ion-avatar item-start>
             <img src="{{prestationImageUrl + element.image}}">

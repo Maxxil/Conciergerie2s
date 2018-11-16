@@ -12,5 +12,11 @@ module.exports = {
         PRESTATAIRE_EXISTANTE_DANS_PRESTATION : 5,
         PRESTATION_DEJA_EXISTANTE : 6,
         UTILISATEUR_NON_CONNU : 7
+    },
+    Commande : {
+        EN_COURS_ANALYSE : 1,
+        VALIDEE : 2,
+        LIVREE : 3,
+        EN_COURS_VALIDATION : 4
     }
 };

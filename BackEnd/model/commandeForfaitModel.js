@@ -8,7 +8,8 @@ var commandeForfait = new mongoose.Schema({
     date : 'Date',
     heureDebut : 'String',
     heureFin : 'String',
-    dateCreation : 'Date'
+    dateCreation : 'Date',
+    status : 'number'
 });
 
 module.exports = mongoose.model("CommandeForfait" , commandeForfait);
