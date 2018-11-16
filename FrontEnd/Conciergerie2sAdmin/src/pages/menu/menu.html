@@ -19,36 +19,48 @@
             <button ion-item menuClose (click)="openPageHome()">
               Accueil
             </button>
-            <button ion-item menuClose (click)="openPageService()" >
-              Tous les services
-            </button>
-            <button ion-item menuClose (click)="openPageAddService()">
-              Ajout d'un service
-            </button>
-            <button ion-item menuClose (click)="openPrestationPage()">
-              Toutes les prestations
-            </button>
-            <button ion-item menuClose (click)="openPageAddPrestation()">
-              Ajout d'une prestation
-            </button>
-            <button ion-item menuClose (click)="openPageLierServicePrestation()">
-              Lier un service à une prestation
-            </button>
-            <button ion-item menuClose (click)="openPageLierPrestationPrestataire()">
-              Lier une prestation à un prestataire
-            </button>
-            <button ion-item menuClose (click)="openPageValiderPrestataire()">
-              Valider prestataire
-            </button>
-            <button ion-item menuClose (click)="openPageUtilisateur()">
-              Liste des utilisateurs
-            </button>
-            <button ion-item menuClose (click)="openPageCommandes()">
+            <ion-list-header ion-item (click)="openSubMenuAFfichage()">Afficher</ion-list-header>
+            <ion-list [@openClose]="isDisplayAfficher? 'open' : 'close'" [hidden]="isDisplayAfficher">
+              <button ion-item menuClose (click)="openPageService()" >
+                Tous les services
+              </button>
+              <button ion-item menuClose (click)="openPrestationPage()">
+                Toutes les prestations
+              </button>
+              <button ion-item menuClose (click)="openPageUtilisateur()">
+                Tous les utilisateurs
+              </button>
+              <button ion-item menuClose (click)="openPageCommandes()">
                 Les commandes
-            </button>
-            <button ion-item menuClose (click)="openPageDevis()">
+              </button>
+              <button ion-item menuClose (click)="openPageDevis()">
                 Les devis
-            </button>
+              </button>
+            </ion-list >
+            <ion-list-header ion-item (click)="openSubMenuAjouter()">Ajouter</ion-list-header>
+            <ion-list [@openClose]="isDisplayAjouter? 'open' : 'close'" [hidden]="isDisplayAjouter">
+              <button ion-item menuClose (click)="openPageAddService()">
+                Ajout d'un service
+              </button>
+              <button ion-item menuClose (click)="openPageAddPrestation()">
+                Ajout d'une prestation
+              </button>
+            </ion-list>
+            <ion-list-header ion-item (click)="openSubMenuLink()">Lier</ion-list-header>
+            <ion-list [@openClose]="isDisplayLink? 'open' : 'close'" [hidden]="isDisplayLink">
+              <button ion-item menuClose (click)="openPageLierServicePrestation()">
+                Lier un service à une prestation
+              </button>
+              <button ion-item menuClose (click)="openPageLierPrestationPrestataire()">
+                Lier une prestation à un prestataire
+              </button>
+            </ion-list>
+            <ion-list-header ion-item (click)="openSubMenuValider()">Valider</ion-list-header>
+            <ion-list [@openClose]="isDisplayValider? 'open' : 'close'" [hidden]="isDisplayValider">
+              <button ion-item menuClose (click)="openPageValiderPrestataire()">
+                Valider prestataire
+              </button>
+            </ion-list>
             <button ion-item menuClose (click)="deconnecter()">
               Deconnecter
             </button>

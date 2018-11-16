@@ -11,6 +11,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import {LinkPrestatairePrestataionPage} from "../link-prestataire-prestataion/link-prestataire-prestataion";
 import {LoginPage} from "../login/login";
 import {UtilisateurPage} from "../utilisateur/utilisateur";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+
 
 /**
  * Generated class for the MenuPage page.
@@ -22,15 +24,43 @@ import {UtilisateurPage} from "../utilisateur/utilisateur";
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html',
+  animations : [ trigger(
+      'openClose', [
+        state('open', style({})),
+        state('close' , style({})),
+        transition('open => close', [animate('1s')]),
+        transition('close => open' , [animate('1s')])
+      ]
+  )]
 })
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
   public rootPage : Page= DashboardPage;
+  public isDisplayAfficher : boolean = false;
+  public isDisplayAjouter : boolean = false;
+  public isDisplayLink : boolean = false;
+  public isDisplayValider : boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
+  }
+
+  openSubMenuValider(){
+    this.isDisplayValider = !this.isDisplayValider;
+  }
+
+  openSubMenuLink(){
+    this.isDisplayLink = !this.isDisplayLink;
+  }
+
+  openSubMenuAFfichage(){
+    this.isDisplayAfficher = !this.isDisplayAfficher;
+  }
+
+  openSubMenuAjouter(){
+    this.isDisplayAjouter = !this.isDisplayAjouter;
   }
 
   openPageHome(){

@@ -42,7 +42,7 @@ export class AddPrestationPage {
     else{
       this.prestation = new PrestationModel();
       this.prestation.details = [];
-      this.prestation.typeprix="heure";
+      this.prestation.typeprix= TypePrixEnum.HEURE;
       this.prestation.image = "../../assets/icon/pic.png";
     }
   }

@@ -32,6 +32,7 @@ import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-det
 import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
 import { DevisProvider } from '../providers/devis/devis';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DevisProvider } from '../providers/devis/devis';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
