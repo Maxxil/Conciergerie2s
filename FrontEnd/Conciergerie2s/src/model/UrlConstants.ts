@@ -6,7 +6,8 @@ export const UTILISATEUR_URL  = SERVER_URL + '/utilisateur';
 export const LOGIN_URL = SERVER_URL + '/login';
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
-export const DEVIS_URL = SERVER_URL + '/devis';
+export const DEVIS_URL = SERVER_URL + '/devis'
+export const COMMANDE_URL = SERVER_URL + '/commande';
 
 export const HTTP_OPTIONS = {
   headers: new HttpHeaders({

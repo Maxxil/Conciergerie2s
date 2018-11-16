@@ -29,6 +29,7 @@ import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-
 import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
 import { DevisProvider } from '../providers/devis/devis';
 import {CommandesPage} from '../pages/commandes/commandes';
+import { CommandeProvider } from '../providers/commande/commande';
 @NgModule({
   declarations: [
     MyApp,
@@ -83,7 +84,8 @@ import {CommandesPage} from '../pages/commandes/commandes';
     LoginProvider,
     CommandeForfaitProvider,
     CommandeHoraireProvider,
-    DevisProvider
+    DevisProvider,
+    CommandeProvider
   ]
 })
 export class AppModule {}
