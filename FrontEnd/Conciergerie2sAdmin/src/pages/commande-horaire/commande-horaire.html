@@ -17,7 +17,14 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let element of commande">
-      Information clients : {{element.client.nom + " " + element.client.prenom}}
+      <i class="icon ion-android-checkbox secondary"></i>
+      <i class="icon checkbox icon-ios-secondary" *ngIf="isEnCours(element)" item-start></i>
+      <ion-icon name="checkbox" *ngIf="!isEnCours(element)" (click)="validerCommande(element)" item-start></ion-icon>
+
+      <!--<ion-avatar item-start>
+      </ion-avatar>-->
+      Information clients :
+      <br>{{element.client.nom + " " + element.client.prenom}}
       <br>Prestation nom : {{element.prestation.nom}}
       <br>Date prestation commande : {{element.date}}
       <br>Heure : Du {{element.heure }}

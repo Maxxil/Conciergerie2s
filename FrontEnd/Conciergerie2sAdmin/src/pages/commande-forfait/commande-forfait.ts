@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeForfaitModel} from "../../model/Models/CommandeForfaitModel";
+import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 
 /**
  * Generated class for the CommandeForfaitPage page.
@@ -35,4 +36,11 @@ export class CommandeForfaitPage {
     })
   }
 
+  isEnCours(commande){
+    return commande.status == CommandeStatus.EN_COURS_ANALYSE;
+  }
+
+  public validerCommande(commande : CommandeForfaitModel){
+    this.commandePvd.validateCommande(commande);
+  }
 }

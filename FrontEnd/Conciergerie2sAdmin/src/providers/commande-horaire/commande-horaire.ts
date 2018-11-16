@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {CommandeHoraireResult} from "../../model/Results/CommandeHoraireResult";
 import {COMMANDE_HORAIRE_URL} from "../../model/Url";
+import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
+import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 
 /*
   Generated class for the CommandeHoraireProvider provider.
@@ -19,6 +21,10 @@ export class CommandeHoraireProvider {
 
   getAll() : Observable<CommandeHoraireResult>{
     return this.http.get<CommandeHoraireResult>(COMMANDE_HORAIRE_URL);
+  }
+
+  validateCommande(commande: CommandeHoraireModel) : Observable<CommandeHoraireResult>{
+    return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL, {idCommande : commande._id, status : CommandeStatus.VALIDEE})
   }
 
 }

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {DevisResult} from "../../model/Results/DevisResult";
 import {DEVIS_URL} from "../../model/Url";
+import {DevisModel} from "../../model/Models/DevisModel";
+import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 
 /*
   Generated class for the DevisProvider provider.
@@ -19,6 +21,10 @@ export class DevisProvider {
 
   getAll() : Observable<DevisResult>{
     return this.http.get<DevisResult>(DEVIS_URL);
+  }
+
+  validateCommande(commande: DevisModel) : Observable<DevisResult>{
+    return this.http.post<DevisResult>(DEVIS_URL, {idCommande : commande._id, status : CommandeStatus.VALIDEE})
   }
 
 }

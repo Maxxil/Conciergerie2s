@@ -28,6 +28,16 @@ router.get('/:id', function (req, res) {
     })
 });
 
+router.post('/' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;
+    commandeForfaitBusiness.updateStatus(idCommande,status);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
 router.put('/', function(req, res){
     console.log(req.body);
     var commande = new CommandeHoraire({
@@ -37,7 +47,8 @@ router.put('/', function(req, res){
         date : req.body.date,
         duree : req.body.duree,
         heure : req.body.heure,
-        dateCreation : Date.now()
+        dateCreation : Date.now(),
+        status : req.body.status
     });
     commandeHoraireBusiness.add(commande);
     res.json({

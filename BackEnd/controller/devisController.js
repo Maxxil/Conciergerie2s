@@ -28,6 +28,16 @@ router.get('/:id', function (req, res) {
     })
 });
 
+router.post('/' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;
+    commandeForfaitBusiness.updateStatus(idCommande,status);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
 router.put('/', function(req, res){
     var commande = new Devis({
         client : req.body.idClient,
@@ -36,7 +46,8 @@ router.put('/', function(req, res){
         information : req.body.information,
         heure : req.body.heure,
         date : req.body.date,
-        dateCreation : Date.now()
+        dateCreation : Date.now(),
+        status : req.body.status
     });
     devisBusiness.add(commande);
     res.json({

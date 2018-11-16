@@ -17,5 +17,11 @@ module.exports = {
     },
     getAll : function () {
         return Devis.find({}).populate('prestation client').sort([['dateCreation',-1]]);
+    },
+    updateStatus : function (idCommande, status) {
+        getById(idCommande).exec(function (err, result) {
+            result[0].status = status;
+            result[0].save();
+        })
     }
 };

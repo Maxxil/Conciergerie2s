@@ -28,6 +28,16 @@ router.get('/:id', function (req, res) {
     })
 });
 
+router.post('/' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;
+    commandeForfaitBusiness.updateStatus(idCommande,status);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
 router.put('/', function(req, res){
     console.log(commandeForfaitBusiness);
     var commande = new CommandeForfait({
@@ -37,7 +47,8 @@ router.put('/', function(req, res){
         date : req.body.date,
         heureDebut : req.body.heureDebut,
         heureFin : req.body.heureFin,
-        dateCreation : Date.now()
+        dateCreation : Date.now(),
+        status : req.body.status
     });
     commandeForfaitBusiness.add(commande);
     res.json({

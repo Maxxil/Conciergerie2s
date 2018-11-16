@@ -18,5 +18,11 @@ module.exports = {
     },
     getAll : function () {
         return CommandeForfait.find({}).populate('prestation client prestataires').sort([['dateCreation',-1]]);
+    },
+    updateStatus : function (idCommande, status) {
+        getById(idCommande).exec(function (err, result) {
+            result[0].status = status;
+            result[0].save();
+        })
     }
 };
