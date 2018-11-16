@@ -14,7 +14,11 @@
 
 
 <ion-content padding>
+    
   <ion-list>
+    <ion-list-header>
+        Commander un forfait <br><strong>{{prestation.nom}}</strong>
+      </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
       <ion-input type="date" [(ngModel)]="commandeForfait.date"></ion-input>

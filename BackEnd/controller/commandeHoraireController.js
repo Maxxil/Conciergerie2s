@@ -36,6 +36,7 @@ router.put('/', function(req, res){
         prestataire : [],
         date : req.body.date,
         duree : req.body.duree,
+        heure : req.body.heure,
         dateCreation : Date.now()
     });
     commandeHoraireBusiness.add(commande);

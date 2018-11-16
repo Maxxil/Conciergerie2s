@@ -14,13 +14,21 @@
 
 
 <ion-content padding>
+  
   <ion-list>
+      <ion-list-header>
+          Commander la prestation <br><strong>{{prestation.nom}}</strong>
+        </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
       <ion-input type="date" [(ngModel)]="commandeHoraire.date"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Duree</ion-label>
+      <ion-label fixed>Heure</ion-label>
+      <ion-input type="time" [(ngModel)]="commandeHoraire.heure"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Quantité</ion-label>
       <ion-input type="number" [(ngModel)]="commandeHoraire.duree"></ion-input>
     </ion-item>
   </ion-list>

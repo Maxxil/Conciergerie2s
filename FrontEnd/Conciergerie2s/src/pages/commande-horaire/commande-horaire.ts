@@ -37,9 +37,9 @@ export class CommandeHorairePage {
     });
   }
 
-  annule(){
-
-  }
+  annuler(){
+    this.navCtrl.pop();
+  } 
 
   manageDisplaySuccessOrError(result : CommandeHoraireResult){
     var alert = this.alertCtrl.create();
@@ -50,7 +50,7 @@ export class CommandeHorairePage {
       alert.addButton({
         text : 'OK',
         handler : data => {
-          this.annule();
+          this.annuler();
         }
       })
     }

@@ -8,4 +8,5 @@ export class CommandeHoraireModel{
   prestation : PrestationModel;
   date : Date;
   duree : number;
+  heure : string;
 }

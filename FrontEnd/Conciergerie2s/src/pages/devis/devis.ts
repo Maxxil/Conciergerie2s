@@ -37,8 +37,8 @@ export class DevisPage {
     })
   }
 
-  annul(){
-
+  annuler(){
+    this.navCtrl.pop();
   }
 
   manageDisplaySuccessOrError(result : DevisResult){

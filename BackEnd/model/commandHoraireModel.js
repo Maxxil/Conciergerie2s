@@ -6,6 +6,7 @@ var commandeHoraire = new mongoose.Schema({
     prestation : {type : Schema.Types.ObjectId, ref : 'Prestation'},
     prestataires : [{type : Schema.Types.ObjectId, ref : 'Prestataire'}],
     date : 'Date',
+    heure : 'String',
     duree : 'Number',
     dateCreation : 'Date'
 });
