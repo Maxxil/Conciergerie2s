@@ -41,7 +41,7 @@ router.post('/' , function (req, res) {
 router.put('/', function(req, res){
     console.log(commandeForfaitBusiness);
     var commande = new CommandeForfait({
-        client : req.body.idUtilisateur,
+        client : req.body.idClient,
         prestation : req.body.idPrestation,
         prestataire : [],
         date : req.body.date,

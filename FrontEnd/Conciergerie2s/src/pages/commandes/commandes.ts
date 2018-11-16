@@ -16,11 +16,12 @@ export class CommandesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public commandeForfaitPvd : CommandeForfaitProvider, 
     public commandeHorairePvd : CommandeHoraireProvider) {
-       this.getMyCommandes(); 
+       
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandesPage');
+    this.getMyCommandes(); 
   }
 
   getMyCommandes() {

@@ -20,7 +20,7 @@ module.exports = {
         return CommandeForfait.populate('client').find({'client._id' : idClient});
     },
     getAll : function () {
-        return CommandeForfait.find({}).populate('prestation client prestataires').sort([['dateCreation',-1]]);
+        return CommandeForfait.find({}).populate('prestation').populate('client').populate('prestataires').sort([['dateCreation',-1]]);
     },
     updateStatus : function (idCommande, status) {
         getById(idCommande).exec(function (err, result) {

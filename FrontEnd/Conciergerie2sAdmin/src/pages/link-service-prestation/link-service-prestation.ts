@@ -4,7 +4,7 @@ import {ServiceModel} from "../../model/Models/ServiceModel";
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {ServiceProvider} from "../../providers/service/service";
 import {PrestationProvider} from "../../providers/prestation/prestation";
-import {Result} from "../../model/Results/Result";
+import {ServiceResult} from "../../model/Results/ServiceResult";
 
 /**
  * Generated class for the LinkServicePrestationPage page.
@@ -68,7 +68,7 @@ export class LinkServicePrestationPage {
       this.getServiceWithPrestations();
     })
   }
-  manageDisplaySuccessOrError(result: Result) {
+  manageDisplaySuccessOrError(result: ServiceResult) {
     var alert = this.alertCtrl.create();
 
     if (result.success) {
