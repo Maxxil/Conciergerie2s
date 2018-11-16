@@ -41,8 +41,7 @@ export class AddPrestationPage {
     }
     else{
       this.prestation = new PrestationModel();
-      this.prestation.details = [];
-      this.prestation.typeprix="heure";
+      this.prestation.details = [];     
       this.prestation.image = "../../assets/icon/pic.png";
     }
   }
