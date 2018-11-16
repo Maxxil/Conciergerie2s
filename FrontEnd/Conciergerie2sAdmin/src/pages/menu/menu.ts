@@ -11,7 +11,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import {LinkPrestatairePrestataionPage} from "../link-prestataire-prestataion/link-prestataire-prestataion";
 import {LoginPage} from "../login/login";
 import {UtilisateurPage} from "../utilisateur/utilisateur";
-
+import {CommandePage} from "../commande/commande";
+import {DevisPage} from "../devis/devis";
 /**
  * Generated class for the MenuPage page.
  *
@@ -70,11 +71,11 @@ export class MenuPage {
   }
 
   openPageCommandes(){
-
+    this.rootPage = CommandePage;
   }
 
   openPageDevis(){
-
+    this.rootPage = DevisPage;
   }
 
   openPageUtilisateur(){

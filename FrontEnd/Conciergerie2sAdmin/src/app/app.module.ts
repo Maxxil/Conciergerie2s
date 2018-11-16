@@ -32,6 +32,8 @@ import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-det
 import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
 import { DevisProvider } from '../providers/devis/devis';
+import {CommandePage} from '../pages/commande/commande';
+import {DevisPage} from '../pages/devis/devis';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { DevisProvider } from '../providers/devis/devis';
     NotificationsPage,
     ChatPage,
     UtilisateurPage,
-    UtilisateurDetailPage
+    UtilisateurDetailPage,
+    CommandePage,
+    DevisPage
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,9 @@ import { DevisProvider } from '../providers/devis/devis';
     NotificationsPage,
     ChatPage,
     UtilisateurPage,
-    UtilisateurDetailPage
+    UtilisateurDetailPage,
+    CommandePage,
+    DevisPage
   ],
   providers: [
     StatusBar,
