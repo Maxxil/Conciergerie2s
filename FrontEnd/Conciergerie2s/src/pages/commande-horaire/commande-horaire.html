@@ -17,11 +17,12 @@
   
   <ion-list>
       <ion-list-header>
-          Commander la prestation <br><strong>{{prestation.nom}}</strong>
+          <h1>Commander une prestation</h1>
+          <h2>{{prestation.nom}}</h2>
         </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [(ngModel)]="commandeHoraire.date"></ion-input>
+      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.date"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure</ion-label>
@@ -29,9 +30,11 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>
-      <ion-input type="number" [(ngModel)]="commandeHoraire.duree"></ion-input>
+      <ion-input type="number" min="1" [(ngModel)]="commandeHoraire.duree"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button (click)="commander()">Commander</button>
-  <button ion-button (click)="annuler()">Annuler</button>
+  <div text-center>
+  <button ion-button (click)="commander()" taupe>Commander</button>
+  <button ion-button (click)="annuler()" taupe>Annuler</button>
+</div>
 </ion-content>

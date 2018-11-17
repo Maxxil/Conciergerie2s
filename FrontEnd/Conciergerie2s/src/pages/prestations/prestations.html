@@ -23,7 +23,7 @@
             <img src="{{prestationImageUrl + element.image}}">
           </ion-avatar>
           <ion-label align-items-center>{{element.nom}}</ion-label>
-          <ion-note item-end class="balenced">{{element.prix}} €</ion-note>
+          <ion-note item-end class="balenced" >{{ element.typeprix != 3 ? element.prix+" €" : 'Sur devis' }}</ion-note>
       </ion-item>
   </ion-list>
 </ion-content>

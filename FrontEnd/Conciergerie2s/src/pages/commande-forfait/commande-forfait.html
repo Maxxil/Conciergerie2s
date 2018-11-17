@@ -16,12 +16,13 @@
 <ion-content padding>
     
   <ion-list>
-    <ion-list-header>
-        Commander un forfait <br><strong>{{prestation.nom}}</strong>
+    <ion-list-header>      
+        <h1>Commander un forfait</h1>
+        <h2>{{prestation.nom}}</h2>
       </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [(ngModel)]="commandeForfait.date"></ion-input>
+      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}"  [(ngModel)]="commandeForfait.date"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure de départ</ion-label>
@@ -32,6 +33,8 @@
       <ion-input type="time" [(ngModel)]="commandeForfait.heureFin"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button (click)="commander()">Commander</button>
-  <button ion-button (click)="annuler()">Annuler</button>
+  <div text-center>
+    <button ion-button (click)="commander()">Commander</button>
+    <button ion-button (click)="annuler()">Annuler</button>
+  </div>  
 </ion-content>
