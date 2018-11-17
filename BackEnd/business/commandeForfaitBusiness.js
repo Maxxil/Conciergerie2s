@@ -14,7 +14,7 @@ module.exports = {
         })
     },
     getById : function (idCommande) {
-        return CommandeForfait.find({_id : idCommande});
+        return ;
     },
     getByIdClient : function(idClient){
         return CommandeForfait.populate('client').find({'client._id' : idClient});
@@ -23,7 +23,7 @@ module.exports = {
         return CommandeForfait.find({}).populate('prestation').populate('client').populate('prestataires').sort([['dateCreation',-1]]);
     },
     updateStatus : function (idCommande, status) {
-        getById(idCommande).exec(function (err, result) {
+        CommandeForfait.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
             result[0].save();
         })

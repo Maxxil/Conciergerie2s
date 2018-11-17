@@ -22,7 +22,7 @@ module.exports = {
         return CommandeForfait.populate('client').find({'client._id' : idClient});
     },
     updateStatus : function (idCommande, status) {
-        getById(idCommande).exec(function (err, result) {
+        Devis.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
             result[0].save();
         })

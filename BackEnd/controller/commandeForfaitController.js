@@ -31,6 +31,7 @@ router.get('/:id', function (req, res) {
 router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
+    console.log(req.body);
     commandeForfaitBusiness.updateStatus(idCommande,status);
     res.json({
         success : true

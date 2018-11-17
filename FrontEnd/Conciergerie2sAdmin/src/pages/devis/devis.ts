@@ -39,6 +39,10 @@ export class DevisPage {
   }
 
   public validerCommande(commande : DevisModel){
-    this.commandePvd.validateCommande(commande);
+    this.commandePvd.validateCommande(commande).subscribe(result =>{
+      if(result.success){
+        commande.status = CommandeStatus.VALIDEE;
+      }
+    });
   }
 }
