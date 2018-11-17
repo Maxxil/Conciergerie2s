@@ -22,14 +22,17 @@ export class CommandeHorairePage {
 
   private prestation : PrestationModel;
   public commandeHoraire : CommandeHoraireModel;
-
+  public today;
+  
   constructor(public navCtrl: NavController
               , public commandeHorairePvd : CommandeHoraireProvider
               , public alertCtrl : AlertController
               , public navParams: NavParams) {
     this.commandeHoraire = new CommandeHoraireModel();
+    this.commandeHoraire.duree=1;
     this.prestation = this.navParams.get("Prestation");
     this.commandeHoraire.idPrestation = this.prestation._id;
+    this.today= new Date();    
   }
 
   commander(){

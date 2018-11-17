@@ -22,7 +22,7 @@ export class CommandeForfaitPage {
 
   private prestation: PrestationModel;
   public commandeForfait : CommandeForfaitModel;
-
+  public today;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public alertCtrl : AlertController
@@ -30,6 +30,7 @@ export class CommandeForfaitPage {
     this.commandeForfait = new CommandeForfaitModel();
     this.prestation = this.navParams.get("Prestation");
     this.commandeForfait.idPrestation = this.prestation._id;
+    this.today= new Date();
   }
 
   public commander(){

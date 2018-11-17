@@ -12,7 +12,7 @@
 
    <ion-toolbar no-border-top>
       <ion-segment [(ngModel)]="defautseg">
-        <ion-segment-button value="horaire">
+        <ion-segment-button value="horaire" light>
           Par heure
         </ion-segment-button>
         <ion-segment-button value="forfait">
@@ -31,9 +31,15 @@
     <div [ngSwitch]="defautseg">
         <ion-list *ngSwitchCase="'horaire'">
             <ion-item *ngFor="let commande of commandeHoraire">  
-                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
-                <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
-                <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
+                <ion-note item-start text-center>
+                  {{commande.dateCreation | date: 'dd/MM/yy'}}<br>
+                  {{commande.dateCreation | date: 'hh:mm'}}
+                </ion-note>
+                
+                <h2>{{commande.prestation.nom}}</h2>
+                  <em>{{commande.date | date: 'dd/MM/yy'}} {{ commande.heure }}</em>
+                          
+                <ion-note item-end >{{commande.prestation.prix * commande.duree}} €</ion-note>
             </ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'forfait'">

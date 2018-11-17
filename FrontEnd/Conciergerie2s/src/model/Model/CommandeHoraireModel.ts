@@ -11,4 +11,8 @@ export class CommandeHoraireModel{
   duree : number;
   heure : string;
   status : CommandeStatus;
+
+  constructor() {
+    this.duree = 1;
+  }
 }
