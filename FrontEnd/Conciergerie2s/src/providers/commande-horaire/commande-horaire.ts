@@ -24,7 +24,7 @@ export class CommandeHoraireProvider {
     return this.http.put<CommandeHoraireResult>(COMMANDE_HORAIRE_URL, commande);
   }
 
-  getAll() : Observable<CommandeHoraireResult>{
+  getAll() : Observable<CommandeHoraireResult>{    
     return this.http.get<CommandeHoraireResult>(COMMANDE_HORAIRE_URL);
   }
 }

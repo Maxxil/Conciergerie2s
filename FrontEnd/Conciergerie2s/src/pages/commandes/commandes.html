@@ -10,25 +10,48 @@
     <ion-title>commandes</ion-title>
   </ion-navbar>
 
-  <!-- <ion-toolbar no-border-top>
-      <ion-segment>
-        <ion-segment-button value="historique">
-          Historique
+   <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="defautseg">
+        <ion-segment-button value="horaire">
+          Par heure
         </ion-segment-button>
-        <ion-segment-button value="encours">
-          En cours
+        <ion-segment-button value="forfait">
+          Forfait
         </ion-segment-button>
-        <ion-segment-button value="avenir">
-          A venir
+        <ion-segment-button value="devis">
+          Devis
         </ion-segment-button>
       </ion-segment>
-    </ion-toolbar> -->
+    </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-list>
+    <div [ngSwitch]="defautseg">
+        <ion-list *ngSwitchCase="'horaire'">
+            <ion-item *ngFor="let commande of commandeHoraire">  
+                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
+                <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+                <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'forfait'">
+            <ion-item *ngFor="let commande of commandeForfait">  
+                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
+                <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+                <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngSwitchCase="'devis'">
+              <ion-item *ngFor="let commande of commandeDevis">  
+                  <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
+                  <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+                  <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
+              </ion-item>
+            </ion-list>
+    </div>     
+   <!--  <ion-list>
         <ion-list-header>
             Hsitorique de mes commandes
           </ion-list-header>
@@ -37,6 +60,6 @@
             <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
             <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
         </ion-item>
-    </ion-list>
+    </ion-list> -->
 
 </ion-content>

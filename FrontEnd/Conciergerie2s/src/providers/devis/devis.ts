@@ -13,7 +13,7 @@ import {DEVIS_URL} from "../../model/UrlConstants";
 */
 @Injectable()
 export class DevisProvider {
-
+  
   constructor(public http: HttpClient) {
     console.log('Hello DevisProvider Provider');
   }
@@ -22,5 +22,11 @@ export class DevisProvider {
     commande.idClient = localStorage.getItem("IdUtilisateur");
     return this.http.put<DevisResult>(DEVIS_URL, commande);
   }
+
+  getAll() : Observable<DevisResult>{
+    let idClient = localStorage.getItem("IdUtilisateur");
+    return this.http.get<DevisResult>(DEVIS_URL);
+  }
+
 
 }
