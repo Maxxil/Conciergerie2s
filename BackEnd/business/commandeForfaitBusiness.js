@@ -2,7 +2,6 @@ var CommandeForfait = require('./../model/commandeForfaitModel');
 
 module.exports = {
     add : function (commande) {
-        console.log("Add forfait");
         commande.save();
     },
     addPrestataire : function (idCommande, idPrestataire) {
@@ -18,6 +17,12 @@ module.exports = {
     },
     getByIdClient : function(idClient){
         return CommandeForfait.populate('client').find({'client._id' : idClient});
+    },
+    getByIdPrestation : function (idPrestation) {
+        return CommandeForfait.populate('prestation').find({'prestation._id' : idPrestation});
+    },
+    getByListIdPrestation : function (idsPrestations) {
+        return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation');
     },
     getAll : function () {
         return CommandeForfait.find({}).populate('prestation').populate('client').populate('prestataires').sort([['dateCreation',-1]]);

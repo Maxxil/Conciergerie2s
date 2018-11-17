@@ -22,8 +22,6 @@ module.exports = {
     },
     decode : function(token, callback){
         return jwt.verify(token, security.jwtSecret, function (err, decode) {
-            console.log(decode);
-            console.log(err);
             callback(decode);
         });
     }

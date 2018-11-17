@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var commandeForfaitBusiness = require('./../business/commandeForfaitBusiness');
 var commandeHoraireBusiness = require('./../business/commandeHoraireBusiness');
 var devisBusiness = require('./../business/devisBusiness');
-var CommandeForfait = require('./../model/commandeForfaitModel');
+var prestationBusiness = require('./../business/prestationBusiness');
 
 router.use(bodyParser.json());
 
@@ -21,6 +21,45 @@ router.get('/:idClient' , function (req, res) {
             })
         })
     });
+});
+
+router.post('/ByIdUtilisateur' , function (req, res) {
+    var idUtilisateur  = req.body.idUtilisateur;
+    console.log(idUtilisateur);
+    var prestations = [];
+    prestationBusiness.getWitlPrestataireAndUtilisateur(idUtilisateur).exec(function(err,prestationsResult){
+        prestations = prestationBusiness.getByIdUtilisateurInPrestataire(prestationsResult, idUtilisateur);
+        console.log(prestations);
+        if(prestations.length > 0)
+        {
+            commandeForfaitBusiness.getByListIdPrestation(prestations).exec(function (err, commandeForfait) {
+                console.log(commandeForfait);
+                commandeHoraireBusiness.getByListIdPrestation(prestations).exec(function (err, commandeHoraire) {
+                    console.log(commandeHoraire);
+                    devisBusiness.getByListIdPrestation(prestations).exec(function (err,devis) {
+                        console.log(devis);
+                        res.json({
+                            success : true,
+                            data : {
+                                commandeHoraire : commandeHoraire,
+                                commandeForfait : commandeForfait,
+                                devis : devis
+                            }
+                        });
+                        res.end();
+                    });
+                });
+            });
+        }
+        else{
+            res.json({
+                success : false
+            });
+            res.end();
+        }
+
+    });
+
 });
 
 

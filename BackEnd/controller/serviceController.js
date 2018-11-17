@@ -29,7 +29,6 @@ var upload = multer({
 
 router.get('/', function(req, res){
     serviceBusiness.getAll().exec(function(err, result){
-        console.log(result);
         res.json({
             data : result
         });

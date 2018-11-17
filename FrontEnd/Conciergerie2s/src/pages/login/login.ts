@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {LoginModel} from '../../model/Model/LoginModel';
-import {TabsPage} from "../tabs/tabs";
 import {SigninPage} from '../signin/signin';
 import {LoginProvider} from "../../providers/login/login";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
+import {MenuPage} from "../menu/menu";
 
 /**
  * Generated class for the LoginPage page.
@@ -40,7 +39,7 @@ export class LoginPage {
         console.log(result);
         if(result.success){
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.push(MenuPage);
         }
       })
     }
@@ -64,7 +63,7 @@ export class LoginPage {
           console.log(result.user[0]._id);
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           localStorage.setItem('Token', result.data);
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.push(MenuPage);
         }
       });
   }

@@ -30,6 +30,7 @@ import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-
 import { DevisProvider } from '../providers/devis/devis';
 import {CommandesPage} from '../pages/commandes/commandes';
 import { CommandeProvider } from '../providers/commande/commande';
+import {MenuPage} from "../pages/menu/menu";
 @NgModule({
   declarations: [
     MyApp,
@@ -47,7 +48,8 @@ import { CommandeProvider } from '../providers/commande/commande';
     CommandeHorairePage,
     CommandeForfaitPage,
     DevisPage,
-    CommandesPage
+    CommandesPage,
+    MenuPage
   ],
   imports: [
     BrowserModule,
@@ -71,8 +73,8 @@ import { CommandeProvider } from '../providers/commande/commande';
     CommandeHorairePage,
     CommandeForfaitPage,
     DevisPage,
-    CommandesPage
-
+    CommandesPage,
+    MenuPage
   ],
   providers: [
     StatusBar,

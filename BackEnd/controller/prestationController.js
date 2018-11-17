@@ -68,6 +68,17 @@ router.post('/' , function(req, res){
     })
 });
 
+router.post('/byIdUtilisateur' , function (req, res) {
+    var idUtilisateur = req.body.idUtilisateur;
+    prestationBusiness.getByIdUtilisateurInPrestataire(idUtilisateur).exec(function (err,result) {
+        res.json({
+            success : true,
+            data : result
+        });
+        res.end();
+    })
+});
+
 router.put('/' , upload.single('file'), function(req, res){
     try{
         var promise = prestationBusiness.getByNom(req.body.nom);

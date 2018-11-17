@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
-import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
-import { DevisProvider } from "../../providers/devis/devis";
+import {CommandeProvider} from "../../providers/commande/commande";
+import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
+import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
+import {DevisModel} from "../../model/Model/DevisModel";
 
 @IonicPage()
 @Component({
@@ -10,36 +11,30 @@ import { DevisProvider } from "../../providers/devis/devis";
   templateUrl: 'commandes.html',
 })
 export class CommandesPage {
-  public commandeHoraire: any[];
-  public commandeForfait: any[];
-  public commandeDevis: any[];
+  public commandeHoraire: CommandeHoraireModel[];
+  public commandeForfait: CommandeForfaitModel[];
+  public commandeDevis: DevisModel[];
   defautseg: string = "horaire";
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public commandeForfaitPvd : CommandeForfaitProvider, 
-    public commandeHorairePvd : CommandeHoraireProvider,
-    public commandeDevisPvd: DevisProvider) {
-      this.getMyCommandes();    
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public commandePvd : CommandeProvider) {
+      this.getMyCommandes();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandesPage');
-    this.getMyCommandes(); 
+    this.getMyCommandes();
   }
 
-  getMyCommandes() {    
+  getMyCommandes() {
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
-    this.commandeHorairePvd.getAll().subscribe(result =>{
-      this.commandeHoraire = result.data;    
-    });
-    
-    this.commandeForfaitPvd.getAll().subscribe(result =>{
-      this.commandeForfait = result.data;      
-    });
+    this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
+      if(result.success){
+        this.commandeHoraire = result.data.commandeHoraire;
+        this.commandeForfait = result.data.commandeForfait;
+        this.commandeDevis = result.data.devis;
+      }
+    })
 
-    this.commandeDevisPvd.getAll().subscribe(result =>{
-      this.commandeDevis = result.data;      
-    });
-    
   }
 
 }
