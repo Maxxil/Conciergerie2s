@@ -36,9 +36,13 @@ export class CommandeHorairePage {
   }
 
   isEnCours(commande){
-    return commande.status == CommandeStatus.EN_COURS_ANALYSE;
+    return commande.status == CommandeStatus.EN_COURS_ANALYSE || commande.status == CommandeStatus.EN_COURS_VALIDATION;
   }
 
+  /**
+   * 
+   * @param commande Validation de la commande avec C2S
+   */
   public validerCommande(commande : CommandeHoraireModel){
     this.commandePvd.validateCommande(commande).subscribe(result =>{
       if(result.success){
@@ -46,5 +50,6 @@ export class CommandeHorairePage {
       }
     });
   }
+
 
 }

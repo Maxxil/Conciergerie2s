@@ -8,25 +8,29 @@
 
   <ion-navbar>
     <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Toutes les commandes horaires</ion-title>
+    <ion-title>Commandes par heure</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
-    <ion-item *ngFor="let element of commande">
-
-      <button ion-button item-start *ngIf="isEnCours(element)" (click)="validerCommande(element)">Valider</button>
-      <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button>
-
-      Information clients :
-      <br>{{element.client.nom + " " + element.client.prenom}}
-      <br>Prestation nom : {{element.prestation.nom}}
-      <br>Date prestation commande : {{element.date}}
-      <br>Heure : Du {{element.heure }}
-      <br>Duree : {{element.duree}}
+  <ion-item-sliding *ngFor="let element of commande">
+    <ion-item>
+      <ion-avatar item-start>
+          <ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}<br>
+          <ion-icon name="time"></ion-icon> {{element.heure }}<br>           
+      </ion-avatar>    
+      <h2>{{element.prestation.nom}}</h2>
+      <p>{{element.client.nom + " " + element.client.prenom}}</p>
+      <ion-note item-end><ion-icon name="basket"></ion-icon> {{element.duree}}</ion-note>
     </ion-item>
-  </ion-list>
+    <ion-item-options >
+      <button ion-button color="primary"  (click)="validerCommande(element)" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
+      <!-- <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button> -->
+      <button ion-button  color="secondary" icon-start> <ion-icon name="people"></ion-icon>Prestataire</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 </ion-content>
