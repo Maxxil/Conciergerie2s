@@ -4,6 +4,9 @@ import {CommandeProvider} from "../../providers/commande/commande";
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
+import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
+import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
+import {DevisDetailPage} from "../devis-detail/devis-detail";
 
 @IonicPage()
 @Component({
@@ -28,6 +31,7 @@ export class CommandesPage {
   getMyCommandes() {
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
+      console.log(result);
       if(result.success){
         this.commandeHoraire = result.data.commandeHoraire;
         this.commandeForfait = result.data.commandeForfait;
@@ -37,4 +41,15 @@ export class CommandesPage {
 
   }
 
+  detailCommandeHoraire(commande){
+    this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande});
+  }
+
+  detailCommandeForfait(commande){
+    this.navCtrl.push(CommandeForfaitDetailPage, {Commande: commande});
+  }
+
+  detailDevis(commande){
+    this.navCtrl.push(DevisDetailPage, {Commande :commande});
+  }
 }

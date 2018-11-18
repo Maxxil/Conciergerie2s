@@ -1,0 +1,39 @@
+<!--
+  Generated template for the CommandeForfaitDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>commande-forfait-detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <h1>Commander un forfait</h1>
+      <h2>{{commande.prestation.nom}}</h2>
+    </ion-list-header>
+    <ion-item>
+      <ion-label fixed>Date</ion-label>
+      <ion-input type="date"  [value]="commande.date | date : 'yyyy-MM-dd'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Heure de départ</ion-label>
+      <ion-input type="time" [(ngModel)]="commande.heureDebut" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Heure de fin</ion-label>
+      <ion-input type="time" [(ngModel)]="commande.heureFin" ></ion-input>
+    </ion-item>
+  </ion-list>
+  <div text-center>
+    <button ion-button (click)="postuler()">Postuler</button>
+    <button ion-button (click)="annuler()">Annuler</button>
+  </div>
+</ion-content>

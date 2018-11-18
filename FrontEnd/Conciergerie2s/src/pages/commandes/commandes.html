@@ -30,40 +30,40 @@
 <ion-content padding>
     <div [ngSwitch]="defautseg">
         <ion-list *ngSwitchCase="'horaire'">
-            <ion-item *ngFor="let commande of commandeHoraire">  
+            <button ion-item *ngFor="let commande of commandeHoraire" (click)="detailCommandeHoraire(commande)">
                 <ion-note item-start text-center>
                   {{commande.dateCreation | date: 'dd/MM/yy'}}<br>
                   {{commande.dateCreation | date: 'hh:mm'}}
                 </ion-note>
-                
+
                 <h2>{{commande.prestation.nom}}</h2>
                   <em>{{commande.date | date: 'dd/MM/yy'}} {{ commande.heure }}</em>
-                          
+
                 <ion-note item-end >{{commande.prestation.prix * commande.duree}} €</ion-note>
-            </ion-item>
+            </button>
         </ion-list>
         <ion-list *ngSwitchCase="'forfait'">
-            <ion-item *ngFor="let commande of commandeForfait">  
-                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
-                <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+            <button ion-item *ngFor="let commande of commandeForfait" (click)="detailCommandeForfait(commande)">
+                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
+                <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
                 <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
-            </ion-item>
+            </button>
           </ion-list>
           <ion-list *ngSwitchCase="'devis'">
-              <ion-item *ngFor="let commande of commandeDevis">  
-                  <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
-                  <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+              <button ion-item *ngFor="let commande of commandeDevis" (click)="detailDevis(commande)">
+                  <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
+                  <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
                   <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
-              </ion-item>
+              </button>
             </ion-list>
-    </div>     
+    </div>
    <!--  <ion-list>
         <ion-list-header>
             Hsitorique de mes commandes
           </ion-list-header>
-        <ion-item *ngFor="let commande of commandes">  
-            <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>         
-            <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>            
+        <ion-item *ngFor="let commande of commandes">
+            <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
+            <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
             <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
         </ion-item>
     </ion-list> -->

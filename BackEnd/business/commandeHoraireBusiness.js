@@ -5,10 +5,10 @@ module.exports = {
         commande.save();
     },
     addPrestataire : function (idCommande, idPrestataire) {
-        getById(idCommande).exec(function (err,result) {
+        CommandeHoraire.find({_id : idCommande}).exec(function (err,result) {
             if(result != null || result.length == 1){
-                result.prestataires.push(idPrestataire);
-                result.save();
+                result[0].prestataires.push(idPrestataire);
+                result[0].save();
             }
         })
     },
@@ -25,7 +25,8 @@ module.exports = {
         return CommandeHoraire.find({'prestation._id' : idPrestation});
     },
     getByListIdPrestation : function (idsPrestations) {
-        return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation');
+        return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
+            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
     },
     updateStatus : function (idCommande, status) {
         CommandeHoraire.find({_id : idCommande}).exec(function (err, result) {

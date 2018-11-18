@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisResult} from "../../model/Result/DevisResult";
 import {Observable} from "rxjs/Observable";
-import {DEVIS_URL} from "../../model/UrlConstants";
+import {DEVIS_PRESTATAIRE_URL, DEVIS_URL} from "../../model/UrlConstants";
+import {Result} from "../../model/Result/Result";
 
 /*
   Generated class for the DevisProvider provider.
@@ -13,7 +14,7 @@ import {DEVIS_URL} from "../../model/UrlConstants";
 */
 @Injectable()
 export class DevisProvider {
-  
+
   constructor(public http: HttpClient) {
     console.log('Hello DevisProvider Provider');
   }
@@ -24,9 +25,11 @@ export class DevisProvider {
   }
 
   getAll() : Observable<DevisResult>{
-    let idClient = localStorage.getItem("IdUtilisateur");
     return this.http.get<DevisResult>(DEVIS_URL);
   }
 
-
+  souscrirePrestataire(commande : DevisModel) : Observable<Result>{
+    return this.http.post<Result>(DEVIS_PRESTATAIRE_URL,
+      {idCommande : commande._id , idUtilisateur : localStorage.getItem('IdUtilisateur')});
+  }
 }

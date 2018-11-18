@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 
 var commandeForfaitBusiness = require('./../business/commandeForfaitBusiness');
 var CommandeForfait = require('./../model/commandeForfaitModel');
+var prestataireBusiness = require('./../business/prestataireBusiness');
 
 router.use(bodyParser.json());
 
@@ -37,6 +38,18 @@ router.post('/' , function (req, res) {
         success : true
     });
     res.end();
+});
+
+router.post('/prestataire' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var idUtilisateur = req.body.idUtilisateur;
+    prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
+        commandeForfaitBusiness.addPrestataire(idCommande, prestataire[0]._id);
+        res.json({
+            success: true
+        });
+        res.end();
+    });
 });
 
 router.put('/', function(req, res){

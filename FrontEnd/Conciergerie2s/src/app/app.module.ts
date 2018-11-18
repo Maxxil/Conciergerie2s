@@ -31,6 +31,9 @@ import { DevisProvider } from '../providers/devis/devis';
 import {CommandesPage} from '../pages/commandes/commandes';
 import { CommandeProvider } from '../providers/commande/commande';
 import {MenuPage} from "../pages/menu/menu";
+import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/commande-horaire-detail";
+import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
+import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 @NgModule({
   declarations: [
     MyApp,
@@ -49,7 +52,10 @@ import {MenuPage} from "../pages/menu/menu";
     CommandeForfaitPage,
     DevisPage,
     CommandesPage,
-    MenuPage
+    MenuPage,
+    CommandeHoraireDetailPage,
+    CommandeForfaitDetailPage,
+    DevisDetailPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,10 @@ import {MenuPage} from "../pages/menu/menu";
     CommandeForfaitPage,
     DevisPage,
     CommandesPage,
-    MenuPage
+    MenuPage,
+    CommandeHoraireDetailPage,
+    CommandeForfaitDetailPage,
+    DevisDetailPage
   ],
   providers: [
     StatusBar,
