@@ -1,4 +1,5 @@
 var CommandeHoraire = require('./../model/commandHoraireModel');
+var enums = require('./../helper/enums');
 
 module.exports = {
     add : function (commande) {
@@ -8,7 +9,9 @@ module.exports = {
         CommandeHoraire.find({_id : idCommande}).exec(function (err,result) {
             if(result != null || result.length == 1){
                 result[0].prestataires.push(idPrestataire);
+                result[0].status = enums.CommandeStatus.EN_COURS_VALIDATION;
                 result[0].save();
+               
             }
         })
     },

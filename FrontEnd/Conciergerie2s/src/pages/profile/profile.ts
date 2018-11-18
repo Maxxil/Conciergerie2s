@@ -18,8 +18,10 @@ export class ProfilePage {
 
   isPasswordToUpdate: boolean = false;
   profile: LoginModel;
+  iduser: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public viecCtrl: ViewController) {
     this.profile = navParams.get("profile");
+    this.iduser=localStorage.getItem('IdUtilisateur');
   }
 
   ionViewDidLoad() {
