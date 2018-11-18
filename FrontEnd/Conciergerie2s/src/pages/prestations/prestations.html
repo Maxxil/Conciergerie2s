@@ -23,7 +23,9 @@
             <img src="{{prestationImageUrl + element.image}}">
           </ion-avatar>
           <ion-label align-items-center>{{element.nom}}</ion-label>
-          <ion-note item-end class="balenced" >{{ element.typeprix != 3 ? element.prix+" €" : 'Sur devis' }}</ion-note>
+          <ion-note *ngIf="element.typeprix == 1" item-end class="balenced" >{{ element.prix}} € / h</ion-note>
+          <ion-note *ngIf="element.typeprix == 2" item-end class="balenced" >Forfait {{ element.prix}} € </ion-note>
+          <ion-note *ngIf="element.typeprix == 3" item-end class="balenced" >Sur devis</ion-note>
       </ion-item>
   </ion-list>
 </ion-content>

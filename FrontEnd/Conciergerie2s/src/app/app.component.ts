@@ -27,5 +27,5 @@ export class MyApp {
 
   showSetting() {
     return localStorage.getItem("IdUtilisateur") != null;
-  } 
+  }
 }
