@@ -1,9 +1,9 @@
 <ion-header>
 
-    <ion-navbar>
-      <button ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
+    <ion-navbar *ngIf="showSetting()">
+      <button  ion-button menuToggle ><ion-icon name="menu"></ion-icon></button>
       <ion-title>Conciergerie2s</ion-title>
-      <ion-buttons end>
+      <ion-buttons  end>
         <button ion-button icon-only color="royal" (click)="displayProfile()">
           <ion-icon name="settings" ></ion-icon>
         </button>

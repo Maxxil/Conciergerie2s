@@ -16,7 +16,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+      splashScreen.hide();      
     });
   }
 
@@ -24,4 +24,8 @@ export class MyApp {
     const modal = this.modalCtrl.create(ProfilePage);
     modal.present();
   }
+
+  showSetting() {
+    return localStorage.getItem("IdUtilisateur") != null;
+  } 
 }
