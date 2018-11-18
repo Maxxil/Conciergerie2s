@@ -16,5 +16,8 @@ module.exports = {
     },
     getById: function(id){
         return Prestataire.findById(id);
+    },
+    getByIdUtilisateur : function (idUtilisateur) {
+        return Prestataire.find({utilisateur : idUtilisateur});
     }
 };

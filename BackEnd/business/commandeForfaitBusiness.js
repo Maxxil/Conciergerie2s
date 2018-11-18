@@ -5,7 +5,7 @@ module.exports = {
         commande.save();
     },
     addPrestataire : function (idCommande, idPrestataire) {
-        getById(idCommande).exec(function (err,result) {
+        CommandeForfait.find({_id : idCommande}).exec(function (err,result) {
             if(result != null || result.length == 1){
                 result.prestataires.push(idPrestataire);
                 result.save();
@@ -13,7 +13,7 @@ module.exports = {
         })
     },
     getById : function (idCommande) {
-        return ;
+        return CommandeForfait.find({_id : idCommande});
     },
     getByIdClient : function(idClient){
         return CommandeForfait.populate('client').find({'client._id' : idClient});
@@ -22,7 +22,8 @@ module.exports = {
         return CommandeForfait.populate('prestation').find({'prestation._id' : idPrestation});
     },
     getByListIdPrestation : function (idsPrestations) {
-        return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation');
+        return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}})
+            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}])
     },
     getAll : function () {
         return CommandeForfait.find({}).populate('prestation').populate('client').populate('prestataires').sort([['dateCreation',-1]]);

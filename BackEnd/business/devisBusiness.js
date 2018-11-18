@@ -5,7 +5,7 @@ module.exports = {
         devis.save();
     },
     addPrestataire : function (idDevis, idPrestataire) {
-        getById(idDevis).exec(function (err,result) {
+        Devis.find({_id : idDevis}).exec(function (err,result) {
             if(result != null || result.length == 1){
                 result.prestataires.push(idPrestataire);
                 result.save();
@@ -25,7 +25,8 @@ module.exports = {
         return Devis.populate('client').find({'client._id' : idClient});
     },
     getByListIdPrestation : function (idsPrestations) {
-        return Devis.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation');
+        return Devis.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
+            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
     },
     updateStatus : function (idCommande, status) {
         Devis.find({_id : idCommande}).exec(function (err, result) {
