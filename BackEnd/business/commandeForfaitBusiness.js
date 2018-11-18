@@ -16,10 +16,12 @@ module.exports = {
         return CommandeForfait.find({_id : idCommande});
     },
     getByIdClient : function(idClient){
-        return CommandeForfait.populate('client').find({'client._id' : idClient});
+        return CommandeForfait.find({'client' : idClient})
+            .populate([ {path : 'client'}, {path : 'prestation' }
+                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);;
     },
     getByIdPrestation : function (idPrestation) {
-        return CommandeForfait.populate('prestation').find({'prestation._id' : idPrestation});
+        return CommandeForfait.find({'prestation._id' : idPrestation}).populate('prestation');
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}})

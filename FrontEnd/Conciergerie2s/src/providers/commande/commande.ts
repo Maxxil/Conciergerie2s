@@ -18,8 +18,8 @@ export class CommandeProvider {
     console.log('Hello CommandeProvider Provider');
   }
 
-  countCommande(idClient : string) : Observable<Result>{
-    return this.http.get<Result>(COMMANDE_URL + '/' + idClient);
+  getCommandesClient() : Observable<CommandeResult>{
+    return this.http.get<CommandeResult>(COMMANDE_URL + '/' + localStorage.getItem('IdUtilisateur'));
   }
 
   getCommandesByIdUtilisateur() : Observable<CommandeResult>{

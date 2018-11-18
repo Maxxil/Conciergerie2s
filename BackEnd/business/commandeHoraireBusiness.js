@@ -19,7 +19,9 @@ module.exports = {
         return CommandeHoraire.find({}).populate('prestation').populate('client').sort([['dateCreation',-1]]);
     },
     getByIdClient : function(idClient){
-        return CommandeHoraire.populate('client').find({'client._id' : idClient});
+        return CommandeHoraire.find({'client' : idClient})
+            .populate([ {path : 'client'}, {path : 'prestation' }
+                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);;
     },
     getByIdPrestation : function (idPrestation) {
         return CommandeHoraire.find({'prestation._id' : idPrestation});

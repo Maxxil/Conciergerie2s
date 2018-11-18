@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import {
   LIER_PRESTATION_PRESTATAIRE_URL,
-  LIER_SERVICE_PRESTATION_URL, PRESTATION_INFORMATION, PRESTATION_URL
+  PRESTATION_INFORMATION, PRESTATION_URL
 } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
