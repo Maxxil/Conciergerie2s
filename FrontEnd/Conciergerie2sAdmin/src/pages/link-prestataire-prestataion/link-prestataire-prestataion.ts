@@ -3,7 +3,6 @@ import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angula
 import {PrestationModel} from "../../model/Models/PrestationModel";
 import {PrestationProvider} from "../../providers/prestation/prestation";
 import {PrestataireProvider} from "../../providers/prestataire/prestataire";
-import {PrestationInformationModel} from "../../model/Models/PrestationInformationModel";
 import {PrestataireModel} from "../../model/Models/PrestataireModel";
 import {Result} from "../../model/Results/Result";
 

@@ -1,4 +1,3 @@
-import { LoginModel } from "../Models/LoginModel";
 import {UtilisateurModel} from "../Models/UtilisateurModel";
 
 export class LoginResult{

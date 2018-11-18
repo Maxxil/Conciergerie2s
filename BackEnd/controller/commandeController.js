@@ -15,7 +15,11 @@ router.get('/:idClient' , function (req, res) {
             devisBusiness.getByIdClient(idClient).exec(function (err,devis) {
                 res.json({
                     success : true,
-                    data : commandeHoraire.length + commandeForfait.length + devis.length
+                    data : {
+                        commandeHoraire : commandeHoraire,
+                        commandeForfait : commandeForfait,
+                        devis : devis
+                    }
                 });
                 res.end();
             })
@@ -61,6 +65,5 @@ router.post('/ByIdUtilisateur' , function (req, res) {
     });
 
 });
-
 
 module.exports = router;

@@ -4,6 +4,7 @@ import {Page} from "ionic-angular/umd/navigation/nav-util";
 import {TabsPage} from "../tabs/tabs";
 import {CommandesPage} from "../commandes/commandes";
 import {LoginPage} from "../login/login";
+import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
 
 /**
  * Generated class for the MenuPage page.
@@ -29,6 +30,10 @@ export class MenuPage {
 
   openPageHome(){
     this.rootPage = TabsPage;
+  }
+
+  openPagePostulerCommandes(){
+    this.rootPage = CommandesPostulerPage;
   }
 
   openPageMesCommandes(){
