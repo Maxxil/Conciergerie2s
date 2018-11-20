@@ -34,12 +34,15 @@ module.exports = {
             .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status')
     },
     getById : function (id) {
-        return Utilisateur.findById(id);
+        return Utilisateur.find({_id : id});
     },
     existByUsername: function(user){
         return Utilisateur.find({userName : user.nomUtilisateur});
     },
     existByEmail : function(user){
         return Utilisateur.find({email : user.nomUtilisateur});
+    },
+    update : function (utilisateur) {
+        return Utilisateur.updateOne({_id : utilisateur._id} , utilisateur, {upsert : true});
     }
 }

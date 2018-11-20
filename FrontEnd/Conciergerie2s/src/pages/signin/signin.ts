@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {LoginModel} from "../../model/Model/LoginModel";
-import {TabsPage} from "../tabs/tabs";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {RoleEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/RoleEnum";
@@ -24,10 +23,11 @@ export class SigninPage {
   public user : UtilisateurModel;
   public confirmationMotDePasse : string;
   public roleEnum : RoleEnum;
-  constructor(
-    public navCtrl: NavController
-    , public navParams: NavParams
-    , public utilisateurPvd : UtilisateurProvider) {
+  constructor(public navCtrl: NavController
+              , public navParams: NavParams
+              , public utilisateurPvd : UtilisateurProvider,
+              public viewCtrl : ViewController,
+              public alertCtrl : AlertController) {
     this.login = new LoginModel();
     this.user = new UtilisateurModel();
   }
@@ -38,7 +38,21 @@ export class SigninPage {
 
   signin(){
     this.utilisateurPvd.add(this.user).subscribe((result) =>{
-      console.log(result);
+      if(result.success){
+        var alert = this.alertCtrl.create({
+          title : "Succés",
+          message : "Vous avez été inscrits correctement.",
+          buttons : [
+            {
+              text : 'OK',
+              handler : () =>{
+                this.viewCtrl.dismiss();
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
     });
   }
 

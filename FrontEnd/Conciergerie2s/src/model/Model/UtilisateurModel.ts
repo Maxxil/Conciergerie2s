@@ -4,6 +4,7 @@ export class UtilisateurModel {
     prenom: string;
     nomUtilisateur : string;
     motDePasse: string;
+
     image: string;
     role: number;
     status: number;

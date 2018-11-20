@@ -6,48 +6,61 @@
 -->
 <ion-header>
 
-    <ion-toolbar>
-        <ion-title>
-          Profile
-        </ion-title>
-        <ion-buttons end>
-          <button ion-button (click)="dismiss()">  
-            <ion-icon name="md-close"></ion-icon>
-          </button>
-        </ion-buttons>
-      </ion-toolbar>
+  <ion-navbar>
+    <ion-title>Profile utilisateur</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  Mon profil
-  Mon paramétrage
-  <!-- <ion-row col-md-12>
-    <ion-col col-md-6>
-      <img src="{{profile.image}}">
-    </ion-col>
-    <ion-col col-md-6>
-      <div id="username">
-        <ion-label floating>Nom d'utilisateur</ion-label>
-        <ion-input value="{{profile.username}}"></ion-input>
-      </div>
-      <div id="password">
-        <button ion-button *ngIf="!isPasswordToUpdate">Modifier le mot de passe</button>
-        <div *ngIf="isPasswordToUpdate">
-          <ion-label floating>Ancien mot de passe</ion-label>
-          <ion-input value="{{profile.oldPassword}}"></ion-input>
-
-          <ion-label floating>Nouveau mot de passe</ion-label>
-          <ion-input value="{{profile.newPassword}}"></ion-input>
-
-          <ion-label floating>Confirmation nouveau mot de passe</ion-label>
-          <ion-input value="{{profile.newPasswordConfirmation}}"></ion-input>
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
- -->
-
-
+  <button ion-button (click)="update()">Enregistrer</button>
+  <ion-list>
+   <!-- <img src="{{imageProfileUrl + profile.image}}" (click)="importImage()" *ngIf="hasImage()">
+    <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/> -->
+    <ion-item>
+      <ion-label>Nom</ion-label>
+      <ion-input [(ngModel)]="profile.nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Prenom</ion-label>
+      <ion-input [(ngModel)]="profile.prenom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nom utilisateur</ion-label>
+      <ion-input [(ngModel)]="profile.nomUtilisateur"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Changer de mot de passe</ion-label>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nouveau mot de passe</ion-label>
+          <ion-input [(ngModel)]="profile.motDePasse"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Confirmation nouveau mot de passe</ion-label>
+          <ion-input [(ngModel)]="confirmationMotDePasse"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="profile.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telephone fix</ion-label>
+      <ion-input [(ngModel)]="profile.telephoneFix"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telephone mobile</ion-label>
+      <ion-input [(ngModel)]="profile.telephoneMobile"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="profile.role">
+        <ion-option value="1">CLIENT</ion-option>
+        <ion-option value="2">PRESTATAIRE</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="update()">Enregistrer</button>
 </ion-content>

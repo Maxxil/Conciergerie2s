@@ -5,6 +5,7 @@ import {TabsPage} from "../tabs/tabs";
 import {CommandesPage} from "../commandes/commandes";
 import {LoginPage} from "../login/login";
 import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
+import {ProfilePage} from "../profile/profile";
 
 /**
  * Generated class for the MenuPage page.
@@ -38,6 +39,10 @@ export class MenuPage {
 
   openPageMesCommandes(){
     this.rootPage = CommandesPage;
+  }
+
+  openPageProfile(){
+    this.rootPage = ProfilePage;
   }
 
   deconnecter(){

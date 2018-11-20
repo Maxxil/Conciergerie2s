@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var fs = require('fs');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
 var Utilisateur = require('./../model/utilisateureModel');
@@ -35,7 +36,22 @@ router.get('/', function (req, res) {
     })
 });
 
+router.get('/id=:id', function (req, res) {
+    console.log("Utilisateur");
+    console.log(req.params.id);
+    var promise = utilisateurBusiness.getById(req.params.id);
+    promise.exec(function(err,utilisateur){
+        console.log(utilisateur);
+        res.json({
+            success: true,
+            data : utilisateur
+        });
+        res.end();
+    })
+});
+
 router.get('/prestataire' , function (req, res) {
+    console.log("Prestataire");
     var promise = utilisateurBusiness.getAllPrestataire();
     promise.exec(function (err,result) {
         res.json({
@@ -63,6 +79,34 @@ router.put('/' , upload.single('image'),function(req, res){
     });
     utilisateurBusiness.create(utilisateur);
     res.end();
+});
+
+router.post('/image' , upload.single('image') , function (req , res) {
+    console.log("Enregistrement")
+    var id = req.body.utilisateur._id;
+    utilisateurBusiness.getById(id).exec(function (err,result) {
+        console.log(result);
+        fs.remove('./../data/images/utilisateur/' + result.image);
+        result = req.body.utilisateur;
+        result.image = filename;
+        result.save();
+        res.json({
+            success : true
+        });
+        res.end();
+    });
+});
+
+router.post('/', function (req , res) {
+    console.log("Enregistrement");
+    var id = req.body.utilisateur._id;
+    utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
+        console.log(result);
+        res.json({
+            success : result.ok
+        });
+        res.end();
+    });
 });
 
 module.exports = router;

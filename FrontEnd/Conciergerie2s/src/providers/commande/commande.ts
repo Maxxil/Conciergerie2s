@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {Result} from "../../model/Result/Result";
 import {COMMANDE_BY_ID_UTILISATEUR, COMMANDE_URL} from "../../model/UrlConstants";
 import {CommandeResult} from "../../model/Result/CommandeResult";
 
