@@ -16,23 +16,33 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      <h1>Commander une prestation</h1>
+      <h1>Détail de la commande</h1>
+      <h2 text-left>{{commande.prestation.nom}}</h2>
+      <h3 text-right>Statut : {{ status }}</h3>      
     </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [value]="commande.date | date : 'yyyy-MM-dd'"></ion-input>
+      <ion-input type="date" [value]="commande.date | date : 'yyyy-MM-dd'" [readonly]="!peutPostuler()"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure</ion-label>
-      <ion-input type="time" [(ngModel)]="commande.heure" ></ion-input>
+      <ion-input type="time" [(ngModel)]="commande.heure"  [readonly]="!peutPostuler()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Prix € </ion-label>
+      <ion-input type="number" [(ngModel)]="commande.prestation.prix" readonly></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>
-      <ion-input type="number" min="1" [(ngModel)]="commande.duree" ></ion-input>
+      <ion-input type="number" min="1" [(ngModel)]="commande.duree" readonly></ion-input>
     </ion-item>
-  </ion-list>
+  
+  </ion-list>  
+  <div text-right margin>     
+      <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.duree }} €</span>
+  </div>
   <div text-center>
-    <button ion-button (click)="postuler()" taupe>Postuler</button>
-    <button ion-button (click)="annuler()" taupe>Annuler</button>
+    <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>
+    <button ion-button (click)="annuler()" taupe>Fermer</button>
   </div>
 </ion-content>

@@ -33,7 +33,7 @@
             <button ion-item *ngFor="let commande of commandeHoraire" (click)="detailCommandeHoraire(commande)">
                 <ion-note item-start text-center>
                   {{commande.dateCreation | date: 'dd/MM/yy'}}<br>
-                  {{commande.dateCreation | date: 'hh:mm'}}
+                  {{commande.dateCreation | date: 'HH:mm'}}
                 </ion-note>
 
                 <h2>{{commande.prestation.nom}}</h2>
@@ -44,14 +44,14 @@
         </ion-list>
         <ion-list *ngSwitchCase="'forfait'">
             <button ion-item *ngFor="let commande of commandeForfait" (click)="detailCommandeForfait(commande)">
-                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
+                <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</ion-note>
                 <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
                 <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
             </button>
           </ion-list>
           <ion-list *ngSwitchCase="'devis'">
               <button ion-item *ngFor="let commande of commandeDevis" (click)="detailDevis(commande)">
-                  <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
+                  <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</ion-note>
                   <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
                   <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
               </button>

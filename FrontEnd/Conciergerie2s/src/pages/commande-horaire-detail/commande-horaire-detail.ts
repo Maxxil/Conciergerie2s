@@ -19,21 +19,36 @@ import {Result} from "../../model/Result/Result";
 export class CommandeHoraireDetailPage {
 
   public commande : CommandeHoraireModel;
-
+  public status: string = "";
+  public dejapostuler: boolean = false;
   constructor(public navCtrl: NavController
               , public commandeHorairePvd : CommandeHoraireProvider
               , public navParams: NavParams
               , public viewCtrl : ViewController,
               public alertCtrl : AlertController) {
     this.commande = this.navParams.get('Commande');
-    console.log(this.commande.prestataires);
+    switch(this.commande.status) {
+      case 1: this.status = "Envoyé"; break;
+      case 2: this.status = "Validée"; break;
+      case 3: this.status = "Livrée"; break;
+      case 4: this.status = "En attente de validation"; break;
+    } 
+    console.log(localStorage.getItem('IdUtilisateur'));
+    console.log(this.commande);
+    console.log('Peutpostuler',this.peutPostuler());
+    this.dejapostuler = this.aDejaPostule();
+  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandeForfaitDetailPage');
   }
+  peutPostuler() {
+    return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
+  }
 
   postuler(){
+    console.log(this.aDejaPostule());
     if(this.aDejaPostule())
     {
       var alert = this.alertCtrl.create();
@@ -48,7 +63,8 @@ export class CommandeHoraireDetailPage {
       alert.present();
     }
     else{
-      this.commandeHorairePvd.souscrirePrestataire(this.commande).subscribe(result =>{
+      this.commandeHorairePvd.souscrirePrestataire(this.commande).subscribe(result =>{     
+        this.dejapostuler = true;  
         this.manageDisplaySuccessOrError(result);
       });
     }
@@ -59,15 +75,14 @@ export class CommandeHoraireDetailPage {
     this.viewCtrl.dismiss();
   }
 
-  aDejaPostule(){
-    var prestataires = this.commande.prestataires;
+   aDejaPostule(){
+    var prestataires = this.commande.prestataires;  
     prestataires.forEach(element => {
-      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){
-        return true;
+      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
+        this.dejapostuler=true;        
       }
-
     });
-    return false;
+    return this.dejapostuler;
   }
 
   manageDisplaySuccessOrError(result : Result){

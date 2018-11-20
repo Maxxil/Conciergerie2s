@@ -4,7 +4,6 @@ import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {UTILISATEUR_PROFILE_URL} from "../../model/UrlConstants";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {RoleEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/RoleEnum";
-import {text} from "@angular/core/src/render3/instructions";
 
 /**
  * Generated class for the ProfilePage page.

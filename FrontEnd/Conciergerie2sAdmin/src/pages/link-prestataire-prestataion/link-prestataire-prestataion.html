@@ -26,7 +26,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Prestations</ion-label>
+      <ion-label>Prestataires</ion-label>
       <ion-select  [(ngModel)]="selectedPrestataire">
         <ion-option *ngFor="let element of prestataires" value="{{element._id}}">
           {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
