@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {PrestationModel} from "../../model/Model/PrestationModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {DevisResult} from "../../model/Result/DevisResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
+import {PaypalProvider} from "../../providers/paypal/paypal";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the DevisPage page.
@@ -22,10 +24,16 @@ export class DevisPage {
 
   private prestation : PrestationModel;
   public devis : DevisModel;
-
+  public loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...'
+  });
   constructor(public navCtrl: NavController
               , public devisPvd : DevisProvider
+              , public paypalPvd : PaypalProvider
               , public alertCtrl : AlertController
+              , public iab : InAppBrowser
+              , public loader : LoadingController
               , public navParams: NavParams) {
     this.devis = new DevisModel();
     this.prestation = this.navParams.get("Prestation");
@@ -33,10 +41,15 @@ export class DevisPage {
   }
 
   commander(){
-    this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
-    this.devisPvd.add(this.devis).subscribe(result =>{
-      this.manageDisplaySuccessOrError(result);
-    })
+    this.loading.present();
+    this.paypalPvd.payer(this.prestation.nom , 1).subscribe(result => {
+      this.iab.create(result.data);
+      this.loading.dismiss();
+      this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
+      this.devisPvd.add(this.devis).subscribe(result => {
+        this.manageDisplaySuccessOrError(result);
+      })
+    });
   }
 
   annuler(){

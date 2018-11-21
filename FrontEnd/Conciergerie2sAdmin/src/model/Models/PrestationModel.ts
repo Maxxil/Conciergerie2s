@@ -6,7 +6,7 @@ export class PrestationModel{
   nom : string;
   image : string;
   description: string;
-  prix: string;
+  prix: number;
   typeprix: TypePrixEnum;
   prestataires : PrestataireModel[];
   forfait:string;
@@ -15,7 +15,7 @@ export class PrestationModel{
   constructor(){
     this.nom = "";
     this.description = "";
-    this.prix = "";
+    this.prix = 1;
     this.forfait = "";
     this.details = [];
     this.typeprix=TypePrixEnum.HEURE;

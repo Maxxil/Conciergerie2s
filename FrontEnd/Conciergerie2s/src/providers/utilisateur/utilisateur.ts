@@ -37,4 +37,5 @@ export class UtilisateurProvider {
     formData.append('utilisateur', JSON.stringify(utilisateur));
     return this.http.post<Result>(UTILISATEUR_URL , {utilisateur : utilisateur});
   }
+
 }

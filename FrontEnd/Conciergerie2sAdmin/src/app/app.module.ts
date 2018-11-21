@@ -38,6 +38,8 @@ import {DevisPage} from '../pages/devis/devis';
 import {CommandeHorairePage} from "../pages/commande-horaire/commande-horaire";
 import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
 import { CommandeProvider } from '../providers/commande/commande';
+import { PaypalProvider } from '../providers/paypal/paypal';
+import {ProfilePage} from "../pages/profile/profile";
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { CommandeProvider } from '../providers/commande/commande';
     DevisPage,
     CommandeHorairePage,
     CommandeForfaitPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import { CommandeProvider } from '../providers/commande/commande';
     DevisPage,
     CommandeHorairePage,
     CommandeForfaitPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
@@ -108,7 +112,8 @@ import { CommandeProvider } from '../providers/commande/commande';
     CommandeHoraireProvider,
     CommandeForfaitProvider,
     DevisProvider,
-    CommandeProvider
+    CommandeProvider,
+    PaypalProvider
   ]
 })
 export class AppModule {}

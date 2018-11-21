@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {PrestationModel} from "../../../../Conciergerie2sAdmin/src/model/Models/PrestationModel";
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
+import {PaypalProvider} from "../../providers/paypal/paypal";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the CommandeHorairePage page.
@@ -23,23 +25,39 @@ export class CommandeHorairePage {
   private prestation : PrestationModel;
   public commandeHoraire : CommandeHoraireModel;
   public today;
-  
+  public loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...'
+  });
   constructor(public navCtrl: NavController
               , public commandeHorairePvd : CommandeHoraireProvider
               , public alertCtrl : AlertController
+              , public paypalPvd : PaypalProvider
+              , public iab : InAppBrowser
+              , public loader : LoadingController
               , public navParams: NavParams) {
     this.commandeHoraire = new CommandeHoraireModel();
     this.commandeHoraire.duree=1;
     this.prestation = this.navParams.get("Prestation");
     this.commandeHoraire.idPrestation = this.prestation._id;
-    this.today= new Date();    
+    this.today= new Date();
   }
 
   commander(){
-    this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
-    this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result =>{
-      this.manageDisplaySuccessOrError(result);
-    });
+    this.loading.present();
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {
+      console.log(result.data);
+
+      this.loading.dismiss();
+
+      var browser = this.iab.create(result.data, '_self');
+      /*
+      this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
+      this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
+        this.manageDisplaySuccessOrError(result);
+      });
+      */
+    })
   }
 
   annuler(){

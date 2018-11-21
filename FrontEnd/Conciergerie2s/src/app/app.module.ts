@@ -35,6 +35,8 @@ import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/comman
 import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postuler";
+import { PaypalProvider } from '../providers/paypal/paypal';
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 @NgModule({
   declarations: [
     MyApp,
@@ -62,7 +64,7 @@ import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postu
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -99,7 +101,9 @@ import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postu
     CommandeForfaitProvider,
     CommandeHoraireProvider,
     DevisProvider,
-    CommandeProvider
+    CommandeProvider,
+    PaypalProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

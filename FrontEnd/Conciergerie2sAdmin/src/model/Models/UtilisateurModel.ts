@@ -7,6 +7,7 @@ export class UtilisateurModel{
     prenom: string;
     nomUtilisateur: string;
     motDePasse: string;
+    image : string;
     confirmationMotDePasse: string;
     role: RoleEnum;
     status: StatusEnum;

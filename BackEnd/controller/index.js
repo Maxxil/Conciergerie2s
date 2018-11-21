@@ -15,5 +15,6 @@ router.use('/commandeForfait', require('./commandeForfaitController'));
 router.use('/commandeHoraire', require('./commandeHoraireController'));
 router.use('/devis' , require('./devisController'));
 router.use('/commande' , require('./commandeController'));
+router.use('/paypal', require('./paypalController'));
 
 module.exports = router;

@@ -16,6 +16,8 @@ export const COMMANDE_URL = SERVER_URL + '/commande';
 export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
+export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
+
 
 export const HTTP_OPTIONS = {
   headers: new HttpHeaders({

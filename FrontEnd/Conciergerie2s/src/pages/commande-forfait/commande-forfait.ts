@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {PrestationModel} from "../../model/Model/PrestationModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeForfaitResult} from "../../model/Result/CommandeForfaitResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
+import {PaypalProvider} from "../../providers/paypal/paypal";
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the CommandeForfaitPage page.
@@ -23,9 +25,16 @@ export class CommandeForfaitPage {
   private prestation: PrestationModel;
   public commandeForfait : CommandeForfaitModel;
   public today;
+  public loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...'
+  });
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public alertCtrl : AlertController
+              , public paypalPvd : PaypalProvider
+              , public iab : InAppBrowser
+              , public loader : LoadingController
               , public commandeForfaitPvd : CommandeForfaitProvider) {
     this.commandeForfait = new CommandeForfaitModel();
     this.prestation = this.navParams.get("Prestation");
@@ -34,10 +43,17 @@ export class CommandeForfaitPage {
   }
 
   public commander(){
-    this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
-    this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
-      this.manageDisplaySuccessOrError(result);
+
+    this.loading.present();
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
+      this.iab.create(result.data);
+      this.loading.dismiss();
+      this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
+      this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
+        this.manageDisplaySuccessOrError(result);
+      })
     })
+
   }
 
   public annuler(){

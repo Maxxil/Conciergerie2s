@@ -6,7 +6,7 @@ export class PrestationModel{
   nom : string;
   image : string;
   description: string;
-  prix: string;
+  prix: number;
   typeprix: TypePrixEnum;
   prestataires : PrestataireModel[];
   forfait:string;

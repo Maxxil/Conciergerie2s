@@ -26,3 +26,7 @@ export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
 export const DEVIS_URL = SERVER_URL + '/devis';
 export const COMMANDE_URL = SERVER_URL + '/commande';
+
+export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
+export const PAYPAL_URL = SERVER_URL + '/paypal';
+

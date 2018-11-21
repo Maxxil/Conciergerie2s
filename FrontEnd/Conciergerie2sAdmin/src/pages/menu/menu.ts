@@ -13,6 +13,7 @@ import {LoginPage} from "../login/login";
 import {UtilisateurPage} from "../utilisateur/utilisateur";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CommandePage} from "../commande/commande";
+import {ProfilePage} from "../profile/profile";
 /**
  * Generated class for the MenuPage page.
  *
@@ -104,6 +105,10 @@ export class MenuPage {
 
   openPageUtilisateur(){
     this.rootPage = UtilisateurPage;
+  }
+
+  openPageProfile(){
+    this.rootPage = ProfilePage;
   }
 
   deconnecter(){
