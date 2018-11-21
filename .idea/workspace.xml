@@ -3,27 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2e50ed3f-2ed2-4849-9224-7caecbc679bc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/index.js" afterPath="$PROJECT_DIR$/BackEnd/controller/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/package-lock.json" afterPath="$PROJECT_DIR$/BackEnd/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/package.json" afterPath="$PROJECT_DIR$/BackEnd/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/package-lock.json" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/package.json" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/PrestationModel.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/PrestationModel.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/UtilisateurModel.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/UtilisateurModel.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/UrlConstants.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/UrlConstants.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-forfait/commande-forfait.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-forfait/commande-forfait.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis/devis.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis/devis.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/utilisateur/utilisateur.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/utilisateur/utilisateur.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/app/app.module.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/PrestationModel.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/PrestationModel.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/UtilisateurModel.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/UtilisateurModel.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Url.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Url.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/menu/menu.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/menu/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/menu/menu.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/menu/menu.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/utilisateur/utilisateur.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/utilisateur/utilisateur.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,8 +32,8 @@
       <file leaf-file-name="commande-horaire.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="362">
+              <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -526,12 +506,12 @@
       <workItem from="1541971894608" duration="182000" />
       <workItem from="1542048661426" duration="4545000" />
       <workItem from="1542135387289" duration="48461000" />
-      <workItem from="1542554777800" duration="12718000" />
+      <workItem from="1542554777800" duration="12994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134792000" />
+    <option name="totallyTimeSpent" value="135068000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1031,8 +1011,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="362">
+          <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>

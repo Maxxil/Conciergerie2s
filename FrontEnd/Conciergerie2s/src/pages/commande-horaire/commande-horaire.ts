@@ -51,12 +51,13 @@ export class CommandeHorairePage {
       this.loading.dismiss();
 
       var browser = this.iab.create(result.data, '_self');
-      /*
-      this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
-      this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
-        this.manageDisplaySuccessOrError(result);
+      browser.on('close').subscribe(() =>{
+        this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
+        this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
+          this.manageDisplaySuccessOrError(result);
+        });
       });
-      */
+
     })
   }
 
