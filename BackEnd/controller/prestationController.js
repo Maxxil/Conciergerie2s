@@ -51,18 +51,10 @@ router.get('/:id' , function(req , res){
 });
 
 router.post('/' , function(req, res){
-    var prestation = new Prestation({
-        image : filename,
-        nom : req.body.nom,
-        description: req.body.description,
-        prix: req.body.prix,
-        typeprix: req.body.typeprix,
-        forfait: req.body.forfait,
-        prestataire : []
-    });
-    prestationBusiness.update(prestation).exec(function(err, result){
+    var prestation = req.body.prestation;
+    prestationBusiness.update(prestation).then(function(result){
         res.json({
-            data : result
+            data : result.ok
         });
         res.end();
     })
@@ -106,9 +98,7 @@ router.put('/' , upload.single('file'), function(req, res){
                 });
             }
             res.end();
-
         })
-
     }
     catch(ex){
         res.json({
@@ -116,9 +106,15 @@ router.put('/' , upload.single('file'), function(req, res){
             error: errorEnum.error.PRESTATION_INSERT_ERROR
         });
         res.end();
-
     }
-    
+});
+
+router.delete('/' , function (req, res) {
+   prestationBusiness.deletePrestataire(req.body.idPrestation, req.body.idPrestataire);
+   res.json({
+       success : true
+   });
+   res.end();
 });
 
 

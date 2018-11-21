@@ -82,7 +82,7 @@ router.put('/' , upload.single('image'),function(req, res){
 });
 
 router.post('/image' , upload.single('image') , function (req , res) {
-    console.log("Enregistrement")
+    console.log("Enregistrement");
     var id = req.body.utilisateur._id;
     utilisateurBusiness.getById(id).exec(function (err,result) {
         console.log(result);
@@ -99,7 +99,6 @@ router.post('/image' , upload.single('image') , function (req , res) {
 
 router.post('/', function (req , res) {
     console.log("Enregistrement");
-    var id = req.body.utilisateur._id;
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
         console.log(result);
         res.json({

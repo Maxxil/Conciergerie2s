@@ -5,11 +5,7 @@ module.exports = {
         prestataire.save();
     },
     update : function(prestataire){
-        Prestataire.findById(prestataire._id).exec(function(err , result){
-            if(result != null && result.length > 0){
-                prestataire.save();
-            }
-        });
+        return Prestataire.updateOne({_id : prestataire._id}, prestataire, {upsert : true});
     },
     getAll : function(){
         return Prestataire.find({}).populate({path : 'utilisateur', select: 'nom prenom'});

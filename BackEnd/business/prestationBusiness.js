@@ -16,8 +16,6 @@ module.exports = {
     getByIdUtilisateurInPrestataire : function (prestationsResult, idUtilisateur) {
         var prestations = [];
         prestationsResult.forEach(function (prestation) {
-            console.log("Prestation");
-            console.log(prestation);
             if(prestation.prestataire.length > 0 )
             {
                 prestation.prestataire.forEach(function(prestataire){
@@ -48,11 +46,13 @@ module.exports = {
         });
     },
     update : function(prestation){
-        this.getById(prestation._id).exec(function(err , result){
-            if(result != null && result.length > 0){
-                prestation.update();
-            }
-        });
+        return Prestation.updateOne({_id : prestation._id} , prestation , {upsert : true});
     },
-
+    deletePrestataire : function (idPrestation , idPrestataire) {
+        Prestation.find({_id : idPrestation}).exec(function (err,prestation) {
+            const index = prestation.prestataire.indexOf(idPrestataire);
+            prestation.prestataire.slice(index,1);
+            prestation.save();
+        })
+    }
 };

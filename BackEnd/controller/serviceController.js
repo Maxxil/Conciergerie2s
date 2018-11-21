@@ -50,9 +50,9 @@ router.post('/' , function(req, res){
         name : req.params.name,
         description : req.params.description
     });
-    serviceBusiness.update(service).exec(function(err, result){
+    serviceBusiness.update(service).then(function(result){
         res.json({
-            data : result
+            data : result.ok
         });
         res.end();
     })

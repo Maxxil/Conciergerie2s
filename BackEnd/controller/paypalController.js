@@ -63,8 +63,8 @@ router.put('/createPayment', function (req, res) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:4444/executePayment",
-            "cancel_url": "http://localhost:4444/cancelPayment"
+            "return_url": "http://localhost:4444/paypal/executePayment",
+            "cancel_url": "http://localhost:4444/paypal/cancelPayment"
         },
         "transactions": [{
             "item_list": {
@@ -126,12 +126,19 @@ router.get('/executePayment/', function (req, res) {
         } else {
             console.log("Get Payment Response");
             console.log(JSON.stringify(payment));
+            res.json({
+                success : true
+            });
+            res.end();
         }
     });
 });
 
 router.get('/cancelPayment', function (req, res) {
     console.log("cancel payment");
+    res.json({
+        success: false
+    });
     res.end();
-})
+});
 module.exports = router;

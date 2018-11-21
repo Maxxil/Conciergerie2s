@@ -10,7 +10,7 @@ export class AddPrestationDetailPage {
   constructor(
       public viewCtrl: ViewController
       ,public navCtrl: NavController
-      , public navParams: NavParams) {   
+      , public navParams: NavParams) {
   }
 
   add(){

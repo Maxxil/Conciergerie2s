@@ -79,10 +79,19 @@ export class AddServicePage {
   }
 
   update(){
-    this.serviceProv.update(this.file, this.service, this.isImageUploaded)
-      .subscribe((result) => {
-        this.manageDisplaySuccessOrError(result);
-      })
+    if(this.isImageUploaded){
+      this.serviceProv.updateWithImage(this.file, this.service)
+        .subscribe((result) => {
+          this.manageDisplaySuccessOrError(result);
+        })
+    }
+    else{
+      this.serviceProv.updateWithoutImage(this.service)
+        .subscribe((result) => {
+          this.manageDisplaySuccessOrError(result);
+        })
+    }
+
   }
 
   annul(){

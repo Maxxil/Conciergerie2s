@@ -36,7 +36,7 @@ export class PrestationProvider {
     formData.append('file', image, 'image');
     formData.append('nom', prestation.nom);
     formData.append('description', prestation.description);
-    formData.append('prix', prestation.prix);
+    formData.append('prix', prestation.prix.toString());
     formData.append('forfait', prestation.forfait);
     formData.append('typeprix', prestation.typeprix.toString());
     for (var i = 0; i < prestation.details.length; i++) {
@@ -47,18 +47,17 @@ export class PrestationProvider {
     return this.http.put<PrestationResult>(PRESTATION_URL, formData);
   }
 
-  update(prestation: PrestationModel, image: File): Observable<PrestationResult> {
+  updateWithImage(prestation: PrestationModel, image: File): Observable<PrestationResult> {
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('file', image, 'image');
-    formData.append('nom', prestation.nom);
-    formData.append('description', prestation.description);
-    formData.append('prix', prestation.prix);
-    formData.append('forfait', prestation.forfait);
-    formData.append('typeprix', prestation.typeprix.toString());
-    formData.append('token', token);
+    formData.append('prestation', JSON.stringify(prestation));
     console.log(formData);
     return this.http.post<PrestationResult>(PRESTATION_URL, formData);
+  }
+
+  updateWithoutImage(prestation: PrestationModel): Observable<PrestationResult> {
+    return this.http.post<PrestationResult>(PRESTATION_URL, {prestation: prestation});
   }
 
   linkPrestationToPrestataire(idPrestation, idPrestataire) : Observable<Result>{

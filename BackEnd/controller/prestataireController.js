@@ -34,4 +34,14 @@ router.get('/valides', function(req, res){
     })
 });
 
+router.post('/', function (req, res) {
+    var prestataire = req.body.prestataire;
+    prestataireBusiness.update(prestataire).then(function (result) {
+        res.json({
+            success : result.ok
+        });
+        res.end();
+    });
+});
+
 module.exports = router;

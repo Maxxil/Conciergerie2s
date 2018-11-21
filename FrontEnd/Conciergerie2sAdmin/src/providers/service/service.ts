@@ -39,19 +39,15 @@ export class ServiceProvider {
     return this.http.put<ServiceResult>(url, formData);
   }
 
-  update(image: File, service: ServiceModel, isImageUploaded: boolean): Observable<ServiceResult>{
-    const token = localStorage.getItem('token');
-    let url = SERVICE_URL;
+  updateWithImage(image: File, service: ServiceModel): Observable<ServiceResult>{
     const formData = new FormData();
-    if(isImageUploaded){
-      url = SERVICE_UPDATE_UPLOADED_IMAGE;
-      formData.append('file',image, 'image');
-    }
-    formData.append('nom' , service.nom);
-    formData.append('description' , service.description);
-    formData.append('token' , token);
-    return this.http.post<ServiceResult>(url, formData);
+    formData.append('file',image, 'image');
+    formData.append('service', JSON.stringify(service));
+    return this.http.post<ServiceResult>(SERVICE_UPDATE_UPLOADED_IMAGE, formData);
+  }
 
+  updateWithoutImage(service: ServiceModel): Observable<ServiceResult>{
+    return this.http.post<ServiceResult>(SERVICE_URL, {service: service});
   }
 
   getByIdWithPrestations(idService: string): Observable<ServiceResult> {

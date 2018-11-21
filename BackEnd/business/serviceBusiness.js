@@ -11,11 +11,7 @@ module.exports = {
         });
     },
     update: function(service){
-        this.getById(service._id).exec(function(err, result){
-            if(result != null && result.length > 0){
-                service.update();
-            }
-        })
+        return Service.updateOne({_id : service._id} , service, {upsert : true});
     },
     getAll: function(){
         return Service.find({});
@@ -51,6 +47,13 @@ module.exports = {
                 result.save();
             }
 
+        })
+    },
+    deletePrestation : function (idService, idPrestation) {
+        Service.find({_id : idService}).exec(function (err, service) {
+            const index = service.prestations.indexOf(idPrestation);
+            service.prestations.slice(index,1);
+            service.save();
         })
     }
 };

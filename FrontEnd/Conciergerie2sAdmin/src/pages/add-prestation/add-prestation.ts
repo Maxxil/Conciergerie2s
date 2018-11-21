@@ -94,9 +94,17 @@ export class AddPrestationPage {
   }
 
   update(){
-    this.prestationPvd.update(this.prestation , this.file).subscribe((result) => {
-      this.manageDisplaySuccessOrError(result);
-    })
+    if(this.isImageUploaded){
+      this.prestationPvd.updateWithImage(this.prestation , this.file).subscribe((result) => {
+        this.manageDisplaySuccessOrError(result);
+      })
+    }
+    else{
+      this.prestationPvd.updateWithoutImage(this.prestation).subscribe((result) => {
+        this.manageDisplaySuccessOrError(result);
+      })
+    }
+
   }
 
   close(){
