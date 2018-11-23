@@ -4,31 +4,36 @@ var paypal = require('paypal-rest-sdk');
 
 var paypalBusiness = require('./../business/paypalBusiness');
 var Enums = require('./../helper/enums');
+var appSettings = require('./../config/appSettings');
 
 router.use(bodyParser.json());
 
 var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
 var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
 
-/*
-paypalBusiness.get().exec(function (err, result) {
-    if(result.length > 0 ){
-        clientId = result[0].clientId;
-        secret = result[0].secret;
-        paypal.configure({
-            'mode': 'sandbox', //sandbox or live
-            'client_id': clientId,
-            'client_secret': secret
-        });
-    }
-});
-*/
-
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': clientId,
     'client_secret': secret
 });
+
+paypalBusiness.get().exec(function (err, result) {
+    if(result.length > 0 ){
+        clientId = result[0].clientId;
+        secret = result[0].secret;
+        if(clientId != '' && secret != '')
+        {
+            paypal.configure({
+                'mode': 'sandbox', //sandbox or live
+                'client_id': clientId,
+                'client_secret': secret
+            });
+        }
+    }
+});
+
+
+
 
 var amount = 0;
 
@@ -63,8 +68,8 @@ router.put('/createPayment', function (req, res) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:4444/paypal/executePayment",
-            "cancel_url": "http://localhost:4444/paypal/cancelPayment"
+            "return_url": appSettings.paypalSuccess,
+            "cancel_url": appSettings.paypalCancel
         },
         "transactions": [{
             "item_list": {
@@ -104,7 +109,7 @@ router.put('/createPayment', function (req, res) {
 });
 
 
-router.get('/executePayment/', function (req, res) {
+router.get('/executePayment', function (req, res) {
 
     var payerId = req.query.PayerID;
     var execute_payment_json = {
