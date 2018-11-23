@@ -9,8 +9,6 @@ router.use('/lierPrestationPrestataire' , require('./lierPrestationPrestataire')
 router.use('/prestataire', require('./prestataireController'));
 router.use('/validerPrestataire' , require('./validerPrestatire'));
 router.use('/devaliderPrestataire', require('./devaliderPrestataire'));
-router.use('/prestataireInformation' , require('./prestataireInformationController'));
-router.use('/prestationInformation', require('./prestationInformationController'));
 router.use('/commandeForfait', require('./commandeForfaitController'));
 router.use('/commandeHoraire', require('./commandeHoraireController'));
 router.use('/devis' , require('./devisController'));

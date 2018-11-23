@@ -1,5 +1,5 @@
 module.exports = {
-    currentUrl : 'http://localhost:4444',
-    paypalSuccess : currentUrl + '/paypal/executePayment',
-    paypalCancel : currentUrl + '/paypal/cancelPayment'
-}
+    currentUrl : '',
+    paypalSuccess : 'http://localhost:4444/paypal/executePayment',
+    paypalCancel : 'http://localhost:4444/paypal/cancelPayment'
+};

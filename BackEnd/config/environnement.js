@@ -3,10 +3,10 @@ module.exports ={
     getListeningPort : function () {
         if(this.environnement == "DEV")
         {
-            return 4444;
+            return 5555;
         }
         else{
-            return 4444;
+            return 5555;
         }
     }
 };
