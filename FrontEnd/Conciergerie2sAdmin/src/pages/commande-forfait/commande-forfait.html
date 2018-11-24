@@ -17,14 +17,14 @@
 <ion-content>
   <ion-list>
       <ion-item-sliding *ngFor="let element of commande">
-        <ion-item>
+        <ion-item class="item-prestation">
           <ion-avatar item-start>
               <ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}<br>
               <ion-icon name="time"></ion-icon> {{element.heureDebut }}<br>           
           </ion-avatar>    
           <h2>{{element.prestation.nom}}</h2>
           <p>{{element.client.nom + " " + element.client.prenom}}</p>
-          <ion-note item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}<br>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
+          <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}<br>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
         </ion-item>
         <ion-item-options >   
           <button ion-button *ngIf="isEnCours(element)"  color="primary"  (click)="validerCommande(element)" icon-start> <ion-icon name="briefcase"></ion-icon>VALIDER</button>

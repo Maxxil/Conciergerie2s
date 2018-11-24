@@ -32,10 +32,21 @@
       <ion-label>Nom d'utilisateur: </ion-label>
       <ion-input value="{{utilisateur.nomUtilisateur}}"></ion-input>
     </ion-item>
-
     <ion-item>
-      <ion-label>Adresse: </ion-label>
-      <ion-input value="{{utilisateur.addresse}}"></ion-input>
+        <ion-label>Email: </ion-label>
+        <ion-input value="{{utilisateur.email}}"></ion-input>
+      </ion-item>
+    <ion-item [hidden]="utilisateur.role == 1">
+      <ion-label>Société: </ion-label>
+      <ion-input value="{{utilisateur.entreprise}}"></ion-input>
     </ion-item>
+    <ion-item  [hidden]="utilisateur.role == 1">
+        <ion-label>Siret: </ion-label>
+        <ion-input value="{{utilisateur.siret}}"></ion-input>
+     </ion-item>
+     <ion-item>
+        <ion-label>Adresse: </ion-label>
+        <ion-input value="{{utilisateur.addresse}}"></ion-input>
+      </ion-item>
   </ion-list>
 </ion-content>

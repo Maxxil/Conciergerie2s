@@ -22,7 +22,7 @@
 
   </ion-list>
   <button ion-button full (click)="connect()">Se connecter</button>
-  <button ion-button full (click)="facebookConnect()">
+  <button ion-button full (click)="facebookConnect()" [hidden]='true'>
     <ion-icon name="logo-facebook" class="margin-right-1"></ion-icon>
     Se connecter avec facebook
   </button>

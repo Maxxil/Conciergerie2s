@@ -43,7 +43,21 @@
           <ion-input [(ngModel)]="confirmationMotDePasse"></ion-input>
         </ion-item>
       </ion-list>
+    </ion-item> <ion-item>
+        <ion-label>Rôle Utilisateur</ion-label>
+      <ion-select [(ngModel)]="profile.role">
+        <ion-option value="1">CLIENT</ion-option>
+        <ion-option value="2">PRESTATAIRE</ion-option>
+      </ion-select>
     </ion-item>
+    <ion-item>
+        <ion-label>Societé</ion-label>
+        <ion-input [(ngModel)]="profile.entreprise"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Siret</ion-label>
+          <ion-input [(ngModel)]="profile.siret"></ion-input>
+        </ion-item>
     <ion-item>
       <ion-label>Email</ion-label>
       <ion-input [(ngModel)]="profile.email"></ion-input>
@@ -56,14 +70,21 @@
       <ion-label>Telephone mobile</ion-label>
       <ion-input [(ngModel)]="profile.telephoneMobile"></ion-input>
     </ion-item>
+  
     <ion-item>
-      <ion-select [(ngModel)]="profile.role">
-        <ion-option value="1">CLIENT</ion-option>
-        <ion-option value="2">PRESTATAIRE</ion-option>
-      </ion-select>
-    </ion-item>
+        <ion-label>N° et nom de rue</ion-label>
+        <ion-input [(ngModel)]="profile.addresse"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Code postal</ion-label>
+          <ion-input tpe="Number" [(ngModel)]="profile.codepostal"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Ville</ion-label>
+            <ion-input [(ngModel)]="profile.ville"></ion-input>
+          </ion-item>
   </ion-list>
-  <button ion-button (click)="update()">Enregistrer</button>
+  <button ion-button (click)="update()" margin full>Enregistrer</button>
 
   <!-- <ion-row col-md-12>
     <ion-col col-md-6>
