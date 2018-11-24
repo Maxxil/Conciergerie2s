@@ -19,7 +19,7 @@ import {Result} from "../../model/Result/Result";
 export class CommandeHoraireDetailPage {
 
   public commande : CommandeHoraireModel;
-  public status: string = "";
+  public status: string = "En cours d'analyse";
   public dejapostuler: boolean = false;
   constructor(public navCtrl: NavController
               , public commandeHorairePvd : CommandeHoraireProvider

@@ -6,7 +6,7 @@ import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande
 import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
 import {PaypalProvider} from "../../providers/paypal/paypal";
-import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {InAppBrowser, InAppBrowserOptions} from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the CommandeHorairePage page.
@@ -49,13 +49,13 @@ export class CommandeHorairePage {
 
       this.loading.dismiss();
 
-      var browser = this.iab.create(result.data, '_self');
-      browser.on('close').subscribe(() =>{
+      var browser = this.iab.create(result.data, '_blank');
+      //browser.on('close').subscribe(event => {
         this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
         this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
           this.manageDisplaySuccessOrError(result);
         });
-      });
+    //  });
 
     })
   }

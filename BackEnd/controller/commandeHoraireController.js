@@ -61,6 +61,7 @@ router.put('/', function(req, res){
         prestataire : [],
         date : req.body.date,
         duree : req.body.duree,
+        quantite : req.body.quantite,
         heure : req.body.heure,
         dateCreation : Date.now(),
         status : req.body.status

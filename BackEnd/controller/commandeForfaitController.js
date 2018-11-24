@@ -62,6 +62,7 @@ router.put('/', function(req, res){
         heureDebut : req.body.heureDebut,
         heureFin : req.body.heureFin,
         dateCreation : Date.now(),
+        quantite : req.body.quantite,
         status : req.body.status
     });
     commandeForfaitBusiness.add(commande);

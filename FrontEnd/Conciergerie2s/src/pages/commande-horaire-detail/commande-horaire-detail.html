@@ -21,7 +21,7 @@
       <h3 text-right>Statut : {{ status }}</h3>      
     </ion-list-header>
     <ion-item>
-      <ion-label fixed>Date</ion-label>
+      <ion-label fixed>Date RDV</ion-label>
       <ion-input type="date" [value]="commande.date | date : 'yyyy-MM-dd'" [readonly]="!peutPostuler()"></ion-input>
     </ion-item>
     <ion-item>

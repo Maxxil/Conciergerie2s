@@ -78,14 +78,16 @@ router.put('/createPayment', function (req, res) {
                 "items": [{
                     "name": prestation.toString(),
                     "sku": "item",
-                    "price": amount,
+                    "price": amount, // mettre ici le prix unitaire de la prestation
                     "currency": "EUR",
-                    "quantity": 1
+                    "quantity": 1  // mettre ici la quantité commandée
                 }]
+                // rajouter shipping_address
+                // rajouter shipping_phone_number
             },
             "amount": {
                 "currency": "EUR",
-                "total": amount
+                "total": amount // garder ici le montant qui correspond auy prix * quantite
             },
             "description": "This is the payment description."
         }]
@@ -133,6 +135,7 @@ router.get('/executePayment', function (req, res) {
         } else {
             console.log("Get Payment Response");
             console.log(JSON.stringify(payment));
+            // essayer de stocker dans la commande sur mongo la référence du payment généré par paypal
             res.json({
                 success : true
             });
