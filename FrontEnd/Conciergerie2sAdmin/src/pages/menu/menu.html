@@ -13,7 +13,7 @@
 
   <ion-content>
      <ion-row justify-content-center padding>
-        <img width="80" height="80" src="assets/imgs/logo.png" text-center>
+        <img width="140" height="80" src="assets/imgs/logo2.png" text-center>
      </ion-row>
      <ion-row>
         <ion-list>
@@ -22,47 +22,43 @@
             </button>
             <ion-list-header ion-item (click)="openSubMenuAFfichage()">Afficher</ion-list-header>
             <ion-list [@openClose]="isDisplayAfficher? 'open' : 'close'" [hidden]="isDisplayAfficher">
-              <button ion-item menuClose (click)="openPageService()" >
+              <button icon-start ion-item menuClose (click)="openPageService()" ><ion-icon name="apps"></ion-icon>
                 Tous les services
               </button>
-              <button ion-item menuClose (click)="openPrestationPage()">
+              <button icon-start ion-item menuClose (click)="openPrestationPage()"><ion-icon name="briefcase"></ion-icon>
                 Toutes les prestations
               </button>
-              <button ion-item menuClose (click)="openPageUtilisateur()">
+              <button icon-start ion-item menuClose (click)="openPageUtilisateur()"><ion-icon name="people"></ion-icon>
                 Tous les utilisateurs
               </button>
-              <button ion-item menuClose (click)="openPageCommandes()">
+              <button icon-start ion-item menuClose (click)="openPageCommandes()"><ion-icon name="cart"></ion-icon>
                 Les commandes
               </button>
             </ion-list >
             <ion-list-header ion-item (click)="openSubMenuAjouter()">Ajouter</ion-list-header>
             <ion-list [@openClose]="isDisplayAjouter? 'open' : 'close'" [hidden]="isDisplayAjouter">
-              <button ion-item menuClose (click)="openPageAddService()">
+              <button icon-start  ion-item menuClose (click)="openPageAddService()"><ion-icon name="color-wand"></ion-icon>
                 Ajout d'un service
               </button>
-              <button ion-item menuClose (click)="openPageAddPrestation()">
+              <button icon-start  ion-item menuClose (click)="openPageAddPrestation()"><ion-icon name="folder"></ion-icon>
                 Ajout d'une prestation
               </button>
             </ion-list>
             <ion-list-header ion-item (click)="openSubMenuLink()">Lier</ion-list-header>
             <ion-list [@openClose]="isDisplayLink? 'open' : 'close'" [hidden]="isDisplayLink">
-              <button ion-item menuClose (click)="openPageLierServicePrestation()">
+              <button icon-start ion-item menuClose (click)="openPageLierServicePrestation()"><ion-icon name="link"></ion-icon>
                 Lier un service à une prestation
               </button>
-              <button ion-item menuClose (click)="openPageLierPrestationPrestataire()">
+              <button icon-start ion-item menuClose (click)="openPageLierPrestationPrestataire()"><ion-icon name="contacts"></ion-icon>
                 Lier une prestation à un prestataire
               </button>
-            </ion-list>
-            <ion-list-header ion-item (click)="openSubMenuValider()">Valider</ion-list-header>
-            <ion-list [@openClose]="isDisplayValider? 'open' : 'close'" [hidden]="isDisplayValider">
-              <button ion-item menuClose (click)="openPageValiderPrestataire()">
-                Valider prestataire
-              </button>
-            </ion-list>
-          <button ion-item menuClose (click)="openPageProfile()">Profile</button>
-            <button ion-item menuClose (click)="deconnecter()">
-              Deconnecter
-            </button>
+            </ion-list>          
+            <ion-list-header ion-item (click)="openSubMenuSettings()">Configuration</ion-list-header>
+            <ion-list [@openClose]="isDisplaySettings? 'open' : 'close'" [hidden]="isDisplaySettings"> 
+              <button icon-start ion-item menuClose (click)="openPageValiderPrestataire()"><ion-icon name="checkmark-circle"></ion-icon>Validation Inscription prestataire</button>
+              <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
+             <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>
+            </ion-list>                        
            <!--  <button ion-item menuClose (click)="openPageDashboard()" >
               Dashboard
             </button>  -->

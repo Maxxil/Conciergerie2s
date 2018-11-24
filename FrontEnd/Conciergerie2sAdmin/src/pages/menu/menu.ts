@@ -40,6 +40,7 @@ export class MenuPage {
   public isDisplayAjouter : boolean = false;
   public isDisplayLink : boolean = false;
   public isDisplayValider : boolean = false;
+  public isDisplaySettings : boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -62,6 +63,11 @@ export class MenuPage {
   openSubMenuAjouter(){
     this.isDisplayAjouter = !this.isDisplayAjouter;
   }
+
+  openSubMenuSettings(){
+    this.isDisplaySettings= !this.isDisplaySettings;
+  }
+
 
   openPageHome(){
     this.rootPage = DashboardPage;

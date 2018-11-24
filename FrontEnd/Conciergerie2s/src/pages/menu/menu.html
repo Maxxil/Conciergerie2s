@@ -13,15 +13,18 @@
 
   <ion-content>
     <ion-row justify-content-center padding>
-      <img width="80" height="80" src="assets/imgs/logo.png" text-center>
+        <img width="140" height="80" src="assets/imgs/logo2.png" text-center>
     </ion-row>
     <ion-row>
       <ion-list>
-        <button menuClose ion-item (click)="openPageHome()">Accueil</button>
-        <button menuClose ion-item (click)="openPagePostulerCommandes()" >Postuler à des commandes</button>
-        <button menuClose ion-item (click)="openPageMesCommandes()">Mes commandes</button>
-        <button menuClose ion-item (click)="openPageProfile()">Profile</button>
-      </ion-list>
+          <button menuClose icon-start ion-item (click)="openPageHome()"><ion-icon name="home"></ion-icon>Accueil</button>
+          <button menuClose icon-start ion-item (click)="openPagePostulerCommandes()"><ion-icon name="create"></ion-icon>Accepter des commandes</button>
+          <button menuClose icon-start ion-item (click)="openPageMesCommandes()"><ion-icon name="basket"></ion-icon>Mes commandes</button>
+          <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
+          <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="help"></ion-icon>FAQ</button>
+          <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>
+  
+       </ion-list>
     </ion-row>
   </ion-content>
 

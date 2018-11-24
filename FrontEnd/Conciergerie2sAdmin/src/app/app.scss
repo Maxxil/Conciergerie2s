@@ -19,3 +19,36 @@
     background-color: #c8c7cc;
     margin-top: 13px !important;
 }
+
+.logo {
+
+    margin-top:30px;
+  }
+ 
+ 
+ 
+ .label {
+     strong {
+         color:  color($colors, lagon);
+     }
+ }
+ 
+ .item-input {
+     .label {
+         color:  color($colors, taupe);
+     }
+ }
+ 
+ .ttc {
+     font-size: 1.5em;
+ }
+
+ button {
+     ion-label {
+        font-size: 14px;
+
+        ion-icon {
+            font-size: 14px;
+        }
+     }
+}
