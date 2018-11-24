@@ -27,9 +27,11 @@
         <ion-note item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}<br>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
       </ion-item>
       <ion-item-options >
-        <button ion-button color="primary"  (click)="validerCommande(element)" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
+        <button ion-button *ngIf="isEnCours(element)" color="primary"  (click)="validerCommande(element)" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
         <!-- <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button> -->
-        <button ion-button  color="secondary" icon-start> <ion-icon name="people"></ion-icon>Prestataire</button>
+        <button ion-button *ngIf="isEnCours(element)"  color="secondary" icon-start> <ion-icon name="people"></ion-icon>Prestataire</button>
+
+        <button ion-button  *ngIf="!isEnCours(element)" color="secondary">Validé</button>
       </ion-item-options>
     </ion-item-sliding>
 </ion-list>

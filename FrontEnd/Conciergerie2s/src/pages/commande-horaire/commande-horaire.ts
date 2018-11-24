@@ -49,7 +49,7 @@ export class CommandeHorairePage {
 
       this.loading.dismiss();
 
-      var browser = this.iab.create(result.data, '_blank');
+     this.iab.create(result.data, '_blank');
       //browser.on('close').subscribe(event => {
         this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
         this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
