@@ -16,3 +16,6 @@ BackEnd/config/environnementconf.js
 # mon ide
 deployment.xml
 profiles_settings.xml
+BackEnd/config/environnement.js
+BackEnd/package-lock.json
+FrontEnd/Conciergerie2s/package-lock.json

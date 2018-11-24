@@ -8,8 +8,10 @@ var appSettings = require('./../config/appSettings');
 
 router.use(bodyParser.json());
 
-var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
-var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
+//var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
+var clientId = "AdXkPhOhJVr8EH2R6Xl7fZFaVgwVW6AhNB80GbWds_N9jypYh9hpfYLkzQMn-keg2InmRhWPhgkWKC-Y";
+//var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
+var secret = "ECf30juZefwSJd5Irfm60vllZsY6-qv5TW2JsSxNy1zPjNKrciCq6LlfaL4UY87ngDW1VpoAQi51ulzS";
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
