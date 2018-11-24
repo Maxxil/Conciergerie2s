@@ -36,7 +36,7 @@ export class CommandeForfaitPage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               , public commandeForfaitPvd : CommandeForfaitProvider) {
-    this.commandeForfait = new CommandeForfaitModel();
+    this.commandeForfait = new CommandeForfaitModel();    
     this.prestation = this.navParams.get("Prestation");
     this.commandeForfait.idPrestation = this.prestation._id;
     this.today= new Date();

@@ -28,10 +28,17 @@
       <ion-input type="time" [(ngModel)]="commande.heureDebut" ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Heure de fin</ion-label>
-      <ion-input type="time" [(ngModel)]="commande.heureFin" ></ion-input>
+      <ion-label fixed>Prix € </ion-label>
+      <ion-input type="number" [(ngModel)]="commande.prestation.prix" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Quantité</ion-label>
+      <ion-input type="number" min="1" [(ngModel)]="commande.quantite" readonly></ion-input>
     </ion-item>
   </ion-list>
+  <div text-right margin>     
+    <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.quantite }} €</span>
+</div>
   <div text-center>
     <button ion-button (click)="postuler()">Postuler</button>
     <button ion-button (click)="annuler()">Annuler</button>

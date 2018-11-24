@@ -34,12 +34,12 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>
-      <ion-input type="number" min="1" [(ngModel)]="commande.duree" readonly></ion-input>
+      <ion-input type="number" min="1" [(ngModel)]="commande.quantite" readonly></ion-input>
     </ion-item>
   
   </ion-list>  
   <div text-right margin>     
-      <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.duree }} €</span>
+      <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.quantite }} €</span>
   </div>
   <div text-center>
     <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>

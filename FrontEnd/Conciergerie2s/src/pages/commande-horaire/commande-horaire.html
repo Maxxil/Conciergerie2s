@@ -19,6 +19,7 @@
       <ion-list-header>
           <h1>Commander une prestation</h1>
           <h2>{{prestation.nom}}</h2>
+          <h3>{{prestation.prix}} € / h</h3>
         </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
@@ -33,6 +34,9 @@
       <ion-input type="number" min="1" [(ngModel)]="commandeHoraire.quantite"></ion-input>
     </ion-item>
   </ion-list>
+  <div text-right margin>     
+    <span class="ttc">Total TTC : {{ prestation.prix * commandeHoraire.quantite }} €</span>
+</div>
   <div text-center>
   <button ion-button (click)="commander()" taupe>Commander</button>
   <button ion-button (click)="annuler()" taupe>Annuler</button>

@@ -19,6 +19,7 @@
     <ion-list-header>      
         <h1>Commander un forfait</h1>
         <h2>{{prestation.nom}}</h2>
+        <h3>Forfait {{prestation.prix}} €</h3>
       </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
@@ -29,10 +30,13 @@
       <ion-input type="time" [(ngModel)]="commandeForfait.heureDebut"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Heure de fin</ion-label>
-      <ion-input type="time" [(ngModel)]="commandeForfait.heureFin"></ion-input>
+      <ion-label fixed>Quantité</ion-label>
+      <ion-input type="number" min="1" [(ngModel)]="commandeForfait.quantite"></ion-input>
     </ion-item>
   </ion-list>
+  <div text-right margin>     
+    <span class="ttc">Total TTC : {{ prestation.prix * commandeForfait.quantite }} €</span>
+</div>
   <div text-center>
     <button ion-button (click)="commander()">Commander</button>
     <button ion-button (click)="annuler()">Annuler</button>

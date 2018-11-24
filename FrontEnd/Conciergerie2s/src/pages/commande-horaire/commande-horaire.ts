@@ -36,8 +36,7 @@ export class CommandeHorairePage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               , public navParams: NavParams) {
-    this.commandeHoraire = new CommandeHoraireModel();
-    this.commandeHoraire.duree=1;
+    this.commandeHoraire = new CommandeHoraireModel();    
     this.prestation = this.navParams.get("Prestation");
     this.commandeHoraire.idPrestation = this.prestation._id;
     this.today= new Date();
