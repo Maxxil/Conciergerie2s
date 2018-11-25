@@ -14,6 +14,10 @@ var utilisateur = new mongoose.Schema({
     telephoneMobile: 'String',
     telephoneFix: 'String',
     email : 'String',
+    siret: 'String',
+    entreprise: 'String',
+    codepostal: 'Number',
+    ville:  'String',
     historique : [{ type: Schema.Types.ObjectId, ref: 'Historique' }]
 });
 

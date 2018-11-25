@@ -52,9 +52,25 @@
       </ion-select>
     </ion-item>
     <ion-item>
+        <ion-label floating>Société</ion-label>
+        <ion-input type="text" name="entreprise" id="entreprise" [(ngModel)]="user.entreprise"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Siret</ion-label>
+          <ion-input type="text" name="siret" id="siret" [(ngModel)]="user.siret"></ion-input>
+        </ion-item>
+    <ion-item>
       <ion-label floating>Addresse</ion-label>
       <ion-input type="text" name="addresse" id="addresse" [(ngModel)]="user.addresse"></ion-input>
     </ion-item>
+    <ion-item>
+        <ion-label floating>Code postal</ion-label>
+        <ion-input type="number" name="codepostal" id="codepostal" [(ngModel)]="user.codepostal"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Ville</ion-label>
+          <ion-input type="text" name="ville" id="ville" [(ngModel)]="user.ville"></ion-input>
+        </ion-item>
     <ion-item>
       <ion-label floating>Telephone mobile</ion-label>
       <ion-input type="text" name="telephoneMobile" id="telephoneMobile" [(ngModel)]="user.telephoneMobile"></ion-input>

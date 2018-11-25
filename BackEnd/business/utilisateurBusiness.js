@@ -17,7 +17,11 @@ module.exports = {
             addresse : user.addresse,
             telephoneMobile : user.telephoneMobile,
             telephoneFix : user.telephoneFix,
-            email : user.email
+            email : user.email,
+            siret: user.siret,
+            entreprise: user.entreprise,
+            codepostal: user.codepostal,
+            ville: user.ville
         });
         Utilisateur.create(promise);
         //promise.save();

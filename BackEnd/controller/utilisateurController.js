@@ -75,9 +75,16 @@ router.put('/' , upload.single('image'),function(req, res){
         telephoneMobile: req.body.telephoneMobile,
         telephoneFix: req.body.telephoneFix,
         email : req.body.email,
+        siret: req.body.siret,
+        entreprise: req.body.entreprise,
+        codepostal: req.body.codepostal,
+        ville: req.body.ville,
         historique : []
     });
     utilisateurBusiness.create(utilisateur);
+    res.json({
+        success : true
+    });
     res.end();
 });
 

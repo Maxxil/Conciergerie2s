@@ -24,7 +24,7 @@
           </ion-avatar>
           <h2>{{element.prestation.nom}}</h2>
           <p>{{element.client.nom + " " + element.client.prenom}}</p>
-          <ion-note item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}<br>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
+          <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}<br>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
         </ion-item>
         <ion-item-options >
           <button ion-button  *ngIf="!isEnCours(element)" color="secondary">Validé</button>

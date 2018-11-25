@@ -12,6 +12,8 @@ export class UtilisateurModel {
     telephoneFix: string;
     email : string;
     historique : object[];
-
-
+    siret: string;
+    entreprise: string;
+    codepostal: number;
+    ville: string;
 }
