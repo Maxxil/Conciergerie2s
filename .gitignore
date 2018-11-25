@@ -7,6 +7,9 @@ node_modules
 BackEnd/data/images/prestation/*
 BackEnd/data/images/service/*
 
+# ignore configuration
+BackEnd/config/appSettings.js
+
 # log files
 *.log
 
