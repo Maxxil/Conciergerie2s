@@ -5,6 +5,7 @@ var commandeForfait = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
     prestation : {type : Schema.Types.ObjectId, ref : 'Prestation'},
     prestataires : [{type : Schema.Types.ObjectId, ref : 'Prestataire', default : []}],
+    prestataireChoisi : {type : Schema.Types.ObjectId, ref : 'Prestataire'},
     date : 'Date',
     heureDebut : 'String',
     heureFin : 'String',

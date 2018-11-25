@@ -40,6 +40,9 @@ import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
 import { CommandeProvider } from '../providers/commande/commande';
 import { PaypalProvider } from '../providers/paypal/paypal';
 import {ProfilePage} from "../pages/profile/profile";
+import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/commande-horaire-detail";
+import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
+import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import {ProfilePage} from "../pages/profile/profile";
     DevisPage,
     CommandeHorairePage,
     CommandeForfaitPage,
-    ProfilePage
+    ProfilePage,
+    CommandeHoraireDetailPage,
+    CommandeForfaitDetailPage,
+    DevisDetailPage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +103,10 @@ import {ProfilePage} from "../pages/profile/profile";
     DevisPage,
     CommandeHorairePage,
     CommandeForfaitPage,
-    ProfilePage
+    ProfilePage,
+    CommandeHoraireDetailPage,
+    CommandeForfaitDetailPage,
+    DevisDetailPage
   ],
   providers: [
     StatusBar,

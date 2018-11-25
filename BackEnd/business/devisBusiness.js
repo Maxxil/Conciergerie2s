@@ -16,7 +16,8 @@ module.exports = {
         return Devis.find({_id : idDevis});
     },
     getAll : function () {
-        return Devis.find({}).populate('prestation client').sort([['dateCreation',-1]]);
+        return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'},
+            {path : 'prestataires',populate: {path : 'utilisateur', select: 'nom prenom'}}]).sort([['dateCreation',-1]]);
     },
     getByIdPrestation : function (idPrestation) {
         return Devis.find({'prestation._id' : idPrestation}).populate('prestation');
@@ -30,9 +31,10 @@ module.exports = {
         return Devis.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
             .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
     },
-    updateStatus : function (idCommande, status) {
+    updateStatus : function (idCommande, status, prestataireChoisi) {
         Devis.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
+            result[0].prestataireChoisi = prestataireChoisi;
             result[0].save();
         })
     }

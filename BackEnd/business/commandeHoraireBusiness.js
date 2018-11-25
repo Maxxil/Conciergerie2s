@@ -19,7 +19,8 @@ module.exports = {
         return CommandeHoraire.find({_id : idCommande});
     },
     getAll : function () {
-        return CommandeHoraire.find({}).populate('prestation').populate('client').sort([['dateCreation',-1]]);
+        return CommandeHoraire.find({}).populate([{path : 'prestation'} , {path : 'client'},
+            {path : 'prestataires', populate: {path : 'utilisateur', select: 'nom prenom'}}]).sort([['dateCreation',-1]]);
     },
     getByIdClient : function(idClient){
         return CommandeHoraire.find({'client' : idClient})
@@ -33,9 +34,10 @@ module.exports = {
         return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
             .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
     },
-    updateStatus : function (idCommande, status) {
+    updateStatus : function (idCommande, status,prestataireChoisi) {
         CommandeHoraire.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
+            result[0].prestataireChoisi = prestataireChoisi
             result[0].save();
         })
     }

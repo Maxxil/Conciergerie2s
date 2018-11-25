@@ -5,6 +5,7 @@ var devis = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
     prestation : {type : Schema.Types.ObjectId, ref : 'Prestation'},
     prestataires : [{type : Schema.Types.ObjectId, ref : 'Prestataire', default : []}],
+    prestataireChoisi : {type : Schema.Types.ObjectId, ref : 'Prestataire'},
     information : 'String',
     heure : 'String',
     date : 'Date',

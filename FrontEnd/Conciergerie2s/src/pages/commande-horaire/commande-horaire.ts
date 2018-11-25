@@ -6,7 +6,7 @@ import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande
 import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
 import {PaypalProvider} from "../../providers/paypal/paypal";
-import {InAppBrowser, InAppBrowserOptions} from "@ionic-native/in-app-browser";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the CommandeHorairePage page.
@@ -36,7 +36,7 @@ export class CommandeHorairePage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               , public navParams: NavParams) {
-    this.commandeHoraire = new CommandeHoraireModel();    
+    this.commandeHoraire = new CommandeHoraireModel();
     this.prestation = this.navParams.get("Prestation");
     this.commandeHoraire.idPrestation = this.prestation._id;
     this.today= new Date();

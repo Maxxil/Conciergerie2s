@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeForfaitModel} from "../../model/Models/CommandeForfaitModel";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
+import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 
 /**
  * Generated class for the CommandeForfaitPage page.
@@ -30,7 +31,6 @@ export class CommandeForfaitPage {
     this.commandePvd.getAll().subscribe(result =>{
       console.log(result);
       if(result.success){
-
         this.commande = result.data;
       }
     })
@@ -40,11 +40,8 @@ export class CommandeForfaitPage {
     return commande.status == CommandeStatus.EN_COURS_ANALYSE;
   }
 
-  public validerCommande(commande : CommandeForfaitModel){
-    this.commandePvd.validateCommande(commande).subscribe(result =>{
-      if(result.success){
-        commande.status = CommandeStatus.VALIDEE;
-      }
-    });
+  public afficherDetailCommande(commande: CommandeForfaitModel){
+    this.navCtrl.push(CommandeForfaitDetailPage, {Commande : commande})
   }
+
 }

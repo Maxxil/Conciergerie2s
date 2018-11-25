@@ -15,8 +15,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let element of commande">
-      <button ion-button item-start *ngIf="isEnCours(element)" (click)="validerCommande(element)">Valider</button>
+    <ion-item *ngFor="let element of commande" (click)="afficherDetailCommande(element)">
       <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button>
       Information clients : {{element.client.nom + " " + element.client.prenom}}
       <br>Prestation nom : {{element.prestation.nom}}

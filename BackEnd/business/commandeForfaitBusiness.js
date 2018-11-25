@@ -28,11 +28,15 @@ module.exports = {
             .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}])
     },
     getAll : function () {
-        return CommandeForfait.find({}).populate('prestation').populate('client').populate('prestataires').sort([['dateCreation',-1]]);
+        return CommandeForfait.find({})
+            .populate([{path : 'prestation'} , {path : 'client'},
+                {path : 'prestataires',  populate: {path : 'utilisateur', select: 'nom prenom'}}])
+            .sort([['dateCreation',-1]]);
     },
-    updateStatus : function (idCommande, status) {
+    updateStatus : function (idCommande, status,prestataireChoisi) {
         CommandeForfait.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
+            result[0].prestataireChoisi = prestataireChoisi;
             result[0].save();
         })
     }

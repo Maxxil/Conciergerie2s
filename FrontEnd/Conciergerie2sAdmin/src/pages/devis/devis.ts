@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
+import {DevisDetailPage} from "../devis-detail/devis-detail";
 
 /**
  * Generated class for the DevisPage page.
@@ -38,11 +39,7 @@ export class DevisPage {
     return commande.status == CommandeStatus.EN_COURS_ANALYSE;
   }
 
-  public validerCommande(commande : DevisModel){
-    this.commandePvd.validateCommande(commande).subscribe(result =>{
-      if(result.success){
-        commande.status = CommandeStatus.VALIDEE;
-      }
-    });
+  public afficherDetailCommande(commande: DevisModel){
+    this.navCtrl.push(DevisDetailPage, {Commande : commande})
   }
 }

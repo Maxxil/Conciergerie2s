@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
+import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
 
 /**
  * Generated class for the CommandeHorairePage page.
@@ -39,17 +40,7 @@ export class CommandeHorairePage {
     return commande.status == CommandeStatus.EN_COURS_ANALYSE || commande.status == CommandeStatus.EN_COURS_VALIDATION;
   }
 
-  /**
-   * 
-   * @param commande Validation de la commande avec C2S
-   */
-  public validerCommande(commande : CommandeHoraireModel){
-    this.commandePvd.validateCommande(commande).subscribe(result =>{
-      if(result.success){
-        commande.status = CommandeStatus.VALIDEE;
-      }
-    });
+  public afficherDetailCommande(commande: CommandeHoraireModel){
+    this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande})
   }
-
-
 }

@@ -32,7 +32,8 @@ router.get('/:id', function (req, res) {
 router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
-    commandeHoraireBusiness.updateStatus(idCommande,status);
+    var prestataireChoisi = req.body.prestataireChoisi;
+    commandeHoraireBusiness.updateStatus(idCommande,status,prestataireChoisi);
     res.json({
         success : true
     });

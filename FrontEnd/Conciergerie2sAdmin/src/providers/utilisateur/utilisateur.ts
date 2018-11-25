@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {UtilisateurResult} from "../../model/Results/UtilisateurResult";
-import {PAYPAL_URL, UTILISATEUR_URL} from "../../model/Url";
+import {UTILISATEUR_URL} from "../../model/Url";
 import {Observable} from "rxjs/Observable";
 import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
 import {Result} from "../../model/Results/Result";
-import {PaypalModel} from "../../model/Models/PaypalModel";
 
 /*
   Generated class for the UtilisateurProvider provider.
