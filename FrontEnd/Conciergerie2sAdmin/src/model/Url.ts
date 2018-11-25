@@ -5,8 +5,8 @@ export const HTTP_OPTIONS = {
             'Content-Type':  'application/json'
         })
     };
-
 ;
+
 export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';

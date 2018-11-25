@@ -11,5 +11,8 @@ module.exports = {
         var name = user.nomUtilisateur;
         var id = user._id;
         return {nomUtilisateur : user.nomUtilisateur, _id : user._id};
+    },
+    encryptPassword : function (password) {
+        
     }
 };
