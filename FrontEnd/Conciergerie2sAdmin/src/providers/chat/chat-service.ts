@@ -26,9 +26,9 @@ export class UserInfo {
 export class ChatService {
 
   constructor(private http: HttpClient,
-              private events: Events, private socket: Socket) {
-                this.socket.connect();
-                this.socket.emit('connection');
+              private events: Events) {
+                //this.socket.connect();
+                //this.socket.emit('connection');
   }
 
   mockNewMsg(msg) {
@@ -49,9 +49,9 @@ export class ChatService {
   }
 
   getMsgList(): Observable<ChatMessage[]> {
-    const msgListUrl = './assets/mock/msg-list.json';
+    const msgListUrl = './assets/mock/msg-list.1.json';
     return this.http.get<any>(msgListUrl)
-    .pipe(map(response => response.array));
+    .pipe(map(response => response.array));   
   }
 
   sendMsg(msg: ChatMessage) {

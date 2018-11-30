@@ -36,7 +36,7 @@ export class ChatPage {
       avatar: './assets/imgs/to-user.jpg'
     };
 
-    this.getMsg();
+    //this.getMsg();
     
   }
 
