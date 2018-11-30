@@ -45,7 +45,7 @@ export class CommandeHoraireDetailPage {
   }
   peutPostuler() {
     return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
-  }
+  } 
 
   postuler(){
     console.log(this.aDejaPostule());

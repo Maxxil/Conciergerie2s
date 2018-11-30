@@ -20,9 +20,10 @@
   <ion-label>Mon profil : {{ profile._id }}</ion-label>
   <button ion-button (click)="update()">Enregistrer</button>
   <ion-list>
+    <div hidden>
       <img src="{{imageProfileUrl + profile.image}}" (click)="importImage()" *ngIf="hasImage()">
       <img src="../../assets/icon/pic.png" (click)="importImage()" *ngIf="!hasImage()" >
-      <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
+      <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/></div>
     <ion-item>
       <ion-label>Nom</ion-label>
       <ion-input [(ngModel)]="profile.nom"></ion-input>

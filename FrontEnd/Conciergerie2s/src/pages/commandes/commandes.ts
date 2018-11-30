@@ -27,7 +27,7 @@ export class CommandesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandesPage');
     this.getMyCommandes();
-  }
+  } 
 
   getMyCommandes() {
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/

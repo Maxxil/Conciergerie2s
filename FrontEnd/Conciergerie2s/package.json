@@ -1,8 +1,8 @@
 {
-  "name": "test",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "Conciergerie2s",
+  "version": "1.0.0",
+  "author": "Nticstudio",
+  "homepage": "https://nticstudio.com/",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -26,7 +26,14 @@
     "@ionic-native/status-bar": "~4.12.0",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
-    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-android": "7.1.4",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-inappbrowser": "^3.0.0",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^2.2.5",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "in-app-browser": "^1.0.7",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
@@ -39,10 +46,21 @@
     "@ionic/lab": "1.0.9",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project",
+  "description": "Conciergerie2s",
   "cordova": {
     "plugins": {
-      "cordova-plugin-inappbrowser": {}
-    }
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }
