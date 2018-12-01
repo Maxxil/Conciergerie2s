@@ -30,7 +30,7 @@ module.exports = {
     },
     deleteImage: function(filename){
         const filepath = "./data/images/service" + filename;
-        fs.unlink(filepath).exec();
+        fs.unlink(filepath);
     },
     delete: function(id){
         Service.deleteOne({_id : id}).exec();

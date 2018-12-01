@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServiceModel } from '../../model/Models/ServiceModel'
 import { Observable } from 'rxjs/Observable';
+import {Result} from "../../model/Results/Result";
 
 /*
   Generated class for the ServiceProvider provider.
@@ -57,5 +58,9 @@ export class ServiceProvider {
 
   linkServiceToPrestation(idService, idPrestation){
     return this.http.post<ServiceResult>(LIER_SERVICE_PRESTATION_URL, {idService: idService, idPrestation : idPrestation});
+  }
+
+  delete(service : ServiceModel): Observable<Result>{
+    return this.http.delete<Result>(SERVICE_URL + '/' + service._id);
   }
 }

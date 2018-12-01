@@ -101,10 +101,16 @@ router.put('/' , upload.single('file'), function(req, res){
     res.end();
 });
 
-router.delete('/', function(req, res){
+router.delete('/:_id', function(req, res){
+    console.log("Suppression service");
     serviceBusiness.getById(req.params._id).exec(function(err, result){
+        console.log(result);
         serviceBusiness.deleteImage(result.image);
-        serviceBusiness.delete(_id);
+        serviceBusiness.delete(req.params._id);
+        res.json({
+            success: true
+        });
+        res.end();
     });
 });
 

@@ -9,23 +9,36 @@
     <ion-buttons left>
       <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     </ion-buttons>
-    <ion-title>SERVICES</ion-title>    
+    <ion-title>SERVICES</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding class="animated fadeIn card-background-page">
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <!-- <img src="assets/imgs/service.jpg"/>   -->
- 
+
       <!--<ion-card (click)="displayService(element.id)">-->
       <ion-card *ngFor="let element of services">
-        
+
+        <ion-fab right top>
+          <button ion-fab (click)="deleteService(element)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-fab>
         <img src="{{serviceImageUrl + element.image}}" (click)="getPrestations(element)"/>
-        
+
         <ion-card-title text-center (click)="getPrestations(element)">{{element.nom}}</ion-card-title>
         <ion-icon float-end float-right name="create" (click)="updateService(element)"></ion-icon>
       </ion-card>
-  
+
   <ion-fab right top>
       <button ion-fab color="primary" (click)="displayAddService()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
