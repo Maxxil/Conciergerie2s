@@ -20,7 +20,6 @@ export const LIER_SERVICE_PRESTATION_URL: string = SERVER_URL + '/lierServicePre
 export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestataire';
 export const VALIDER_PRESTATAIRE : string = SERVER_URL + '/validerPrestataire';
 export const DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';
-export const PRESTATION_INFORMATION : string  = SERVER_URL + '/prestationInformation';
 export const UTILISATEUR_URL : string = SERVER_URL + '/utilisateur';
 export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire';
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';

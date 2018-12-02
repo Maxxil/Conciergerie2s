@@ -23,21 +23,24 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-  <!-- <img src="assets/imgs/service.jpg"/>   -->
 
-      <!--<ion-card (click)="displayService(element.id)">-->
-      <ion-card *ngFor="let element of services">
+  <ion-card *ngFor="let element of services">
 
-        <ion-fab right top>
-          <button ion-fab (click)="deleteService(element)">
-            <ion-icon name="close"></ion-icon>
-          </button>
-        </ion-fab>
-        <img src="{{serviceImageUrl + element.image}}" (click)="getPrestations(element)"/>
+    <ion-fab right>
+      <button ion-fab (click)="deleteService(element)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab left>
+      <button ion-fab (click)="updateService(element)">
+        <ion-icon float-end float-right name="create" ></ion-icon>
+      </button>
+    </ion-fab>
+    <img src="{{serviceImageUrl + element.image}}" (click)="getPrestations(element)"/>
 
-        <ion-card-title text-center (click)="getPrestations(element)">{{element.nom}}</ion-card-title>
-        <ion-icon float-end float-right name="create" (click)="updateService(element)"></ion-icon>
-      </ion-card>
+    <ion-card-title text-center (click)="getPrestations(element)">{{element.nom}}</ion-card-title>
+
+  </ion-card>
 
   <ion-fab right top>
       <button ion-fab color="primary" (click)="displayAddService()"><ion-icon name="add"></ion-icon></button>

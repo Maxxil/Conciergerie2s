@@ -2,7 +2,7 @@ import { PRESTATION_IMAGE_URL } from './../../model/Url';
 import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { PrestatairePage } from './../prestataire/prestataire';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import {NavController, NavParams, ModalController, AlertController, Refresher} from 'ionic-angular';
 import { PrestationProvider } from '../../providers/prestation/prestation';
 import { ServiceModalType } from '../../model/Enums/ServiceModalTypeEnum';
 import { PrestationModel } from '../../model/Models/PrestationModel';
@@ -32,6 +32,7 @@ export class PrestationPage {
               , public navParams: NavParams
               , private prestationPrvd: PrestationProvider
               , private servicePvd : ServiceProvider
+              , private alertCtrl : AlertController
               , private modalCtrl : ModalController) {
     this.service = this.navParams.get("service");
 
@@ -51,7 +52,28 @@ export class PrestationPage {
         this.nbprestation = results.data.length;
       })
     }
+  }
 
+  refresh(refresher: Refresher){
+    if(this.service != null)
+    {
+      this.servicePvd.getByIdWithPrestations(this.service._id).subscribe((result) => {
+        this.service = result.data[0];
+        console.log(this.service);
+        this.prestations = this.service.prestations;
+        this.nbprestation = this.service.prestations.length;
+      });
+    }
+    else {
+      this.prestationPrvd.getAll().subscribe((results) =>
+      {
+        this.prestations = results.data;
+        this.nbprestation = results.data.length;
+      })
+    }
+    if(refresher != null){
+      refresher.complete();
+    }
   }
 
   ionViewDidLoad() {
@@ -70,12 +92,27 @@ export class PrestationPage {
     modal.present();
   }
 
-  add(file: File, prestation : PrestationModel){
-
+  deletePrestation(prestation: PrestationModel){
+    this.alertCtrl.create({
+      title : 'Suppression',
+      message : 'Etes vous sur de vouloir supprimer cette prestation',
+      buttons: [{
+        text : 'Oui',
+        handler : data => {
+          this.deletePrestationFromProvider(prestation);
+        }
+      }, {
+        text : 'Non'
+      }]
+    }).present();
   }
 
-  update(file: File, prestation : PrestationModel, isImageUploaded : boolean){
-
+  private deletePrestationFromProvider(prestation : PrestationModel){
+    this.prestationPrvd.delete(prestation).subscribe((result) =>{
+      if(result.success){
+        this.refresh(null);
+      }
+    });
   }
 
   before(){

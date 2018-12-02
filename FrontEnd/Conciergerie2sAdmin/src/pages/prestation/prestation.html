@@ -22,15 +22,31 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <img src="assets/imgs/prestation.jpg"/>
-
-
-      <!--<ion-card (click)="displayService(element.id)">-->
-      <ion-card *ngFor="let element of prestations" (click)="getPrestataires(element)">
-        <img src="{{prestationImageUrl + element.image}}" /><!-- (click)="getPrestataires(element)" -->
-        <ion-card-title text-center >{{element.nom}}</ion-card-title><!-- (click)="getPrestataires(element)" -->
-        <ion-icon float-end float-right name="create" (click)="updatePrestation(element)"></ion-icon>
-      </ion-card>
+  <ion-card *ngFor="let element of prestations" >
+      <ion-fab right>
+        <button ion-fab (click)="deletePrestation(element)">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-fab left>
+        <button ion-fab (click)="updatePrestation(element)">
+          <ion-icon float-end float-right name="create" ></ion-icon>
+        </button>
+      </ion-fab>
+    <img src="{{prestationImageUrl + element.image}}" (click)="getPrestataires(element)"/>
+    <ion-card-title text-center >{{element.nom}}</ion-card-title>
+    <!--<ion-icon float-end float-right name="create" (click)="updatePrestation(element)"></ion-icon>-->
+  </ion-card>
 
 
   <ion-fab right top>

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import {
   LIER_PRESTATION_PRESTATAIRE_URL,
-  PRESTATION_INFORMATION, PRESTATION_URL
+  PRESTATION_URL
 } from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -25,6 +25,7 @@ export class PrestationProvider {
   }
 
   getAll(): Observable<PrestationResult> {
+    console.log("toutes les prestations");
     return this.http.get<PrestationResult>(PRESTATION_URL)
   }
 
@@ -52,11 +53,11 @@ export class PrestationProvider {
     formData.append('file', image, 'image');
     formData.append('prestation', JSON.stringify(prestation));
     console.log(formData);
-    return this.http.post<PrestationResult>(PRESTATION_URL, formData);
+    return this.http.post<PrestationResult>(PRESTATION_URL + '/image', formData);
   }
 
   updateWithoutImage(prestation: PrestationModel): Observable<PrestationResult> {
-    return this.http.post<PrestationResult>(PRESTATION_URL, {prestation: prestation});
+    return this.http.post<PrestationResult>(PRESTATION_URL, {prestation: JSON.stringify(prestation)});
   }
 
   linkPrestationToPrestataire(idPrestation, idPrestataire) : Observable<Result>{
@@ -68,7 +69,11 @@ export class PrestationProvider {
   }
 
   getPrestationByIdWithPrestataires(id) : Observable<PrestationInformationResult>{
-    return this.http.get<PrestationInformationResult>(PRESTATION_INFORMATION + '/' + id);
+    return this.http.get<PrestationInformationResult>(LIER_PRESTATION_PRESTATAIRE_URL + '/' + id);
+  }
+
+  delete(prestation) : Observable<Result>{
+    return this.http.delete<Result>(PRESTATION_URL + '/' + prestation._id);
   }
 
 }

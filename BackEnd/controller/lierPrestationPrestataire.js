@@ -56,9 +56,9 @@ router.get('/:id', function (req, res) {
     })
 });
 
-router.delete('/', function (req,res) {
-    var idPrestation = req.body.idPrestation;
-    var idPrestataire = req.body.idPrestataire;
+router.delete('/:idPrestation/:idPrestataire', function (req,res) {
+    var idPrestation = req.params.idPrestation;
+    var idPrestataire = req.params.idPrestataire;
     prestationBusiness.deletePrestataire(idPrestation, idPrestataire);
     res.json({
         success :true

@@ -1,4 +1,5 @@
 var Prestation = require('./../model/prestationModel');
+var fs = require('fs');
 
 module.exports = {
     add : function(prestation){
@@ -47,6 +48,13 @@ module.exports = {
     },
     update : function(prestation){
         return Prestation.updateOne({_id : prestation._id} , prestation , {upsert : true});
+    },
+    delete : function(id){
+      return Prestation.deleteOne({_id : id}).exec();
+    },
+    deleteImage: function(filename){
+        const filepath = "./data/images/prestation/" + filename;
+        fs.unlink(filepath);
     },
     deletePrestataire : function (idPrestation , idPrestataire) {
         Prestation.find({_id : idPrestation}).exec(function (err,prestation) {

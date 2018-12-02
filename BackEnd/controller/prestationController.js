@@ -51,13 +51,41 @@ router.get('/:id' , function(req , res){
 });
 
 router.post('/' , function(req, res){
-    var prestation = req.body.prestation;
+    console.log(req.body);
+    var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.update(prestation).then(function(result){
         res.json({
-            data : result.ok
+            success : result.ok
         });
         res.end();
     })
+});
+
+router.post('/image', upload.single('file'), function (req, res) {
+    console.log(req.body);
+    var prestation = JSON.parse(req.body.prestation);
+    prestationBusiness.getById(prestation._id).exec(function(err,result){
+        if(result != null){
+            result.image = filename;
+            result.nom = prestation.nom;
+            result.description= prestation.description;
+            result.prix= prestation.prix;
+            result.typeprix= prestation.typeprix;
+            result.forfait= prestation.forfait;
+            result.details= prestation.details;
+            prestationBusiness.update(result).then(function (success) {
+                res.json({
+                    success : success.ok
+                });
+                res.end();
+            }).catch(function (error) {
+                res.json({
+                    success: false
+                });
+                res.end();
+            })
+        }
+    });
 });
 
 router.post('/byIdUtilisateur' , function (req, res) {
@@ -110,11 +138,33 @@ router.put('/' , upload.single('file'), function(req, res){
 });
 
 router.delete('/' , function (req, res) {
-   prestationBusiness.deletePrestataire(req.body.idPrestation, req.body.idPrestataire);
-   res.json({
-       success : true
-   });
-   res.end();
+    prestationBusiness.deletePrestataire(req.body.idPrestation, req.body.idPrestataire);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+router.delete('/:id' , function (req, res) {
+    var id = req.params.id;
+    prestationBusiness.getById(id).exec(function (err,result) {
+        if(result != null){
+            prestationBusiness.deleteImage(result.image);
+            prestationBusiness.delete(req.body.id);
+            res.json({
+                success : true
+            });
+            res.end();
+        }
+        else{
+            res.json({
+                success : false
+            });
+        }
+
+        res.end();
+    })
+    
 });
 
 
