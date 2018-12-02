@@ -62,7 +62,7 @@ export class AddServicePage {
     const reader = new FileReader();
     reader.onload = (event: any) => {
       this.service.image = event.target.result.toString();
-    }
+    };
     reader.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
   }
@@ -88,6 +88,7 @@ export class AddServicePage {
     else{
       this.serviceProv.updateWithoutImage(this.service)
         .subscribe((result) => {
+          console.log(result);
           this.manageDisplaySuccessOrError(result);
         })
     }
@@ -102,7 +103,7 @@ export class AddServicePage {
     var alert = this.alertCtrl.create();
 
     if(result.success){
-      if(this.isUpdateModal()){
+      if(!this.isUpdateModal()){
         alert.setTitle('Succes');
         alert.setSubTitle('Le service a été ajouté correctement.');
         alert.addButton({

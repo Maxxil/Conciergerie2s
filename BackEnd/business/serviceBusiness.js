@@ -29,7 +29,7 @@ module.exports = {
         return Service.find({}).where('prestations').ne([]).populate('prestations');
     },
     deleteImage: function(filename){
-        const filepath = "./data/images/service" + filename;
+        const filepath = "./data/images/service/" + filename;
         fs.unlink(filepath);
     },
     delete: function(id){

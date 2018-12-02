@@ -21,11 +21,11 @@
   <div class="success" *ngIf="isSaved">
     La sauvegarde s'est terminée avec succés.
   </div>
-  
+
   <ion-list>
-    <ion-item text-center>        
-        <img src="{{service.image}}" (click)="importImage()" *ngIf="!isUpdateModal()">        
-        <img src="{{serverImage + service.image}}" (click)="importImage()" *ngIf="isUpdateModal()">
+    <ion-item text-center>
+        <img src="{{service.image}}" (click)="importImage()" *ngIf="!isUpdateModal() || isImageUploaded">
+        <img src="{{serverImage + service.image}}" (click)="importImage()" *ngIf="isUpdateModal() && !isImageUploaded">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
     </ion-item>
     <ion-item>

@@ -46,20 +46,21 @@ router.get('/:id', function(req, res){
 });
 
 router.post('/' , function(req, res){
-    var service = new Service({
-        name : req.params.name,
-        description : req.params.description
-    });
-    serviceBusiness.update(service).then(function(result){
+    console.log("Mise a jour sans image");
+    serviceBusiness.update(req.body.service).then(function(result){
+        console.log(result);
         res.json({
-            data : result.ok
+            success : true
         });
         res.end();
     })
 });
 
 router.post('/image' , upload.single('file') , function(req, res){
-    serviceBusiness.getById(req.params._id).exec(function(err, result){
+    console.log("Mise a jour avec image");
+    var service = JSON.parse(req.body.service);
+    serviceBusiness.getById(service._id).exec(function(err, result){
+        console.log(result);
         if(err)
         {
             res.json({
@@ -69,19 +70,28 @@ router.post('/image' , upload.single('file') , function(req, res){
             res.end();
         }
         else{
+            console.log(result.image);
             serviceBusiness.deleteImage(result.image);
-            var service = new Service({
-                nom : req.params.name,
-                description : req.params.description,
-                image : filename,
-                prestations : []
-            });
-            serviceBusiness.add(service);
-            res.json({
-                success : true,
-                error : errorEnum.error.AUCUNE_ERREUR
+            console.log(filename);
+            result.nom = service.nom;
+            result.description = service.description;
+            result.image = filename;
+            serviceBusiness.update(result).then(function() {
+                    res.json({
+                        success: true,
+                        error: errorEnum.error.AUCUNE_ERREUR
+                    })
+                    res.end();
+                }
+            ).catch(function () {
+                res.json({
+                    success: false,
+                    error: errorEnum.error.SERVICE_INSERT_ERROR
+                });
+                res.end();
             })
-            res.end();
+
+
         }
     });
 });
