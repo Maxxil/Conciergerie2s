@@ -31,9 +31,9 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <img src="assets/imgs/prestation.jpg"/>
+  <!-- <img src="assets/imgs/prestation.jpg"/> -->
   <ion-card *ngFor="let element of prestations" >
-      <ion-fab right>
+     <!-- <ion-fab right>
         <button ion-fab (click)="deletePrestation(element)">
           <ion-icon name="close"></ion-icon>
         </button>
@@ -42,6 +42,14 @@
         <button ion-fab (click)="updatePrestation(element)">
           <ion-icon float-end float-right name="create" ></ion-icon>
         </button>
+      </ion-fab>
+-->
+      <ion-fab left>
+        <button ion-fab mini><ion-icon name="arrow-dropright"></ion-icon></button>
+        <ion-fab-list  side="right">
+          <button ion-fab (click)="updatePrestation(element)" mini><ion-icon name="create"></ion-icon></button>            
+          <button ion-fab (click)="deletePrestation(element)" mini><ion-icon name="trash"></ion-icon></button>            
+        </ion-fab-list>
       </ion-fab>
     <img src="{{prestationImageUrl + element.image}}" (click)="getPrestataires(element)"/>
     <ion-card-title text-center >{{element.nom}}</ion-card-title>
