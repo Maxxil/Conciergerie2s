@@ -60,8 +60,8 @@
         <ion-col>
             {{prestation.nom}}
         </ion-col>
-        <ion-col (click)="deletePrestationInService(service,prestation)">
-          x
+        <ion-col>
+            <button ion-button (click)="deletePrestationInService(service,prestation)"><ion-icon name="trash"></ion-icon></button>
         </ion-col>
       </ion-row>
     </ng-template>
