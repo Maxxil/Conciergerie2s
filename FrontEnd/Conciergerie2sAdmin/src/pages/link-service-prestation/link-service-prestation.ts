@@ -62,12 +62,49 @@ export class LinkServicePrestationPage {
   }
 
   public linkServiceToPrestation(){
-    this.servicePvd.linkServiceToPrestation(this.selectedService, this.selectedPrestation).subscribe((results) =>{
-      console.log(results);
-      this.manageDisplaySuccessOrError(results);
-      this.getServiceWithPrestations();
+    console.log(this.selectedService);
+    if(this.selectedService != null && this.selectedPrestation != null){
+      this.servicePvd.linkServiceToPrestation(this.selectedService, this.selectedPrestation).subscribe((results) =>{
+        console.log(results);
+        this.manageDisplaySuccessOrError(results);
+        this.getServiceWithPrestations();
+      })
+    }
+    else{
+      this.alertCtrl.create({
+        title : 'Important',
+        message : "Vous devez selectionner un service et une prestation",
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+    }
+
+  }
+
+  public deletePrestationInService(service: ServiceModel, prestation: PrestationModel){
+    this.servicePvd.deletePrestationInService(service,prestation).subscribe(result =>{
+      if(result.success){
+        this.alertCtrl.create({
+          title : 'Suppression',
+          message : "La suppression s'est parfaitement executée",
+          buttons : [{
+            text : 'OK'
+          }]
+        }).present();
+        this.getServiceWithPrestations();
+      }else{
+        this.alertCtrl.create({
+          title : 'Erreur',
+          message : "Une erreur s'est produit lors de la suppression",
+          buttons : [{
+            text : 'OK'
+          }]
+        }).present();
+      }
     })
   }
+
   manageDisplaySuccessOrError(result: ServiceResult) {
     var alert = this.alertCtrl.create();
 
@@ -76,7 +113,8 @@ export class LinkServicePrestationPage {
       alert.setSubTitle('Le service et la prestation on été liés correctement.');
       alert.addButton({
         text: 'OK'
-      })
+      });
+      this.getServiceWithPrestations();
     }
     else {
       alert.setTitle('Erreur');

@@ -64,12 +64,27 @@ export class LinkPrestatairePrestataionPage {
   }
 
   public linkPrestationToPRestataire(){
-    this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
-      this.manageDisplaySuccessOrError(result);
-      if(result.success){
-        this.getPrestationsWithPrestataires();
-      }
-    })
+    if(this.selectedPrestation != null && this.selectedPrestataire != null){
+      this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
+        this.manageDisplaySuccessOrError(result);
+        if(result.success){
+          this.getPrestationsWithPrestataires();
+        }
+      })
+    }
+    else{
+      this.alertCtrl.create({
+        title : 'Important',
+        message : "Vous devez selectionner une prestation et un prestataire",
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+    }
+  }
+
+  public deleteLinkPrestationToPrestataire(){
+
   }
 
   manageDisplaySuccessOrError(result: Result) {

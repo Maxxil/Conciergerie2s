@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { ServiceModel } from '../../model/Models/ServiceModel'
 import { Observable } from 'rxjs/Observable';
 import {Result} from "../../model/Results/Result";
+import {PrestationModel} from "../../model/Models/PrestationModel";
 
 /*
   Generated class for the ServiceProvider provider.
@@ -62,5 +63,9 @@ export class ServiceProvider {
 
   delete(service : ServiceModel): Observable<Result>{
     return this.http.delete<Result>(SERVICE_URL + '/' + service._id);
+  }
+
+  deletePrestationInService(service : ServiceModel, prestation: PrestationModel) : Observable<Result>{
+    return this.http.delete<Result>(LIER_SERVICE_PRESTATION_URL + '/' + service._id + '/' + prestation._id);
   }
 }

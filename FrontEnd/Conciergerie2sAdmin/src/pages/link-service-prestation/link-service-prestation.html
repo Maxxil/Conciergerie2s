@@ -52,7 +52,7 @@
         </ion-row>
         <ng-template ngFor let-service [ngForOf]="serviceWithPrestations" let-serviceIndex="index">
             <ng-template ngFor let-prestation [ngForOf]="service.prestations" let-prestationIndex="index">
-         
+
       <ion-row>
         <ion-col>
             {{service.nom}}
@@ -60,13 +60,13 @@
         <ion-col>
             {{prestation.nom}}
         </ion-col>
-        <ion-col>
-            x
-          </ion-col>
+        <ion-col (click)="deletePrestationInService(service,prestation)">
+          x
+        </ion-col>
       </ion-row>
     </ng-template>
   </ng-template>
-  </ion-grid>   
- 
+  </ion-grid>
+
 
 </ion-content>

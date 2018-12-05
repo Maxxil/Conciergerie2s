@@ -50,10 +50,15 @@ module.exports = {
         })
     },
     deletePrestation : function (idService, idPrestation) {
+        console.log("Suppression lien service prestation");
         Service.find({_id : idService}).exec(function (err, service) {
-            const index = service.prestations.indexOf(idPrestation);
-            service.prestations.slice(index,1);
-            service.save();
+            console.log(service);
+            if(service[0] != null){
+                const index = service[0].prestations.indexOf(idPrestation);
+                service[0].prestations.splice(index,1);
+                service[0].save();
+            }
+
         })
     }
 };
