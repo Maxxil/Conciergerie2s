@@ -12,12 +12,16 @@ router.use(bodyParser.json());
 var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, './data/images/prestation');
+        if(file != null){
+            cb(null, './data/images/prestation');
+        }
     },
     filename : function(req, file,cb){
-        var datetimestamp = Date.now();
-        filename = file.fieldname + '-' + datetimestamp + '.jpg';
-        cb(null,filename);
+        if(file != null){
+            var datetimestamp = Date.now();
+            filename = file.fieldname + '-' + datetimestamp + '.jpg';
+            cb(null,filename);
+        }
     }
 });
 
@@ -51,7 +55,6 @@ router.get('/:id' , function(req , res){
 });
 
 router.post('/' , function(req, res){
-    console.log(req.body);
     var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.update(prestation).then(function(result){
         res.json({
@@ -62,7 +65,6 @@ router.post('/' , function(req, res){
 });
 
 router.post('/image', upload.single('file'), function (req, res) {
-    console.log(req.body);
     var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.getById(prestation._id).exec(function(err,result){
         if(result != null){
@@ -101,6 +103,8 @@ router.post('/byIdUtilisateur' , function (req, res) {
 
 router.put('/' , upload.single('file'), function(req, res){
     try{
+        console.log("Ajout prestation");
+        console.log(filename);
         var promise = prestationBusiness.getByNom(req.body.nom);
         promise.exec(function (err,result) {
             if(result == null || result.length == 0){

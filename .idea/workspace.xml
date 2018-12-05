@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e50ed3f-2ed2-4849-9224-7caecbc679bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/business/serviceBusiness.js" afterPath="$PROJECT_DIR$/BackEnd/business/serviceBusiness.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/lierServicePrestationController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/lierServicePrestationController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-prestataire-prestataion/link-prestataire-prestataion.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-prestataire-prestataion/link-prestataire-prestataion.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/service/service.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/service/service.ts" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BackEnd/data/images/prestation/file-1540668351905.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BackEnd/data/images/prestation/file-1540668446221.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/BackEnd/data/images/prestation/file-1540669797797.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/prestationController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/prestationController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/serviceController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/serviceController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,11 +46,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serviceBusiness.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serviceBusiness.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BackEnd/business/serviceBusiness.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
+            <state relative-caret-position="1239">
               <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prestationController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/controller/prestationController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="105" column="40" lean-forward="false" selection-start-line="105" selection-start-column="40" selection-end-line="105" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serviceController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/controller/serviceController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utilisateurController.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BackEnd/controller/utilisateurController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,26 +118,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prestationBusiness.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/business/prestationBusiness.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lierServicePrestationController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/controller/lierServicePrestationController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="60" column="32" lean-forward="false" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="link-prestataire-prestataion.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-prestataire-prestataion/link-prestataire-prestataion.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,16 +126,6 @@
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="link-prestataire-prestataion.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-prestataire-prestataion/link-prestataire-prestataion.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="42" column="47" lean-forward="false" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -179,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BackEnd/controller/commandeForfaitController.js" />
         <option value="$PROJECT_DIR$/BackEnd/controller/commandeHoraireController.js" />
         <option value="$PROJECT_DIR$/BackEnd/controller/devisController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/CommandeForfaitModel.ts" />
@@ -213,7 +213,6 @@
         <option value="$PROJECT_DIR$/BackEnd/config/security.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/service/service.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/add-service/add-service.html" />
-        <option value="$PROJECT_DIR$/BackEnd/controller/serviceController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/add-service/add-service.ts" />
         <option value="$PROJECT_DIR$/BackEnd/controller/lierPrestationPrestataire.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/prestation/prestation.ts" />
@@ -223,13 +222,15 @@
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/add-prestation/add-prestation.html" />
         <option value="$PROJECT_DIR$/BackEnd/business/prestationBusiness.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/prestation/prestation.ts" />
-        <option value="$PROJECT_DIR$/BackEnd/controller/prestationController.js" />
         <option value="$PROJECT_DIR$/BackEnd/controller/lierServicePrestationController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-prestataire-prestataion/link-prestataire-prestataion.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.html" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/service/service.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/link-service-prestation/link-service-prestation.ts" />
         <option value="$PROJECT_DIR$/BackEnd/business/serviceBusiness.js" />
+        <option value="$PROJECT_DIR$/BackEnd/controller/prestationController.js" />
+        <option value="$PROJECT_DIR$/BackEnd/controller/serviceController.js" />
+        <option value="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
       </list>
     </option>
   </component>
@@ -314,12 +315,6 @@
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -327,6 +322,13 @@
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
+              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
@@ -509,12 +511,12 @@
       <workItem from="1542048661426" duration="4545000" />
       <workItem from="1542135387289" duration="48461000" />
       <workItem from="1542554777800" duration="17113000" />
-      <workItem from="1543053788709" duration="19287000" />
+      <workItem from="1543053788709" duration="20371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158474000" />
+    <option name="totallyTimeSpent" value="159558000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -582,16 +584,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/commande-horaire-detail/commande-horaire-detail.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/commande-forfait-detail/commande-forfait-detail.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
@@ -858,14 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/serviceController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="124" column="3" lean-forward="true" selection-start-line="124" selection-start-column="3" selection-end-line="124" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Url.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -920,14 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/prestationController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="65" column="51" lean-forward="false" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1022,8 +998,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/business/serviceBusiness.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
+        <state relative-caret-position="1239">
           <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/controller/prestationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="105" column="40" lean-forward="false" selection-start-line="105" selection-start-column="40" selection-end-line="105" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/controller/serviceController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/controller/utilisateurController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>

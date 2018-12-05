@@ -10,12 +10,16 @@ var Enums = require('./../helper/enums');
 var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, './data/images/utilisateur');
+        if(file != null){
+            cb(null, './data/images/utilisateur');
+        }
     },
     filename : function(req, file,cb){
-        var datetimestamp = Date.now();
-        filename = file.fieldname + '-' + datetimestamp + '.jpg';
-        cb(null,filename);
+        if(file != null){
+            var datetimestamp = Date.now();
+            filename = file.fieldname + '-' + datetimestamp + '.jpg';
+            cb(null,filename);
+        }
     }
 });
 
