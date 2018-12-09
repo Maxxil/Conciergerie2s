@@ -13,13 +13,16 @@ router.use(bodyParser.json());
 var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
-        cb(null, './data/images/service');
+        if(file != null){
+            cb(null, './data/images/service');
+        }
     },
     filename : function(req, file,cb){
-        console.log(file);
-        var datetimestamp = Date.now();
-        filename = file.fieldname + '-' + datetimestamp + '.jpg';
-        cb(null,filename);
+        if(file != null){
+            var datetimestamp = Date.now();
+            filename = file.fieldname + '-' + datetimestamp + '.jpg';
+            cb(null,filename);
+        }
     }
 });
 
