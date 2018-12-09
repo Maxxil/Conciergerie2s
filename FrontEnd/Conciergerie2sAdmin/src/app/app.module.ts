@@ -24,8 +24,10 @@ import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prest
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
 import {PrestatairePage} from "../pages/prestataire/prestataire";
 import {NotificationsPage} from "../pages/notifications/notifications";
+
 import {ChatPage} from '../pages/chat/chat';
 import { ChatService } from "../providers/chat/chat-service";
+
 import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
 import {UtilisateurPage} from "../pages/utilisateur/utilisateur";
 import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-detail";
@@ -43,6 +45,9 @@ import {ProfilePage} from "../pages/profile/profile";
 import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/commande-horaire-detail";
 import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+const configChat: SocketIoConfig = { url: 'http://localhost:5555', options: {}} ;
 
 @NgModule({
   declarations: [
@@ -75,7 +80,8 @@ import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp),    
+    SocketIoModule.forRoot(configChat),
     HttpClientModule,
     BrowserAnimationsModule
   ],
@@ -126,6 +132,4 @@ import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
   ]
 })
 export class AppModule {}
-
-
 

@@ -14,7 +14,7 @@
         <div *ngFor="let msg of msgList"
              class="message"
              [class.left]=" msg.userId === toUser.id "
-             [class.right]=" msg.userId === user.id ">         
+             [class.right]=" msg.userId === fromUser.id ">         
           <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
           <div class="msg-detail">
             <div class="msg-info">
@@ -34,7 +34,7 @@
     <ion-footer no-border [style.height]="'55px'">
         <div class="input-wrap">
           <textarea #chat_input
-                    placeholder="Text Input"
+                    placeholder="tapez votre message ici"
                     [(ngModel)]="editorMsg"
                     (keyup.enter)="sendMsg()"
                     (focusin)="onFocus()">

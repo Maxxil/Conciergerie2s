@@ -37,6 +37,7 @@ export class LoginPage {
       promise.subscribe((result) => {
         if(result.success){
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
+          
           this.navCtrl.push(MenuPage);
         }
       })
@@ -60,7 +61,7 @@ export class LoginPage {
       }
       else
       {
-        console.log(result.data);
+        console.log(result.data);        
         localStorage.setItem("IdUtilisateur" , result.user[0]._id);
         localStorage.setItem('Token', result.data);
         this.navCtrl.push(MenuPage);
