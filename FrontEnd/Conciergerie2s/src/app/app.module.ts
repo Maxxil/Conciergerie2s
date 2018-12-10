@@ -19,6 +19,7 @@ import {SigninPage} from "../pages/signin/signin";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {ProfilePage} from "../pages/profile/profile";
 import {ChatPage} from "../pages/chat/chat";
+import { ChatService } from "../providers/chat/chat-service";
 import {PrestationsPage} from "../pages/prestations/prestations";
 import { PrestationProvider } from '../providers/prestation/prestation';
 import {LoginProvider} from "../providers/login/login";
@@ -37,6 +38,11 @@ import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postuler";
 import { PaypalProvider } from '../providers/paypal/paypal';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
+const configChat: SocketIoConfig = { url: 'http://localhost:5555', options: {}} ;
+
 @NgModule({
   declarations: [
     MyApp,
@@ -64,6 +70,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    SocketIoModule.forRoot(configChat),
     HttpClientModule,
   ],
   bootstrap: [IonicApp],
@@ -103,7 +110,8 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
     DevisProvider,
     CommandeProvider,
     PaypalProvider,
-    InAppBrowser
+    InAppBrowser,
+    ChatService
   ]
 })
 export class AppModule {}

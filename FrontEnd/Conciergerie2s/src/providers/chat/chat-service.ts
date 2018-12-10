@@ -9,7 +9,7 @@ export class ChatMessage {
   userId: string;
   userName: string;
   userAvatar: string;
-  toUserId: string;  
+  toUserId: string;
   time: number | string;
   message: string;
   status: string;
@@ -38,7 +38,7 @@ export class ChatService {
 
   connect() {
     this.socket.connect();    
-    this.socket.emit('c2s-connect');
+    this.socket.emit('client-connect');
   }
 
   retrieveMsg() : Observable<any>
