@@ -2,6 +2,7 @@
  * Created by Massil on 12/01/2017.
  */
 var mongoose = require("mongoose");
+var autoIncrement = require('mongoose-auto-increment');
 var dbconf = module.require("./dbconf");
 
 var connectionString =
@@ -10,6 +11,7 @@ var connectionString =
     + ':' + dbconf.port
     + '/' + dbconf.dbname;
 
-var dbPromise = mongoose.connect(connectionString, { useNewUrlParser: true });
+var dbPromise = mongoose.createConnection(connectionString, { useNewUrlParser: true });
+autoIncrement.initialize(dbPromise);
 
 module.exports = dbPromise;

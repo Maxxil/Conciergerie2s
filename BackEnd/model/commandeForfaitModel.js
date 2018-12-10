@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
+var autoIncrement = require("mongoose-auto-increment");
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 var commandeForfait = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
@@ -14,4 +16,7 @@ var commandeForfait = new mongoose.Schema({
     quantite : 'number'
 });
 
-module.exports = mongoose.model("CommandeForfait" , commandeForfait);
+commandeForfait.plugin(autoIncrement.plugin, {model : 'CommandeForfait', field : "compteur",startAt: 1});
+
+
+module.exports = db.model("CommandeForfait" , commandeForfait);

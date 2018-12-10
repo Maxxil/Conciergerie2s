@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 var service = new mongoose.Schema({
     nom: 'String',
@@ -8,4 +9,4 @@ var service = new mongoose.Schema({
     prestations : [{type : Schema.Types.ObjectId, ref:'Prestation'}]
 });
 
-module.exports = mongoose.model("Service", service);
+module.exports = db.model("Service", service);

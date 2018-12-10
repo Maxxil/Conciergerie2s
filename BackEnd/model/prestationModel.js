@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 var prestation = new mongoose.Schema({
     image : 'String',
@@ -12,4 +13,4 @@ var prestation = new mongoose.Schema({
     typeprix: 'Number'  // horaire ou forfait ou sur devis
 });
 
-module.exports = mongoose.model("Prestation" , prestation);
+module.exports = db.model("Prestation" , prestation);

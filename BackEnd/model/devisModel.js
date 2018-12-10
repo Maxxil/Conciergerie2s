@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
+var autoIncrement = require("mongoose-auto-increment");
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 var devis = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
@@ -13,4 +15,6 @@ var devis = new mongoose.Schema({
     status : 'number'
 });
 
-module.exports = mongoose.model("Devis" , devis);
+devis.plugin(autoIncrement.plugin, {model : 'Devis', field : "compteur",startAt: 1,});
+
+module.exports = db.model("Devis" , devis);

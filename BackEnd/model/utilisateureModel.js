@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 
 var utilisateur = new mongoose.Schema({
@@ -21,4 +22,4 @@ var utilisateur = new mongoose.Schema({
     historique : [{ type: Schema.Types.ObjectId, ref: 'Historique' }]
 });
 
-module.exports = mongoose.model("Utilisateur", utilisateur);
+module.exports = db.model("Utilisateur", utilisateur);

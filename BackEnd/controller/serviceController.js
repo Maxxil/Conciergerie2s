@@ -31,12 +31,15 @@ var upload = multer({
 });
 
 router.get('/', function(req, res){
+    console.log("services");
     serviceBusiness.getAll().exec(function(err, result){
+        console.log(result);
         res.json({
             data : result
         });
         res.end();
     })
+
 });
 
 router.get('/:id', function(req, res){
@@ -100,6 +103,7 @@ router.post('/image' , upload.single('file') , function(req, res){
 });
 
 router.put('/' , upload.single('file'), function(req, res){
+    console.log("Ajout service");
     var service = new Service({
         nom : req.body.nom,
         description : req.body.description,
@@ -107,6 +111,7 @@ router.put('/' , upload.single('file'), function(req, res){
     });
 
     serviceBusiness.add(service);
+    console.log("Service ajouté");
     res.json({
         success : true,
         error : errorEnum.error.AUCUNE_ERREUR

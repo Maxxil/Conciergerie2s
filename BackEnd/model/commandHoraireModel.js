@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
+var autoIncrement = require("mongoose-auto-increment");
 var Schema = mongoose.Schema;
+var db = require('./../config/db');
 
 var commandeHoraire = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
@@ -14,4 +16,6 @@ var commandeHoraire = new mongoose.Schema({
     quantite : 'number'
 });
 
-module.exports = mongoose.model("CommandeHoraire" , commandeHoraire);
+commandeHoraire.plugin(autoIncrement.plugin, {model : 'CommandeHoraire', field : "compteur",startAt: 1});
+
+module.exports = db.model("CommandeHoraire" , commandeHoraire);

@@ -4,7 +4,11 @@ var Service = require('./../model/serviceModel');
 
 module.exports = {
     add: function(service){
+        console.log(service);
         this.getByName(service.nom).exec(function(err, result){
+            console.log(err);
+            console.log(result);
+            console.log(service);
             if(result != null && result.length == 0){
                 service.save();
             }
