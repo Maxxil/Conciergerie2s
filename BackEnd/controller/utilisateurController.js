@@ -4,6 +4,7 @@ var multer = require('multer');
 var fs = require('fs');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
+var notificationBusiness = require('./../business/notificationBusiness');
 var Utilisateur = require('./../model/utilisateureModel');
 var Enums = require('./../helper/enums');
 
@@ -86,6 +87,7 @@ router.put('/' , upload.single('image'),function(req, res){
         historique : []
     });
     utilisateurBusiness.create(utilisateur);
+    notificationBusiness.newUtilisateur(utilisateur);
     res.json({
         success : true
     });

@@ -19,6 +19,8 @@ export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
 
+export const CHAT_URL = "http://149.56.13.37:5555";
+//export const CHAT_URL = "http://localhost:5555";
 
 export const HTTP_OPTIONS = {
   headers: new HttpHeaders({

@@ -41,7 +41,8 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
-const configChat: SocketIoConfig = { url: 'http://localhost:5555', options: {}} ;
+import { CHAT_URL } from '../model/UrlConstants';
+const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
   declarations: [

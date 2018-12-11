@@ -21,14 +21,15 @@
           <h2>{{prestation.nom}}</h2>
           <h3>{{prestation.prix}} € / h</h3>
         </ion-list-header>
-    <ion-item>
-      <ion-label fixed>Date</ion-label>
-      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.date"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed>Heure</ion-label>
-      <ion-input type="time" [(ngModel)]="commandeHoraire.heure"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label fixed>Date</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.date"></ion-datetime>      
+          </ion-item>
+          <ion-item>
+            <ion-label fixed>Heure</ion-label>      
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.heure"></ion-datetime>      
+          </ion-item>
+      
     <ion-item>
       <ion-label fixed>Quantité</ion-label>
       <ion-input type="number" min="1" [(ngModel)]="commandeHoraire.quantite"></ion-input>

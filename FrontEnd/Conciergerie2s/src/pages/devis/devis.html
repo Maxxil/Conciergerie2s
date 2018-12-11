@@ -16,17 +16,19 @@
 <ion-content padding>
   
   <ion-list>
-    <ion-list-header>
-          Demander un devis <br><strong>{{prestation.nom}}</strong>
-     </ion-list-header>
-    <ion-item>
-      <ion-label fixed>Détail de votre demande</ion-label>      
-      <ion-textarea rows="3" required [(ngModel)]="devis.information"id="information" name="information"></ion-textarea>
-    </ion-item>
-    <ion-item>
+      <ion-list-header>      
+          <h1>Demander un devis</h1>
+          <h2>{{prestation.nom}}</h2>          
+      </ion-list-header>
+     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [(ngModel)]="devis.date"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="devis.date"></ion-datetime>            
+    </ion-item> 
+     <ion-item>
+      <ion-label stacked>Détail de votre demande</ion-label><br>      
+      <ion-textarea rows="3" required [(ngModel)]="devis.information" id="information" name="information"></ion-textarea>
     </ion-item>
+    
   </ion-list>
   <button ion-button (click)="commander()">Commander</button>
   <button ion-button (click)="annuler()">Annuler</button>

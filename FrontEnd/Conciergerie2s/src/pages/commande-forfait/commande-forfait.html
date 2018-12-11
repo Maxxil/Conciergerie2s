@@ -23,11 +23,11 @@
       </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}"  [(ngModel)]="commandeForfait.date"></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.date"></ion-datetime>      
     </ion-item>
     <ion-item>
-      <ion-label fixed>Heure de départ</ion-label>
-      <ion-input type="time" [(ngModel)]="commandeForfait.heureDebut"></ion-input>
+      <ion-label fixed>Heure</ion-label>      
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.heureDebut"></ion-datetime>      
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>

@@ -20,11 +20,11 @@
     </ion-list-header>
     <ion-item>
       <ion-label fixed>Détail de votre demande</ion-label>
-      <ion-textarea rows="3" required [(ngModel)]="commande.information"id="information" name="information"></ion-textarea>
+      <ion-textarea rows="3" required [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [value]="commande.date | date : 'yyyy-MM-dd'" disabled=""></ion-input>
+      <ion-label fixed>Date</ion-label>      
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" disabled=""></ion-datetime>            
     </ion-item>
   </ion-list>
   <button ion-button (click)="postuler()">Postuler</button>
