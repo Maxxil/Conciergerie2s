@@ -24,6 +24,8 @@ export class ChatPage {
   editorMsg = '';
   @ViewChild('chat_input') messageInput: ElementRef;
   @ViewChild(Content) content: Content;
+  allUsersOnLine = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
     private chatService: ChatService) {        
@@ -54,7 +56,7 @@ export class ChatPage {
       .pollServer()
       .toPromise()
       .then((data : any) =>
-      {
+      {       
         this.getMsg();
          
       })
@@ -63,6 +65,7 @@ export class ChatPage {
         console.log(error);
       });
    }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
@@ -70,15 +73,6 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-   /* this.chatService.getMsgList()
-      .subscribe((message) =>
-      {
-
-         // Update the messages array
-         this.pushNewMsg(message);
-      });
-*/
-
   }
 
   
@@ -87,7 +81,7 @@ export class ChatPage {
    // this.events.unsubscribe('chat:received');
   }
 
-    /**
+   /**
    * @name getMsg
    * @returns {Promise<ChatMessage[]>}
    */
@@ -117,10 +111,18 @@ export class ChatPage {
   }
 
   pushNewMsg(msg: ChatMessage) {
-    
+    console.log(this.allUsersOnLine);
+    if(this.allUsersOnLine.filter(item => item.id== msg.toUserId).length == 0) {
+      if(msg.toUserId ==  this.profile._id)
+        this.allUsersOnLine.push({id: msg.toUserId, name: msg.userName});
+    }
     this.msgList.push(msg);
     console.log(this.msgList);
     this.scrollToBottom();
+  }
+
+  selectUser(userid) {
+    console.log('Choix utilisateur '+userid);
   }
 
   sendMsg() {

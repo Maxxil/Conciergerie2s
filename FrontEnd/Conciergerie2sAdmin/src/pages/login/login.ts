@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login/login';
 import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
-
+import { Socket } from 'ng-socket-io';
 /**
  * Generated class for the LoginPage page.
  *
@@ -22,7 +22,7 @@ export class LoginPage {
      public navCtrl: NavController
     ,public navParams: NavParams
     ,public loginProvider: LoginProvider
-    ,public alertCtrl: AlertController) {
+    ,public alertCtrl: AlertController , public socket: Socket) {
       this.user = new UtilisateurModel();
       this.tryConnect();
   }
@@ -37,7 +37,7 @@ export class LoginPage {
       promise.subscribe((result) => {
         if(result.success){
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
-          
+          this.socket.emit('c2s-connect', result.user[0]);
           this.navCtrl.push(MenuPage);
         }
       })
@@ -64,6 +64,7 @@ export class LoginPage {
         console.log(result.data);        
         localStorage.setItem("IdUtilisateur" , result.user[0]._id);
         localStorage.setItem('Token', result.data);
+        this.socket.emit('c2s-connect', result.user[0]);
         this.navCtrl.push(MenuPage);
       }
     });

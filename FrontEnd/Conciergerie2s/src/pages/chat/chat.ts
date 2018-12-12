@@ -25,6 +25,8 @@ export class ChatPage {
   editorMsg = '';
   @ViewChild('chat_input') messageInput: ElementRef;
   @ViewChild(Content) content: Content;
+
+  adminIsOnline = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
     private chatService: ChatService) {        
@@ -58,6 +60,7 @@ export class ChatPage {
       .toPromise()
       .then((data : any) =>
       {
+        this.isAdminOnline();
         this.getMsg();
          
       })
@@ -102,6 +105,15 @@ export class ChatPage {
        this.pushNewMsg(message);
 
 
+    });
+  }
+
+  isAdminOnline() {
+
+    this.chatService.retrieveMsg()
+    .subscribe((data) =>
+    {     
+       this.isAdminOnline = data.isAdminOnline;
     });
   }
 

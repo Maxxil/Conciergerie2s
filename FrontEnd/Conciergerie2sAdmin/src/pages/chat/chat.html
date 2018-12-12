@@ -7,37 +7,13 @@
   
   </ion-header>
 
-  <ion-content>
-
-      <div margin>
+  <ion-content >
+    
+      <div margin>          
           <ion-slides slidesPerView="5" spaceBetween="5px">
-              <ion-slide>
-                  <button ion-button class="chat-user-btn" outline>User1</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User2</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User2</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User3</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User4</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User5</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User6</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User7</button>
-              </ion-slide>
-              <ion-slide>
-                  <button ion-button class="chat-user-btn">User8</button>
-              </ion-slide>
+              <ion-slide *ngFor="let user of allUsersOnLine">
+                  <button ion-button class="chat-user-btn"  (click)="selectUser(user.id)" outline>{{ user.name }}</button>
+              </ion-slide>             
             </ion-slides>
       </div>
 
@@ -71,7 +47,7 @@
                     (keyup.enter)="sendMsg()"
                     (focusin)="onFocus()">
           </textarea>
-          <button ion-button clear icon-only item-right (click)="sendMsg()">
+          <button #chat_button ion-button clear icon-only item-right (click)="sendMsg()" >
             <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
           </button>
         </div>

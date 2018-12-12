@@ -6,6 +6,7 @@ import {CommandesPage} from "../commandes/commandes";
 import {LoginPage} from "../login/login";
 import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
 import {ProfilePage} from "../profile/profile";
+import { ChatService } from "../../providers/chat/chat-service";
 
 /**
  * Generated class for the MenuPage page.
@@ -22,7 +23,7 @@ import {ProfilePage} from "../profile/profile";
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
   public rootPage : Page= TabsPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
   }
 
   ionViewDidLoad() {
@@ -46,7 +47,8 @@ export class MenuPage {
   }
 
   deconnecter(){
-    localStorage.removeItem('IdUtilisateur');
+    this.chatService.logout(); 
+    localStorage.removeItem('IdUtilisateur');    
     localStorage.removeItem('Token');
     this.navCtrl.push(LoginPage);
   }

@@ -41,6 +41,19 @@ export class ChatService {
     this.socket.emit('client-connect');
   }
 
+  
+  isAdminOnline() : Observable<any>
+  {
+     return new Observable((observer) =>
+     {
+        this.socket.on('is-admin-online', (data) =>
+        {
+          console.log(data);
+           observer.next(data);
+        });
+     });
+  }
+
   retrieveMsg() : Observable<any>
   {
      return new Observable((observer) =>
