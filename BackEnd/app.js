@@ -30,12 +30,6 @@ app.use('/prestation/image' , express.static(__dirname + '/data/images/prestatio
 
 app.use('/' , require('./controller'));
 
-// Set up route
-app.get('/', (req, res) =>
-{
-   res.json({ message: 'Serveur MongoDB OK' });
-});
-
 app.listen(port, function() {
     console.log("API is running on port: " + port);
     utilisateurBusiness.any().exec(function(err, result){
