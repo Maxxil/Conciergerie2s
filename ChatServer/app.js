@@ -15,7 +15,7 @@ app.use(function(req, res, next)
 // Set up route
 app.get('/', (req, res) =>
 {
-   res.json({ message: 'Serveur OK' });
+   res.json({ message: 'Serveur CHAT OK' });
 });
 
 var numConnected = 0;
