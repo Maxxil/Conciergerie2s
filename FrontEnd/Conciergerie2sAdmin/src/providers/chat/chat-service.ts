@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators/map';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Socket } from "ng-socket-io";
+import { CHAT_URL} from "../../model/Url";
 
 export class ChatMessage {
   messageId: string;
@@ -24,7 +25,7 @@ export class UserInfo {
 @Injectable()
 export class ChatService {
 
-  private _server: string = 'http://localhost:5555';
+  private _server: string = CHAT_URL;
 
   constructor(private http: HttpClient,              
               private socket: Socket) {              
@@ -38,7 +39,7 @@ export class ChatService {
 
   connect() {
     this.socket.connect();    
-    this.socket.emit('c2s-connect');
+    
   }
 
   retrieveMsg() : Observable<any>
@@ -46,6 +47,18 @@ export class ChatService {
      return new Observable((observer) =>
      {
         this.socket.on('message', (data) =>
+        {
+          console.log(data);
+           observer.next(data);
+        });
+     });
+  }
+
+  retrieveUserOnline() : Observable<any>
+  {
+     return new Observable((observer) =>
+     {
+        this.socket.on('users-onlines', (data) =>
         {
           console.log(data);
            observer.next(data);

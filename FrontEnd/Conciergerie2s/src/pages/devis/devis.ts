@@ -24,6 +24,7 @@ export class DevisPage {
 
   private prestation : PrestationModel;
   public devis : DevisModel;
+  public today;
   public loading = this.loader.create({
     spinner: 'hide',
     content: 'Loading Please Wait...'
@@ -38,6 +39,7 @@ export class DevisPage {
     this.devis = new DevisModel();
     this.prestation = this.navParams.get("Prestation");
     this.devis.idPrestation = this.prestation._id;
+    this.today= new Date(); 
   }
 
   commander(){

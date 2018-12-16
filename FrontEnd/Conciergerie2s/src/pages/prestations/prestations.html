@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
       <ion-list-header>
           <h1>{{service.nom}}</h1>
@@ -22,7 +22,7 @@
           <ion-avatar item-start>
             <img src="{{prestationImageUrl + element.image}}">
           </ion-avatar>
-          <ion-label align-items-center>{{element.nom}}</ion-label>
+          <ion-label text-wrap>{{element.nom}}</ion-label>
           <ion-note *ngIf="element.typeprix == 1" item-end class="balenced" >{{ element.prix}} € / h</ion-note>
           <ion-note *ngIf="element.typeprix == 2" item-end class="balenced" >Forfait {{ element.prix}} € </ion-note>
           <ion-note *ngIf="element.typeprix == 3" item-end class="balenced" >Sur devis</ion-note>

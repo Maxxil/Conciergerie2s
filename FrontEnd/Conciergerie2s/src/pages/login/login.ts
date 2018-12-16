@@ -4,6 +4,7 @@ import {SigninPage} from '../signin/signin';
 import {LoginProvider} from "../../providers/login/login";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {MenuPage} from "../menu/menu";
+import { Socket } from 'ng-socket-io';
 
 /**
  * Generated class for the LoginPage page.
@@ -23,7 +24,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public loginPvd : LoginProvider
-              , public alertCtrl : AlertController) {
+              , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
     this.tryConnect();
   }
@@ -39,6 +40,7 @@ export class LoginPage {
         console.log(result);
         if(result.success){
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
+          this.socket.emit('client-connect', result.user[0]);
           this.navCtrl.push(MenuPage);
         }
       })
@@ -63,6 +65,7 @@ export class LoginPage {
           console.log(result.user[0]._id);
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           localStorage.setItem('Token', result.data);
+          this.socket.emit('client-connect', result.user[0]);
           this.navCtrl.push(MenuPage);
         }
       });

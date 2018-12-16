@@ -5,6 +5,7 @@ var fs = require('fs');
 var bcrypt = require('bcrypt');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
+var notificationBusiness = require('./../business/notificationBusiness');
 var Utilisateur = require('./../model/utilisateureModel');
 var Enums = require('./../helper/enums');
 const saltRounds = 10;
@@ -67,25 +68,25 @@ router.get('/prestataire/:token' , function (req, res) {
         res.end();
     });
 });
-
+/*
 router.put('/:token' , upload.single('image'),function(req, res){
 
 
     bcrypt.hash(req.body.motDePasse , saltRounds, function (err,hash) {
 
-        if(err){
+        if (err) {
             console.log(err);
             res.json({
-                success : false
+                success: false
             });
             res.end();
         }
-        else{
+        else {
 
             var utilisateur = new Utilisateur({
                 nom: req.body.nom,
                 prenom: req.body.prenom,
-                nomUtilisateur : req.body.nomUtilisateur,
+                nomUtilisateur: req.body.nomUtilisateur,
                 motDePasse: hash,
                 image: filename,
                 role: req.body.role,
@@ -93,22 +94,47 @@ router.put('/:token' , upload.single('image'),function(req, res){
                 addresse: req.body.addresse,
                 telephoneMobile: req.body.telephoneMobile,
                 telephoneFix: req.body.telephoneFix,
-                email : req.body.email,
+                email: req.body.email,
                 siret: req.body.siret,
                 entreprise: req.body.entreprise,
                 codepostal: req.body.codepostal,
                 ville: req.body.ville,
-                historique : []
+                historique: []
             });
             utilisateurBusiness.create(utilisateur);
             res.json({
-                success : true
+                success: true
             });
             res.end();
         }
 
     });
-
+    */
+router.put('/:token' , upload.single('image'),function(req, res){
+    var utilisateur = new Utilisateur({
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        nomUtilisateur : req.body.nomUtilisateur,
+        motDePasse: req.body.motDePasse,
+        image: filename,
+        role: req.body.role,
+        status: req.body.status,
+        addresse: req.body.addresse,
+        telephoneMobile: req.body.telephoneMobile,
+        telephoneFix: req.body.telephoneFix,
+        email : req.body.email,
+        siret: req.body.siret,
+        entreprise: req.body.entreprise,
+        codepostal: req.body.codepostal,
+        ville: req.body.ville,
+        historique : []
+    });
+    utilisateurBusiness.create(utilisateur);
+    notificationBusiness.newUtilisateur(utilisateur);
+    res.json({
+        success : true
+    });
+    res.end();
 
 });
 

@@ -14,12 +14,7 @@ import {UtilisateurPage} from "../utilisateur/utilisateur";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CommandePage} from "../commande/commande";
 import {ProfilePage} from "../profile/profile";
-/**
- * Generated class for the MenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ChatService } from "../../providers/chat/chat-service";
 
 @Component({
   selector: 'page-menu',
@@ -41,7 +36,7 @@ export class MenuPage {
   public isDisplayLink : boolean = false;
   public isDisplayValider : boolean = false;
   public isDisplaySettings : boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
   }
 
   ionViewDidLoad() {
@@ -118,6 +113,7 @@ export class MenuPage {
   }
 
   deconnecter(){
+    this.chatService.logout(); 
     localStorage.removeItem('Token');
     this.navCtrl.push(LoginPage);
   }

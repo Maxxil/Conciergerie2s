@@ -21,6 +21,8 @@ export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
 
+export const CHAT_URL = "http://149.56.13.37:5555";
+//export const CHAT_URL = "http://localhost:5555";
 
 export const LIER_SERVICE_PRESTATION_URL: string = SERVER_URL + '/lierServicePrestation';
 export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestataire';

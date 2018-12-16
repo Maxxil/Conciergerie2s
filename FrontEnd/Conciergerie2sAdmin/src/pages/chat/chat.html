@@ -7,7 +7,15 @@
   
   </ion-header>
 
-  <ion-content>
+  <ion-content >
+    
+      <div margin>          
+          <ion-slides slidesPerView="5" spaceBetween="5px">
+              <ion-slide *ngFor="let user of allUsersOnLine">
+                  <button ion-button class="chat-user-btn"  (click)="selectUser(user.id)" outline>{{ user.name }}</button>
+              </ion-slide>             
+            </ion-slides>
+      </div>
 
       <div class="message-wrap">
     
@@ -39,7 +47,7 @@
                     (keyup.enter)="sendMsg()"
                     (focusin)="onFocus()">
           </textarea>
-          <button ion-button clear icon-only item-right (click)="sendMsg()">
+          <button #chat_button ion-button clear icon-only item-right (click)="sendMsg()" >
             <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
           </button>
         </div>

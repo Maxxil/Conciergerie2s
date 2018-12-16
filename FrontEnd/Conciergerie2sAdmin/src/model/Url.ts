@@ -30,3 +30,5 @@ export const COMMANDE_URL = SERVER_URL + '/commande';
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal';
 
+export const CHAT_URL = "http://149.56.13.37:5555";
+//export const CHAT_URL = "http://localhost:5555";

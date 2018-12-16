@@ -47,7 +47,8 @@ import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/comman
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
-const configChat: SocketIoConfig = { url: 'http://localhost:5555', options: {}} ;
+import { CHAT_URL } from '../model/Url';
+const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
   declarations: [

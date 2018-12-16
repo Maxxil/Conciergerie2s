@@ -18,5 +18,19 @@ module.exports = {
         VALIDEE : 2,
         LIVREE : 3,
         EN_COURS_VALIDATION : 4
+    },
+    NotificationStatus: {
+        NON_LU: 0,
+        LU: 1
+    },
+    NotificationType: {
+        NOUVELLE_COMMANDE: 0,
+        NOUVEAU_CLIENT: 1,
+        NOUVEAU_PRESTATAIRE: 2,
+        NOUVEAU_DEVIS: 3,
+        DEVIS_VALIDE: 4,
+        PRESTATION_TERMINEE_PRESTATAIRE: 5,
+        PRESTATION_TERMINEE_CLIENT: 6,
+        COMMANDE_VALIDEE: 7    
     }
 };
