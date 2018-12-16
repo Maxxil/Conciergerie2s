@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Result} from "../../model/Result/Result";
 import {Observable} from "rxjs/Observable";
-import {PAYPAL_URL} from "../../model/UrlConstants";
+import {PAYPAL_URL} from "../../model/Url";
 
 /*
   Generated class for the PaypalProvider provider.
@@ -13,12 +13,14 @@ import {PAYPAL_URL} from "../../model/UrlConstants";
 @Injectable()
 export class PaypalProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello PaypalProvider Provider');
+    this.token = localStorage.getItem('Token');
   }
 
   payer(prestation: string, prix : number): Observable<Result>{
-    return this.http.put<Result>(PAYPAL_URL, {prestation : prestation, prix : prix});
+    return this.http.put<Result>(PAYPAL_URL, {prestation : prestation, prix : prix, token : this.token});
   }
 
 }

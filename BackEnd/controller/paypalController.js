@@ -39,7 +39,7 @@ paypalBusiness.get().exec(function (err, result) {
 
 var amount = 0;
 
-router.get('/', function (req, res) {
+router.get('/:token', function (req, res) {
     paypalBusiness.get().exec(function (err, result) {
         console.log(result);
         res.json({
@@ -50,7 +50,7 @@ router.get('/', function (req, res) {
     })
 });
 
-router.post('/' , function(req , res){
+router.post('/:token' , function(req , res){
     paypalBusiness.update(req.body.paypal).then(function ( result) {
         console.log(result);
         res.json({
@@ -60,7 +60,7 @@ router.post('/' , function(req , res){
     })
 });
 
-router.put('/createPayment', function (req, res) {
+router.put('/createPayment/:token', function (req, res) {
     console.log("Paiement");
     var prestation = req.body.prestation;
     amount = req.body.prix;

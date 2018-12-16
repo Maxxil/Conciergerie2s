@@ -1,5 +1,12 @@
 var router = require("express").Router();
 
+
+router.use('/:token', function (req,res,next) {
+    var url = req.params.token;
+    console.log(url);
+    next();
+});
+
 router.use("/login", require('./loginController'));
 router.use("/utilisateur" , require('./utilisateurController'));
 router.use("/prestation" , require('./prestationController'));

@@ -8,7 +8,7 @@ var prestationBusiness = require('./../business/prestationBusiness');
 
 router.use(bodyParser.json());
 
-router.get('/:idClient' , function (req, res) {
+router.get('/:idClient/:token' , function (req, res) {
     var idClient = req.params.idClient;
     commandeForfaitBusiness.getByIdClient(idClient).exec(function (err,commandeForfait) {
         commandeHoraireBusiness.getByIdClient(idClient).exec(function (err,commandeHoraire) {
@@ -27,7 +27,7 @@ router.get('/:idClient' , function (req, res) {
     });
 });
 
-router.post('/ByIdUtilisateur' , function (req, res) {
+router.post('/ByIdUtilisateur/:token' , function (req, res) {
     var idUtilisateur  = req.body.idUtilisateur;
     console.log(idUtilisateur);
     var prestations = [];

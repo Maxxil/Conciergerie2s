@@ -14,18 +14,18 @@
 
 
 <ion-content padding>
-  
+
   <ion-list>
     <ion-list-header>
           Demander un devis <br><strong>{{prestation.nom}}</strong>
      </ion-list-header>
     <ion-item>
-      <ion-label fixed>Détail de votre demande</ion-label>      
+      <ion-label fixed>Détail de votre demande</ion-label>
       <ion-textarea rows="3" required [(ngModel)]="devis.information"id="information" name="information"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" [(ngModel)]="devis.date"></ion-input>
+      <ion-input type="date" [(ngModel)]="devis.date" required=""></ion-input>
     </ion-item>
   </ion-list>
   <button ion-button (click)="commander()">Commander</button>

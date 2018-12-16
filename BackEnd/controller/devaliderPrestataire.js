@@ -9,7 +9,7 @@ var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
-router.post('/:id', function(req, res){
+router.post('/:id/:token', function(req, res){
     var promise = prestataireBusiness.getById(req.params.id);
     promise.exec(function(err, result){
         if(result != null){

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
-import {PrestationModel} from "../../../../Conciergerie2sAdmin/src/model/Models/PrestationModel";
+import {PrestationModel} from "../../model/Model/PrestationModel";
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeHoraireResult} from "../../model/Result/CommandeHoraireResult";

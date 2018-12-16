@@ -7,7 +7,7 @@ var Enums = require('./../helper/enums');
 
 router.use(bodyParser.json());
 
-router.post('/' , function(req , res){
+router.post('/:token' , function(req , res){
     var promise = prestationBusiness.getById(req.body.idPrestation);
     promise.exec(function(err, result){
         console.log(result);
@@ -31,7 +31,7 @@ router.post('/' , function(req , res){
     });
 });
 
-router.get('/' , function (req,res) {
+router.get('/:token' , function (req,res) {
     console.log("Prestation only with prestataire");
     var promise = prestationBusiness.getOnlyWithPrestataires();
     promise.exec(function (err , result) {
@@ -45,7 +45,7 @@ router.get('/' , function (req,res) {
     })
 });
 
-router.get('/:id', function (req, res) {
+router.get('/:id/:token', function (req, res) {
     var promise = prestationBusiness.getByIdWithPrestataire(req.body.id);
     promise.exec(function (err,result) {
         res.json({
@@ -56,7 +56,7 @@ router.get('/:id', function (req, res) {
     })
 });
 
-router.delete('/:idPrestation/:idPrestataire', function (req,res) {
+router.delete('/:idPrestation/:idPrestataire/:token', function (req,res) {
     var idPrestation = req.params.idPrestation;
     var idPrestataire = req.params.idPrestataire;
     prestationBusiness.deletePrestataire(idPrestation, idPrestataire);

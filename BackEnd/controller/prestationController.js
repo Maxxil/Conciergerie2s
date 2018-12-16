@@ -30,7 +30,7 @@ var upload = multer({
 });
 
 
-router.get('/' , function(req , res){
+router.get('/:token' , function(req , res){
     var promise = prestationBusiness.getAll();
     promise.exec(function(err, result){
         if(result != null && result.length > 0){
@@ -42,7 +42,7 @@ router.get('/' , function(req , res){
     })
 });
 
-router.get('/:id' , function(req , res){
+router.get('/:id/:token' , function(req , res){
     var promise = prestationBusiness.getById(req.params.id);
     promise.exec(function(err, result){
         if(result != null && result.length > 0){
@@ -54,7 +54,7 @@ router.get('/:id' , function(req , res){
     })
 });
 
-router.post('/' , function(req, res){
+router.post('/:token' , function(req, res){
     var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.update(prestation).then(function(result){
         res.json({
@@ -64,7 +64,7 @@ router.post('/' , function(req, res){
     })
 });
 
-router.post('/image', upload.single('file'), function (req, res) {
+router.post('/image/:token', upload.single('file'), function (req, res) {
     var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.getById(prestation._id).exec(function(err,result){
         if(result != null){
@@ -90,7 +90,7 @@ router.post('/image', upload.single('file'), function (req, res) {
     });
 });
 
-router.post('/byIdUtilisateur' , function (req, res) {
+router.post('/byIdUtilisateur/:token' , function (req, res) {
     var idUtilisateur = req.body.idUtilisateur;
     prestationBusiness.getByIdUtilisateurInPrestataire(idUtilisateur).exec(function (err,result) {
         res.json({
@@ -101,7 +101,7 @@ router.post('/byIdUtilisateur' , function (req, res) {
     })
 });
 
-router.put('/' , upload.single('file'), function(req, res){
+router.put('/:token' , upload.single('file'), function(req, res){
     try{
         console.log("Ajout prestation");
         console.log(filename);
@@ -141,15 +141,15 @@ router.put('/' , upload.single('file'), function(req, res){
     }
 });
 
-router.delete('/' , function (req, res) {
-    prestationBusiness.deletePrestataire(req.body.idPrestation, req.body.idPrestataire);
+router.delete('/:idPrestation/:idPrestataire/:token' , function (req, res) {
+    prestationBusiness.deletePrestataire(req.params.idPrestation, req.params.idPrestataire);
     res.json({
         success : true
     });
     res.end();
 });
 
-router.delete('/:id' , function (req, res) {
+router.delete('/:id/:token' , function (req, res) {
     var id = req.params.id;
     prestationBusiness.getById(id).exec(function (err,result) {
         if(result != null){

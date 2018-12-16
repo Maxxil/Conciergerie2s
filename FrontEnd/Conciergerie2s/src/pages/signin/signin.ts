@@ -3,7 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams, ViewController} fr
 import {LoginModel} from "../../model/Model/LoginModel";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
-import {RoleEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/RoleEnum";
+import {RoleEnum} from "../../model/Enums/RoleEnum";
 
 /**
  * Generated class for the SigninPage page.

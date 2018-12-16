@@ -2,10 +2,12 @@ var router = require('express').Router();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var fs = require('fs');
+var bcrypt = require('bcrypt');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
 var Utilisateur = require('./../model/utilisateureModel');
 var Enums = require('./../helper/enums');
+const saltRounds = 10;
 
 var filename = '';
 var storage = multer.diskStorage({
@@ -29,7 +31,7 @@ var upload = multer({
 
 router.use(bodyParser.json());
 
-router.get('/', function (req, res) {
+router.get('/:token', function (req, res) {
     var promise = utilisateurBusiness.getAll();
     promise.exec(function (err, result) {
         res.json({
@@ -40,7 +42,7 @@ router.get('/', function (req, res) {
     })
 });
 
-router.get('/id=:id', function (req, res) {
+router.get('/id=:id/:token', function (req, res) {
     console.log("Utilisateur");
     console.log(req.params.id);
     var promise = utilisateurBusiness.getById(req.params.id);
@@ -54,7 +56,7 @@ router.get('/id=:id', function (req, res) {
     })
 });
 
-router.get('/prestataire' , function (req, res) {
+router.get('/prestataire/:token' , function (req, res) {
     console.log("Prestataire");
     var promise = utilisateurBusiness.getAllPrestataire();
     promise.exec(function (err,result) {
@@ -66,33 +68,51 @@ router.get('/prestataire' , function (req, res) {
     });
 });
 
-router.put('/' , upload.single('image'),function(req, res){
-    var utilisateur = new Utilisateur({
-        nom: req.body.nom,
-        prenom: req.body.prenom,
-        nomUtilisateur : req.body.nomUtilisateur,
-        motDePasse: req.body.motDePasse,
-        image: filename,
-        role: req.body.role,
-        status: req.body.status,
-        addresse: req.body.addresse,
-        telephoneMobile: req.body.telephoneMobile,
-        telephoneFix: req.body.telephoneFix,
-        email : req.body.email,
-        siret: req.body.siret,
-        entreprise: req.body.entreprise,
-        codepostal: req.body.codepostal,
-        ville: req.body.ville,
-        historique : []
+router.put('/:token' , upload.single('image'),function(req, res){
+
+
+    bcrypt.hash(req.body.motDePasse , saltRounds, function (err,hash) {
+
+        if(err){
+            console.log(err);
+            res.json({
+                success : false
+            });
+            res.end();
+        }
+        else{
+
+            var utilisateur = new Utilisateur({
+                nom: req.body.nom,
+                prenom: req.body.prenom,
+                nomUtilisateur : req.body.nomUtilisateur,
+                motDePasse: hash,
+                image: filename,
+                role: req.body.role,
+                status: req.body.status,
+                addresse: req.body.addresse,
+                telephoneMobile: req.body.telephoneMobile,
+                telephoneFix: req.body.telephoneFix,
+                email : req.body.email,
+                siret: req.body.siret,
+                entreprise: req.body.entreprise,
+                codepostal: req.body.codepostal,
+                ville: req.body.ville,
+                historique : []
+            });
+            utilisateurBusiness.create(utilisateur);
+            res.json({
+                success : true
+            });
+            res.end();
+        }
+
     });
-    utilisateurBusiness.create(utilisateur);
-    res.json({
-        success : true
-    });
-    res.end();
+
+
 });
 
-router.post('/image' , upload.single('image') , function (req , res) {
+router.post('/image/:token' , upload.single('image') , function (req , res) {
     console.log("Enregistrement");
     var id = req.body.utilisateur._id;
     utilisateurBusiness.getById(id).exec(function (err,result) {
@@ -108,7 +128,7 @@ router.post('/image' , upload.single('image') , function (req , res) {
     });
 });
 
-router.post('/', function (req , res) {
+router.post('/:token', function (req , res) {
     console.log("Enregistrement");
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
         console.log(result);

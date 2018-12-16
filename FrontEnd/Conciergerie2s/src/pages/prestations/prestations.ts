@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ServiceModel} from "../../model/Model/ServiceModel";
 import {ServiceProvider} from "../../providers/service/service";
-import {PRESTATION_IMAGE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
 import {PrestationModel} from "../../model/Model/PrestationModel";
-import {TypePrixEnum} from "../../../../Conciergerie2sAdmin/src/model/Enums/TypePrixEnum";
 import {DevisPage} from "../devis/devis";
 import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
 import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
+import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
+import {PRESTATION_IMAGE_URL} from "../../model/UrlConstants";
 
 /**
  * Generated class for the PrestationsPage page.

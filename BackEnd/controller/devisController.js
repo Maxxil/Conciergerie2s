@@ -7,7 +7,7 @@ var prestataireBusiness = require('./../business/prestataireBusiness');
 
 router.use(bodyParser.json());
 
-router.get('/' , function (req, res) {
+router.get('/:token' , function (req, res) {
     var promise = devisBusiness.getAll();
     promise.exec(function (err, result) {
         res.json({
@@ -18,7 +18,7 @@ router.get('/' , function (req, res) {
     })
 });
 
-router.get('/:id', function (req, res) {
+router.get('/:id/:token', function (req, res) {
     var promise = devisBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
         res.json({
@@ -29,7 +29,7 @@ router.get('/:id', function (req, res) {
     })
 });
 
-router.post('/' , function (req, res) {
+router.post('/:token' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
     var prestataireChoisi = req.body.prestataireChoisi;
@@ -40,7 +40,7 @@ router.post('/' , function (req, res) {
     res.end();
 });
 
-router.post('/prestataire' , function (req, res) {
+router.post('/prestataire/:token' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
@@ -53,7 +53,7 @@ router.post('/prestataire' , function (req, res) {
     });
 });
 
-router.put('/', function(req, res){
+router.put('/:token', function(req, res){
     var commande = new Devis({
         client : req.body.idClient,
         prestation : req.body.idPrestation,

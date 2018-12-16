@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ServiceResult} from "../../model/Result/ServiceResult";
-import {LIER_SERVICE_PRESTATION_URL, SERVICE_URL} from "../../../../Conciergerie2sAdmin/src/model/Url";
+import {LIER_SERVICE_PRESTATION_URL, SERVICE_URL} from "../../model/Url";
 
 /*
   Generated class for the ServiceProvider provider.
@@ -13,17 +13,17 @@ import {LIER_SERVICE_PRESTATION_URL, SERVICE_URL} from "../../../../Conciergerie
 @Injectable()
 export class ServiceProvider {
 
-
-
+  private token;
   constructor(public http: HttpClient) {
+    this.token = localStorage.getItem('Token');
   }
 
   public GetAll(): Observable<ServiceResult>{
-    return this.http.get<ServiceResult>(SERVICE_URL);
+    return this.http.get<ServiceResult>(SERVICE_URL+ '/' + this.token);
   }
 
   public getByIdWithPrestation(id) : Observable<ServiceResult>{
-    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + '/' + id);
+    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + '/' + id + '/' + this.token);
   }
 
 

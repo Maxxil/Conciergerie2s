@@ -10,7 +10,7 @@ var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
-router.post('/', function(req, res){
+router.post('/:token', function(req, res){
     console.log("Validation prestataire");
     var promise = utilisateurBusiness.getById(req.body.id);
     promise.exec(function(err, result){

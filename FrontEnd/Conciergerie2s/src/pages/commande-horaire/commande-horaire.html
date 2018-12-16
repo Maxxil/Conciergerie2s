@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  
+
   <ion-list>
       <ion-list-header>
           <h1>Commander une prestation</h1>
@@ -23,18 +23,18 @@
         </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.date"></ion-input>
+      <ion-input type="date" min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeHoraire.date" required=""></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure</ion-label>
-      <ion-input type="time" [(ngModel)]="commandeHoraire.heure"></ion-input>
+      <ion-input type="time" [(ngModel)]="commandeHoraire.heure" required=""></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>
       <ion-input type="number" min="1" [(ngModel)]="commandeHoraire.quantite"></ion-input>
     </ion-item>
   </ion-list>
-  <div text-right margin>     
+  <div text-right margin>
     <span class="ttc">Total TTC : {{ prestation.prix * commandeHoraire.quantite }} €</span>
 </div>
   <div text-center>

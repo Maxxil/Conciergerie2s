@@ -30,7 +30,7 @@ var upload = multer({
     storage : storage
 });
 
-router.get('/', function(req, res){
+router.get('/:token', function(req, res){
     console.log("services");
     serviceBusiness.getAll().exec(function(err, result){
         console.log(result);
@@ -42,7 +42,7 @@ router.get('/', function(req, res){
 
 });
 
-router.get('/:id', function(req, res){
+router.get('/:id/:token', function(req, res){
     serviceBusiness.getById(res.params.id).exec(function(err, result){
         res.json({
             data : result
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res){
     })
 });
 
-router.post('/' , function(req, res){
+router.post('/:token' , function(req, res){
     console.log("Mise a jour sans image");
     serviceBusiness.update(req.body.service).then(function(result){
         console.log(result);
@@ -62,7 +62,7 @@ router.post('/' , function(req, res){
     })
 });
 
-router.post('/image' , upload.single('file') , function(req, res){
+router.post('/image/:token' , upload.single('file') , function(req, res){
     console.log("Mise a jour avec image");
     var service = JSON.parse(req.body.service);
     serviceBusiness.getById(service._id).exec(function(err, result){
@@ -102,7 +102,7 @@ router.post('/image' , upload.single('file') , function(req, res){
     });
 });
 
-router.put('/' , upload.single('file'), function(req, res){
+router.put('/:token' , upload.single('file'), function(req, res){
     console.log("Ajout service");
     var service = new Service({
         nom : req.body.nom,
@@ -119,7 +119,7 @@ router.put('/' , upload.single('file'), function(req, res){
     res.end();
 });
 
-router.delete('/:_id', function(req, res){
+router.delete('/:_id/:token', function(req, res){
     console.log("Suppression service");
     serviceBusiness.getById(req.params._id).exec(function(err, result){
         console.log(result);
