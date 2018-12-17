@@ -15,12 +15,14 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 @Injectable()
 export class CommandeHoraireProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello CommandeHoraireProvider Provider');
   }
 
   getAll() : Observable<CommandeHoraireResult>{
-    return this.http.get<CommandeHoraireResult>(COMMANDE_HORAIRE_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<CommandeHoraireResult>(COMMANDE_HORAIRE_URL + '/' + this.token);
   }
 
   validateCommande(commande: CommandeHoraireModel) : Observable<CommandeHoraireResult>{

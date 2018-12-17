@@ -4,7 +4,7 @@ import {ServiceModel} from "../../model/Model/ServiceModel";
 import {MaisonPage} from "../maison/maison";
 import {ServiceProvider} from "../../providers/service/service";
 import {PrestationsPage} from "../prestations/prestations";
-import {SERVICE_IMAGE_URL} from "../../model/UrlConstants";
+import {SERVICE_IMAGE_URL} from "../../model/Url";
 
 /**
  * Generated class for the ServicesPage page.

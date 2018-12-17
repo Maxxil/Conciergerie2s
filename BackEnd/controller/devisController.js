@@ -29,7 +29,7 @@ router.get('/:id/:token', function (req, res) {
     })
 });
 
-router.post('/:token' , function (req, res) {
+router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
     var prestataireChoisi = req.body.prestataireChoisi;
@@ -40,7 +40,7 @@ router.post('/:token' , function (req, res) {
     res.end();
 });
 
-router.post('/prestataire/:token' , function (req, res) {
+router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
@@ -53,16 +53,16 @@ router.post('/prestataire/:token' , function (req, res) {
     });
 });
 
-router.put('/:token', function(req, res){
+router.put('/', function(req, res){
     var commande = new Devis({
-        client : req.body.idClient,
-        prestation : req.body.idPrestation,
+        client : req.body.commande.idClient,
+        prestation : req.body.commande.idPrestation,
         prestataire : [],
-        information : req.body.information,
-        heure : req.body.heure,
-        date : req.body.date,
+        information : req.body.commande.information,
+        heure : req.body.commande.heure,
+        date : req.body.commande.date,
         dateCreation : Date.now(),
-        status : req.body.status
+        status : req.body.commande.status
     });
     devisBusiness.add(commande);
     res.json({

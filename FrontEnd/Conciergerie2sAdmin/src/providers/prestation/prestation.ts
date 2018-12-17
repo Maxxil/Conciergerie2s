@@ -19,14 +19,15 @@ import {PrestationInformationResult} from "../../model/Results/PrestationInforma
 @Injectable()
 export class PrestationProvider {
 
-
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello PrestationProvider Provider');
   }
 
   getAll(): Observable<PrestationResult> {
     console.log("toutes les prestations");
-    return this.http.get<PrestationResult>(PRESTATION_URL)
+    this.token = localStorage.getItem('Token');
+    return this.http.get<PrestationResult>(PRESTATION_URL + '/' + this.token);
   }
 
 
@@ -65,7 +66,8 @@ export class PrestationProvider {
   }
 
   getOnlyWithPrestataire(): Observable<PrestationResult>{
-    return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL + '/' + this.token);
   }
 
   getPrestationByIdWithPrestataires(id) : Observable<PrestationInformationResult>{
@@ -73,7 +75,8 @@ export class PrestationProvider {
   }
 
   delete(prestation) : Observable<Result>{
-    return this.http.delete<Result>(PRESTATION_URL + '/' + prestation._id);
+    this.token = localStorage.getItem('Token');
+    return this.http.delete<Result>(PRESTATION_URL + '/' + prestation._id + '/' + this.token);
   }
 
 }

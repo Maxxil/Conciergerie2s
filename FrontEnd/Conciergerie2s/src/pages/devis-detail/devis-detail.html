@@ -16,19 +16,19 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Devis<br><strong>{{prestation.nom}}</strong>
+      Devis<br><strong>{{commande.prestation.nom}}</strong>
     </ion-list-header>
     <ion-item>
       <ion-label fixed>Détail de la demande</ion-label>
       <ion-textarea rows="3" required [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Date</ion-label>      
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" disabled=""></ion-datetime>            
+      <ion-label fixed>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" disabled=""></ion-datetime>
     </ion-item>
     <ion-item text-center>
       <button ion-button (click)="postuler()">Postuler</button>
       <button ion-button (click)="annuler()">Annuler</button>
     </ion-item>
-  </ion-list>  
+  </ion-list>
 </ion-content>

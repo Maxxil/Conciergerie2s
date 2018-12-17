@@ -9,7 +9,7 @@ var Enums = require('./../helper/enums');
 
 router.use(bodyParser.json());
 
-var filename = '';
+//var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
         if(file != null){
@@ -19,8 +19,8 @@ var storage = multer.diskStorage({
     filename : function(req, file,cb){
         if(file != null){
             var datetimestamp = Date.now();
-            filename = file.fieldname + '-' + datetimestamp + '.jpg';
-            cb(null,filename);
+            //filename = ;
+            cb(null,file.fieldname + '-' + datetimestamp + '.jpg');
         }
     }
 });
@@ -54,7 +54,7 @@ router.get('/:id/:token' , function(req , res){
     })
 });
 
-router.post('/:token' , function(req, res){
+router.post('/' , function(req, res){
     var prestation = JSON.parse(req.body.prestation);
     prestationBusiness.update(prestation).then(function(result){
         res.json({
@@ -64,8 +64,12 @@ router.post('/:token' , function(req, res){
     })
 });
 
-router.post('/image/:token', upload.single('file'), function (req, res) {
+router.post('/image', upload.single('file'), function (req, res) {
     var prestation = JSON.parse(req.body.prestation);
+    var filename = "";
+    if(req.file != null){
+        filename = req.file.filename;
+    }
     prestationBusiness.getById(prestation._id).exec(function(err,result){
         if(result != null){
             result.image = filename;
@@ -90,7 +94,7 @@ router.post('/image/:token', upload.single('file'), function (req, res) {
     });
 });
 
-router.post('/byIdUtilisateur/:token' , function (req, res) {
+router.post('/byIdUtilisateur' , function (req, res) {
     var idUtilisateur = req.body.idUtilisateur;
     prestationBusiness.getByIdUtilisateurInPrestataire(idUtilisateur).exec(function (err,result) {
         res.json({
@@ -101,8 +105,12 @@ router.post('/byIdUtilisateur/:token' , function (req, res) {
     })
 });
 
-router.put('/:token' , upload.single('file'), function(req, res){
+router.put('/' , upload.single('file'), function(req, res){
     try{
+        var filename = "";
+        if(req.file != null){
+            filename = req.file.filename;
+        }
         console.log("Ajout prestation");
         console.log(filename);
         var promise = prestationBusiness.getByNom(req.body.nom);
@@ -154,7 +162,7 @@ router.delete('/:id/:token' , function (req, res) {
     prestationBusiness.getById(id).exec(function (err,result) {
         if(result != null){
             prestationBusiness.deleteImage(result.image);
-            prestationBusiness.delete(req.body.id);
+            prestationBusiness.delete(id);
             res.json({
                 success : true
             });

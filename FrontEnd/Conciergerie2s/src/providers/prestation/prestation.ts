@@ -20,11 +20,13 @@ export class PrestationProvider {
   }
 
   public getWithPrestataires(id) : Observable<PrestationResult>{
+    this.token = localStorage.getItem('Token');
     return this.http.get<PrestationResult>(LIER_PRESTATION_PRESTATAIRE_URL + '/' + id + '/' + this.token);
   }
 
   public getByIdUtilisateur() : Observable<PrestationResult>{
     const idUtilisateur = localStorage.getItem('IdUtilisateur');
+    this.token = localStorage.getItem('Token');
     return this.http.post<PrestationResult>(PRESTATION_URL , {idUtilisateur : idUtilisateur, token : this.token});
   }
 

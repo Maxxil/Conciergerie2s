@@ -8,10 +8,10 @@ var appSettings = require('./../config/appSettings');
 
 router.use(bodyParser.json());
 
-//var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
-var clientId = "AdXkPhOhJVr8EH2R6Xl7fZFaVgwVW6AhNB80GbWds_N9jypYh9hpfYLkzQMn-keg2InmRhWPhgkWKC-Y";
-//var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
-var secret = "ECf30juZefwSJd5Irfm60vllZsY6-qv5TW2JsSxNy1zPjNKrciCq6LlfaL4UY87ngDW1VpoAQi51ulzS";
+var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
+//var clientId = "AdXkPhOhJVr8EH2R6Xl7fZFaVgwVW6AhNB80GbWds_N9jypYh9hpfYLkzQMn-keg2InmRhWPhgkWKC-Y";
+var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
+//var secret = "ECf30juZefwSJd5Irfm60vllZsY6-qv5TW2JsSxNy1zPjNKrciCq6LlfaL4UY87ngDW1VpoAQi51ulzS";
 
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -39,7 +39,7 @@ paypalBusiness.get().exec(function (err, result) {
 
 var amount = 0;
 
-router.get('/:token', function (req, res) {
+router.get('/', function (req, res) {
     paypalBusiness.get().exec(function (err, result) {
         console.log(result);
         res.json({
@@ -50,7 +50,7 @@ router.get('/:token', function (req, res) {
     })
 });
 
-router.post('/:token' , function(req , res){
+router.post('/' , function(req , res){
     paypalBusiness.update(req.body.paypal).then(function ( result) {
         console.log(result);
         res.json({
@@ -60,7 +60,7 @@ router.post('/:token' , function(req , res){
     })
 });
 
-router.put('/createPayment/:token', function (req, res) {
+router.put('/createPayment', function (req, res) {
     console.log("Paiement");
     var prestation = req.body.prestation;
     amount = req.body.prix;
@@ -95,6 +95,7 @@ router.put('/createPayment/:token', function (req, res) {
 
     paypal.payment.create(create_payment_json, function (error, payment) {
         if (error) {
+            console.error(error);
             res.json({
                 success: false
             });

@@ -22,6 +22,7 @@ export class UtilisateurProvider {
   }
 
   add(utilisateur: UtilisateurModel) : Observable<Result> {
+    console.log(utilisateur);
     return this.http.put<Result>(UTILISATEUR_URL, {utilisateur : utilisateur, token : this.token})
   }
 

@@ -24,8 +24,8 @@
     <ion-list>
 
       <ion-item text-center>
-        <img src="{{prestation.image}}" (click)="importImage()" *ngIf="!isUpdateModal() || isImageUploaded">
-        <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()" *ngIf="isUpdateModal() && !isImageUploaded">
+        <img src="{{prestation.image}}" (click)="importImage()" *ngIf="!isUpdateModal() || isImageUploaded || (isUpdateModal() && isEmptyImage())">
+        <img src="{{prestationImageUrl + prestation.image}}" (click)="importImage()" *ngIf="isUpdateModal() && !isEmptyImage() && !isImageUploaded">
         <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden/>
       </ion-item>
     </ion-list>

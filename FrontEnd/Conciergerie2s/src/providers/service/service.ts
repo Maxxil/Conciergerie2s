@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ServiceResult} from "../../model/Result/ServiceResult";
-import {LIER_SERVICE_PRESTATION_URL, SERVICE_URL} from "../../model/Url";
+import {LIER_SERVICE_PRESTATION_URL, SERVICE_PRESTATION_URL, SERVICE_URL} from "../../model/Url";
 
 /*
   Generated class for the ServiceProvider provider.
@@ -19,11 +19,14 @@ export class ServiceProvider {
   }
 
   public GetAll(): Observable<ServiceResult>{
+    this.token = localStorage.getItem('Token');
     return this.http.get<ServiceResult>(SERVICE_URL+ '/' + this.token);
   }
 
   public getByIdWithPrestation(id) : Observable<ServiceResult>{
-    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + '/' + id + '/' + this.token);
+    this.token = localStorage.getItem('Token');
+    console.log(this.token);
+    return this.http.get<ServiceResult>(SERVICE_PRESTATION_URL + '/' + id + '/' + this.token);
   }
 
 

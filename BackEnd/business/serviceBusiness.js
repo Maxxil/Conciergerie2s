@@ -4,11 +4,7 @@ var Service = require('./../model/serviceModel');
 
 module.exports = {
     add: function(service){
-        console.log(service);
         this.getByName(service.nom).exec(function(err, result){
-            console.log(err);
-            console.log(result);
-            console.log(service);
             if(result != null && result.length == 0){
                 service.save();
             }
@@ -33,8 +29,15 @@ module.exports = {
         return Service.find({}).where('prestations').ne([]).populate('prestations');
     },
     deleteImage: function(filename){
-        const filepath = "./data/images/service/" + filename;
-        fs.unlink(filepath);
+        if(filename != ''){
+            const filepath = "./data/images/service/" + filename;
+            console.log(filepath);
+            fs.exists(filepath, function (result) {
+                if(result){
+                    fs.unlink(filepath);
+                }
+            });
+        }
     },
     delete: function(id){
         Service.deleteOne({_id : id}).exec();

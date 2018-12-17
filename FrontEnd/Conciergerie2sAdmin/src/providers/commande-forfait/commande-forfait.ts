@@ -15,12 +15,14 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 @Injectable()
 export class CommandeForfaitProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello CommandeForfaitProvider Provider');
   }
 
   getAll() : Observable<CommandeForfaitResult>{
-    return this.http.get<CommandeForfaitResult>(COMMANDE_FORFAIT_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<CommandeForfaitResult>(COMMANDE_FORFAIT_URL + '/' + this.token);
   }
 
   validateCommande(commande: CommandeForfaitModel) : Observable<CommandeForfaitResult>{

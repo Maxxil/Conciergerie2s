@@ -10,7 +10,7 @@ var Utilisateur = require('./../model/utilisateureModel');
 var Enums = require('./../helper/enums');
 const saltRounds = 10;
 
-var filename = '';
+//var filename = '';
 var storage = multer.diskStorage({
     destination : function(req, file, cb){
         if(file != null){
@@ -20,8 +20,8 @@ var storage = multer.diskStorage({
     filename : function(req, file,cb){
         if(file != null){
             var datetimestamp = Date.now();
-            filename = file.fieldname + '-' + datetimestamp + '.jpg';
-            cb(null,filename);
+            //filename = file.fieldname + '-' + datetimestamp + '.jpg';
+            cb(null,file.fieldname + '-' + datetimestamp + '.jpg');
         }
     }
 });
@@ -68,65 +68,29 @@ router.get('/prestataire/:token' , function (req, res) {
         res.end();
     });
 });
-/*
-router.put('/:token' , upload.single('image'),function(req, res){
 
-
-    bcrypt.hash(req.body.motDePasse , saltRounds, function (err,hash) {
-
-        if (err) {
-            console.log(err);
-            res.json({
-                success: false
-            });
-            res.end();
-        }
-        else {
-
-            var utilisateur = new Utilisateur({
-                nom: req.body.nom,
-                prenom: req.body.prenom,
-                nomUtilisateur: req.body.nomUtilisateur,
-                motDePasse: hash,
-                image: filename,
-                role: req.body.role,
-                status: req.body.status,
-                addresse: req.body.addresse,
-                telephoneMobile: req.body.telephoneMobile,
-                telephoneFix: req.body.telephoneFix,
-                email: req.body.email,
-                siret: req.body.siret,
-                entreprise: req.body.entreprise,
-                codepostal: req.body.codepostal,
-                ville: req.body.ville,
-                historique: []
-            });
-            utilisateurBusiness.create(utilisateur);
-            res.json({
-                success: true
-            });
-            res.end();
-        }
-
-    });
-    */
-router.put('/:token' , upload.single('image'),function(req, res){
+router.put('/' , upload.single('image'),function(req, res){
+    var filename = "";
+    if(req.file != null){
+        filename = req.file.filename;
+    }
+    console.log()
     var utilisateur = new Utilisateur({
-        nom: req.body.nom,
-        prenom: req.body.prenom,
-        nomUtilisateur : req.body.nomUtilisateur,
-        motDePasse: req.body.motDePasse,
+        nom: req.body.utilisateur.nom,
+        prenom: req.body.utilisateur.prenom,
+        nomUtilisateur : req.body.utilisateur.nomUtilisateur,
+        motDePasse: req.body.utilisateur.motDePasse,
         image: filename,
-        role: req.body.role,
-        status: req.body.status,
-        addresse: req.body.addresse,
-        telephoneMobile: req.body.telephoneMobile,
-        telephoneFix: req.body.telephoneFix,
-        email : req.body.email,
-        siret: req.body.siret,
+        role: req.body.utilisateur.role,
+        status: req.body.utilisateur.status,
+        addresse: req.body.utilisateur.addresse,
+        telephoneMobile: req.body.utilisateur.telephoneMobile,
+        telephoneFix: req.body.utilisateur.telephoneFix,
+        email : req.body.utilisateur.email,
+        siret: req.body.utilisateur.siret,
         entreprise: req.body.entreprise,
-        codepostal: req.body.codepostal,
-        ville: req.body.ville,
+        codepostal: req.body.utilisateur.codepostal,
+        ville: req.body.utilisateur.ville,
         historique : []
     });
     utilisateurBusiness.create(utilisateur);
@@ -138,9 +102,13 @@ router.put('/:token' , upload.single('image'),function(req, res){
 
 });
 
-router.post('/image/:token' , upload.single('image') , function (req , res) {
+router.post('/image' , upload.single('image') , function (req , res) {
     console.log("Enregistrement");
     var id = req.body.utilisateur._id;
+    var filename = "";
+    if(req.file != null){
+        filename = req.file.filename;
+    }
     utilisateurBusiness.getById(id).exec(function (err,result) {
         console.log(result);
         fs.remove('./../data/images/utilisateur/' + result.image);
@@ -154,7 +122,7 @@ router.post('/image/:token' , upload.single('image') , function (req , res) {
     });
 });
 
-router.post('/:token', function (req , res) {
+router.post('/', function (req , res) {
     console.log("Enregistrement");
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
         console.log(result);

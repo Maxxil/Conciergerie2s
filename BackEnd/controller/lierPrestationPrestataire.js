@@ -7,7 +7,7 @@ var Enums = require('./../helper/enums');
 
 router.use(bodyParser.json());
 
-router.post('/:token' , function(req , res){
+router.post('/' , function(req , res){
     var promise = prestationBusiness.getById(req.body.idPrestation);
     promise.exec(function(err, result){
         console.log(result);

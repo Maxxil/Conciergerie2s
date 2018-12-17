@@ -29,7 +29,7 @@ router.get('/:id/:token', function (req, res) {
     })
 });
 
-router.post('/:token' , function (req, res) {
+router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
     var prestataireChoisi = req.body.prestataireChoisi;
@@ -40,7 +40,7 @@ router.post('/:token' , function (req, res) {
     res.end();
 });
 
-router.post('/prestataire/:token' , function (req, res) {
+router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
     console.log(idUtilisateur);
@@ -54,18 +54,18 @@ router.post('/prestataire/:token' , function (req, res) {
     });
 });
 
-router.put('/:token', function(req, res){
+router.put('/', function(req, res){
     console.log(req.body);
     var commande = new CommandeHoraire({
-        client : req.body.idClient,
-        prestation : req.body.idPrestation,
+        client : req.body.commande.idClient,
+        prestation : req.body.commande.idPrestation,
         prestataire : [],
-        date : req.body.date,
-        duree : req.body.duree,
-        quantite : req.body.quantite,
-        heure : req.body.heure,
+        date : req.body.commande.date,
+        duree : req.body.commande.duree,
+        quantite : req.body.commande.quantite,
+        heure : req.body.commande.heure,
         dateCreation : Date.now(),
-        status : req.body.status
+        status : req.body.commande.status
     });
     commandeHoraireBusiness.add(commande);
     res.json({

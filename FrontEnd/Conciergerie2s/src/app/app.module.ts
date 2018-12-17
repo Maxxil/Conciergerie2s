@@ -41,7 +41,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
-import { CHAT_URL } from '../model/UrlConstants';
+import { CHAT_URL } from '../model/Url';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({

@@ -34,7 +34,7 @@ router.get('/valides/:token', function(req, res){
     })
 });
 
-router.post('/:token', function (req, res) {
+router.post('/', function (req, res) {
     var prestataire = req.body.prestataire;
     prestataireBusiness.update(prestataire).then(function (result) {
         res.json({

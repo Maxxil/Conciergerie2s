@@ -27,7 +27,7 @@ router.get('/:idClient/:token' , function (req, res) {
     });
 });
 
-router.post('/ByIdUtilisateur/:token' , function (req, res) {
+router.post('/ByIdUtilisateur' , function (req, res) {
     var idUtilisateur  = req.body.idUtilisateur;
     console.log(idUtilisateur);
     var prestations = [];

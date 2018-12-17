@@ -1,5 +1,6 @@
 var Prestation = require('./../model/prestationModel');
 var fs = require('fs');
+var path = require('path');
 
 module.exports = {
     add : function(prestation){
@@ -50,11 +51,19 @@ module.exports = {
         return Prestation.updateOne({_id : prestation._id} , prestation , {upsert : true});
     },
     delete : function(id){
-      return Prestation.deleteOne({_id : id}).exec();
+      Prestation.deleteOne({_id : id}).exec();
     },
     deleteImage: function(filename){
-        const filepath = "./data/images/prestation/" + filename;
-        fs.unlink(filepath);
+        if(filename != ''){
+            const filepath = "./data/images/prestation/" + filename;
+            fs.exists(filepath, function (exist) {
+                if(exist){
+                    console.log("Exist");
+                    fs.unlink(filepath);
+                }
+            });
+        }
+
     },
     deletePrestataire : function (idPrestation , idPrestataire) {
         Prestation.find({_id : idPrestation}).exec(function (err,prestation) {

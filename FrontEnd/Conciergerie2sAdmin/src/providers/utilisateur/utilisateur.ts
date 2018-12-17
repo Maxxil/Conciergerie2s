@@ -15,12 +15,14 @@ import {Result} from "../../model/Results/Result";
 @Injectable()
 export class UtilisateurProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello UtilisateurProvider Provider');
   }
 
   public getAll() : Observable<UtilisateurResult>{
-    return this.http.get<UtilisateurResult>(UTILISATEUR_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<UtilisateurResult>(UTILISATEUR_URL+ '/' + this.token);
   }
 
   add(utilisateur: UtilisateurModel) : Observable<Result> {

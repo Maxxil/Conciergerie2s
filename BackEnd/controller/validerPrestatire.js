@@ -10,20 +10,21 @@ var errorEnum = require('./../helper/errorEnum');
 
 router.use(bodyParser.json());
 
-router.post('/:token', function(req, res){
+router.post('/', function(req, res){
     console.log("Validation prestataire");
     var promise = utilisateurBusiness.getById(req.body.id);
     promise.exec(function(err, result){
-        console.log(result);
+        console.log(result[0]);
         if(result != null){
-            result.status = Status.status.VALIDE;
+            result[0].status = Status.status.VALIDE;
             var prestataire = new Prestataire({
                 prix : 0,
-                utilisateur : result
+                utilisateur : result[0]
             });
             console.log("Création prestataire");
             prestataireBusiness.add(prestataire);
-            result.save();
+            result[0].save();
+            //utilisateurBusiness.update(result[0]);
         }
         res.json({
             success : true,

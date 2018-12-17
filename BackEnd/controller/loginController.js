@@ -38,7 +38,7 @@ router.get("/:token" , function (req, res) {
 
 });
 
-router.post("/:token", function (req, res) {
+router.post("/", function (req, res) {
     console.log(req.body.nomUtilisateur);
     console.log(req.body.motDePasse);
     var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);

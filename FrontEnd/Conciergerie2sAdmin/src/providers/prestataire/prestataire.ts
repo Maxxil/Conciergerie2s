@@ -14,6 +14,7 @@ import {PrestataireResult} from "../../model/Results/PrestataireResult";
 @Injectable()
 export class PrestataireProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello PrestataireProvider Provider');
   }
@@ -23,11 +24,8 @@ export class PrestataireProvider {
   }
 
   public getAllPrestataire(): Observable<PrestataireResult>{
-    return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
-  }
-
-  public getPrestatairesValides(): Observable<PrestataireResult>{
-    return this.http.get<PrestataireResult>(PRESTATAIRE_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<PrestataireResult>(PRESTATAIRE_URL + '/' + this.token);
   }
 
   valider(prestataire) : Observable<Result> {

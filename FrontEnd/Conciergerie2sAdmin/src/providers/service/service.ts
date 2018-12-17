@@ -1,5 +1,8 @@
 import { ServiceResult } from '../../model/Results/ServiceResult';
-import { SERVICE_URL, SERVICE_UPDATE_UPLOADED_IMAGE, LIER_SERVICE_PRESTATION_URL } from './../../model/Url';
+import {
+  SERVICE_URL, SERVICE_UPDATE_UPLOADED_IMAGE, LIER_SERVICE_PRESTATION_URL,
+  SERVICE_PRESTATION_URL
+} from './../../model/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServiceModel } from '../../model/Models/ServiceModel'
@@ -16,17 +19,19 @@ import {PrestationModel} from "../../model/Models/PrestationModel";
 @Injectable()
 export class ServiceProvider {
 
-
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello ServiceProvider Provider');
   }
 
   getAll() : Observable<ServiceResult>{
-    return this.http.get<ServiceResult>(SERVICE_URL);
+    this.token = localStorage.getItem("Token");
+    return this.http.get<ServiceResult>(SERVICE_URL+ '/' + this.token);
   }
 
   getServiceWithPrestation(){
-    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL);
+    this.token = localStorage.getItem("Token");
+    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + '/' + this.token);
   }
 
 
@@ -53,7 +58,8 @@ export class ServiceProvider {
   }
 
   getByIdWithPrestations(idService: string): Observable<ServiceResult> {
-    return this.http.get<ServiceResult>(LIER_SERVICE_PRESTATION_URL + "/" + idService);
+    this.token = localStorage.getItem("Token");
+    return this.http.get<ServiceResult>(SERVICE_PRESTATION_URL + "/" + idService + '/' + this.token);
   }
 
 
@@ -62,10 +68,12 @@ export class ServiceProvider {
   }
 
   delete(service : ServiceModel): Observable<Result>{
-    return this.http.delete<Result>(SERVICE_URL + '/' + service._id);
+    this.token = localStorage.getItem("Token");
+    return this.http.delete<Result>(SERVICE_URL + '/' + service._id + '/' + this.token);
   }
 
   deletePrestationInService(service : ServiceModel, prestation: PrestationModel) : Observable<Result>{
-    return this.http.delete<Result>(LIER_SERVICE_PRESTATION_URL + '/' + service._id + '/' + prestation._id);
+    this.token = localStorage.getItem('Token')
+    return this.http.delete<Result>(LIER_SERVICE_PRESTATION_URL + '/' + service._id + '/' + prestation._id + '/' + this.token);
   }
 }

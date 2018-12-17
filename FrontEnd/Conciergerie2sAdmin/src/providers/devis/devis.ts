@@ -15,12 +15,14 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 @Injectable()
 export class DevisProvider {
 
+  private token;
   constructor(public http: HttpClient) {
     console.log('Hello DevisProvider Provider');
   }
 
   getAll() : Observable<DevisResult>{
-    return this.http.get<DevisResult>(DEVIS_URL);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<DevisResult>(DEVIS_URL + '/' + this.token);
   }
 
   validateCommande(commande: DevisModel) : Observable<DevisResult>{

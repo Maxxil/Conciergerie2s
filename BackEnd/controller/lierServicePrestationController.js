@@ -8,6 +8,7 @@ var Enums = require('./../helper/enums');
 router.use(bodyParser.json());
 
 router.get('/:token' , function(req, res){
+    console.log("Get all");
     var promise = serviceBusiness.getAllWithPrestation();
     promise.exec(function(err, result){
         res.json({
@@ -19,8 +20,8 @@ router.get('/:token' , function(req, res){
     });
 });
 
-router.get('/:idService:/:token' , function(req, res){
-
+router.post('/:idService/:token' , function(req, res){
+    console.log("Lier service prestation");
     var promise = serviceBusiness.getByIdWithPrestations(req.params.idService);
     promise.exec(function(err, result){
         if(result != null){
@@ -34,7 +35,7 @@ router.get('/:idService:/:token' , function(req, res){
     })
 });
 
-router.post('/:token' , function(req , res){
+router.post('/' , function(req , res){
     var promise = serviceBusiness.getById(req.body.idService);
     promise.exec(function(err, result){
         if(result != null && result.prestations.indexOf(req.body.idPrestation) == -1){

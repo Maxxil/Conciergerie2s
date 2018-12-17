@@ -7,7 +7,7 @@ import {DevisPage} from "../devis/devis";
 import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
 import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
 import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
-import {PRESTATION_IMAGE_URL} from "../../model/UrlConstants";
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 
 /**
  * Generated class for the PrestationsPage page.

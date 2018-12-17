@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
-import {UTILISATEUR_PROFILE_URL} from "../../model/UrlConstants";
+import {UTILISATEUR_PROFILE_URL} from "../../model/Url";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {RoleEnum} from "../../model/Enums/RoleEnum";
 

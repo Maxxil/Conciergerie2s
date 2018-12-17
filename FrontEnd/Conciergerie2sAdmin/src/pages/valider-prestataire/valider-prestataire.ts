@@ -68,14 +68,19 @@ export class ValiderPrestatairePage {
     if(result.success){
       this.alertCtrl.create({
         title: "Validation du prestataire",
-        subTitle : "La validation s'est correctement effectuée"
+        subTitle : "La validation s'est correctement effectuée",
+        buttons: [{
+          text : 'OK'
+        }]
       }).present();
-      prestataire.utilisateur.status = StatusEnum.VALIDE;
     }
     else{
       this.alertCtrl.create({
         title : "Erreur",
-        subTitle : "Une erreur est survenue. Veuillez contacter le service technique"
+        subTitle : "Une erreur est survenue. Veuillez contacter le service technique",
+        buttons: [{
+          text : 'OK'
+        }]
       }).present()
     }
   }

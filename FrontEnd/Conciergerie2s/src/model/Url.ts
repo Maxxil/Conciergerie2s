@@ -7,8 +7,8 @@ export const HTTP_OPTIONS = {
     };
 ;
 
-export const SERVER_URL : string = "http://149.56.13.37:4444";
-//export const SERVER_URL : string = "http://localhost:4444";
+//export const SERVER_URL : string = "http://149.56.13.37:4444";
+export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';
 export const SERVICE_URL : string = SERVER_URL + '/service';
@@ -17,6 +17,7 @@ export const SERVICE_IMAGE_URL : string = SERVICE_URL + "/image/";
 export const PRESTATAIRE_URL : string = SERVER_URL + '/prestataire/';
 export const PRESTATION_IMAGE_URL : string = PRESTATION_URL + '/image/';
 export const LIER_SERVICE_PRESTATION_URL: string = SERVER_URL + '/lierServicePrestation';
+export const SERVICE_PRESTATION_URL: string = SERVER_URL + '/servicePrestation';
 export const LIER_PRESTATION_PRESTATAIRE_URL: string = SERVER_URL + '/lierPrestationPrestataire';
 export const VALIDER_PRESTATAIRE : string = SERVER_URL + '/validerPrestataire';
 export const DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestataire';
@@ -33,5 +34,8 @@ export const COMMANDE_HORAIRE_PRESTATAIRE_URL = COMMANDE_HORAIRE_URL + '/prestat
 export const DEVIS_PRESTATAIRE_URL = DEVIS_URL + '/prestataire';
 
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
-export const PAYPAL_URL = SERVER_URL + '/paypal';
+export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
+
+export const CHAT_URL = "http://149.56.13.37:5555";
+//export const CHAT_URL = "http://localhost:5555";
 

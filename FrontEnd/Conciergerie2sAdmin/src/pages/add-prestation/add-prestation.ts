@@ -38,6 +38,10 @@ export class AddPrestationPage {
     this.modalType = this.navParams.get("ModalType");
     if(this.isUpdateModal()){
       this.prestation = this.navParams.get("Prestation");
+      if(this.isEmptyImage()){
+        console.log("Image vide");
+        this.prestation.image = "../../assets/icon/pic.png";
+      }
     }
     else{
       this.prestation = new PrestationModel();
@@ -50,6 +54,10 @@ export class AddPrestationPage {
 
   isUpdateModal(){
     return this.modalType == ServiceModalType.UPDATE;
+  }
+
+  isEmptyImage(){
+    return this.prestation.image == null || this.prestation.image == ""|| this.prestation.image == "../../assets/icon/pic.png";
   }
 
   displayAddPrestationDetail()

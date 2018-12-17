@@ -37,6 +37,11 @@ export class AddServicePage {
     this.modalType = this.navParams.get("ModalType");
     if(this.isUpdateModal()){
       this.service = this.navParams.get("ServiceModel");
+      if(this.isEmptyImage()){
+        console.log("Image vide");
+        this.service.image = "../../assets/icon/pic.png";
+        this.isImageUploaded = false;
+      }
     }
     else{
       this.service = new ServiceModel();
@@ -50,6 +55,10 @@ export class AddServicePage {
 
   isUpdateModal(){
     return this.modalType == ServiceModalType.UPDATE;
+  }
+
+  isEmptyImage(){
+    return this.service.image == null || this.service.image == "" || this.service.image == "../../assets/icon/pic.png";
   }
 
   importImage()

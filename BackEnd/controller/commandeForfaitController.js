@@ -10,6 +10,8 @@ router.use(bodyParser.json());
 router.get('/:token' , function (req, res) {
     var promise = commandeForfaitBusiness.getAll();
     promise.exec(function (err, result) {
+        console.log("Obtenir toutes les commandes forfait");
+        console.log(result);
         res.json({
             success : true,
             data : result
@@ -19,6 +21,7 @@ router.get('/:token' , function (req, res) {
 });
 
 router.get('/:id/:token', function (req, res) {
+    console.log("Obtenir commande forfait par Id " + req.params.id);
     var promise = commandeForfaitBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
         res.json({
@@ -29,7 +32,7 @@ router.get('/:id/:token', function (req, res) {
     })
 });
 
-router.post('/:token' , function (req, res) {
+router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
     var prestataireChoisi = req.body.prestataireChoisi;
@@ -40,7 +43,7 @@ router.post('/:token' , function (req, res) {
     res.end();
 });
 
-router.post('/prestataire/:token' , function (req, res) {
+router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
@@ -52,18 +55,18 @@ router.post('/prestataire/:token' , function (req, res) {
     });
 });
 
-router.put('/:token', function(req, res){
-    console.log(commandeForfaitBusiness);
+router.put('/', function(req, res){
+    console.log(req.body);
     var commande = new CommandeForfait({
-        client : req.body.idClient,
-        prestation : req.body.idPrestation,
+        client : req.body.commande.idClient,
+        prestation : req.body.commande.idPrestation,
         prestataire : [],
-        date : req.body.date,
-        heureDebut : req.body.heureDebut,
-        heureFin : req.body.heureFin,
+        date : req.body.commande.date,
+        heureDebut : req.body.commande.heureDebut,
+        heureFin : req.body.commande.heureFin,
         dateCreation : Date.now(),
-        quantite : req.body.quantite,
-        status : req.body.status
+        quantite : req.body.commande.quantite,
+        status : req.body.commande.status
     });
     commandeForfaitBusiness.add(commande);
     res.json({

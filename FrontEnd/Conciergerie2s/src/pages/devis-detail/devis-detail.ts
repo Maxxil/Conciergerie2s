@@ -26,6 +26,8 @@ export class DevisDetailPage {
               , public viewCtrl : ViewController,
               public alertCtrl : AlertController) {
     this.commande = this.navParams.get('Commande');
+    console.log("Devis : ");
+    console.log(this.commande);
   }
 
   ionViewDidLoad() {

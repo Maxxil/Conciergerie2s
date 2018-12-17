@@ -61,21 +61,11 @@
                       {{commande.dateCreation | date: 'dd/MM/yy'}}<br>
                       {{commande.dateCreation | date: 'HH:mm'}}
                   </ion-note>
-  
+
                   <h2>{{commande.prestation.nom}}</h2>
                   <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
               </button>
             </ion-list>
     </div>
-   <!--  <ion-list>
-        <ion-list-header>
-            Hsitorique de mes commandes
-          </ion-list-header>
-        <ion-item *ngFor="let commande of commandes">
-            <ion-note item-start >{{commande.dateCreation | date: 'dd/MM/yy hh:mm'}}</ion-note>
-            <ion-label align-items-center>{{commande.prestation.nom}}</ion-label>
-            <ion-note item-end >{{commande.prestation.prix}} €</ion-note>
-        </ion-item>
-    </ion-list> -->
 
 </ion-content>

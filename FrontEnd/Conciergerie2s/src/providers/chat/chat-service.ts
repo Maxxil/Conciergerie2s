@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators/map';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Socket } from "ng-socket-io";
-import { CHAT_URL} from "../../model/UrlConstants";
+import { CHAT_URL} from "../../model/Url";
 export class ChatMessage {
   messageId: string;
   userId: string;
@@ -26,8 +26,8 @@ export class ChatService {
 
   private _server: string = CHAT_URL;
 
-  constructor(private http: HttpClient,              
-              private socket: Socket) {              
+  constructor(private http: HttpClient,
+              private socket: Socket) {
   }
 
 
@@ -37,11 +37,11 @@ export class ChatService {
   }
 
   connect() {
-    this.socket.connect();    
+    this.socket.connect();
     this.socket.emit('client-connect');
   }
 
-  
+
   isAdminOnline() : Observable<any>
   {
      return new Observable((observer) =>
@@ -69,12 +69,12 @@ export class ChatService {
   getMsgList(): Observable<ChatMessage[]> {
     const msgListUrl = './assets/mock/msg-list.1.json';
     return this.http.get<any>(msgListUrl)
-    .pipe(map(response => response.array));   
+    .pipe(map(response => response.array));
   }
 
   sendMsg(msg: ChatMessage) {
     return new Promise(resolve =>
-       this.socket.emit('new-message', { message: msg}));    
+       this.socket.emit('new-message', { message: msg}));
   }
 
   getUserInfo(): Promise<UserInfo> {

@@ -36,7 +36,7 @@ export class CommandeForfaitPage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               , public commandeForfaitPvd : CommandeForfaitProvider) {
-    this.commandeForfait = new CommandeForfaitModel();    
+    this.commandeForfait = new CommandeForfaitModel();
     this.prestation = this.navParams.get("Prestation");
     this.commandeForfait.idPrestation = this.prestation._id;
     this.today= new Date();
@@ -45,7 +45,9 @@ export class CommandeForfaitPage {
   public commander(){
 
     this.loading.present();
+    console.log("Paiement");
     this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
+      console.log(result);
       this.iab.create(result.data, '_blank');
       this.loading.dismiss();
       this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
