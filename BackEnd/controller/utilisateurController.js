@@ -33,6 +33,7 @@ var upload = multer({
 router.use(bodyParser.json());
 
 router.get('/:token', function (req, res) {
+    console.log("All");
     var promise = utilisateurBusiness.getAll();
     promise.exec(function (err, result) {
         res.json({

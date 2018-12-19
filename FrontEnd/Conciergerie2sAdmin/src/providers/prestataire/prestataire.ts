@@ -20,7 +20,8 @@ export class PrestataireProvider {
   }
 
   getAllUtilisateurPrestataire() : Observable<PrestataireResult>{
-    return this.http.get<PrestataireResult>(UTILISATEUR_PRESTATAIRE);
+    this.token = localStorage.getItem('Token');
+    return this.http.get<PrestataireResult>(UTILISATEUR_PRESTATAIRE + '/' + this.token);
   }
 
   public getAllPrestataire(): Observable<PrestataireResult>{
