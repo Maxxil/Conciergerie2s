@@ -19,7 +19,8 @@ import {Result} from "../../model/Result/Result";
 export class DevisDetailPage {
 
   public commande : DevisModel;
-
+  public status: string = "En cours d'analyse";
+  public dejapostuler: boolean = false;
   constructor(public navCtrl: NavController
               , public devisPvd : DevisProvider
               , public navParams: NavParams
@@ -28,17 +29,44 @@ export class DevisDetailPage {
     this.commande = this.navParams.get('Commande');
     console.log("Devis : ");
     console.log(this.commande);
+    switch(this.commande.status) {
+      case 1: this.status = "Envoyé"; break;
+      case 2: this.status = "Validée"; break;
+      case 3: this.status = "Livrée"; break;
+      case 4: this.status = "En attente de validation"; break;
+    } 
+    console.log('Peutpostuler',this.peutPostuler());
+    this.dejapostuler = this.aDejaPostule();
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandeForfaitDetailPage');
   }
 
+  
+  peutPostuler() {
+    return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
+  }
+
+
   postuler(){
     this.devisPvd.souscrirePrestataire(this.commande).subscribe(result =>{
       this.manageDisplaySuccessOrError(result);
     });
   }
+
+  
+  aDejaPostule(){
+    var prestataires = this.commande.prestataires;  
+    prestataires.forEach(element => {
+      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
+        this.dejapostuler=true;        
+      }
+    });
+    return this.dejapostuler;
+  }
+
 
   annuler(){
     this.viewCtrl.dismiss();

@@ -27,7 +27,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <div [ngSwitch]="defautseg">
         <ion-list *ngSwitchCase="'horaire'">
             <button ion-item *ngFor="let commande of commandeHoraire" (click)="detailCommandeHoraire(commande)">
