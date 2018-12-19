@@ -48,13 +48,16 @@ export class CommandeForfaitPage {
     console.log("Paiement");
     this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
       console.log(result);
-      this.iab.create(result.data, '_blank');
+      var browser = this.iab.create(result.data, '_self');
       this.loading.dismiss();
-      this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
-      this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
-        this.manageDisplaySuccessOrError(result);
-      })
-    })
+      browser.on('close').subscribe(() =>{
+        this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
+        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
+          this.manageDisplaySuccessOrError(result);
+        });
+      });
+
+    });
 
   }
 

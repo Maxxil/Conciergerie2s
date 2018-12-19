@@ -36,7 +36,8 @@ export class PrestataireProvider {
   }
 
   devalider(prestataire): Observable<Result>{
-    return this.http.post<Result>(DEVALIDER_PRESTATAIRE, {id:prestataire._id});
+    this.token = localStorage.getItem('Token');
+    return this.http.post<Result>(DEVALIDER_PRESTATAIRE, {id:prestataire._id, token: this.token});
   }
 
 }
