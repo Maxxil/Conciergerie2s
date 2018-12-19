@@ -24,7 +24,7 @@
       <ion-note item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}<br>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>
     </ion-item>
     <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-      <ion-list-header>Liste des prestataires possibles</ion-list-header>
+      <ion-list-header>Liste des prestataires ayant postulé</ion-list-header>
       <ion-item *ngFor="let element of commande.prestataires">
         <ion-label>{{element.utilisateur.nom + ' ' + element.utilisateur.prenom}}</ion-label>
         <ion-radio value="{{element._id}}"></ion-radio>

@@ -22,3 +22,6 @@ profiles_settings.xml
 BackEnd/config/environnement.js
 BackEnd/package-lock.json
 FrontEnd/Conciergerie2s/package-lock.json
+FrontEnd/Conciergerie2s/src/model/Url.ts
+FrontEnd/Conciergerie2sAdmin/src/model/Url.ts
+

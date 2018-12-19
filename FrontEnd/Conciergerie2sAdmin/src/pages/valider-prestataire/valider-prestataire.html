@@ -18,7 +18,7 @@
 
   <ion-list>
     <button ion-item *ngFor="let element of prestataires">
-        <ion-label> {{element.nom + " " + element.prenom+ " "+element.status}}</ion-label>
+        <ion-label> {{element.nom + " " + element.prenom}}</ion-label>
         <ion-checkbox (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)" color="secondary" checked="false"></ion-checkbox>
         <ion-checkbox (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)" color="secondary" checked="true"></ion-checkbox>
        

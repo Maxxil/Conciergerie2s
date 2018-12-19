@@ -27,8 +27,9 @@
     </ion-item>
   </ion-list>
 
-  <h1>Choix d'un prestataire ci-dessous : </h1>
+  
   <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
+      <ion-list-header>Liste des prestataires ayant postulé</ion-list-header>
     <ion-item *ngFor="let prestataire of commande.prestataires">
       <ion-label>{{prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}<br>Prix proposé :</ion-label><br>       
       <ion-radio [value]="prestataire"></ion-radio>
