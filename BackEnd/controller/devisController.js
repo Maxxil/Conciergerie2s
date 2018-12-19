@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var devisBusiness = require('./../business/devisBusiness');
 var Devis = require('./../model/devisModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
+var devisPropositionBusiness = require('./../business/devisPropositionBusiness');
 
 router.use(bodyParser.json());
 
@@ -43,9 +44,11 @@ router.post('/' , function (req, res) {
 router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
+    var proposition = req.body.proposition;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
         console.log(prestataire);
         devisBusiness.addPrestataire(idCommande, prestataire[0]._id);
+        devisPropositionBusiness.add(prestataire[0]._id, idCommande, proposition.prix, proposition.dateProposee);
         res.json({
             success: true
         });

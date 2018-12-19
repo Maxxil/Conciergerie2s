@@ -3,6 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams, ViewController} fr
 import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {Result} from "../../model/Result/Result";
+import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
 
 /**
  * Generated class for the DevisDetailPage page.
@@ -21,6 +22,7 @@ export class DevisDetailPage {
   public commande : DevisModel;
   public status: string = "En cours d'analyse";
   public dejapostuler: boolean = false;
+  public proposition : DevisPropositionModel;
   constructor(public navCtrl: NavController
               , public devisPvd : DevisProvider
               , public navParams: NavParams
@@ -34,34 +36,35 @@ export class DevisDetailPage {
       case 2: this.status = "Validée"; break;
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
-    } 
+    }
     console.log('Peutpostuler',this.peutPostuler());
     this.dejapostuler = this.aDejaPostule();
-    
+    this.proposition = new DevisPropositionModel();
+    this.proposition.idDevis = this.commande._id;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandeForfaitDetailPage');
   }
 
-  
+
   peutPostuler() {
     return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
   }
 
 
   postuler(){
-    this.devisPvd.souscrirePrestataire(this.commande).subscribe(result =>{
+    this.devisPvd.souscrirePrestataire(this.commande, this.proposition).subscribe(result =>{
       this.manageDisplaySuccessOrError(result);
     });
   }
 
-  
+
   aDejaPostule(){
-    var prestataires = this.commande.prestataires;  
+    var prestataires = this.commande.prestataires;
     prestataires.forEach(element => {
-      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
-        this.dejapostuler=true;        
+      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){
+        this.dejapostuler=true;
       }
     });
     return this.dejapostuler;

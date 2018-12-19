@@ -5,6 +5,7 @@ import {DevisResult} from "../../model/Result/DevisResult";
 import {Observable} from "rxjs/Observable";
 import {Result} from "../../model/Result/Result";
 import {DEVIS_PRESTATAIRE_URL, DEVIS_URL} from "../../model/Url";
+import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
 
 /*
   Generated class for the DevisProvider provider.
@@ -30,8 +31,13 @@ export class DevisProvider {
     return this.http.get<DevisResult>(DEVIS_URL + '/' + this.token);
   }
 
-  souscrirePrestataire(commande : DevisModel) : Observable<Result>{
+  souscrirePrestataire(commande : DevisModel, proposition : DevisPropositionModel) : Observable<Result>{
     return this.http.post<Result>(DEVIS_PRESTATAIRE_URL,
-      {idCommande : commande._id , idUtilisateur : localStorage.getItem('IdUtilisateur'), token : this.token});
+      {
+              idCommande : commande._id ,
+              idUtilisateur : localStorage.getItem('IdUtilisateur'),
+              token : this.token,
+              proposition : proposition
+            });
   }
 }

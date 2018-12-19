@@ -5,7 +5,7 @@ var enums = require('./../helper/enums');
 
 module.exports = {
     newUtilisateur: function(utilisateur) {
-        let notification = new Notification({            
+        let notification = new Notification({
             statut: enums.NotificationStatus.NON_LU,
             type: utilisateur.role == '1' ? enums.NotificationType.NOUVEAU_CLIENT: enums.NotificationType.NOUVEAU_PRESTATAIRE,
             date: new Date(),

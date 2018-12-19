@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e50ed3f-2ed2-4849-9224-7caecbc679bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/prestataire/prestataire.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/prestataire/prestataire.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/business/notificationBusiness.js" afterPath="$PROJECT_DIR$/BackEnd/business/notificationBusiness.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/devisController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/devisController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,21 +21,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="devis-detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html">
+      <file leaf-file-name="devis-detail.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+            <state relative-caret-position="225">
+              <caret line="56" column="31" lean-forward="true" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devis.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utilisateur.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/utilisateur/utilisateur.ts">
+      <file leaf-file-name="DevisPropositionModel.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/DevisPropositionModel.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="210">
+              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devis-detail.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devis-detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devisController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/controller/devisController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="devisPropositionBusiness.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/business/devisPropositionBusiness.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -47,75 +107,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devisModel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/model/devisModel.js">
+      <file leaf-file-name="devisPropositionModel.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BackEnd/model/devisPropositionModel.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+              <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="valider-prestataire.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/valider-prestataire/valider-prestataire.ts">
+      <file leaf-file-name="notificationBusiness.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BackEnd/business/notificationBusiness.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="36" column="46" lean-forward="true" selection-start-line="36" selection-start-column="46" selection-end-line="36" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prestataire.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/prestataire/prestataire.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Url.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Url.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utilisateurController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/controller/utilisateurController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="35" column="23" lean-forward="false" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utilisateurBusiness.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/business/utilisateurBusiness.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="32" column="83" lean-forward="true" selection-start-line="32" selection-start-column="83" selection-end-line="32" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="roleEnum.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BackEnd/helper/roleEnum.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+            <state relative-caret-position="147">
+              <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -175,13 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-forfait/commande-forfait.html" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.html" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis/devis.html" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/prestations/prestations.ts" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.ts" />
-        <option value="$PROJECT_DIR$/BackEnd/controller/loginController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/prestation/prestation.ts" />
         <option value="$PROJECT_DIR$/BackEnd/controller/servicePrestationController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/service/service.ts" />
@@ -219,13 +218,20 @@
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/valider-prestataire/valider-prestataire.ts" />
         <option value="$PROJECT_DIR$/BackEnd/controller/validerPrestatire.js" />
         <option value="$PROJECT_DIR$/BackEnd/controller/commandeHoraireController.js" />
-        <option value="$PROJECT_DIR$/BackEnd/controller/devisController.js" />
         <option value="$PROJECT_DIR$/BackEnd/business/commandeForfaitBusiness.js" />
         <option value="$PROJECT_DIR$/BackEnd/business/devisBusiness.js" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" />
         <option value="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/prestataire/prestataire.ts" />
+        <option value="$PROJECT_DIR$/BackEnd/model/devisPropositionmodel.js" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Result/DevisPropositionResult.ts" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts" />
+        <option value="$PROJECT_DIR$/BackEnd/business/notificationBusiness.js" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/DevisPropositionModel.ts" />
+        <option value="$PROJECT_DIR$/BackEnd/business/devisPropositionBusiness.js" />
+        <option value="$PROJECT_DIR$/BackEnd/controller/devisController.js" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" />
+        <option value="$PROJECT_DIR$/BackEnd/model/devisPropositionModel.js" />
       </list>
     </option>
   </component>
@@ -322,27 +328,6 @@
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -354,31 +339,31 @@
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Conciergerie2sAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Conciergerie2sAdmin" type="462c0819:PsiDirectoryNode" />
+              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Conciergerie2sAdmin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="Conciergerie2sAdmin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="valider-prestataire" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
+              <item name="FrontEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="devis-detail" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -449,12 +434,12 @@
       <workItem from="1542554777800" duration="17113000" />
       <workItem from="1543053788709" duration="21095000" />
       <workItem from="1544465835852" duration="14877000" />
-      <workItem from="1545064102906" duration="10800000" />
+      <workItem from="1545064102906" duration="12748000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185959000" />
+    <option name="totallyTimeSpent" value="187907000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,140 +507,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/devaliderPrestataire.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/loginController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/commande-horaire/commande-horaire.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="24" column="87" lean-forward="false" selection-start-line="24" selection-start-column="87" selection-end-line="24" selection-end-column="87" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Models/CommandeHoraireModel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-horaire/commande-horaire.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="46" column="28" lean-forward="false" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-forfait/commande-forfait.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="48" column="20" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/paypal/paypal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="39" lean-forward="false" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/paypalController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/commande-horaire/commande-horaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="22" column="56" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commande-forfait/commande-forfait.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/serviceController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commandes-postuler/commandes-postuler.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/commande/commande.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="26" column="2" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/commandeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/commande-forfait/commande-forfait.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -816,14 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/controller/devisController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="64" column="34" lean-forward="false" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/commandes/commandes.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-730">
@@ -858,44 +701,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/providers/utilisateur/utilisateur.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/business/prestataireBusiness.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BackEnd/model/devisModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -949,6 +758,182 @@
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/model/devisModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/devis/devis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/pages/devis-detail/devis-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-318">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis/devis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/DevisModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Result/DevisResult.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="2" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Result/DevisPropositionResult.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/business/loginBusiness.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/model/prestationModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/business/paypalBusiness.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/business/prestataireBusiness.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/business/notificationBusiness.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/DevisPropositionModel.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="56" column="31" lean-forward="true" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="33" column="2" lean-forward="false" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/controller/devisController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/business/devisPropositionBusiness.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="30" column="16" lean-forward="false" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BackEnd/model/devisPropositionModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
