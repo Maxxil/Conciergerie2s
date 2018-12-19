@@ -12,23 +12,24 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Devis<br><strong>{{commande.prestation.nom}}</strong>
+        <h1>Commander un devis</h1>
+        <h2>{{commande.prestation.nom}}</h2>
+        <h3 text-right>Statut : {{ status }}</h3>         
     </ion-list-header>
+    <ion-item> 
+        <ion-label fixed>Date : </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" disabled=""></ion-datetime>
+      </ion-item>
     <ion-item>
-      <ion-label fixed>Détail de la demande</ion-label>
-      <ion-textarea rows="3" required [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed>Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" disabled=""></ion-datetime>
-    </ion-item>
-    <ion-item text-center>
-      <button ion-button (click)="postuler()">Postuler</button>
-      <button ion-button (click)="annuler()">Annuler</button>
-    </ion-item>
+      <ion-label stacked>Informations pour le devis</ion-label>
+      <ion-textarea rows="3" readonly [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
+    </ion-item>       
   </ion-list>
+  <div text-center>
+      <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>
+      <button ion-button (click)="annuler()" taupe>Fermer</button>
+    </div>
 </ion-content>
