@@ -43,9 +43,7 @@ router.post('/' , function (req, res) {
 router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
-    console.log(idUtilisateur);
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
-        console.log(prestataire[0]._id);
         commandeHoraireBusiness.addPrestataire(idCommande, prestataire[0]._id);
         res.json({
             success: true
@@ -55,7 +53,6 @@ router.post('/prestataire' , function (req, res) {
 });
 
 router.put('/', function(req, res){
-    console.log(req.body);
     var commande = new CommandeHoraire({
         client : req.body.commande.idClient,
         prestation : req.body.commande.idPrestation,

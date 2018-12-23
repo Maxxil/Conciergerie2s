@@ -41,7 +41,6 @@ var amount = 0;
 
 router.get('/', function (req, res) {
     paypalBusiness.get().exec(function (err, result) {
-        console.log(result);
         res.json({
             success : true,
             data : result
@@ -52,7 +51,6 @@ router.get('/', function (req, res) {
 
 router.post('/' , function(req , res){
     paypalBusiness.update(req.body.paypal).then(function ( result) {
-        console.log(result);
         res.json({
             success : result.ok
         });
@@ -61,7 +59,6 @@ router.post('/' , function(req , res){
 });
 
 router.put('/createPayment', function (req, res) {
-    console.log("Paiement");
     var prestation = req.body.prestation;
     amount = req.body.prix;
     var create_payment_json = {
@@ -101,8 +98,6 @@ router.put('/createPayment', function (req, res) {
             });
             res.end();
         } else {
-            console.log("Create Payment Response");
-            console.log(payment.links[1].href);
             res.json({
                 success: true,
                 data: payment.links[1].href
@@ -131,11 +126,8 @@ router.get('/executePayment', function (req, res) {
 
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
-            console.log(error.response);
             throw error;
         } else {
-            console.log("Get Payment Response");
-            console.log(JSON.stringify(payment));
             // essayer de stocker dans la commande sur mongo la référence du payment généré par paypal
             res.json({
                 success : true
@@ -146,7 +138,6 @@ router.get('/executePayment', function (req, res) {
 });
 
 router.get('/cancelPayment', function (req, res) {
-    console.log("cancel payment");
     res.json({
         success: false
     });

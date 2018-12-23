@@ -6,7 +6,7 @@ var db = require('./../config/db');
 var devis = new mongoose.Schema({
     client: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
     prestation : {type : Schema.Types.ObjectId, ref : 'Prestation'},
-    prestataires : [{type : Schema.Types.ObjectId, ref : 'Prestataire', default : []}],
+    propositions : [{type : Schema.Types.ObjectId, ref : 'DevisProposition', default : []}],
     prestataireChoisi : {type : Schema.Types.ObjectId, ref : 'Prestataire'},
     information : 'String',
     heure : 'String',

@@ -11,17 +11,21 @@ router.use(bodyParser.json());
 router.get('/:token' , function (req, res) {
     var promise = devisBusiness.getAll();
     promise.exec(function (err, result) {
+        console.log(result);
         res.json({
             success : true,
             data : result
         });
         res.end();
-    })
+    });
+
 });
 
 router.get('/:id/:token', function (req, res) {
     var promise = devisBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
+        console.log("GET BY ID - DEVIS");
+        console.log(result);
         res.json({
             success : true,
             data : result
@@ -46,9 +50,8 @@ router.post('/prestataire' , function (req, res) {
     var idUtilisateur = req.body.idUtilisateur;
     var proposition = req.body.proposition;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
-        console.log(prestataire);
-        devisBusiness.addPrestataire(idCommande, prestataire[0]._id);
-        devisPropositionBusiness.add(prestataire[0]._id, idCommande, proposition.prix, proposition.dateProposee);
+        var idProposition = devisPropositionBusiness.add(prestataire[0]._id, proposition.prix, proposition.dateProposee);
+        devisBusiness.addProposition(idCommande, idProposition);
         res.json({
             success: true
         });

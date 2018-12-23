@@ -7,8 +7,8 @@ export const HTTP_OPTIONS = {
     };
 ;
 
-export const SERVER_URL : string = "http://149.56.13.37:4444";
-//export const SERVER_URL : string = "http://localhost:4444";
+//export const SERVER_URL : string = "http://149.56.13.37:4444";
+export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';
 export const SERVICE_URL : string = SERVER_URL + '/service';

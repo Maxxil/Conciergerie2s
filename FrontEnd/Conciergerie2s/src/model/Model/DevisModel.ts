@@ -2,6 +2,7 @@ import {UtilisateurModel} from "./UtilisateurModel";
 import {PrestationModel} from "./PrestationModel";
 import {CommandeStatus} from "../CommandeStatusEnum";
 import {PrestataireModel} from "./PrestataireModel";
+import {DevisPropositionModel} from "./DevisPropositionModel";
 
 export class DevisModel{
   _id : string;
@@ -9,7 +10,7 @@ export class DevisModel{
   client: UtilisateurModel;
   idPrestation : string;
   prestation : PrestationModel;
-  prestataires : PrestataireModel[];
+  propositions : DevisPropositionModel[];
   information : string;
   heure : string;
   date : Date;

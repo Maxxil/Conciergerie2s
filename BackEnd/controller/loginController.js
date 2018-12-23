@@ -39,20 +39,15 @@ router.get("/:token" , function (req, res) {
 });
 
 router.post("/", function (req, res) {
-    console.log(req.body.nomUtilisateur);
-    console.log(req.body.motDePasse);
     var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);
     promise.exec(function(err,result){
         if(result.length == 0){
-            console.log("Non trouvé");
             res.json({
                 success : false,
                 error : Enums.Error.UTILISATEUR_NON_CONNU,
             });
         }
         else{
-            console.log("trouvé");
-
             var token = jwt.generateToken(result[0]);
             res.json({
                 success : true,

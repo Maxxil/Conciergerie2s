@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
+import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 
 /**
  * Generated class for the DevisDetailPage page.

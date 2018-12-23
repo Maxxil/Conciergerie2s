@@ -26,11 +26,10 @@ export class LoginPage {
               , public loginPvd : LoginProvider
               , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
-    this.tryConnect();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    var token = localStorage.getItem('Token');
+    if(token != null){
+      this.tryConnect();
+    }
   }
 
   tryConnect(){
@@ -62,7 +61,6 @@ export class LoginPage {
         }
         else
         {
-          console.log(result.user[0]._id);
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           localStorage.setItem('Token', result.data);
           this.socket.emit('client-connect', result.user[0]);

@@ -4,10 +4,10 @@ var db = require('./../config/db');
 
 var devisProposition = new mongoose.Schema({
     prestataire : {type : Schema.Types.ObjectId, ref : 'Prestataire'},
-    devis : {type : Schema.Types.ObjectId, ref : 'Devis'},
     prix : 'Number',
     dateProposee : 'Date',
-    date : 'Date'
+    date : 'Date',
+    statut : 'Number'
 });
 
 

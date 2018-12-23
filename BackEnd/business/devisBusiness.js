@@ -4,10 +4,14 @@ module.exports = {
     add : function (devis) {
         devis.save();
     },
-    addPrestataire : function (idDevis, idPrestataire) {
+    addProposition : function (idDevis, idProposition) {
         Devis.find({_id : idDevis}).exec(function (err,result) {
             if(result != null || result.length == 1){
-                result[0].prestataires.push(idPrestataire);
+                if(result[0].propositions == [])
+                {
+                    result[0].propositions = [];
+                }
+                result[0].propositions.push(idProposition);
                 result[0].save();
             }
         })
@@ -17,19 +21,39 @@ module.exports = {
     },
     getAll : function () {
         return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'},
-            {path : 'prestataires',populate: {path : 'utilisateur', select: 'nom prenom'}}]).sort([['dateCreation',-1]]);
+            {
+                path : 'propositions',
+                populate:
+                    {
+                        path : 'prestataire' ,
+                        populate : {
+                            path : 'utilisateur', select: 'nom prenom'
+                        }
+                    }
+            }]).sort([['dateCreation',-1]]);
     },
     getByIdPrestation : function (idPrestation) {
         return Devis.find({'prestation._id' : idPrestation}).populate('prestation');
     },
     getByIdClient : function(idClient){
         return Devis.find({'client' : idClient}).populate('client')
-            .populate([ {path : 'client'}, {path : 'prestation' }
-                        ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
+            .populate([
+                {path : 'client'}, {path : 'prestation' },
+                {
+                    path : 'propositions' , populate :
+                    {
+                        path : 'prestataire' , populate : {path: 'utilisateur' , select : '_id'}
+                    }
+
+                }]);
     },
     getByListIdPrestation : function (idsPrestations) {
-        return Devis.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
-            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);
+        return Devis.find({'prestation' : {'$in' : idsPrestations}})
+            .populate([{path : 'prestation' }, {
+                path: "propositions", populate: {
+                    path: 'prestataires', populate: {path: 'utilisateur', select: '_id'}
+                }
+            }]);
     },
     updateStatus : function (idCommande, status, prestataireChoisi) {
         Devis.find({_id : idCommande}).exec(function (err, result) {
@@ -37,5 +61,12 @@ module.exports = {
             result[0].prestataireChoisi = prestataireChoisi;
             result[0].save();
         })
+    },
+    selectIds : function (devis) {
+        var out = [];
+        devis.forEach(function(element){
+            out.push(element._id);
+        });
+        return out;
     }
 };

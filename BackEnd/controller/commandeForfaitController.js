@@ -10,8 +10,6 @@ router.use(bodyParser.json());
 router.get('/:token' , function (req, res) {
     var promise = commandeForfaitBusiness.getAll();
     promise.exec(function (err, result) {
-        console.log("Obtenir toutes les commandes forfait");
-        console.log(result);
         res.json({
             success : true,
             data : result
@@ -21,7 +19,6 @@ router.get('/:token' , function (req, res) {
 });
 
 router.get('/:id/:token', function (req, res) {
-    console.log("Obtenir commande forfait par Id " + req.params.id);
     var promise = commandeForfaitBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
         res.json({

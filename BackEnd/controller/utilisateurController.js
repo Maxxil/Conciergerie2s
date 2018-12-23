@@ -33,7 +33,6 @@ var upload = multer({
 router.use(bodyParser.json());
 
 router.get('/:token', function (req, res) {
-    console.log("All");
     var promise = utilisateurBusiness.getAll();
     promise.exec(function (err, result) {
         res.json({
@@ -45,11 +44,8 @@ router.get('/:token', function (req, res) {
 });
 
 router.get('/id=:id/:token', function (req, res) {
-    console.log("Utilisateur");
-    console.log(req.params.id);
     var promise = utilisateurBusiness.getById(req.params.id);
     promise.exec(function(err,utilisateur){
-        console.log(utilisateur);
         res.json({
             success: true,
             data : utilisateur
@@ -59,7 +55,6 @@ router.get('/id=:id/:token', function (req, res) {
 });
 
 router.get('/prestataire/:token' , function (req, res) {
-    console.log("Prestataire");
     var promise = utilisateurBusiness.getAllPrestataire();
     promise.exec(function (err,result) {
         res.json({
@@ -75,7 +70,6 @@ router.put('/' , upload.single('image'),function(req, res){
     if(req.file != null){
         filename = req.file.filename;
     }
-    console.log()
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
@@ -104,14 +98,12 @@ router.put('/' , upload.single('image'),function(req, res){
 });
 
 router.post('/image' , upload.single('image') , function (req , res) {
-    console.log("Enregistrement");
     var id = req.body.utilisateur._id;
     var filename = "";
     if(req.file != null){
         filename = req.file.filename;
     }
     utilisateurBusiness.getById(id).exec(function (err,result) {
-        console.log(result);
         fs.remove('./../data/images/utilisateur/' + result.image);
         result = req.body.utilisateur;
         result.image = filename;
@@ -124,9 +116,7 @@ router.post('/image' , upload.single('image') , function (req , res) {
 });
 
 router.post('/', function (req , res) {
-    console.log("Enregistrement");
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
-        console.log(result);
         res.json({
             success : result.ok
         });

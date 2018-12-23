@@ -111,8 +111,6 @@ router.put('/' , upload.single('file'), function(req, res){
         if(req.file != null){
             filename = req.file.filename;
         }
-        console.log("Ajout prestation");
-        console.log(filename);
         var promise = prestationBusiness.getByNom(req.body.nom);
         promise.exec(function (err,result) {
             if(result == null || result.length == 0){

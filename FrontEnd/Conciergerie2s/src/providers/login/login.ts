@@ -20,6 +20,7 @@ export class LoginProvider {
 
   public connect(user : UtilisateurModel) : Observable<LoginResult>
   {
+    var token = localStorage.getItem('Token');
     return this.http.post<LoginResult>(LOGIN_URL,user, {headers : new HttpHeaders({
       'Content-Type':  'application/json'
     })});

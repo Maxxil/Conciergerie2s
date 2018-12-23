@@ -4,6 +4,7 @@ import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
+import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 
 /**
  * Generated class for the DevisPage page.
@@ -20,6 +21,7 @@ import {DevisDetailPage} from "../devis-detail/devis-detail";
 export class DevisPage {
 
   public commande : DevisModel[];
+  public propositions : DevisPropositionModel[];
 
   constructor(public navCtrl: NavController
     , public navParams: NavParams
@@ -30,6 +32,7 @@ export class DevisPage {
   public getAll() {
     this.commandePvd.getAll().subscribe(result => {
       if (result.success) {
+        console.log(result.success);
         this.commande = result.data;
       }
     })
@@ -40,6 +43,7 @@ export class DevisPage {
   }
 
   public afficherDetailCommande(commande: DevisModel){
+    console.log(commande);
     this.navCtrl.push(DevisDetailPage, {Commande : commande})
   }
 }

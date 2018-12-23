@@ -100,13 +100,10 @@ router.post('/image' , upload.single('file') , function(req, res){
 });
 
 router.put('/' , upload.single('file'), function(req, res){
-    console.log("Filename : " + filename);
-    console.log("Ajout service");
     var filename = "";
     if(req.file != null){
         filename = req.file.filename;
     }
-    console.log(filename);
 
     var service = new Service({
         nom : req.body.nom,
@@ -123,7 +120,6 @@ router.put('/' , upload.single('file'), function(req, res){
 });
 
 router.delete('/:_id/:token', function(req, res){
-    console.log("Suppression service");
     serviceBusiness.getById(req.params._id).exec(function(err, result){
         serviceBusiness.deleteImage(result.image);
         serviceBusiness.delete(req.params._id);

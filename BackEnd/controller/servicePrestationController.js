@@ -12,7 +12,6 @@ router.get('/', function (req,res) {
 });
 
 router.get('/:idService/:token' , function(req, res){
-    console.log("Lier service prestation");
     var promise = serviceBusiness.getByIdWithPrestations(req.params.idService);
     promise.exec(function(err, result){
         if(result != null){
