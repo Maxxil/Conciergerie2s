@@ -30,8 +30,17 @@
         </p><br>
         <p text-wrap> <span  class="label-title">Informations fournies par le client : </span><br>{{commande.information}}</p>
     </ion-item>
+
+    <ion-item  *ngIf="peutPostuler() && dejapostuler">
+        <h1>  Ma proposition </h1><br>
+        <p>
+            <span class="label-title">Date proposée </span> : <em >{{proposition.dateProposee | date: 'dd/MM/yy'}}</em></p><br>
+            
+        <p><span class="label-title">Prix proposé TTC </span> : <em >{{proposition.prix }}</em> €</p>
+        
+    </ion-item>
   </ion-list>
-  <ion-list  *ngIf="peutPostuler()">  
+  <ion-list  *ngIf="peutPostuler() && !dejapostuler">  
     <br>
       <ion-list-header>      
           <h1> Je postule  </h1>
@@ -42,7 +51,7 @@
       </ion-item>
       
       <ion-item>        
-          <span item-start>Prix proposée TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
+          <span item-start>Prix proposé TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
       </ion-item>   
   </ion-list>
   <div text-center>

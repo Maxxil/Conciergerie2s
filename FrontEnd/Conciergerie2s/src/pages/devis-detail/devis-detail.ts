@@ -35,8 +35,8 @@ export class DevisDetailPage {
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
     }
-    this.dejapostuler = this.aDejaPostule();
     this.proposition = new DevisPropositionModel();
+    this.dejapostuler = this.aDejaPostule();    
   }
 
   ionViewDidLoad() {
@@ -62,6 +62,7 @@ export class DevisDetailPage {
       console.log(element);
       if(element.prestataire.utilisateur._id == localStorage.getItem('IdUtilisateur')){
         this.dejapostuler=true;
+        this.proposition = element;
       }
     });
     return this.dejapostuler;
