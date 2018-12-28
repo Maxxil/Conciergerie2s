@@ -19,6 +19,9 @@
         <ion-list>
             <button ion-item menuClose (click)="openPageHome()">
               Accueil
+            </button> 
+            <button icon-start ion-item menuClose (click)="openPageCommandes()"><ion-icon name="cart"></ion-icon>
+                Les commandes
             </button>
             <ion-list-header ion-item (click)="openSubMenuAFfichage()">Afficher</ion-list-header>
             <ion-list [@openClose]="isDisplayAfficher? 'open' : 'close'" [hidden]="isDisplayAfficher">
@@ -31,9 +34,7 @@
               <button icon-start ion-item menuClose (click)="openPageUtilisateur()"><ion-icon name="people"></ion-icon>
                 Tous les utilisateurs
               </button>
-              <button icon-start ion-item menuClose (click)="openPageCommandes()"><ion-icon name="cart"></ion-icon>
-                Les commandes
-              </button>
+             
             </ion-list >
             <ion-list-header ion-item (click)="openSubMenuAjouter()">Ajouter</ion-list-header>
             <ion-list [@openClose]="isDisplayAjouter? 'open' : 'close'" [hidden]="isDisplayAjouter">

@@ -14,22 +14,28 @@
 
 
 <ion-content padding>
-  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
+ 
+  <ion-list>
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="{{prestationImageUrl + commande.prestation.image}}">
+          </ion-avatar>
+      <h2 text-wrap>{{commande.prestation.nom}}</h2>
+      </ion-item>
+<hr>
+      <ion-item>
+      <p> Date: <em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
+      <p><b>Client :</b><br><span text-wrap>{{commande.client.nom + " " + commande.client.prenom}}</span></p><br>
+      <p text-wrap><b>Informations fournies par le client : </b><br>{{commande.information}}</p>
+    </ion-item>
+  </ion-list>
+  <hr>
+  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>Faire avec C2S ?</button>
   <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button>
   <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
 
-  <ion-list>
-    <ion-item>
-      <strong >{{commande.prestation.nom}}</strong><br>
-       Date: <em >{{commande.date | date: 'dd/MM/yy'}}</em><br>
-      <b>Client</b><br><span text-wrap>{{commande.client.nom + " " + commande.client.prenom}}</span><br>
-      <b>Informations</b><br><span class="commande-info-txt" text-wrap>{{commande.information}}</span>
-    </ion-item>
-  </ion-list>
-
-
   <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-      <ion-list-header>Liste des prestataires ayant postulé</ion-list-header>
+      <ion-list-header>Liste des prestataires ayant postulé    <ion-badge>{{commande.propositions.length}}</ion-badge></ion-list-header>
     <ion-item *ngFor="let proposition of commande.propositions">
       <ion-label>{{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
         <br>Prix proposé : {{proposition.prix}} €

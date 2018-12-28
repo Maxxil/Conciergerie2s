@@ -5,7 +5,7 @@ import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
 import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the DevisPage page.
  *
@@ -20,9 +20,9 @@ import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 })
 export class DevisPage {
 
-  public commande : DevisModel[];
+  public commandes : DevisModel[];
   public propositions : DevisPropositionModel[];
-
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , public commandePvd : DevisProvider) {
@@ -33,7 +33,8 @@ export class DevisPage {
     this.commandePvd.getAll().subscribe(result => {
       if (result.success) {
         console.log(result.success);
-        this.commande = result.data;
+        this.commandes = result.data;
+        console.log(result);
       }
     })
   }

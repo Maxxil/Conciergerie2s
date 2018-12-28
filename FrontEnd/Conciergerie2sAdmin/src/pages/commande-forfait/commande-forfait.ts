@@ -4,7 +4,7 @@ import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande
 import {CommandeForfaitModel} from "../../model/Models/CommandeForfaitModel";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the CommandeForfaitPage page.
  *
@@ -19,19 +19,19 @@ import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-for
 })
 export class CommandeForfaitPage {
 
-  public commande : CommandeForfaitModel[];
-
+  public commandes : CommandeForfaitModel[];
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public commandePvd : CommandeForfaitProvider) {
     this.getAll();
-  }
+  } 
 
   public getAll(){
     this.commandePvd.getAll().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commande = result.data;
+        this.commandes = result.data;
       }
     })
   }

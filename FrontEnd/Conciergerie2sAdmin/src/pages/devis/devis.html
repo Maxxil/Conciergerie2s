@@ -14,13 +14,31 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+
+    <ion-card *ngFor="let element of commandes" (click)="afficherDetailCommande(element)">
+
+        <ion-item>
+          <h2 text-wrap>{{element.prestation.nom}}</h2>   
+          <p *ngIf="element.dateCreation">Créé le {{element.dateCreation | date: 'dd/MM/yy'}}</p>     
+        </ion-item>
+      
+        <img src="{{prestationImageUrl + element.prestation.image}}">
+      
+        <ion-card-content>
+          <p><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>
+          <p *ngIf="element.date"><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p>
+          <p text-wrap><b>Informations fournies par le client</b><br>"{{element.information}}"</p>
+        </ion-card-content>
+    </ion-card>    
+
+
+ <!-- <ion-list>
     <ion-item *ngFor="let element of commande" (click)="afficherDetailCommande(element)">            
-      <strong >{{element.prestation.nom}}</strong><br>
+      <strong>{{element.prestation.nom}}</strong><br>
        Date: <em >{{element.date | date: 'dd/MM/yy'}}</em><br>
       <b>Client</b><br><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span><br>
       <b>Informations</b><br><span class="commande-info-txt" text-wrap>{{element.information}}</span>
       <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valider</button>                 
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 </ion-content>

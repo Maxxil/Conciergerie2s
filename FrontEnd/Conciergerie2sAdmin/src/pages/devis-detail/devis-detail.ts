@@ -4,7 +4,7 @@ import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the DevisDetailPage page.
  *
@@ -20,7 +20,7 @@ import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 export class DevisDetailPage {
 
   public commande : DevisModel;
-
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , public commandePvd : DevisProvider) {
@@ -28,7 +28,7 @@ export class DevisDetailPage {
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
   }
-
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandeHoraireDetailPage');
   }
