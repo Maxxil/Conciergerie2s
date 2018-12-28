@@ -46,7 +46,7 @@ app.listen(port, function() {
             utilisateurBusiness.create(user);
         }
 
-       notificationBusiness.sendPushClient();
+     //  notificationBusiness.sendPushClient();
 
 
     });
