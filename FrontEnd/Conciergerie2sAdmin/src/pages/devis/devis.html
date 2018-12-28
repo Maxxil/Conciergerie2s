@@ -27,7 +27,7 @@
         <ion-card-content>
           <p *ngIf="!element.client" ion-text color="danger">Attention Client inconnu - Demande à supprimer</p>
           <p *ngIf="element.client"><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>
-          <p *ngIf="element.client"><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p><br>
+          <p *ngIf="element.date"><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p><br>
           <p *ngIf="element.client && element.information"text-wrap><b>Informations fournies par le client</b><br>"{{element.information}}"</p>
         </ion-card-content>
     </ion-card>    

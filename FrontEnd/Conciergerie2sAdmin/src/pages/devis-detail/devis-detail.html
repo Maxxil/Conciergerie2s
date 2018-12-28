@@ -24,18 +24,26 @@
       </ion-item>
 <hr>
       <ion-item>
-      <p> Date: <em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
-      <p><b>Client :</b><br><span text-wrap>{{commande.client.nom + " " + commande.client.prenom}}</span></p><br>
-      <p text-wrap><b>Informations fournies par le client : </b><br>{{commande.information}}</p>
+      <p> <span  class="label-title">Date: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
+      <p>
+        <span class="label-title">Client :</span><br>
+        <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
+        <span text-wrap>  Tel: {{commande.client.telephoneMobile}}</span><br>
+        <span text-wrap>Ville: {{commande.client.ville}}</span>
+      </p><br>
+      <p text-wrap> <span  class="label-title">Informations fournies par le client : </span><br>{{commande.information}}</p>
     </ion-item>
   </ion-list>
   <hr>
-  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>Faire avec C2S ?</button>
-  <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button>
+  <div text-center>
+  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>
+  <button ion-button  *ngIf="!isEnCours(element)" color="secondary">Valide</button>
   <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
-
+  <br><span style="font-size:2em;">OU</span>
+</div>
   <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-      <ion-list-header>Liste des prestataires ayant postulé    <ion-badge>{{commande.propositions.length}}</ion-badge></ion-list-header>
+      <ion-list-header>Envoyer l'un des prestataires suivant  <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header>
+      <hr>
     <ion-item *ngFor="let proposition of commande.propositions">
       <ion-label>{{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
         <br>Prix proposé : {{proposition.prix}} €
