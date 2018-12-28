@@ -120,11 +120,11 @@ module.exports = {
     },    
     newDevis: function(devis) {
         let notification = new Notification({
-            utilisateur: utilisateur._id,
+            utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type: enums.NotificationType.NOUVEAU_DEVIS,
             date: new Date(),
-            refId: 'id_du_devis',
+            refId: devis._id,
             icon: 'briefcase',
             message: 'Nouveau devis'
         });
@@ -136,11 +136,11 @@ module.exports = {
     },
     propositionPrestataire: function(devis) {
         let notification = new Notification({
-            utilisateur: utilisateur._id,
+            utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
             date: new Date(),
-            refId: 'id_du_devis',
+            refId: devis._id,
             icon: 'mail',
             message: "Nouvelle proposition d'un prestataire"
         });
@@ -152,11 +152,11 @@ module.exports = {
     },
     devisVALIDE: function(devis) {
         let notification = new Notification({
-            //utilisateur: devis._id,
+            utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type: enums.NotificationType.DEVIS_VALIDE,
             date: new Date(),
-            refId: 'id_devis',
+            refId: devis._id,
             icon: 'send',
             message: 'Votre devis est validé'
         });
@@ -164,11 +164,11 @@ module.exports = {
     },
     newCommande: function(commande) {
         let notification = new Notification({
-            //utilisateur: utilisateur._id,
+            utilisateur: commande.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type: enums.NotificationType.NOUVELLE_COMMANDE,
             date: new Date(),
-            refId: 'id_commande',
+            refId: commande._id,
             icon: 'cart',
             message: 'Nouvelle commande de client'
         });
@@ -179,11 +179,11 @@ module.exports = {
     },
     commandeVALIDE: function(commande) {
         let notification = new Notification({
-            //utilisateur: utilisateur._id,
+            utilisateur: commande.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type: enums.NotificationType.COMMANDE_VALIDE,
             date: new Date(),
-            refId: 'id_commande',
+            refId: commande._id,
             icon: 'basket',
             message: 'Commande validée.'
         });

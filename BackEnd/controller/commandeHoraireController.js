@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var commandeHoraireBusiness = require('./../business/commandeHoraireBusiness');
 var CommandeHoraire = require('./../model/commandHoraireModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
-
+var notificationBusiness = require('./../business/notificationBusiness');
 router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
@@ -64,7 +64,11 @@ router.put('/', function(req, res){
         dateCreation : Date.now(),
         status : req.body.commande.status
     });
-    commandeHoraireBusiness.add(commande);
+    
+    let promise = commandeHoraireBusiness.add(commande);
+    promise.then(function(elt) {
+        notificationBusiness.newCommande(elt);
+    });
     res.json({
         success : true
     });

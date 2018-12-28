@@ -5,7 +5,7 @@ var devisBusiness = require('./../business/devisBusiness');
 var Devis = require('./../model/devisModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
 var devisPropositionBusiness = require('./../business/devisPropositionBusiness');
-
+var notificationBusiness = require('./../business/notificationBusiness');
 router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
@@ -70,7 +70,10 @@ router.put('/', function(req, res){
         dateCreation : Date.now(),
         status : req.body.commande.status
     });
-    devisBusiness.add(commande);
+    let promise = devisBusiness.add(commande);
+    promise.then(function(elt) {
+        notificationBusiness.newDevis(elt);
+    });
     res.json({
         success : true
     });
