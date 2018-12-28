@@ -7,8 +7,8 @@ export const HTTP_OPTIONS = {
     };
 ;
 
-//export const SERVER_URL : string = "http://149.56.13.37:4444";
-export const SERVER_URL : string = "http://localhost:4444";
+export const SERVER_URL : string = "http://149.56.13.37:4444";
+//export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';
 export const SERVICE_URL : string = SERVER_URL + '/service';
@@ -33,4 +33,10 @@ export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal';
 
 export const CHAT_URL = "http://149.56.13.37:5555";
+
+export const NOTIFICATION_URL : string = SERVER_URL + '/notification';
 //export const CHAT_URL = "http://localhost:5555";
+
+export const sender_id = '1963361158';
+export const oneSignalAppId = '00a67493-1b44-4110-b724-4d1547cc810c';
+

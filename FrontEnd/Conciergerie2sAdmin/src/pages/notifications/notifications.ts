@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, ViewController, Events } from 'ionic-angular';
+import { NotificationProvider } from '../../providers/notification/notification';
+import { NotificationModel } from '../../model/Models/NotificationModel';
 /**
  * Generated class for the NotificationsPage page.
  *
@@ -15,11 +16,33 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class NotificationsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  notifications : NotificationModel[];
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public viewCtrl: ViewController,
+    public notificationProv: NotificationProvider, 
+    public events: Events) {
+      this.notifications = [];    
+      
+      this.events.subscribe('notification:updated', () => {
+        console.log('notification:updated');
+        this.updateNotificationList();
+      });
+    }
+
+  updateNotificationList() {
+      this.notificationProv.getAll().subscribe((results) =>{
+        this.notifications = results.data;   
+        this.events.publish('notification:badge', { _badgeValue: results.total}) ;        
+      });
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad NotificationsPage');
+    this.updateNotificationList();
   }
 
 }
+

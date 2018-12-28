@@ -47,7 +47,10 @@ import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/comman
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
+import { OneSignal } from '@ionic-native/onesignal';
+
 import { CHAT_URL } from '../model/Url';
+import { NotificationProvider } from '../providers/notification/notification';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -129,7 +132,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeForfaitProvider,
     DevisProvider,
     CommandeProvider,
-    PaypalProvider
+    PaypalProvider,
+    OneSignal,
+    NotificationProvider
   ]
 })
 export class AppModule {}

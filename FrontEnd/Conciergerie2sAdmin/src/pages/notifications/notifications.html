@@ -7,12 +7,15 @@
   
   </ion-header>
 <ion-content padding>
-    <ion-list hidden>
-        <button ion-item color="secondary">
-          <ion-icon name="person-add"></ion-icon>
-          Nouveau prestataire à valider
-        </button>
-        <button ion-item class="text-1x" >
+  
+    
+        <ion-card   *ngFor="let element of notifications">
+            <ion-item  color="light">
+          <ion-icon name="{{ element.icon }}" item-start></ion-icon>
+          {{ element.message }}
+            </ion-item>
+        </ion-card>
+        <!-- <button ion-item class="text-1x" >
           <ion-icon name="flame" color="primary"></ion-icon>
           <span ion-text color="primary">Prestation terminée</span>
         </button>
@@ -95,6 +98,6 @@
                   <button ion-item color="secondary" class="text-1x">
                       <ion-icon name="person-add"></ion-icon>
                       Nouveau prestataire à valider
-                  </button>       
-      </ion-list>
+                  </button>    -->   
+      
   </ion-content>

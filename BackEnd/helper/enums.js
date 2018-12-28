@@ -31,6 +31,7 @@ module.exports = {
         DEVIS_VALIDE: 4,
         PRESTATION_TERMINEE_PRESTATAIRE: 5,
         PRESTATION_TERMINEE_CLIENT: 6,
-        COMMANDE_VALIDEE: 7    
+        COMMANDE_VALIDE: 7  ,
+        PROPOSITION_PRESTATAIRE: 8  
     }
 };

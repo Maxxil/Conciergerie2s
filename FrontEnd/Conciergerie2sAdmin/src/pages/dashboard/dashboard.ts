@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {NotificationsPage} from "../notifications/notifications";
 import {ChatPage} from "../chat/chat";
+
+import { NotificationProvider } from '../../providers/notification/notification';
 
 /**
  * Generated class for the DashboardPage page.
@@ -20,11 +22,40 @@ export class DashboardPage {
   tab1Root = HomePage;
   tab2Root = NotificationsPage;
   tab3Root = ChatPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public totalNotification = 0;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public events: Events,
+    public notificationProv: NotificationProvider) {
+    
+    this.notificationProv.getAll().subscribe((results) =>{
+      console.log(results);
+      this.totalNotification = results.total;     
+      console.log('total notification init '+this.totalNotification)  ;       
+
+      events.subscribe('notification:badge', payload => {    
+        console.log('Event notification:badge');        
+        this.totalNotification = payload._badgeValue;      
+      });
+
+      events.subscribe('notification:updated', () => {   
+        console.log('Event notification:updated');  
+        this.updateNotificationBadge();    
+      });
+    });
+   
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+  updateNotificationBadge() {
+    this.notificationProv.getAll().subscribe((results) =>{
+      console.log(results);
+      this.totalNotification = results.total;     
+      console.log('total notification maj '+this.totalNotification)  ;     
+    });  
+  }
+
+  ionViewDidLoad() { 
+       
   }
 
 }

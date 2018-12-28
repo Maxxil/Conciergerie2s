@@ -4,6 +4,7 @@ var app = express();
 
 var envConfig = require("./config/environnement");
 var utilisateurBusiness = require('./business/utilisateurBusiness');
+var notificationBusiness = require('./business/notificationBusiness');
 var roleEnum = require("./helper/roleEnum");
 var db = require('./config/db');
 
@@ -44,6 +45,10 @@ app.listen(port, function() {
             };
             utilisateurBusiness.create(user);
         }
+
+       // notificationBusiness.sendPush();
+
+
     });
     
 });

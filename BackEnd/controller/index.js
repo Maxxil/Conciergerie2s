@@ -45,5 +45,6 @@ router.use('/commandeHoraire', require('./commandeHoraireController'));
 router.use('/devis' , require('./devisController'));
 router.use('/commande' , require('./commandeController'));
 router.use('/paypal', require('./paypalController'));
+router.use('/notification', require('./notificationController'));
 
 module.exports = router;

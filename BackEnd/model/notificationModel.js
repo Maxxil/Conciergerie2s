@@ -6,6 +6,7 @@ var notification = new mongoose.Schema({
     utilisateur: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
     status : 'Number',
     message: String,
+    icon: String,
     type: 'Number',
     refId: String,
     date : "Date"

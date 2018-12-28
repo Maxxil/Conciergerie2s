@@ -2,7 +2,7 @@ import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { AddServicePage } from './../add-service/add-service';
 import { ServicePage } from './../service/service';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Nav } from 'ionic-angular';
+import { NavController, NavParams, Nav, Events } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import {PrestationPage} from "../prestation/prestation";
 import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
@@ -36,7 +36,7 @@ export class MenuPage {
   public isDisplayLink : boolean = false;
   public isDisplayValider : boolean = false;
   public isDisplaySettings : boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService, public events: Events) {
   }
 
   ionViewDidLoad() {
@@ -110,6 +110,11 @@ export class MenuPage {
 
   openPageProfile(){
     this.rootPage = ProfilePage;
+  }
+
+  testNotificationEvent() {
+    this.events.publish('notification:updated') ; 
+    
   }
 
   deconnecter(){

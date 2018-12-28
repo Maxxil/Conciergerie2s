@@ -46,6 +46,10 @@ export class MenuPage {
     this.rootPage = ProfilePage;
   }
 
+  sendPush() {
+    
+  }
+
   deconnecter(){
     this.chatService.logout(); 
     localStorage.removeItem('IdUtilisateur');    
