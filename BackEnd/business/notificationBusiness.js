@@ -20,14 +20,17 @@ let sendPushFromNotification = (notification, receiver)  => {
     }
     let pushMessage = new OpenSignal.Notification({      
         contents: {      
-            en: notification.message,
-            tr: "Test mesajı"      
+            en: notification.message                
         }   
     });   
+    console.log(notification);
     pushMessage.postBody['data']  = {
-        'userid': notification.utilisateur._id,
+        'refid': notification.refId,
         'type': notification.type
     };
+
+    pushMessage.postBody["included_segments"] = ["Active Users"];      
+    pushMessage.postBody["excluded_segments"] = ["Banned Users"];      
 
     if(receiver == 0) {
         Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
@@ -131,7 +134,7 @@ module.exports = {
             sendPushFromNotification(elt, 0); 
         });
     },
-    propositionPrestatire: function(devis) {
+    propositionPrestataire: function(devis) {
         let notification = new Notification({
             utilisateur: utilisateur._id,
             statut: enums.NotificationStatus.NON_LU,
