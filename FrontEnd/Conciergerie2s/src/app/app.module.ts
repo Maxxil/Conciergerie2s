@@ -41,7 +41,11 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
+import { OneSignal } from '@ionic-native/onesignal';
+
 import { CHAT_URL } from '../model/Url';
+
+import { NotificationProvider } from '../providers/notification/notification';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -112,7 +116,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeProvider,
     PaypalProvider,
     InAppBrowser,
-    ChatService
+    ChatService,
+    OneSignal,
+    NotificationProvider
   ]
 })
 export class AppModule {}

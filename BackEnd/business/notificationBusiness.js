@@ -3,10 +3,10 @@ var OpenSignal = require('onesignal-node');
 
 var Notification = require('../model/notificationModel');
 var enums = require('./../helper/enums');
-/*var Conciergeries2SClient = new OpenSignal.Client({
+var Conciergeries2SClient = new OpenSignal.Client({
     userAuthKey: '',
-    app: { appAuthKey: 'XXXXX', appId: 'XXXXX'}
-});*/
+    app: { appAuthKey: 'MzE3ZjZkM2EtNzFjYS00NmJhLTk0MGUtMmVhYjA3MDczZGU3', appId: 'aad95661-a550-4d68-a86b-5f72eecc22ed'}
+});
 
 var Conciergeries2SAdmin = new OpenSignal.Client({
     userAuthKey: '',
@@ -39,7 +39,7 @@ let sendPushFromNotification = (notification, receiver)  => {
         });   
     }
     else {
-        Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
@@ -51,10 +51,10 @@ let sendPushFromNotification = (notification, receiver)  => {
 }
 
 module.exports = {
-    sendPush: function() {
+    sendPushAdmin: function() {
         let firstNotification = new OpenSignal.Notification({      
             contents: {      
-                en: "Test notification via backend",      
+                en: "Test notification admin via backend",      
                 tr: "Test mesajı"      
             }      
         });      
@@ -76,6 +76,31 @@ module.exports = {
            }      
         });   
     },
+    sendPushClient: function() {
+        let firstNotification = new OpenSignal.Notification({      
+            contents: {      
+                en: "Test notification client via backend",      
+                tr: "Test mesajı"      
+            }      
+        });      
+              
+        // set target users      
+        firstNotification.postBody["included_segments"] = ["Active Users"];      
+        firstNotification.postBody["excluded_segments"] = ["Banned Users"];      
+              
+        // set notification parameters      
+        //firstNotification.postBody["data"] = {"abc": "123", "foo": "bar"};      
+        //firstNotification.postBody["send_after"] = 'Thu Sep 24 2015 14:00:00 GMT-0700 (PDT)';    
+              
+        // send this notification to All Users except Inactive ones      
+        Conciergeries2SClient.sendNotification(firstNotification, function (err, httpResponse,data) {      
+           if (err) {      
+               console.log('Something went wrong...');      
+           } else {      
+               console.log(data, httpResponse.statusCode);      
+           }      
+        });   
+    },
     newUtilisateur: function(utilisateur) {
         let notification = new Notification({
             statut: enums.NotificationStatus.NON_LU,
@@ -85,7 +110,10 @@ module.exports = {
             icon:  utilisateur.role == '1' ? 'person-add' : 'contacts',
             message: utilisateur.role == '1' ? 'Nouvelle inscription de client': 'Nouveau prestataire à valider'
         });
-        notification.save();
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0); 
+        });
     },    
     newDevis: function(devis) {
         let notification = new Notification({
@@ -98,6 +126,10 @@ module.exports = {
             message: 'Nouveau devis'
         });
         notification.save();
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0); 
+        });
     },
     propositionPrestatire: function(devis) {
         let notification = new Notification({
@@ -110,6 +142,10 @@ module.exports = {
             message: "Nouvelle proposition d'un prestataire"
         });
         notification.save();
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
     },
     devisVALIDE: function(devis) {
         let notification = new Notification({
@@ -134,6 +170,9 @@ module.exports = {
             message: 'Nouvelle commande de client'
         });
         notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
     },
     commandeVALIDE: function(commande) {
         let notification = new Notification({
