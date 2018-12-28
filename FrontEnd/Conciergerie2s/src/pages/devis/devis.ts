@@ -7,7 +7,7 @@ import {DevisResult} from "../../model/Result/DevisResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
 import {PaypalProvider} from "../../providers/paypal/paypal";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 /**
  * Generated class for the DevisPage page.
  *
@@ -25,6 +25,8 @@ export class DevisPage {
   private prestation : PrestationModel;
   public devis : DevisModel;
   public today;
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+
   public loading = this.loader.create({
     spinner: 'hide',
     content: 'Loading Please Wait...'

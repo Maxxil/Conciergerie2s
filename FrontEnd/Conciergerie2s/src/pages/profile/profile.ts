@@ -70,7 +70,7 @@ export class ProfilePage {
 
   manageSuccessOrError(result){
     if(result.success){
-      var alert = this.alertCtrl.create({
+      let alert = this.alertCtrl.create({
         title : 'Succés',
         message : 'La mise à jour a été faite correctement',
         buttons : [{
@@ -80,7 +80,7 @@ export class ProfilePage {
       alert.present();
     }
     else{
-      var alert = this.alertCtrl.create({
+      let alert = this.alertCtrl.create({
         title : 'Echec',
         message : 'La mise à jour n"a été faite correctement',
         buttons : [{

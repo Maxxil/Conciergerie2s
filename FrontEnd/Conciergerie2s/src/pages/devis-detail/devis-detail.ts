@@ -40,7 +40,7 @@ export class DevisDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeForfaitDetailPage');
+    console.log('ionViewDidLoad DevisDetailPage');
   }
 
 
@@ -59,6 +59,7 @@ export class DevisDetailPage {
   aDejaPostule(){
     var propositions = this.commande.propositions;
     propositions.forEach(element => {
+      console.log(element);
       if(element.prestataire.utilisateur._id == localStorage.getItem('IdUtilisateur')){
         this.dejapostuler=true;
       }

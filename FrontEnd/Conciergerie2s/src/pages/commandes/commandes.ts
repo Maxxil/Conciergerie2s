@@ -8,7 +8,7 @@ import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-hor
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
 import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 @IonicPage()
 @Component({
   selector: 'page-commandes',
@@ -18,9 +18,13 @@ export class CommandesPage {
   public commandeHoraire: CommandeHoraireModel[];
   public commandeForfait: CommandeForfaitModel[];
   public commandeDevis: DevisModel[];
+  public currentUserId;
   defautseg: string = "horaire";
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public commandePvd : CommandeProvider) {
+      this.currentUserId = localStorage.getItem("IdUtilisateur");
       this.getMyCommandes();
       console.log(localStorage.getItem("MesCommandes"));
   }

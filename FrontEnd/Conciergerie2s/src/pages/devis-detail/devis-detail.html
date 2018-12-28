@@ -14,30 +14,36 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>
-        <h1>Commander un devis</h1>
-        <h2>{{commande.prestation.nom}}</h2>
-        <h3 text-right>Statut : {{ status }}</h3>
+    <ion-list-header>      
+        <h1>{{commande.prestation.nom}}</h1>
+        Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy'}}</em><br>
+        Statut : <em>{{ status }}</em>
     </ion-list-header>
+    <hr>
     <ion-item>
-        <ion-label stacked>Date : </ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" readonly></ion-datetime>
-      </ion-item>
-    <ion-item>
-      <ion-label stacked>Informations pour le devis</ion-label>
-      <ion-textarea rows="3" readonly [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
+        <p> <span  class="label-title">Date RDV: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
+        <p>
+          <span class="label-title">Client :</span><br>
+          <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
+          <span text-wrap>  Tel: {{commande.client.telephoneMobile}}</span><br>
+          <span text-wrap>Ville: {{commande.client.ville}}</span>
+        </p><br>
+        <p text-wrap> <span  class="label-title">Informations fournies par le client : </span><br>{{commande.information}}</p>
     </ion-item>
-    <div *ngIf="peutPostuler()">
-    <ion-item >
-      <ion-label stacked>Date proposée : </ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="proposition.dateProposee"></ion-datetime>
-    </ion-item>
+  </ion-list>
+  <ion-list  *ngIf="peutPostuler()">  
+    <br>
+      <ion-list-header>      
+          <h1> Je postule  </h1>
+      </ion-list-header> 
     
-    <ion-item>
-      <ion-label staked>Prix proposé</ion-label>
-      <ion-input type="number" [(ngModel)]="proposition.prix"></ion-input>
-    </ion-item>
-  </div>
+      <ion-item >      
+        <span item-start>Date proposée : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="proposition.dateProposee"></ion-datetime>
+      </ion-item>
+      
+      <ion-item>        
+          <span item-start>Prix proposée TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
+      </ion-item>   
   </ion-list>
   <div text-center>
       <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>

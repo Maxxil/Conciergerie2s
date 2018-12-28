@@ -7,7 +7,7 @@ import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeProvider} from "../../providers/commande/commande";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 /**
  * Generated class for the CommandesPostulerPage page.
  *
@@ -22,12 +22,15 @@ import {CommandeProvider} from "../../providers/commande/commande";
 })
 export class CommandesPostulerPage {
 
-  public commandeHoraire: CommandeHoraireModel[];
-  public commandeForfait: CommandeForfaitModel[];
-  public commandeDevis: DevisModel[];
+  public commandesHoraire: CommandeHoraireModel[];
+  public commandesForfait: CommandeForfaitModel[];
+  public commandesDevis: DevisModel[];
   defautseg: string = "horaire";
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+  public currentUserId;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public commandePvd : CommandeProvider) {
+    this.currentUserId = localStorage.getItem("IdUtilisateur");
     this.getMyCommandes();
     console.log(localStorage.getItem("MesCommandes"));
   }
@@ -38,16 +41,16 @@ export class CommandesPostulerPage {
   }
 
   getMyCommandes() {
+    console.log('getMyCommandes pour postuler');
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commandeHoraire = result.data.commandeHoraire;
-        this.commandeForfait = result.data.commandeForfait;
-        this.commandeDevis = result.data.devis;
+        this.commandesHoraire = result.data.commandeHoraire;
+        this.commandesForfait = result.data.commandeForfait;
+        this.commandesDevis = result.data.devis; 
       }
-    })
-
+    });
 
   }
 
