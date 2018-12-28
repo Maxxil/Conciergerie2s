@@ -51,7 +51,7 @@ module.exports = {
         return Devis.find({'prestation' : {'$in' : idsPrestations}})
             .populate([{path : 'prestation' }, {
                 path: "propositions", populate: {
-                    path: 'prestataires', populate: {path: 'utilisateur', select: '_id'}
+                    path: 'prestataire', populate: {path: 'utilisateur', select: '_id'}
                 }
             }]);
     },
