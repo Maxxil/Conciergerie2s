@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the CommandeHoraireDetailPage page.
  *
@@ -19,7 +19,7 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 export class CommandeHoraireDetailPage {
 
   public commande : CommandeHoraireModel;
-
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public commandePvd : CommandeHoraireProvider) {

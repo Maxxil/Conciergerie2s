@@ -29,8 +29,16 @@
         <ion-item>
           <p><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>    
           <p *ngIf="element.date"><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p>
+          <p *ngIf="element.prestataires.length > 0">
+            <b>Prestataire : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span>
+        </p> 
+        <p  *ngIf="element.prestataires.length == 0">
+            <ion-note>Aucun prestataire n'a répondu</ion-note>
+        </p> 
           <ion-note class="prix" item-end>{{element.prestation.prix * element.quantite}} € TTC</ion-note>   
         </ion-item> 
+        
+
     </ion-card>  
  <!-- <ion-list>
       <ion-item-sliding *ngFor="let element of commandes" (click)="afficherDetailCommande(element)">

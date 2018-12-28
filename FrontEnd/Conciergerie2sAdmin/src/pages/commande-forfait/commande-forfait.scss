@@ -2,4 +2,7 @@ page-commande-forfait {
     h2 {
         color:  color($colors, lagon) !important;
     }
+    .card .note-md.prix {
+        font-size: 16px;
+    }
 }

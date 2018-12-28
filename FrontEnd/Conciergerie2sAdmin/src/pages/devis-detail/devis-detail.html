@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
  
   <ion-list>
     <ion-item>
@@ -45,10 +45,11 @@
       <ion-list-header>Envoyer l'un des prestataires suivant  <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header>
       <hr>
     <ion-item *ngFor="let proposition of commande.propositions">
-      <ion-label>{{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
-        <br>Prix proposé : {{proposition.prix}} €
+      <ion-label text-wrap text-xs>Nom: {{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
+        <br>Date proposée : {{proposition.dateProposee | date: 'dd/MM/yy'}}<br>Prix proposé : {{proposition.prix}} €
       </ion-label><br>
       <ion-radio [value]="prestataire"></ion-radio>
+      <hr>
     </ion-item>
   </ion-list>
 

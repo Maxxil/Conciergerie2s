@@ -19,7 +19,8 @@
 
         <ion-item>
           <h2 text-wrap>{{element.prestation.nom}}</h2>   
-          <p *ngIf="element.dateCreation">Créé le {{element.dateCreation | date: 'dd/MM/yy'}}</p>     
+          <p *ngIf="element.dateCreation">Créé le {{element.dateCreation | date: 'dd/MM/yy'}}</p> 
+          <ion-note text-center item-end>{{element.propositions.length}} <br>{{ element.propositions.length > 1 ? 'réponses' : 'réponse' }}</ion-note>    
         </ion-item>
       
         <img src="{{prestationImageUrl + element.prestation.image}}">

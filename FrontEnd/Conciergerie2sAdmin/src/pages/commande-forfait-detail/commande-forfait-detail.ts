@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeForfaitModel} from "../../model/Models/CommandeForfaitModel";
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the CommandeForfaitDetailPage page.
  *
@@ -19,7 +19,7 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 export class CommandeForfaitDetailPage {
 
   public commande : CommandeForfaitModel;
-
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
     , public commandePvd : CommandeForfaitProvider) {
