@@ -48,7 +48,7 @@ export class CommandeForfaitPage {
     console.log("Paiement");
     this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
       console.log(result);
-      var browser = this.iab.create(result.data, '_self');
+      var browser = this.iab.create(result.data);
       this.loading.dismiss();
       browser.on('close').subscribe(() =>{
         this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;

@@ -47,7 +47,7 @@ export class CommandeHorairePage {
     console.log("Paiement");
     this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {
       console.log(result.data);          
-      var browser = this.iab.create(result.data, '_self');
+      var browser = this.iab.create(result.data);
       this.loading.dismiss();  
       browser.on('close').subscribe(() =>{
         this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;

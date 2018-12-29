@@ -56,6 +56,13 @@ export class DevisPage {
     });
   }
 
+  creer() {
+    this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
+    this.devisPvd.add(this.devis).subscribe(result => {
+      this.manageDisplaySuccessOrError(result);
+    });
+  }
+
   annuler(){
     this.navCtrl.pop();
   }
