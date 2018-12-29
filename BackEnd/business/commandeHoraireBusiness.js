@@ -4,7 +4,13 @@ var enums = require('./../helper/enums');
 
 module.exports = {
     add : function (commande) {
-       commande.save().then(() => notificationBusiness.newCommande(commande));       
+
+        var promise = commande.save();
+
+        promise.then(function (elt) {
+            notificationBusiness.newCommande(elt)
+        });
+       
     },
     addPrestataire : function (idCommande, idPrestataire) {
         CommandeHoraire.find({_id : idCommande}).exec(function (err,result) {
