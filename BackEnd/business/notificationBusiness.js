@@ -127,8 +127,7 @@ module.exports = {
             refId: devis._id,
             icon: 'briefcase',
             message: 'Nouveau devis'
-        });
-        notification.save();
+        });        
         let promise = notification.save();
         promise.then(function(elt) {
             sendPushFromNotification(elt, 0); 
