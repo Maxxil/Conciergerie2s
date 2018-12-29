@@ -111,8 +111,14 @@ export class LinkPrestatairePrestataionPage {
     }
   }
 
-  public deleteLinkPrestationToPrestataire(prestation,prestataire){
-   
+  public deleteLinkPrestationToPrestataire(){
+    this.alertCtrl.create({
+      title : 'Nticstudio',
+      message : "Fonctionnalité non dipo",
+      buttons : [{
+        text : 'OK'
+      }]
+    }).present();
   }
 
   manageDisplaySuccessOrError(result: Result) {

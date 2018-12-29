@@ -14,7 +14,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
     <ion-item>
       <ion-label>Prestations</ion-label>
@@ -33,12 +33,12 @@
         </ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
+  </ion-list> 
 
 
-  <button ion-button (click)="linkPrestationToPRestataire()">Ajouter</button>
-
-  <ion-list>
+  <button full ion-button (click)="linkPrestationToPRestataire()">Ajouter</button>
+<br><br>
+  <!-- <ion-list>
     <ion-list-header>
       Nom Prestation  || Nom Prenom Prestataire
     </ion-list-header>
@@ -50,32 +50,23 @@
         </ion-item>
       </ng-template>
     </ng-template>
-  </ion-list>
+  </ion-list> -->
 
-  <ion-grid>
-    <ion-row>
-        <ion-col>
-          Prestation
-        </ion-col>
-        <ion-col>
-          Prestataire
-        </ion-col>
-        <ion-col>
-            
-          </ion-col>
-      </ion-row>
+  <ion-grid>    
       <ng-template ngFor let-prestation [ngForOf]="prestationWithPrestataire" let-prestationIndex="index">
+          <ion-row>
+              <ion-col>
+                 <h3 ion-text text-wrap color="lagon">{{prestation.nom}}</h3> 
+              </ion-col>
+           </ion-row>   
         <ng-template ngFor let-prestataire [ngForOf]="prestation.prestataire" let-prestataireIndex="index">
 
-    <ion-row>
-      <ion-col>
-          {{prestation.nom}}
+    <ion-row>     
+      <ion-col col-10>
+          <span style="font-size:1.4em">{{prestataire.utilisateur.nom + " " +prestataire.utilisateur.prenom}} </span>
       </ion-col>
-      <ion-col>
-          {{prestataire.utilisateur.nom + " " +prestataire.utilisateur.prenom}} 
-      </ion-col>
-      <ion-col>
-          <button ion-button (click)="deleteLinkPrestationToPrestataire(prestation,prestataire)"><ion-icon name="trash"></ion-icon></button>
+      <ion-col col-2>
+          <button ion-button icon-only small (click)="deleteLinkPrestationToPrestataire()"><ion-icon name="trash"></ion-icon></button>
       </ion-col>
     </ion-row>
   </ng-template>
