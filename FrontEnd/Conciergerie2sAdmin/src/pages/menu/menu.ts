@@ -121,6 +121,7 @@ export class MenuPage {
     this.chatService.logout(); 
     localStorage.removeItem('Token');
     localStorage.removeItem("IdUtilisateur");
+    this.navCtrl.push(LoginPage);
     this.platform.exitApp();
   }
 }

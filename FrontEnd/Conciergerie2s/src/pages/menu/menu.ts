@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, Nav, NavController, NavParams, Platform} from 'ionic-angular';
 import {Page} from "ionic-angular/umd/navigation/nav-util";
 import {TabsPage} from "../tabs/tabs";
 import {CommandesPage} from "../commandes/commandes";
@@ -7,7 +7,8 @@ import {LoginPage} from "../login/login";
 import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
-
+import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
+import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 /**
  * Generated class for the MenuPage page.
  *
@@ -23,7 +24,12 @@ import { ChatService } from "../../providers/chat/chat-service";
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
   public rootPage : Page= TabsPage;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
+  public peutPostuler = false;
+  constructor(public utilisateurPvd : UtilisateurProvider,public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+      let profile = result.data[0];
+      this.peutPostuler = profile.role == 2;
+    });
   }
 
   ionViewDidLoad() {
@@ -55,5 +61,6 @@ export class MenuPage {
     localStorage.removeItem('IdUtilisateur');    
     localStorage.removeItem('Token');
     this.navCtrl.push(LoginPage);
+    this.platform.exitApp();
   }
 }
