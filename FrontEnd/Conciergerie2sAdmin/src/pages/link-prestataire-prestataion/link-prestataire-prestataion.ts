@@ -64,13 +64,41 @@ export class LinkPrestatairePrestataionPage {
   }
 
   public linkPrestationToPRestataire(){
-    if(this.selectedPrestation != null && this.selectedPrestataire != null){
-      this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
-        this.manageDisplaySuccessOrError(result);
-        if(result.success){
-          this.getPrestationsWithPrestataires();
-        }
-      })
+
+    let hasPrestataire = false;
+    if(this.selectedPrestation != null && this.selectedPrestataire != null){   
+      
+
+      let prestations = this.prestationWithPrestataire.filter(elt =>
+           elt._id == this.selectedPrestation.toString()
+      );
+      if(prestations && prestations.length > 0) {
+        
+        let prestation = prestations[0];
+        console.log(prestation);
+        hasPrestataire =  prestation.prestataire.some(elt => elt._id == this.selectedPrestataire.toString());
+             
+      }      
+
+      if(!hasPrestataire) {
+        this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
+          this.manageDisplaySuccessOrError(result);
+          if(result.success){
+            this.getPrestationsWithPrestataires();
+          }
+        })
+      }
+      else  {
+        console.log("Ajout impossible du prestataire "+this.selectedPrestataire);
+        this.alertCtrl.create({
+          title : 'Important',
+          message : "Ce prestataire est déjà lié à cette prestation !",
+          buttons : [{
+            text : 'OK'
+          }]
+        }).present();
+      
+      }
     }
     else{
       this.alertCtrl.create({
@@ -83,8 +111,8 @@ export class LinkPrestatairePrestataionPage {
     }
   }
 
-  public deleteLinkPrestationToPrestataire(){
-
+  public deleteLinkPrestationToPrestataire(prestation,prestataire){
+   
   }
 
   manageDisplaySuccessOrError(result: Result) {
@@ -99,7 +127,7 @@ export class LinkPrestatairePrestataionPage {
     }
     else {
       alert.setTitle('Erreur');
-      alert.setSubTitle("Le prestataire et la prestation n'ont été liés correctement.");
+      alert.setSubTitle("Le prestataire et la prestation n'ont pas été liés correctement.");
       alert.addButton({
         text: 'OK'
       })

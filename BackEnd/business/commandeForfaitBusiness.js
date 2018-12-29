@@ -35,9 +35,11 @@ module.exports = {
     },
     updateStatus : function (idCommande, status,prestataireChoisi) {
         CommandeForfait.find({_id : idCommande}).exec(function (err, result) {
-            result[0].status = status;
-            result[0].prestataireChoisi = prestataireChoisi;
-            result[0].save();
-        })
+
+            commande = result[0];
+            commande.status = status;
+            commande.prestataireChoisi = prestataireChoisi;
+            commande.save().then(() => notificationBusiness.prestataireChoisi(commande));  
+        });
     }
 };

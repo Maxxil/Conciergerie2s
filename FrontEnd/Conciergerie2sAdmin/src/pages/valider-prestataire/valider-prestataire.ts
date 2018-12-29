@@ -35,12 +35,14 @@ export class ValiderPrestatairePage {
 
   getAllPrestataire(){
     this.prestatairePvd.getAllUtilisateurPrestataire().subscribe((results) =>{
-      this.prestataires = results.data.filter(item => {
-        return item.role == 2
+    /*   this.prestataires = results.data.filter(item => {
+        return item.utilisateur.role == 2
       });
       this.adminPrestataires =  results.data.filter(item => {     
-        return item.role == 3
-      });  
+        return item.utilisateur.role == 3
+      });  */ 
+
+      this.prestataires = this.adminPrestataires = results.data;
     })
   }
 

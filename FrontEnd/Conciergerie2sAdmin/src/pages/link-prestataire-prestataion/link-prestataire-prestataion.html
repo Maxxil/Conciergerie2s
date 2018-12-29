@@ -52,4 +52,34 @@
     </ng-template>
   </ion-list>
 
+  <ion-grid>
+    <ion-row>
+        <ion-col>
+          Prestation
+        </ion-col>
+        <ion-col>
+          Prestataire
+        </ion-col>
+        <ion-col>
+            
+          </ion-col>
+      </ion-row>
+      <ng-template ngFor let-prestation [ngForOf]="prestationWithPrestataire" let-prestationIndex="index">
+        <ng-template ngFor let-prestataire [ngForOf]="prestation.prestataire" let-prestataireIndex="index">
+
+    <ion-row>
+      <ion-col>
+          {{prestation.nom}}
+      </ion-col>
+      <ion-col>
+          {{prestataire.utilisateur.nom + " " +prestataire.utilisateur.prenom}} 
+      </ion-col>
+      <ion-col>
+          <button ion-button (click)="deleteLinkPrestationToPrestataire(prestation,prestataire)"><ion-icon name="trash"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+</ng-template>
+</ion-grid>
+
 </ion-content>

@@ -8,7 +8,7 @@ export class PrestationModel{
   description: string;
   prix: number;
   typeprix: TypePrixEnum;
-  prestataires : PrestataireModel[];
+  prestataire : PrestataireModel[];
   forfait:string;
   details: string[];
 
@@ -21,4 +21,6 @@ export class PrestationModel{
     this.typeprix=TypePrixEnum.HEURE;
     this.image = "../../assets/icon/pic.png";
   }
+
+
 }
