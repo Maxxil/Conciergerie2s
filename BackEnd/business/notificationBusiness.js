@@ -172,7 +172,7 @@ module.exports = {
             icon: 'cart',
             message: 'Nouvelle commande de client'
         });
-        notification.save();
+        let promise = notification.save();
         promise.then(function(elt) {
             sendPushFromNotification(elt, 0);             
         });
