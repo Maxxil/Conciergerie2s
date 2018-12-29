@@ -59,6 +59,7 @@ router.post('/' , function(req , res){
 });
 
 router.put('/createPayment', function (req, res) {
+    console.log('Create payement req : ',req.body);
     var prestation = req.body.prestation;
     amount = req.body.prix;
     var create_payment_json = {
