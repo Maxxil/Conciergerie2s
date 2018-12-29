@@ -49,7 +49,13 @@ export class CommandeHorairePage {
       console.log(result.data);          
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('close').subscribe(() =>{
+      browser.on('message').subscribe(() =>{
+        this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
+        this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
+          this.manageDisplaySuccessOrError(result);
+        });
+      });
+      browser.on('exit').subscribe(() =>{
         this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
         this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
           this.manageDisplaySuccessOrError(result);

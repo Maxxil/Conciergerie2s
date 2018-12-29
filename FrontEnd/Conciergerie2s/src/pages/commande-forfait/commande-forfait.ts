@@ -50,10 +50,11 @@ export class CommandeForfaitPage {
       console.log(result);
       var browser = this.iab.create(result.data);
       this.loading.dismiss();
-      browser.on('close').subscribe(() =>{
+      browser.on('exit').subscribe(() =>{
         this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
-        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{
+        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
           this.manageDisplaySuccessOrError(result);
+          this.annuler();
         });
       });
 

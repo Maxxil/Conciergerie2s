@@ -66,9 +66,11 @@ router.put('/', function(req, res){
     });
     
     let promise = commandeHoraireBusiness.add(commande);
-    promise.then(function(elt) {
-        notificationBusiness.newCommande(elt);
+
+    promise.then(function(commande) {
+        notificationBusiness.newCommande(commande);
     });
+    
     res.json({
         success : true
     });
