@@ -102,7 +102,7 @@ router.put('/createPayment', function (req, res) {
             
             console.log('Payment create');
             console.log('-----------------------------');
-            console.log(payment);
+            console.log(payment.links[1].href);
             res.json({
                 success: true,
                 data: payment.links[1].href
@@ -115,7 +115,8 @@ router.put('/createPayment', function (req, res) {
 
 
 router.get('/executePayment', function (req, res) {
-
+    console.log('Payment execute (1)');
+    console.log('-----------------------------');
     var payerId = req.query.PayerID;
     var execute_payment_json = {
         "payer_id": payerId,
