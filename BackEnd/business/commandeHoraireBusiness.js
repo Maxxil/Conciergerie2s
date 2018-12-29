@@ -27,15 +27,15 @@ module.exports = {
     },
     getAll : function () {
         return CommandeHoraire.find({}).populate([{path : 'prestation'} , {path : 'client'},
-            {path : 'prestataires', populate: {path : 'utilisateur', select: 'nom prenom'}}]).sort([['dateCreation',-1]]);
+            {path : 'prestataires', populate: {path : 'utilisateur', select: 'nom prenom'}}]).sort('-dateCreation');
     },
     getByIdClient : function(idClient){
         return CommandeHoraire.find({'client' : idClient})
             .populate([ {path : 'client'}, {path : 'prestation' }
-                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);;
+                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]).sort('-dateCreation');
     },
     getByIdPrestation : function (idPrestation) {
-        return CommandeHoraire.find({'prestation._id' : idPrestation});
+        return CommandeHoraire.find({'prestation._id' : idPrestation}).sort('-dateCreation');
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')

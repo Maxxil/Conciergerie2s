@@ -18,20 +18,20 @@ module.exports = {
     getByIdClient : function(idClient){
         return CommandeForfait.find({'client' : idClient})
             .populate([ {path : 'client'}, {path : 'prestation' }
-                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]);;
+                ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]).sort('-dateCreation');
     },
     getByIdPrestation : function (idPrestation) {
-        return CommandeForfait.find({'prestation._id' : idPrestation}).populate('prestation');
+        return CommandeForfait.find({'prestation._id' : idPrestation}).populate('prestation').sort('-dateCreation');
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}})
-            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}])
+            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]).sort('-dateCreation');
     },
     getAll : function () {
         return CommandeForfait.find({})
             .populate([{path : 'prestation'} , {path : 'client'},
                 {path : 'prestataires',  populate: {path : 'utilisateur', select: 'nom prenom'}}])
-            .sort([['dateCreation',-1]]);
+            .sort('-dateCreation');
     },
     updateStatus : function (idCommande, status,prestataireChoisi) {
         CommandeForfait.find({_id : idCommande}).exec(function (err, result) {

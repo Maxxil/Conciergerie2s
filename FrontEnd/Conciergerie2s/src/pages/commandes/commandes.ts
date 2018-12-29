@@ -15,9 +15,9 @@ import {PRESTATION_IMAGE_URL} from "../../model/Url";
   templateUrl: 'commandes.html',
 })
 export class CommandesPage {
-  public commandeHoraire: CommandeHoraireModel[];
-  public commandeForfait: CommandeForfaitModel[];
-  public commandeDevis: DevisModel[];
+  public commandesHoraire: CommandeHoraireModel[];
+  public commandesForfait: CommandeForfaitModel[];
+  public commandesDevis: DevisModel[];
   public currentUserId;
   defautseg: string = "horaire";
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
@@ -39,11 +39,11 @@ export class CommandesPage {
     this.commandePvd.getCommandesClient().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commandeHoraire = result.data.commandeHoraire;
-        this.commandeForfait = result.data.commandeForfait;
-        this.commandeDevis = result.data.devis;
+        this.commandesHoraire = result.data.commandeHoraire;
+        this.commandesForfait = result.data.commandeForfait;      
+        this.commandesDevis = result.data.devis;
       }
-    })
+    });
 }
 
   detailCommandeHoraire(commande){
