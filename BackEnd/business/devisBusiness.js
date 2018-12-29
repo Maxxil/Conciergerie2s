@@ -1,8 +1,8 @@
 var Devis = require('./../model/devisModel');
-
+var notificationBusiness = require('./../business/notificationBusiness');
 module.exports = {
     add : function (devis) {
-        devis.save();
+        devis.save().then(() => notificationBusiness.newDevis(devis));              
     },
     addProposition : function (idDevis, idProposition) {
         Devis.find({_id : idDevis}).exec(function (err,result) {

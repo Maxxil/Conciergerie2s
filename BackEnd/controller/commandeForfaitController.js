@@ -66,10 +66,9 @@ router.put('/', function(req, res){
         status : req.body.commande.status
     });
     
-    let promise = commandeForfaitBusiness.add(commande);
-    promise.then(function(elt) {
-        notificationBusiness.newCommande(elt);
-    });
+    commandeForfaitBusiness.add(commande);
+    
+    
     res.json({
         success : true
     });

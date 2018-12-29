@@ -1,9 +1,10 @@
 var CommandeHoraire = require('./../model/commandHoraireModel');
+var notificationBusiness = require('./../business/notificationBusiness');
 var enums = require('./../helper/enums');
 
 module.exports = {
     add : function (commande) {
-       return commande.save();
+       commande.save().then(() => notificationBusiness.newCommande(commande));       
     },
     addPrestataire : function (idCommande, idPrestataire) {
         CommandeHoraire.find({_id : idCommande}).exec(function (err,result) {

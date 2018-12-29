@@ -70,10 +70,8 @@ router.put('/', function(req, res){
         dateCreation : Date.now(),
         status : req.body.commande.status
     });
-    let promise = devisBusiness.add(commande);
-    promise.then(function(elt) {
-        notificationBusiness.newDevis(elt);
-    });
+    devisBusiness.add(commande);
+    
     res.json({
         success : true
     });
