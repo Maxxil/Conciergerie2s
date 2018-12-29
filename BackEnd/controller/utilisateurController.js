@@ -57,6 +57,7 @@ router.get('/id=:id/:token', function (req, res) {
 router.get('/prestataire/:token' , function (req, res) {
     var promise = utilisateurBusiness.getAllPrestataire();
     promise.exec(function (err,result) {
+        console.log(result);
         res.json({
             success : true,
             data : result

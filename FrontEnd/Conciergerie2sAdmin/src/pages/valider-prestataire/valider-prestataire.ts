@@ -19,7 +19,7 @@ import {PrestataireModel} from "../../model/Models/PrestataireModel";
 export class ValiderPrestatairePage {
 
   public prestataires : PrestataireModel [];
-
+  public adminPrestataires : PrestataireModel [];
   constructor(
     public navCtrl: NavController
     , public navParams: NavParams
@@ -35,8 +35,12 @@ export class ValiderPrestatairePage {
 
   getAllPrestataire(){
     this.prestatairePvd.getAllUtilisateurPrestataire().subscribe((results) =>{
-      this.prestataires = results.data;
-      console.log(this.prestataires);
+      this.prestataires = results.data.filter(item => {
+        return item.role == 2
+      });
+      this.adminPrestataires =  results.data.filter(item => {     
+        return item.role == 3
+      });  
     })
   }
 

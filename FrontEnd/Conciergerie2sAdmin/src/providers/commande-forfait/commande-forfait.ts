@@ -29,4 +29,9 @@ export class CommandeForfaitProvider {
     return this.http.post<CommandeForfaitResult>(COMMANDE_FORFAIT_URL,
       {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
   }
+
+  validateCommandeParC2S(commande: CommandeForfaitModel) : Observable<CommandeForfaitResult>{
+    return this.http.post<CommandeForfaitResult>(COMMANDE_FORFAIT_URL,
+      {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
+  }
 }
