@@ -8,7 +8,7 @@ module.exports = {
         var promise = commande.save();
 
         promise.then(function (elt) {
-            notificationBusiness.newCommande(elt)
+            notificationBusiness.newCommande(elt);
         });
        
     },
