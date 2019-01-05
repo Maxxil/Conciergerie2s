@@ -68,8 +68,8 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
      if(receiver == 2) {
 console.log('Liste des prestataires',prestation.prestataire);
 
-        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.id=item.lastPlayerId; return elt;});
-        let playerids = prestation.prestataire.map(item => { return item.lastPlayerId});
+        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
+        let playerids = prestation.prestataire.map(item => { return item.utilisateur.lastPlayerId});
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
@@ -77,8 +77,8 @@ console.log('Liste des prestataires',prestation.prestataire);
             'prestataires': prestataires
         };
     //  include_player_ids: 
-    pushMessage.postBody["include_player_ids"] = playerids;
-        console.log('PushMessage object to Prestataire',pushMessage);
+        pushMessage.postBody["include_player_ids"] = playerids;
+        console.log('PushMessage object to Prestataire : ',pushMessage);
       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
