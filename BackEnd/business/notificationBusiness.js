@@ -27,8 +27,7 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
     console.log('Notificationobject:',notification);
        
 
-    pushMessage.postBody["included_segments"] = ["Active Users"];      
-    pushMessage.postBody["excluded_segments"] = ["Banned Users"];      
+       
   
     //Envoi à l'admin
     if(receiver == 0 || receiver == 2) {
@@ -37,6 +36,9 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
             'refid': notification.refId,
             'type': notification.type,           
         };
+
+        pushMessage.postBody["included_segments"] = ["Active Users"];      
+        pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
         
         console.log('PushMessage object to Admin',pushMessage);
       /* Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
@@ -54,6 +56,10 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
             'type': notification.type,
             'userid' : notification.utilisateur
         };
+
+        pushMessage.postBody["included_segments"] = ["Active Users"];      
+        pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
+        
         console.log('PushMessage object to Client',pushMessage);
        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
