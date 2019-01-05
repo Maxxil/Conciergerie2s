@@ -16,4 +16,5 @@ export class UtilisateurModel {
     entreprise: string;
     codepostal: number;
     ville: string;
+    lastPlayerId: string;
 }

@@ -52,7 +52,7 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
-            'userid' : notification.utilisateur        
+            'userid' : notification.utilisateur
         };
         console.log('PushMessage object to Client',pushMessage);
        /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      

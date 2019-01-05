@@ -9,6 +9,7 @@ import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
+import {SERVER_URL} from "../../model/Url";
 /**
  * Generated class for the MenuPage page.
  *
@@ -25,11 +26,16 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
   public rootPage : Page= TabsPage;
   public peutPostuler = false;
+  public serveurURL : string = "";
   constructor(public utilisateurPvd : UtilisateurProvider,public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{     
       let profile = result.data[0];
-      this.peutPostuler = profile.role == 2;
+    if(profile) {
+        this.peutPostuler = profile.role == 2;
+    }
+      
     });
+    this.serveurURL = SERVER_URL;
   }
 
   ionViewDidLoad() {

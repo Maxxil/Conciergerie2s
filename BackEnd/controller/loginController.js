@@ -14,13 +14,15 @@ router.get("/:token" , function (req, res) {
     if(tokenVerify)
     {
         jwt.decode(req.params.token, function(user){
+            console.log('jwt after decode: ',user);
             res.json({
                 success : true,
                 error : Enums.Error.AUCUNE_ERREUR,
                 data: req.params.token,
                 user : [new User({
                     nomUtilisateur: user.nomUtilisateur,
-                    _id: user._id
+                    _id: user._id,
+                    role: user.role
                 })]
             });
             res.end();
@@ -47,8 +49,11 @@ router.post("/", function (req, res) {
                 error : Enums.Error.UTILISATEUR_NON_CONNU,
             });
         }
-        else{
+        else{ 
+            
+            console.log('jwt : ',result);
             var token = jwt.generateToken(result[0]);
+           
             res.json({
                 success : true,
                 error : errorEnum.error.AUCUNE_ERREUR,

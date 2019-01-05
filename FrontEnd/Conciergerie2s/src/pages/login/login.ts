@@ -5,6 +5,7 @@ import {LoginProvider} from "../../providers/login/login";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {MenuPage} from "../menu/menu";
 import { Socket } from 'ng-socket-io';
+import { UtilisateurProvider } from '../../providers/utilisateur/utilisateur';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,6 +25,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public loginPvd : LoginProvider
+              , public utilisateurPvd: UtilisateurProvider
               , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
     var token = localStorage.getItem('Token');
@@ -36,13 +38,21 @@ export class LoginPage {
     var promise = this.loginPvd.tryConnect();
     if(promise != null){
       promise.subscribe((result) => {
-        console.log(result);
+        console.log(result);  
         if(result.success){
-          localStorage.setItem("IdUtilisateur" , result.user[0]._id);
+          let user = result.user[0];
+           console.log(user);         
+          localStorage.setItem("IdUtilisateur" , result.user[0]._id);                    
           this.socket.emit('client-connect', result.user[0]);
           this.navCtrl.push(MenuPage);
+          
+          let playerId = localStorage.getItem('playerID');
+          user.lastPlayerId = playerId;
+          this.utilisateurPvd.updateWithoutImage(user);
         }
       })
+    } else {
+      console.log('erreur try connect');
     }
   }
 
@@ -61,9 +71,13 @@ export class LoginPage {
         }
         else
         {
-          localStorage.setItem("IdUtilisateur" , result.user[0]._id);
+          let user = result.user[0];
+          localStorage.setItem("IdUtilisateur" ,user._id);
           localStorage.setItem('Token', result.data);
-          this.socket.emit('client-connect', result.user[0]);
+          this.socket.emit('client-connect', user);
+          let playerId = localStorage.getItem('playerID');
+          user.lastPlayerId = playerId;
+          this.utilisateurPvd.updateWithoutImage(user);
           this.navCtrl.push(MenuPage);
         }
       });
