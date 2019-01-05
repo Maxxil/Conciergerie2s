@@ -68,14 +68,16 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
      if(receiver == 2) {
 console.log('Liste des prestataires',prestation.prestataire);
 
-        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id; return elt;});
+        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.id=item.lastPlayerId; return elt;});
+        let playerids = prestation.prestataire.map(item => { return item.lastPlayerId});
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
             'userid' : notification.utilisateur,
             'prestataires': prestataires
         };
-
+    //  include_player_ids: 
+    pushMessage.postBody["include_player_ids"] = playerids;
         console.log('PushMessage object to Prestataire',pushMessage);
       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
@@ -252,7 +254,7 @@ module.exports = {
             });
             let promise = notification.save();
             promise.then(function(elt) {                 
-                sendPushFromNotification(elt, 2,result[0]);         
+                sendPushFromNotification(elt, 2,prestation);         
             });
         
         });

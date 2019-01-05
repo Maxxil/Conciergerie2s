@@ -44,7 +44,7 @@ module.exports = {
     },
     getByIdWithPrestataire : function (id) {
         return Prestation.find({_id : id}).populate({
-            path : "prestataire" , populate: {path : "utilisateur" , select:"nom prenom"}
+            path : "prestataire" , populate: {path : "utilisateur" , select:"nom prenom lastPlayerId"}
         });
     },
     update : function(prestation){
