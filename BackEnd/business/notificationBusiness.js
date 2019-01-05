@@ -19,11 +19,7 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
     if (typeof notification !== 'object') {
 		throw 'Notification doit etre une notification C2S';
     }
-    let pushMessage = new OpenSignal.Notification({      
-        contents: {      
-            en: notification.message                
-        }   
-    });   
+    
     console.log('Notificationobject:',notification);
        
 
@@ -31,12 +27,18 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
   
     //Envoi à l'admin
     if(receiver == 0 || receiver == 2) {
+        let pushMessage = new OpenSignal.Notification({      
+            contents: {      
+                en: notification.message                
+            }   
+        });   
 
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,           
         };
 
+       
         pushMessage.postBody["included_segments"] = ["Active Users"];      
         pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
         
@@ -51,6 +53,12 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
     }
     // Envoi à un client
     if(receiver == 1) {
+
+        let pushMessage = new OpenSignal.Notification({      
+            contents: {      
+                en: notification.message                
+            }   
+        });   
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
@@ -59,7 +67,7 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
 
         pushMessage.postBody["included_segments"] = ["Active Users"];      
         pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
-        
+
         console.log('PushMessage object to Client',pushMessage);
        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
@@ -72,6 +80,13 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
 
      // Envoi à aux prestataires
      if(receiver == 2) {
+
+        let pushMessage = new OpenSignal.Notification({      
+            contents: {      
+                en: notification.message                
+            }   
+        });   
+
 console.log('Liste des prestataires',prestation.prestataire);
 
         let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
@@ -82,8 +97,10 @@ console.log('Liste des prestataires',prestation.prestataire);
             'userid' : notification.utilisateur,
             'prestataires': prestataires
         };
+
+      
     //  include_player_ids: 
-        pushMessage.postBody["include_player_ids"] = playerids;
+    pushMessage.postBody["include_player_ids"] = playerids;
         console.log('PushMessage object to Prestataire : ',pushMessage);
        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
