@@ -44,11 +44,11 @@ export class LoginPage {
            console.log(user);         
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);                    
           this.socket.emit('client-connect', result.user[0]);
-          this.navCtrl.push(MenuPage);
+
+         
           
-          let playerId = localStorage.getItem('playerID');
-          user.lastPlayerId = playerId;
-          this.utilisateurPvd.updateWithoutImage(user);
+         
+          this.navCtrl.push(MenuPage);
         }
       })
     } else {
@@ -75,9 +75,12 @@ export class LoginPage {
           localStorage.setItem("IdUtilisateur" ,user._id);
           localStorage.setItem('Token', result.data);
           this.socket.emit('client-connect', user);
-          let playerId = localStorage.getItem('playerID');
-          user.lastPlayerId = playerId;
-          this.utilisateurPvd.updateWithoutImage(user);
+          this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+            let playerId = localStorage.getItem('playerID');
+            let profile = result.data[0];
+            profile.lastPlayerId = playerId;
+             this.utilisateurPvd.updateWithoutImage(profile); 
+          });
           this.navCtrl.push(MenuPage);
         }
       });

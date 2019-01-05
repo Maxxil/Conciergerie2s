@@ -173,7 +173,7 @@ module.exports = {
     },
     propositionPrestataire: function(devis) {
         console.log('***************************************');
-        console.log('Notification Proposition prestataire', commande);
+        console.log('Notification Proposition prestataire', devis);
         let notification = new Notification({
             utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,

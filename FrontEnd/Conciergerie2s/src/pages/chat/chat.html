@@ -15,8 +15,8 @@
     
         <div *ngFor="let msg of msgList"
              class="message"
-             [class.left]=" msg.userId === toUser.id "
-             [class.right]=" msg.userId === fromUser.id ">         
+             [class.left]=" msg.userId != fromUser.id && msg.userId == toUser"
+             [class.right]=" msg.userId == fromUser.id ">         
           <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
           <div class="msg-detail">
             <div class="msg-info">
