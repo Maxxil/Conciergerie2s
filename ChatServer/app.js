@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
   
   //  Diffusion du message 
   socket.on('new-message', (msg) => {
-    console.log(msg.message.userId+' -> '+msg.message.toUserId);
+    console.log('NEw message : '+msg.message.userId+' -> '+msg.message.toUserId);
     io.emit('message', msg.message);    
     /*let new_message =  msg.message;
     const userId = msg.message.userId;
