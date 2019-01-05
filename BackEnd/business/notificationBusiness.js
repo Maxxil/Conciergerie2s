@@ -171,6 +171,23 @@ module.exports = {
             });
         });
     },
+    propositionPrestataireSurDevis: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Proposition prestataire', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Nouvelle proposition d'un prestataire sur devis"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
+    },
     propositionPrestataire: function(devis) {
         console.log('***************************************');
         console.log('Notification Proposition prestataire', devis);
@@ -182,6 +199,23 @@ module.exports = {
             refId: devis._id,
             icon: 'mail',
             message: "Nouvelle proposition d'un prestataire sur une commande"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
+    },
+    prestataireChoisi: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Prestataire choisi', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Prestation planifiée - Devis à régler"
         });      
         let promise = notification.save();
         promise.then(function(elt) {

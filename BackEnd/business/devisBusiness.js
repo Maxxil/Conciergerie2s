@@ -12,7 +12,7 @@ module.exports = {
                     result[0].propositions = [];
                 }
                 result[0].propositions.push(idProposition);
-                result[0].save().then(() => notificationBusiness.propositionPrestataire(result[0]));  
+                result[0].save().then(() => notificationBusiness.propositionPrestataireSurDevis(result[0]));  
             }
         })
     },
@@ -51,7 +51,7 @@ module.exports = {
         return Devis.find({'prestation' : {'$in' : idsPrestations}})
             .populate([{path : 'prestation' }, {
                 path: "propositions", populate: {
-                    path: 'prestataire', populate: {path: 'utilisateur', select: '_id'}
+                    path: 'prestataire', populate: {path: 'client', select: '_id nom prenom'}
                 }
             }]).sort('-dateCreation');
     },
@@ -59,7 +59,7 @@ module.exports = {
         Devis.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
             result[0].prestataireChoisi = prestataireChoisi;
-            result[0].save();
+            result[0].save().then(() => notificationBusiness.prestataireChoisi(result[0]));;
         })
     },
     selectIds : function (devis) {

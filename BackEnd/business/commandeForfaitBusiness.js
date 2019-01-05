@@ -27,7 +27,7 @@ module.exports = {
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}})
-            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]).sort('-dateCreation');
+            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}]).sort('-dateCreation');
     },
     getAll : function () {
         return CommandeForfait.find({})
