@@ -46,7 +46,14 @@ export class CommandeForfaitPage {
 
     this.loading.present();
     console.log("Paiement");
-    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
+    this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
+        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
+          this.manageDisplaySuccessOrError(result);
+          this.annuler();
+          this.loading.dismiss();
+        });
+    
+    /*this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
       console.log(result);
       var browser = this.iab.create(result.data);
       this.loading.dismiss();
@@ -58,7 +65,9 @@ export class CommandeForfaitPage {
         });
       });
 
-    });
+    });*/
+
+    
 
   }
 

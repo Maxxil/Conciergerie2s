@@ -2,6 +2,7 @@ var fs = require('fs');
 var OpenSignal = require('onesignal-node');
 
 var Notification = require('../model/notificationModel');
+var prestationBusiness = require('./prestationBusiness');
 var enums = require('./../helper/enums');
 var Conciergeries2SClient = new OpenSignal.Client({
     userAuthKey: '',
@@ -13,7 +14,7 @@ var Conciergeries2SAdmin = new OpenSignal.Client({
     app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
 });
 
-let sendPushFromNotification = (notification, receiver)  => {
+let sendPushFromNotification = (notification, receiver, prestation = null)  => {
 
     if (typeof notification !== 'object') {
 		throw 'Notification doit etre une notification C2S';
@@ -23,32 +24,66 @@ let sendPushFromNotification = (notification, receiver)  => {
             en: notification.message                
         }   
     });   
-    console.log(notification);
-    pushMessage.postBody['data']  = {
-        'refid': notification.refId,
-        'type': notification.type
-    };
+    console.log('Notificationobject:',notification);
+       
 
     pushMessage.postBody["included_segments"] = ["Active Users"];      
     pushMessage.postBody["excluded_segments"] = ["Banned Users"];      
+  
+    //Envoi à l'admin
+    if(receiver == 0 || receiver == 2) {
 
-    if(receiver == 0) {
-        Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+        pushMessage.postBody['data']  = {
+            'refid': notification.refId,
+            'type': notification.type,           
+        };
+        
+        console.log('PushMessage object to Admin',pushMessage);
+      /*  Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });   
+        });   */
     }
-    else {
-        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+    // Envoi à un client
+    if(receiver == 1) {
+        pushMessage.postBody['data']  = {
+            'refid': notification.refId,
+            'type': notification.type,
+            'userid' : notification.utilisateur        
+        };
+        console.log('PushMessage object to Client',pushMessage);
+       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });
+        });*/
+    }
+
+     // Envoi à aux prestataires
+     if(receiver == 2) {
+console.log('Liste des prestataires',prestation.prestataire);
+
+        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id; return elt;});
+        pushMessage.postBody['data']  = {
+            'refid': notification.refId,
+            'type': notification.type,
+            'userid' : notification.utilisateur,
+            'prestataires': prestataires
+        };
+
+        console.log('PushMessage object to Prestataire',pushMessage);
+      /*  Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+            if (err) {      
+                console.log('Something went wrong...');      
+            } else {      
+                console.log(data, httpResponse.statusCode);      
+            }      
+        });*/
     }
           
 }
@@ -110,6 +145,7 @@ module.exports = {
             type: utilisateur.role == '1' ? enums.NotificationType.NOUVEAU_CLIENT: enums.NotificationType.NOUVEAU_PRESTATAIRE,
             date: new Date(),
             refId: utilisateur._id,
+            utilisateur: '0',
             icon:  utilisateur.role == '1' ? 'person-add' : 'contacts',
             message: utilisateur.role == '1' ? 'Nouvelle inscription de client': 'Nouveau prestataire à valider'
         });
@@ -119,18 +155,20 @@ module.exports = {
         });
     },    
     newDevis: function(devis) {
-        let notification = new Notification({
-            utilisateur: devis.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type: enums.NotificationType.NOUVEAU_DEVIS,
-            date: new Date(),
-            refId: devis._id,
-            icon: 'briefcase',
-            message: 'Nouveau devis'
-        });        
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 0); 
+        prestationBusiness.getByIdWithPrestataire(commande.prestation).then((result) => {
+            let notification = new Notification({
+                utilisateur: devis.client._id,
+                statut: enums.NotificationStatus.NON_LU,
+                type: enums.NotificationType.NOUVEAU_DEVIS,
+                date: new Date(),
+                refId: devis._id,
+                icon: 'briefcase',
+                message: 'Nouveau devis'
+            });        
+            let promise = notification.save();
+            promise.then(function(elt) {
+                sendPushFromNotification(elt, 0,result[0]); 
+            });
         });
     },
     propositionPrestataire: function(devis) {
@@ -162,18 +200,26 @@ module.exports = {
         notification.save();
     },
     newCommande: function(commande) {
-        let notification = new Notification({
-            utilisateur: commande.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type: enums.NotificationType.NOUVELLE_COMMANDE,
-            date: new Date(),
-            refId: commande._id,
-            icon: 'cart',
-            message: 'Nouvelle commande de client'
-        });
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 0);             
+        console.log('***************************************');
+        console.log('Notification New Commande', commande);
+
+        prestationBusiness.getByIdWithPrestataire(commande.prestation).then((result) => {
+            console.log('Prestation : ',result[0] );
+            var prestation = result[0];
+            let notification = new Notification({
+                utilisateur: commande.client._id,
+                statut: enums.NotificationStatus.NON_LU,
+                type: enums.NotificationType.NOUVELLE_COMMANDE,
+                date: new Date(),
+                refId: commande._id,
+                icon: 'cart',
+                message: 'Nouvelle commande de client'
+            });
+            let promise = notification.save();
+            promise.then(function(elt) {                 
+                sendPushFromNotification(elt, 2,result[0]);         
+            });
+        
         });
     },
     commandeVALIDE: function(commande) {

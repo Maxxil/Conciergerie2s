@@ -24,9 +24,15 @@ export class MyApp {
       
       splashScreen.hide();
       if(this.isCordovaAvailable()) {
-        this.oneSignal.startInit(oneSignalAppId, sender_id);
-        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
-        this.oneSignal.handleNotificationReceived().subscribe(data => this.onPushReceived(data.payload));
+          this.oneSignal.startInit(oneSignalAppId, sender_id);
+          
+          this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+          this.oneSignal.handleNotificationReceived().subscribe(data => this.onPushReceived(data.payload));
+        
+          this.oneSignal.getIds().then(ids => {        
+          localStorage.setItem('playerID',  ids.userId);
+  
+        });
        // this.oneSignal.handleNotificationOpened().subscribe(data => this.onPushOpened(data.notification.payload));
         this.oneSignal.endInit();
       }
@@ -52,8 +58,10 @@ export class MyApp {
   }
 
   private onPushReceived(payload: OSNotificationPayload) {
-    alert(payload.body);
-    this.events.publish('notification:updated');
+    if(localStorage.getItem("IdUtilisateur") == payload.additionalData.userid) {
+      alert(payload.body);
+      this.events.publish('notification:updated');
+    }
   }
 
 }

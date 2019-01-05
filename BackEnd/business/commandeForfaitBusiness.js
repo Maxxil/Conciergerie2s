@@ -1,8 +1,10 @@
 var CommandeForfait = require('./../model/commandeForfaitModel');
 var notificationBusiness = require('./../business/notificationBusiness');
+
 module.exports = {
     add : function (commande) {
-        commande.save().then(() => notificationBusiness.newCommande(commande));      
+        commande.save().then(() => notificationBusiness.newCommande(commande));
+
     },
     addPrestataire : function (idCommande, idPrestataire) {
         CommandeForfait.find({_id : idCommande}).exec(function (err,result) {
