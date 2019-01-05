@@ -79,13 +79,13 @@ console.log('Liste des prestataires',prestation.prestataire);
     //  include_player_ids: 
         pushMessage.postBody["include_player_ids"] = playerids;
         console.log('PushMessage object to Prestataire : ',pushMessage);
-      /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });*/
+        });
     }
           
 }
