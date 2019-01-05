@@ -17,7 +17,7 @@ module.exports = {
             if(result != null || result.length == 1){
                 result[0].prestataires.push(idPrestataire);
                 result[0].status = enums.CommandeStatus.EN_COURS_VALIDATION;
-                result[0].save();
+                result[0].save().then(() => notificationBusiness.propositionPrestataire(result[0]));  
                
             }
         })

@@ -141,7 +141,7 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'mail',
-            message: "Nouvelle proposition d'un prestataire"
+            message: "Nouvelle proposition d'un prestataire sur une commande"
         });
         notification.save();
         let promise = notification.save();

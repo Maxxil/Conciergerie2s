@@ -8,7 +8,7 @@ module.exports = {
         CommandeForfait.find({_id : idCommande}).exec(function (err,result) {
             if(result != null || result.length == 1){
                 result[0].prestataires.push(idPrestataire);
-                result[0].save();
+                result[0].save().then(() => notificationBusiness.propositionPrestataire(result[0]));  
             }
         })
     },

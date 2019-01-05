@@ -12,7 +12,7 @@ module.exports = {
                     result[0].propositions = [];
                 }
                 result[0].propositions.push(idProposition);
-                result[0].save();
+                result[0].save().then(() => notificationBusiness.propositionPrestataire(result[0]));  
             }
         })
     },
