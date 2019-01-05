@@ -43,13 +43,13 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
         pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
         
         console.log('PushMessage object to Admin',pushMessage);
-      /* Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });   */
+        });   
     }
     // Envoi à un client
     if(receiver == 1) {
@@ -65,17 +65,14 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
             'userid' : notification.utilisateur
         };
 
-        pushMessage.postBody["included_segments"] = ["Active Users"];      
-        pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
-
         console.log('PushMessage object to Client',pushMessage);
-       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+   /*    Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });
+        });*/
     }
 
      // Envoi à aux prestataires
@@ -244,7 +241,7 @@ module.exports = {
         });      
         let promise = notification.save();
         promise.then(function(elt) {
-            sendPushFromNotification(elt, 0);             
+            sendPushFromNotification(elt, 1);             
         });
     },
     devisVALIDE: function(devis) {
@@ -256,8 +253,11 @@ module.exports = {
             refId: devis._id,
             icon: 'send',
             message: 'Votre devis est validé'
+        });        
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 1, devis);             
         });
-        notification.save();
     },
     newCommande: function(commande) {
         console.log('***************************************');
@@ -292,7 +292,10 @@ module.exports = {
             icon: 'basket',
             message: 'Commande validée.'
         });
-        notification.save();
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 1, commande);             
+        });
     },
     prestationTermineeByPrestataire: function(commande) {
         let notification = new Notification({
