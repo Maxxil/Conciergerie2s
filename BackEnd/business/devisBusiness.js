@@ -49,7 +49,7 @@ module.exports = {
     },
     getByListIdPrestation : function (idsPrestations) {
         return Devis.find({'prestation' : {'$in' : idsPrestations}})
-            .populate([{path : 'prestation' }, {
+            .populate([{path : 'prestation' },{path : 'client' , select : '_id nom prenom telephoneMobile ville codepostal email'}, {
                 path: "propositions", populate: {
                     path: 'prestataire', populate: {path: 'client', select: '_id nom prenom'}
                 }

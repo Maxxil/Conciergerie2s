@@ -39,7 +39,7 @@ module.exports = {
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}).populate('prestation prestataires')
-            .populate([{path : 'prestation' },{path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}]);
+            .populate([{path : 'prestation' },{path : 'client' , select : '_id nom prenom telephoneMobile ville codepostal email'}, {path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}]);
     },
     updateStatus : function (idCommande, status,prestataireChoisi) {
         CommandeHoraire.find({_id : idCommande}).exec(function (err, result) {
