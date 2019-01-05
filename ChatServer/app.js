@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
       allConnected = itemsfilter;
       numConnected = itemsfilter.length;
       console.log("nb connect after disconnect "+numConnected);
-      io.emit('c2s-disconnect', {user: socket.userId, event: 'left'});   
+      io.emit('c2s-disconnect', {user: socket.userid, event: 'left'});   
     }
   }); 
   
