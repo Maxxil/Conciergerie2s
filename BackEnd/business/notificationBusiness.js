@@ -182,8 +182,7 @@ module.exports = {
             refId: devis._id,
             icon: 'mail',
             message: "Nouvelle proposition d'un prestataire sur une commande"
-        });
-        notification.save();
+        });      
         let promise = notification.save();
         promise.then(function(elt) {
             sendPushFromNotification(elt, 0);             
