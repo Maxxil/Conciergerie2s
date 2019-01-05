@@ -7,7 +7,7 @@ module.exports = {
         prestation.save();
     },
     getAll : function(){
-        return Prestation.find({});
+        return Prestation.find({}).sort('nom');
     },
     getById : function(id){
         return Prestation.findById(id);
@@ -36,11 +36,11 @@ module.exports = {
             .populate({path : "prestataire" , populate : {path : "utilisateur"}})
     },
     getWithPrestataire : function () {
-        return Prestation.find({}).populate('prestataire');
+        return Prestation.find({}).populate('prestataire').sort('nom');;
     },
     getOnlyWithPrestataires : function(){
         return Prestation.find({}).where("prestataire").ne([])
-            .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}})
+            .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}}).sort('nom');
     },
     getByIdWithPrestataire : function (id) {
         return Prestation.find({_id : id}).populate({
