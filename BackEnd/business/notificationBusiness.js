@@ -39,13 +39,13 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
         };
         
         console.log('PushMessage object to Admin',pushMessage);
-       Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+      /* Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });   
+        });   */
     }
     // Envoi à un client
     if(receiver == 1) {
@@ -77,13 +77,13 @@ console.log('Liste des prestataires',prestation.prestataire);
         };
 
         console.log('PushMessage object to Prestataire',pushMessage);
-       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+      /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });
+        });*/
     }
           
 }
@@ -167,7 +167,7 @@ module.exports = {
             });        
             let promise = notification.save();
             promise.then(function(elt) {
-                sendPushFromNotification(elt, 0,result[0]); 
+                sendPushFromNotification(elt, 2,result[0]); 
             });
         });
     },
