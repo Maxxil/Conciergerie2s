@@ -60,6 +60,7 @@ export class ChatService {
      {
         this.socket.on('message', (data) =>
         {
+          console.log('restreiveMsg');
           console.log(data);
            observer.next(data);
         });
@@ -73,6 +74,8 @@ export class ChatService {
   }
 
   sendMsg(msg: ChatMessage) {
+
+    console.log('sendMsg');
     return new Promise(resolve =>
        this.socket.emit('new-message', { message: msg}));
   }

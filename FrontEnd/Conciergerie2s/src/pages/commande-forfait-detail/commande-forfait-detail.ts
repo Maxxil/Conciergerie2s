@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController, Events} from 'ionic-angular';
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {Result} from "../../model/Result/Result";
@@ -25,7 +25,8 @@ export class CommandeForfaitDetailPage {
               , public commandeForfaitPvd : CommandeForfaitProvider
               , public navParams: NavParams
               , public viewCtrl : ViewController,
-              public alertCtrl : AlertController) {
+              public alertCtrl : AlertController,
+              public events: Events) {
     this.commande = this.navParams.get('Commande');
     switch(this.commande.status) {
       case 1: this.status = "Envoyé"; break;
@@ -50,7 +51,8 @@ export class CommandeForfaitDetailPage {
 
   postuler(){
     this.commandeForfaitPvd.souscrirePrestataire(this.commande).subscribe(result =>{
-      this.manageDisplaySuccessOrError(result);
+      this.events.publish('refresh:commande');
+      this.manageDisplaySuccessOrError(result);            
     });
   }
 

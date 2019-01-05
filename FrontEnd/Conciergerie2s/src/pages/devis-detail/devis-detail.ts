@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController, Events} from 'ionic-angular';
 import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {Result} from "../../model/Result/Result";
@@ -27,7 +27,8 @@ export class DevisDetailPage {
               , public devisPvd : DevisProvider
               , public navParams: NavParams
               , public viewCtrl : ViewController,
-              public alertCtrl : AlertController) {
+              public alertCtrl : AlertController,
+              public events: Events) {
     this.commande = this.navParams.get('Commande');
     switch(this.commande.status) {
       case 1: this.status = "Envoyé"; break;
@@ -51,6 +52,8 @@ export class DevisDetailPage {
 
   postuler(){
     this.devisPvd.souscrirePrestataire(this.commande, this.proposition).subscribe(result =>{
+      this.events.publish('refresh:commande'); 
+      this.dejapostuler = true;
       this.manageDisplaySuccessOrError(result);
     });
   }

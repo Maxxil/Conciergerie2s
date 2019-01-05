@@ -10,7 +10,7 @@
   
     
         <ion-card   *ngFor="let element of notifications">
-            <ion-item  color="light">
+            <ion-item  color="light" text-wrap>
           <ion-icon name="{{ element.icon }}" item-start></ion-icon>
           {{ element.message }}
             </ion-item>

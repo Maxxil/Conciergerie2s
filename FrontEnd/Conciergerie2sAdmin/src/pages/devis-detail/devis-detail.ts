@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
+
 /**
  * Generated class for the DevisDetailPage page.
  *
@@ -21,12 +22,21 @@ export class DevisDetailPage {
 
   public commande : DevisModel;
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+  public prestataireChoisi: DevisPropositionModel = null;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
-    , public commandePvd : DevisProvider) {
+    , public commandePvd : DevisProvider
+    , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
+
+    if(this.commande.prestataireChoisi) {
+      this.prestataireChoisi  = this.commande.propositions.filter(x => x._id.toString() == this.commande.prestataireChoisi.toString()).pop();
+    } 
+    console.log(this.commande);
+    console.log(this.prestataireChoisi);
+  
   }
  
   ionViewDidLoad() {
@@ -37,9 +47,23 @@ export class DevisDetailPage {
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
         this.commande.status = CommandeStatus.VALIDEE;
+        if(result.success){
+       
+          this.alertCtrl.create({
+            title : 'Message',
+            message : "Le prestataire a été choisi",
+            buttons : [{
+              text : 'OK'
+            }]
+          }).present();
+        }
       }
     });
 
+  }
+
+  prestataireChoisiExist() {
+    return this.prestataireChoisi != null;
   }
 
   isEnCours(){

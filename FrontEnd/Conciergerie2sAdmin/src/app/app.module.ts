@@ -138,4 +138,3 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
   ]
 })
 export class AppModule {}
-

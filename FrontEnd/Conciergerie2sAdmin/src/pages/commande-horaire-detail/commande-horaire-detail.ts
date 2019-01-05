@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
@@ -22,7 +22,8 @@ export class CommandeHoraireDetailPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
-              , public commandePvd : CommandeHoraireProvider) {
+              , public commandePvd : CommandeHoraireProvider
+              , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
@@ -32,10 +33,18 @@ export class CommandeHoraireDetailPage {
     console.log('ionViewDidLoad CommandeHoraireDetailPage');
   }
 
-  public validerCommande(){
+  public validerCommande(){ 
+    this.commande.status = CommandeStatus.VALIDEE;
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
-        this.commande.status = CommandeStatus.VALIDEE;
+       
+        this.alertCtrl.create({
+          title : 'Message',
+          message : "Le prestataire a été choisi",
+          buttons : [{
+            text : 'OK'
+          }]
+        }).present();
       }
     });
 

@@ -47,11 +47,11 @@
       <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
       <br><span style="font-size:2em;">OU</span>
     </div>
-      <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
+      <ion-list *ngIf="commande.prestataireChoisi != null" radio-group [(ngModel)]="commande.prestataireChoisi">
           <ion-list-header>Liste des prestataires ayant postulé  <ion-badge item-end>{{commande.prestataires.length}}</ion-badge></ion-list-header>
         <ion-item *ngFor="let prestataire of commande.prestataires">
           <ion-label>{{prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}</ion-label>
-          <ion-radio [value]="prestataire"></ion-radio>
+          <ion-radio [value]="prestataire" (click)="validerCommande()"></ion-radio>
         </ion-item>
       </ion-list>
  <!-- <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>

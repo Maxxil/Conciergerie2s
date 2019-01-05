@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
@@ -29,10 +29,12 @@ export class CommandesPostulerPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public currentUserId;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public commandePvd : CommandeProvider) {
+              public commandePvd : CommandeProvider, public events: Events) {
     this.currentUserId = localStorage.getItem("IdUtilisateur");
     this.getMyCommandes();
-    console.log(localStorage.getItem("MesCommandes"));
+    events.subscribe('refresh:commande', () => {      
+      this.getMyCommandes();
+    });
   }
 
   ionViewDidLoad() {

@@ -45,27 +45,27 @@ export class CommandeForfaitPage {
   public commander(){
 
     this.loading.present();
-    console.log("Paiement");
+    /*console.log("Paiement");
     this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
         this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
           this.manageDisplaySuccessOrError(result);
           this.annuler();
           this.loading.dismiss();
         });
-    
-    /*this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
+    */
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
       console.log(result);
       var browser = this.iab.create(result.data);
       this.loading.dismiss();
-      browser.on('exit').subscribe(() =>{
-        this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
-        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
+      browser.on('exit').subscribe(() =>{       
+        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{ 
+          this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;         
           this.manageDisplaySuccessOrError(result);
           this.annuler();
         });
       });
 
-    });*/
+    });
 
     
 

@@ -23,6 +23,7 @@ export class DashboardPage {
   tab2Root = NotificationsPage;
   tab3Root = ChatPage;
   public totalNotification = 0;
+  public chatnotification = 0;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public events: Events,
@@ -37,6 +38,12 @@ export class DashboardPage {
         console.log('Event notification:badge');        
         this.totalNotification = payload._badgeValue;      
       });
+
+      events.subscribe('notification:chat', payload => {    
+        console.log('Event notification:chat');        
+        this.chatnotification = payload._badgeValue;      
+      });
+
 
       events.subscribe('notification:updated', () => {   
         console.log('Event notification:updated');  

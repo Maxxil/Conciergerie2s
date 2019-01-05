@@ -37,7 +37,7 @@ export class ChatPage {
       
       this.fromUser = {
       id: this.profile._id,
-      name: 'Client',//navParams.get('toUserName')
+      name: this.profile.nomUtilisateur,
       avatar: './assets/imgs/user.jpg'
       };
       
@@ -132,10 +132,12 @@ export class ChatPage {
   }
 
   pushNewMsg(msg: ChatMessage) {
-    
-    this.msgList.push(msg);
-    console.log(this.msgList);
-    this.scrollToBottom();
+    console.log('pushnewMsg after retreive msg', msg);    
+    if(msg.toUserId ==  this.fromUser.id || msg.userId == this.fromUser.id) {
+      this.msgList.push(msg);
+      console.log(this.msgList);
+      this.scrollToBottom();
+    }
   }
 
   sendMsg() {

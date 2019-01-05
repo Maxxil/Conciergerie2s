@@ -49,19 +49,13 @@ export class CommandeHorairePage {
       console.log(result.data);          
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('message').subscribe(() =>{
-        this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
+      browser.on('exit').subscribe(() =>{       
         this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
+          this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
           this.manageDisplaySuccessOrError(result);
+          this.annuler();
         });
-      });
-      browser.on('exit').subscribe(() =>{
-        this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
-        this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
-          this.manageDisplaySuccessOrError(result);
-        });
-      });
-     
+      });     
     });
   }
 

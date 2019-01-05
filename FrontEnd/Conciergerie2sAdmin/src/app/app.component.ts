@@ -48,4 +48,3 @@ export class MyApp {
     alert('Push opened: ' + payload.body);
   }*/
 }
-
