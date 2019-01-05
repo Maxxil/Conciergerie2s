@@ -39,13 +39,13 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
         };
         
         console.log('PushMessage object to Admin',pushMessage);
-      /*  Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });   */
+        });   
     }
     // Envoi à un client
     if(receiver == 1) {
@@ -55,13 +55,13 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
             'userid' : notification.utilisateur
         };
         console.log('PushMessage object to Client',pushMessage);
-       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });*/
+        });
     }
 
      // Envoi à aux prestataires
@@ -77,13 +77,13 @@ console.log('Liste des prestataires',prestation.prestataire);
         };
 
         console.log('PushMessage object to Prestataire',pushMessage);
-      /*  Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });*/
+        });
     }
           
 }
@@ -172,6 +172,8 @@ module.exports = {
         });
     },
     propositionPrestataire: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Proposition prestataire', commande);
         let notification = new Notification({
             utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,

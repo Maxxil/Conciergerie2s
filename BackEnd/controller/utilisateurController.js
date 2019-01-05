@@ -117,6 +117,8 @@ router.post('/image' , upload.single('image') , function (req , res) {
 });
 
 router.post('/', function (req , res) {
+
+    console.log('POST UTILISATEUR : ',req.body.utilisateur);
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
         res.json({
             success : result.ok
