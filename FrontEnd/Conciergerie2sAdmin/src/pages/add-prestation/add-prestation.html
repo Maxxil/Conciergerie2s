@@ -16,8 +16,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <div class="success" *ngIf="isSaved">
+<ion-content>
+  <ion-card>
+     <div class="success" *ngIf="isSaved">
         La sauvegarde s'est terminée avec succés.
     </div>
 
@@ -96,4 +97,5 @@
           <button ion-button [color]="" (click)="update()" *ngIf="isUpdateModal()">Modifier</button>
           <button ion-button color="danger" (click)="close()">Annuler</button>
     </div>
+  </ion-card>
 </ion-content>
