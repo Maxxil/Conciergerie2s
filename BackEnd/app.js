@@ -26,8 +26,11 @@ app.use(function(req,res,next){
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,text/plain, */*');
     next();
 });
-app.use('/service/image' , express.static(__dirname + '/data/images/service'));
-app.use('/prestation/image' , express.static(__dirname + '/data/images/prestation'));
+
+// Une journée
+var images_cache = 86400000;
+app.use('/service/image' , express.static(__dirname + '/data/images/service', { maxAge: images_cache }));
+app.use('/prestation/image' , express.static(__dirname + '/data/images/prestation', { maxAge: images_cache }));
 
 app.use('/' , require('./controller'));
 
@@ -37,7 +40,7 @@ app.listen(port, function() {
     utilisateurBusiness.any().exec(function(err, result){
         if(result == null || result.length == 0)
         {
-            console.log("Ajour de l'admin");
+            console.log("Ajout de l'admin");
             var user = {
                 nomUtilisateur : "admin",
                 motDePasse : "admin",
