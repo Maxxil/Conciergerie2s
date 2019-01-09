@@ -14,7 +14,7 @@ var Conciergeries2SAdmin = new OpenSignal.Client({
     app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
 });
 
-let sendPushFromNotification = (notification, receiver, prestation = null)  => {
+let sendPushFromNotification = (notification, receiver, obj = null)  => {
 
     if (typeof notification !== 'object') {
 		throw 'Notification doit etre une notification C2S';
@@ -84,10 +84,10 @@ let sendPushFromNotification = (notification, receiver, prestation = null)  => {
             }   
         });   
 
-console.log('Liste des prestataires',prestation.prestataire);
+        console.log('Liste des prestataires',obj.prestataire);
 
-        let prestataires = prestation.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
-        let playerids = prestation.prestataire.map(item => { return item.utilisateur.lastPlayerId});
+        let prestataires = obj.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
+        let playerids = obj.prestataire.map(item => { return item.utilisateur.lastPlayerId});
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
@@ -96,8 +96,8 @@ console.log('Liste des prestataires',prestation.prestataire);
         };
 
       
-    //  include_player_ids: 
-    pushMessage.postBody["include_player_ids"] = playerids;
+        //  include_player_ids: 
+            pushMessage.postBody["include_player_ids"] = playerids;
         console.log('PushMessage object to Prestataire : ',pushMessage);
        Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
@@ -106,6 +106,48 @@ console.log('Liste des prestataires',prestation.prestataire);
                 console.log(data, httpResponse.statusCode);      
             }      
         });
+    }
+
+    // Envoi à au client et au prestataire
+    if(receiver == 3) {
+
+        let pushMessage = new OpenSignal.Notification({      
+            contents: {      
+                en: notification.message                
+            }   
+        });           
+
+        let prestataireChoisi = obj.prestataireChoisi;        
+        let client = obj.client;
+        pushMessage.postBody['data']  = {
+            'refid': notification.refId,
+            'type': notification.type,
+            'userid' : notification.utilisateur,
+            'prestataireChoisi': prestataireChoisi.lastPlayerId,
+            'client': client.lastPlayerId
+        };
+
+      
+        //  include_player_ids: 
+        pushMessage.postBody["include_player_ids"] = [client.lastPlayerId];
+        console.log('PushMessage object to Client : ',pushMessage);
+       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+            if (err) {      
+                console.log('Something went wrong...');      
+            } else {      
+                console.log(data, httpResponse.statusCode);      
+            }      
+        });
+*/
+        pushMessage.postBody["include_player_ids"] = [prestataireChoisi.lastPlayerId];
+        console.log('PushMessage object to Prestataire : ',pushMessage);
+       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+            if (err) {      
+                console.log('Something went wrong...');      
+            } else {      
+                console.log(data, httpResponse.statusCode);      
+            }      
+        });*/
     }
           
 }
@@ -241,7 +283,7 @@ module.exports = {
         });      
         let promise = notification.save();
         promise.then(function(elt) {
-            sendPushFromNotification(elt, 1);             
+            sendPushFromNotification(elt, 3, devis);             
         });
     },
     devisVALIDE: function(devis) {
