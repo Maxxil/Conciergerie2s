@@ -22,15 +22,15 @@
           <h2>{{prestation.nom}}</h2>
       </ion-list-header>
      <ion-item>
-      <ion-label fixed>Date demandée</ion-label>
+      <ion-label style="font-size:20px;" stacked>Date demandée</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  max='2030-12-31'  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="devis.date"></ion-datetime>
     </ion-item>
      <ion-item>
-      <ion-label stacked>Détail de votre demande</ion-label><br>
-      <ion-textarea rows="3" required [(ngModel)]="devis.information" id="information" name="information"></ion-textarea>
+      <ion-label style="font-size:20px;"  stacked>Détail de votre demande</ion-label><br>
+      <ion-textarea  rows="5" required [(ngModel)]="devis.information" id="information" name="information"></ion-textarea>
     </ion-item>
 
   </ion-list>
-  <button ion-button (click)="creer()">Commander</button>
+  <button ion-button (click)="creer()" [disabled]="!(devis.information && devis.date)" >Commander</button>
   <button ion-button (click)="annuler()">Annuler</button>
 </ion-content>

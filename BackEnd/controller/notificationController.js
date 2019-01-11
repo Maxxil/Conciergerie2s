@@ -36,4 +36,29 @@ router.get('/:id/:token', function (req, res) {
 });
 
 
+router.delete('/:id' , function (req, res) {
+    var id = req.params.id;
+    console.log('Delete notification id');
+    notificationBusiness.getById(id).exec(function (err,result) {
+      
+        if(result != null){    
+            console.log('Delete notification id '+id);      
+            notificationBusiness.delete(id);
+            res.json({
+                success : true
+            });
+            res.end();
+        }
+        else{
+            res.json({
+                success : false
+            });
+        }
+
+        res.end();
+    })
+    
+});
+
+
 module.exports = router;

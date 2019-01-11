@@ -1,6 +1,9 @@
 let app = require('express')();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
+var OpenSignal = require('onesignal-node');
+
+
 var envConfig = require("./config/environnement");
 
 // Allow CORS support and remote requests to the service
@@ -21,6 +24,11 @@ app.get('/', (req, res) =>
 var numConnected = 0;
 var allConnected = [];
 var adminOnline = false;
+
+var Conciergeries2SAdmin = new OpenSignal.Client({
+  userAuthKey: '',
+  app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
+});
  
 io.on('connection', (socket) => {  
 
@@ -56,6 +64,40 @@ io.on('connection', (socket) => {
     io.emit('users-onlines', {'onlines': allConnected});
     io.emit('is-admin-online', {isAdminOnline: true});
   });
+
+  
+
+  socket.on('client-request', (utilisateur) => {  
+    console.log('\r\nCLIENT Request');
+    console.log('----------------------');
+    console.log(utilisateur);    
+    console.log("Admin online : "+adminOnline);
+
+    let pushMessage = new OpenSignal.Notification({      
+      contents: {      
+          en: utilisateur.nom+' '+utilisateur.prenom+ ' veut chatter avec vous'            
+      }   
+    });   
+
+    pushMessage.postBody['data']  = {    
+        'type': 'chat-request'           
+    };
+
+  
+    pushMessage.postBody["included_segments"] = ["Active Users"];      
+    pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
+    
+    console.log('PushMessage object to Admin Fro Chat',pushMessage);
+    /*Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+        if (err) {      
+            console.log('Something went wrong...');      
+        } else {      
+            console.log(data, httpResponse.statusCode);      
+        }      
+    }); */    
+  });
+
+  
   
   // Déconnection 
   socket.on('disconnect', () => {

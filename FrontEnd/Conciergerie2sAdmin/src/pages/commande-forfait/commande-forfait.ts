@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeForfaitProvider} from "../../providers/commande-forfait/commande-forfait";
 import {CommandeForfaitModel} from "../../model/Models/CommandeForfaitModel";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
@@ -23,8 +23,13 @@ export class CommandeForfaitPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
+              ,public events: Events
               , public commandePvd : CommandeForfaitProvider) {
     this.getAll();
+    events.subscribe('notification:updated', () => {   
+      console.log('Event notification:updated');  
+      this.getAll();    
+    });
   } 
 
   public getAll(){

@@ -59,7 +59,27 @@ module.exports = {
         Devis.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;
             result[0].prestataireChoisi = prestataireChoisi;
-            result[0].save().then(() => notificationBusiness.prestataireChoisi(result[0]));;
+            result[0].save().then(() => notificationBusiness.prestataireChoisi(result[0]));
+        })
+    },
+    updateC2S: function (idCommande, prix, date) {
+        console.log('-----------------------');
+        console.log('UPDATE C2S');
+        console.log('-----------------------');
+        Devis.find({_id : idCommande}).exec(function (err, result) {
+            console.log(err);
+            result[0].prixC2S = prix;            
+            result[0].dateC2S = date;     
+            result[0].byC2S = 1;
+            result[0].status = 2;
+            result[0].save().then(() => notificationBusiness.prestataireC2SChoisi(result[0]));
+        })
+
+    },
+    updateStatusDevis : function (idCommande, status) {
+        Devis.find({_id : idCommande}).exec(function (err, result) {
+            result[0].status = status;            
+            result[0].save().then(() => notificationBusiness.devisEvent(result[0]));
         })
     },
     selectIds : function (devis) {

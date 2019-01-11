@@ -7,94 +7,14 @@
   
   </ion-header>
 <ion-content padding>
-    <ion-list>
-        <button ion-item color="secondary">
-          <ion-icon name="person-add"></ion-icon>
-          Nouveau prestataire à valider
-        </button>
-        <button ion-item class="text-1x" >
-          <ion-icon name="flame" color="primary"></ion-icon>
-          <span ion-text color="primary">Prestation terminée</span>
-        </button>
-        <button ion-item color="secondary" class="text-1x" >
-          <ion-icon name="cart"></ion-icon>
-          Nouvelle commande à valider
-        </button>
-        <button ion-item color="secondary" class="text-1x">
-            <ion-icon name="paper"></ion-icon>
-            Nouveau devis à valider
-        </button>       
-        <button ion-item class="text-1x" >
-          <ion-icon name="briefcase" color="primary"></ion-icon>
-          <span ion-text color="primary">Devis accepté</span>
-        </button>
-        <button ion-item color="secondary" class="text-1x" >
-            <ion-icon name="person-add"></ion-icon>
-            Nouveau prestataire à valider
-          </button>
-          <button ion-item color="secondary" class="text-1x">
-              <ion-icon name="paper"></ion-icon>
-              Nouveau devis à valider
-          </button>       
-          <button ion-item class="text-1x" >
-            <ion-icon name="briefcase" color="primary"></ion-icon>
-            <span ion-text color="primary">Devis accepté</span>
-          </button>
-          <button ion-item class="text-1x" >
-              <ion-icon name="flame" color="primary"></ion-icon>
-              <span ion-text color="primary">Prestation terminée</span>
+    <ion-card   *ngFor="let element of notifications">
+        <ion-item  color="light" text-wrap>
+          <ion-icon name="{{ element.icon }}" item-start></ion-icon>
+            {{ element.message }}<br>
+            <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>                                
+            <button ion-button (click)="delete(element)" icon-only color="light" item-end>
+                <ion-icon name="trash"></ion-icon>
             </button>
-            <button ion-item color="secondary" class="text-1x" >
-              <ion-icon name="cart"></ion-icon>
-              Nouvelle commande à valider
-            </button>
-            <button ion-item color="secondary" class="text-1x">
-                <ion-icon name="person-add"></ion-icon>
-                Nouveau prestataire à valider
-            </button>  
-            <button ion-item color="secondary">
-                <ion-icon name="person-add"></ion-icon>
-                Nouveau prestataire à valider
-              </button>
-              <button ion-item class="text-1x" >
-                <ion-icon name="flame" color="primary"></ion-icon>
-                <span ion-text color="primary">Prestation terminée</span>
-              </button>
-              <button ion-item color="secondary" class="text-1x" >
-                <ion-icon name="cart"></ion-icon>
-                Nouvelle commande à valider
-              </button>
-              <button ion-item color="secondary" class="text-1x">
-                  <ion-icon name="paper"></ion-icon>
-                  Nouveau devis à valider
-              </button>       
-              <button ion-item class="text-1x" >
-                <ion-icon name="briefcase" color="primary"></ion-icon>
-                <span ion-text color="primary">Devis accepté</span>
-              </button>
-              <button ion-item color="secondary" class="text-1x" >
-                  <ion-icon name="person-add"></ion-icon>
-                  Nouveau prestataire à valider
-                </button>
-                <button ion-item color="secondary" class="text-1x">
-                    <ion-icon name="paper"></ion-icon>
-                    Nouveau devis à valider
-                </button>       
-                <button ion-item class="text-1x" >
-                  <ion-icon name="briefcase" color="primary"></ion-icon>
-                  <span ion-text color="primary">Devis accepté</span>
-                </button>
-                <button ion-item class="text-1x" >
-                    <ion-icon name="flame" color="primary"></ion-icon>
-                    <span ion-text color="primary">Prestation terminée</span>
-                  </button>
-                  <button ion-item color="secondary" class="text-1x" >
-                    <ion-icon name="cart"></ion-icon>
-                    Nouvelle commande à valider
-                  </button>
-                  <button ion-item color="secondary" class="text-1x">
-                      <ion-icon name="person-add"></ion-icon>
-                      Nouveau prestataire à valider
-                  </button>       
-      </ion-list>
-  </ion-content>
+        </ion-item>            
+    </ion-card> 
+ </ion-content>

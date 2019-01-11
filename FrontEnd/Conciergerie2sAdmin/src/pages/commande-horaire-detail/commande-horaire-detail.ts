@@ -4,6 +4,7 @@ import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
+import { PrestataireModel } from '../../model/Models/PrestataireModel';
 /**
  * Generated class for the CommandeHoraireDetailPage page.
  *
@@ -20,12 +21,13 @@ export class CommandeHoraireDetailPage {
 
   public commande : CommandeHoraireModel;
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+  public prestataireChoisi: PrestataireModel = null;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public commandePvd : CommandeHoraireProvider
               , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
-    this.commande = this.navParams.get('Commande');
+    this.commande = this.navParams.get('Commande'); 
     console.log(this.commande);
   }
 
@@ -34,10 +36,10 @@ export class CommandeHoraireDetailPage {
   }
 
   public validerCommande(){ 
-    this.commande.status = CommandeStatus.VALIDEE;
+    
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
-       
+       this.commande.status = CommandeStatus.VALIDEE;
         this.alertCtrl.create({
           title : 'Message',
           message : "Le prestataire a été choisi",
@@ -49,6 +51,12 @@ export class CommandeHoraireDetailPage {
     });
 
   }
+
+  
+  prestataireChoisiExist() {
+    return this.commande.prestataireChoisi != null;
+  }
+
 
   isEnCours(){
     return this.commande.status == CommandeStatus.EN_COURS_ANALYSE || this.commande.status == CommandeStatus.EN_COURS_VALIDATION;

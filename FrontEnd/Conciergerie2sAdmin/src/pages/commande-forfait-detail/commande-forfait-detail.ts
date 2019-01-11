@@ -28,12 +28,9 @@ export class CommandeForfaitDetailPage {
     , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
 
-    this.commande = this.navParams.get('Commande');
-    if(this.commande.prestataireChoisi) {
-      this.prestataireChoisi  = this.commande.prestataires.filter(x => x._id.toString() == this.commande.prestataireChoisi.toString()).pop();
-    } 
+    this.commande = this.navParams.get('Commande');   
     console.log(this.commande);
-    console.log(this.prestataireChoisi);
+  
   }
 
   ionViewDidLoad() {
@@ -57,7 +54,7 @@ export class CommandeForfaitDetailPage {
   }
 
   prestataireChoisiExist() {
-    return this.prestataireChoisi != null;
+    return this.commande.prestataireChoisi != null;
   }
 
 

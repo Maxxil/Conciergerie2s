@@ -27,16 +27,28 @@ module.exports = {
     },
     getByListIdPrestation : function (idsPrestations) {
         return CommandeForfait.find({'prestation' : {'$in' : idsPrestations}})
-            .populate([{path : 'prestation' },{path : 'client' , select : '_id nom prenom telephoneMobile ville codepostal email'}, {path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}]).sort('-dateCreation');
+            .populate([
+                {path : 'prestation' },
+                {path : 'client' , select : '_id nom prenom telephoneMobile ville codepostal email'}, 
+                {path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}                
+            ]).sort('-dateCreation');
     },
     getAll : function () {
         return CommandeForfait.find({})
-            .populate([{path : 'prestation'} , {path : 'client'},
+            .populate([
+                {path : 'prestation'} , 
+                {path : 'client'},
+                {path : 'prestataireChoisi', populate :{path: 'utilisateur',  select : 'nom prenom'}},
                 {path : 'prestataires',  populate: {path : 'utilisateur', select: 'nom prenom'}}])
             .sort('-dateCreation');
     },
     updateStatus : function (idCommande, status,prestataireChoisi) {
-        CommandeForfait.find({_id : idCommande}).exec(function (err, result) {
+        CommandeForfait.find({_id : idCommande})
+            .populate([ 
+                    {path : 'client',  select : '_id nom prenom lastPlayerId'}, 
+                    {path : 'prestataireChoisi', 
+                        populate :{path: 'utilisateur',  select : '_id nom prenom lastPlayerId'} }
+                    ]).exec(function (err, result) {
 
             commande = result[0];
             commande.status = status;

@@ -46,7 +46,7 @@
             <ion-card *ngFor="let commande of commandesHoraire" (click)="detailCommandeHoraire(commande)">
                 <ion-item>
                     <h2 text-wrap>{{commande.prestation.nom}}</h2>
-                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy'}}</p>
+                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
                     <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}</ion-note>
                   </ion-item>
                 
@@ -76,7 +76,7 @@
 
                 <ion-item>
                   <h2 text-wrap>{{commande.prestation.nom}}</h2>
-                  <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy'}}</p>
+                  <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
                   <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}</ion-note>
                 </ion-item>
               
@@ -103,7 +103,7 @@
 
                   <ion-item>
                     <h2 text-wrap>{{commande.prestation.nom}}</h2>   
-                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy'}}</p>     
+                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>     
                   </ion-item>
                 
                   <img src="{{prestationImageUrl + commande.prestation.image}}">

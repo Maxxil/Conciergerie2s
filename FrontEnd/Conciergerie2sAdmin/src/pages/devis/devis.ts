@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
@@ -25,14 +25,19 @@ export class DevisPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
+    ,public events: Events
     , public commandePvd : DevisProvider) {
+     
     this.getAll();
+    events.subscribe('notification:updated', () => {   
+      console.log('Event notification:updated');  
+      this.getAll();    
+    });
   }
 
   public getAll() {
     this.commandePvd.getAll().subscribe(result => {
-      if (result.success) {
-        console.log(result.success);
+      if (result.success) {     
         this.commandes = result.data;
         console.log(result);
       }

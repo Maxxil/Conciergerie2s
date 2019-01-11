@@ -20,6 +20,7 @@
           <h1>Commander une prestation</h1>
           <h2>{{prestation.nom}}</h2>
           <h3>{{prestation.prix}} € / h</h3>
+          <p *ngIf="commandeHoraire.dateCreation">Créé le {{commandeHoraire.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>  
         </ion-list-header>
 
         <ion-item>
@@ -39,7 +40,7 @@
     <span class="ttc">Total TTC : {{ prestation.prix * commandeHoraire.quantite }} €</span>
 </div>
   <div text-center>
-  <button ion-button (click)="commander()" taupe>Commander</button>
+  <button ion-button (click)="commander()" [disabled]="!(commandeHoraire.date && commandeHoraire.heure && commandeHoraire.quantite>0)" taupe>Commander</button>
   <button ion-button (click)="annuler()" taupe>Annuler</button>
 </div>
 </ion-content>

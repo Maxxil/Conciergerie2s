@@ -11,9 +11,10 @@ export class DevisModel{
   idPrestation : string;
   prestation : PrestationModel;
   propositions : DevisPropositionModel[];
+  prestataireChoisi : PrestataireModel;
   information : string;
   heure : string;
   date : Date;
-  status : CommandeStatus;
-
+  status : CommandeStatus = 1;
+  dateCreation : Date;
 }

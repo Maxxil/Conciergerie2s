@@ -56,6 +56,32 @@ export class CommandesPostulerPage {
 
   }
 
+  aDejaPostule(commande){
+    var prestataires = commande.prestataires;  
+    let result = false;
+    if(prestataires.length > 0) {      
+      prestataires.forEach(element => {
+        if(element.utilisateur == localStorage.getItem('IdUtilisateur')){      
+          result=true;        
+        } 
+      });
+    }
+    return  result;
+  }  
+
+  
+  aDejaPostuleDevis(commande){
+    var propositions = commande.propositions;
+    let result = false;
+    propositions.forEach(element => {      
+      if(element.prestataire.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){
+       result=true;
+      }
+    });
+   
+    return  result;
+  }  
+
   detailCommandeHoraire(commande){
     this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande});
   }

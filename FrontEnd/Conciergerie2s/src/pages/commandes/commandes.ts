@@ -30,6 +30,12 @@ export class CommandesPage {
       events.subscribe('refresh:commande', () => {      
         this.getMyCommandes();
       });
+
+      events.subscribe('notification:updated', () => {      
+        this.getMyCommandes();
+      });
+
+      
   }
 
   ionViewDidLoad() {

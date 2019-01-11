@@ -21,7 +21,7 @@
                 <img src="{{prestationImageUrl + commande.prestation.image}}">
               </ion-avatar>
           <h2 ion-text text-wrap color="lagon">{{commande.prestation.nom}}</h2>
-          <em  *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy'}}</em>
+          <em  *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em>
           <div item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}} <br>{{commande.prestation.prix * commande.quantite}} € TTC</div>
           </ion-item>
          <hr>
@@ -43,7 +43,7 @@
 
       <div  *ngIf="!isEnCours()"  text-center>      
         <button ion-button color="secondary">Prestataire choisi</button><br><br>             
-        <h2 *ngIf="prestataireChoisiExist()"> {{ prestataireChoisi.utilisateur.nom + " " + prestataireChoisi.utilisateur.prenom}}</h2>
+        <h2 *ngIf="prestataireChoisiExist()"> {{ commande.prestataireChoisi.utilisateur.nom + " " + commande.prestataireChoisi.utilisateur.prenom}}</h2>
         <h2 *ngIf="!prestataireChoisiExist()"> Conciergerie Second Souffle</h2>       
       </div>
       <div  *ngIf="isEnCours()"  text-center>

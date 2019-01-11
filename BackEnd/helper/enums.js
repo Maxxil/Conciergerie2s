@@ -17,7 +17,12 @@ module.exports = {
         EN_COURS_ANALYSE : 1,
         VALIDEE : 2,
         LIVREE : 3,
-        EN_COURS_VALIDATION : 4
+        EN_COURS_VALIDATION : 4,
+        EN_ATTENTE_PAIEMENT : 5,
+        REFUSEE : 6,
+        ANNULEE : 7,
+        PAYEE : 8,
+        TERMINEE : 9
     },
     NotificationStatus: {
         NON_LU: 0,
@@ -32,6 +37,11 @@ module.exports = {
         PRESTATION_TERMINEE_PRESTATAIRE: 5,
         PRESTATION_TERMINEE_CLIENT: 6,
         COMMANDE_VALIDE: 7  ,
-        PROPOSITION_PRESTATAIRE: 8  
+        PROPOSITION_PRESTATAIRE: 8 ,
+        DEVIS_A_REGLER: 9,
+        DEVIS_PAYE: 10,
+        DEVIS_REFUSE: 11,
+        DEVIS_ANNULE: 12
+       
     }
 };

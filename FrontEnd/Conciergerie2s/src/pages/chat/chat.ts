@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat/chat-service";
 import { Content } from 'ionic-angular';
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -27,9 +27,10 @@ export class ChatPage {
   @ViewChild(Content) content: Content;
 
   adminIsOnline = false;
+  isConnect = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
-    private chatService: ChatService) {        
+    private chatService: ChatService, public alertCtrl : AlertController) {        
       // Get the navParams toUserId parameter
     
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
@@ -87,6 +88,23 @@ export class ChatPage {
 
   }
 
+  request() {
+    let alert = this.alertCtrl.create({
+      title : 'Message',
+      message : "Merci de patienter",
+      buttons : [{
+        text : 'OK'
+      }]
+    });
+    
+    alert.setMessage('Connection en cours Adminonline='+this.adminIsOnline);
+    alert.present();
+
+    this.chatService.request(this.profile);
+    this.isConnect = true;
+    
+  }
+
   
   ionViewWillLeave() {
     // unsubscribe
@@ -109,13 +127,13 @@ export class ChatPage {
   }
 
   isAdminOnline() {
-
-    this.chatService.retrieveMsg()
+    this.chatService.isAdminOnline()
     .subscribe((data) =>
     {     
-       this.isAdminOnline = data.isAdminOnline;
+       this.adminIsOnline = data.isAdminOnline;
     });
   }
+
 
   onFocus() {   
     this.content.resize();

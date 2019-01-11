@@ -27,6 +27,8 @@ export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire'
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
 export const DEVIS_URL = SERVER_URL + '/devis';
+export const DEVIS_CHOIX_URL = DEVIS_URL + '/choixprestataire';
+export const DEVIS_C2S_URL = DEVIS_URL + '/c2s';
 export const COMMANDE_URL = SERVER_URL + '/commande';
 
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';

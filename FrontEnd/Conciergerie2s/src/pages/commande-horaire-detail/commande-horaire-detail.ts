@@ -57,7 +57,7 @@ export class CommandeHoraireDetailPage {
       alert.setSubTitle('Vous avez déjà postulé.');
       alert.addButton({
         text : 'OK',
-        handler : data => {
+        handler : () => {
           this.annuler();
         }
       });
@@ -79,8 +79,9 @@ export class CommandeHoraireDetailPage {
 
    aDejaPostule(){
     var prestataires = this.commande.prestataires;  
+    this.dejapostuler=false; 
     prestataires.forEach(element => {
-      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
+      if(element.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){      
         this.dejapostuler=true;        
       }
     });

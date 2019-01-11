@@ -16,8 +16,8 @@
   <ion-list>
     <ion-list-header>      
         <h1>{{commande.prestation.nom}}</h1>
-        Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy'}}</em><br>
-        Statut : <em>{{ status }}</em>
+        Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
+        Statut : <em>{{ status }}</em>        
     </ion-list-header>
     <hr>
     <ion-item>
@@ -54,8 +54,20 @@
           <span item-start>Prix proposé TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
       </ion-item>   
   </ion-list>
+
+  <ion-list  *ngIf="apayer()">              
+        <ion-item >      
+           Date proposée : 
+        </ion-item>
+        
+        <ion-item>        
+            Prix proposé TTC : 
+        </ion-item>   
+    </ion-list>
   <div text-center>
-      <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>
+      <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" [disabled]="!(proposition.dateProposee && proposition.prix)" taupe>Postuler</button>
+      <button *ngIf="apayer()" ion-button (click)="commander()"  taupe>Payer en ligne</button>
+      <button *ngIf="apayer()" ion-button (click)="commanderParCheque()"  taupe>Payer par cheque</button>
       <button ion-button (click)="annuler()" taupe>Fermer</button>
     </div>
 </ion-content>

@@ -29,10 +29,11 @@ export class CommandeForfaitDetailPage {
               public events: Events) {
     this.commande = this.navParams.get('Commande');
     switch(this.commande.status) {
-      case 1: this.status = "Envoyé"; break;
+      case 1: this.status = "En cours d'analyse"; break;
       case 2: this.status = "Validée"; break;
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
+      default: this.status = "??"; break;
     } 
     
     console.log(localStorage.getItem('IdUtilisateur'));
@@ -46,7 +47,7 @@ export class CommandeForfaitDetailPage {
   }
 
   peutPostuler() {
-    return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
+    return (this.commande.client._id !== localStorage.getItem('IdUtilisateur') && this.commande.status == 1);
   }
 
   postuler(){
@@ -58,11 +59,12 @@ export class CommandeForfaitDetailPage {
 
   aDejaPostule(){
     var prestataires = this.commande.prestataires;  
+    this.dejapostuler = false;  
     prestataires.forEach(element => {
-      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
+      if(element.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){      
         this.dejapostuler=true;        
       }
-    });
+    }); 
     return this.dejapostuler;
   }
 

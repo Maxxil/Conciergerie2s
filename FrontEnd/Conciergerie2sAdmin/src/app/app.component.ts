@@ -24,7 +24,7 @@ export class MyApp {
         this.oneSignal.startInit(oneSignalAppId, sender_id);
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
         this.oneSignal.handleNotificationReceived().subscribe(data => this.onPushReceived(data.payload));
-       // this.oneSignal.handleNotificationOpened().subscribe(data => this.onPushOpened(data.notification.payload));
+        this.oneSignal.handleNotificationOpened().subscribe(data => this.onPushOpened(data.notification.payload));
         this.oneSignal.endInit();
       }
     });
@@ -40,11 +40,44 @@ export class MyApp {
   }
 
   private onPushReceived(payload: OSNotificationPayload) {
-    alert(payload.body);
+   
+    var additionalData = payload.additionalData;
+    let message = payload.body; 
+    alert(message);
     this.events.publish('notification:updated');
+    if (additionalData != null)
+    {
+      alert('Push opened additionalData type: ' + additionalData["type"]);
+    }
+    /*
+     OSNotificationPayload payload = notification.payload;
+            string message = payload.body;
+            Dictionary<string, object> additionalData = payload.additionalData; 
+
+            if (additionalData != null)
+            {
+                if (additionalData.ContainsKey("screenName"))
+                {
+                    pushScreenName = Convert.ToString(additionalData["screenName"]);
+                }
+                else
+                {
+                    pushScreenName = "";
+                }
+            }
+    */        
   }
   
-  /*private onPushOpened(payload: OSNotificationPayload) {
-    alert('Push opened: ' + payload.body);
-  }*/
+  private onPushOpened(payload: OSNotificationPayload) {
+      
+    var additionalData = payload.additionalData;
+    let message = payload.body;
+  
+    alert('Push opened body: ' + message);
+    if (additionalData != null)
+    {
+      alert('Push opened additionalData: ' + additionalData);
+
+    }
+  }
 }

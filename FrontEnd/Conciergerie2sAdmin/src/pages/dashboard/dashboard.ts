@@ -30,8 +30,8 @@ export class DashboardPage {
     public notificationProv: NotificationProvider) {
     
     this.notificationProv.getAll().subscribe((results) =>{
-      console.log(results);
-      this.totalNotification = results.total;     
+      
+      this.totalNotification = results.data.filter(this.filtrerNotification).length;     
       console.log('total notification init '+this.totalNotification)  ;       
 
       events.subscribe('notification:badge', payload => {    
@@ -53,16 +53,21 @@ export class DashboardPage {
    
   }
 
+  filtrerNotification(element) { 
+    return (9 != element.type); 
+  } 
+
   updateNotificationBadge() {
     this.notificationProv.getAll().subscribe((results) =>{
       console.log(results);
-      this.totalNotification = results.total;     
+  
+      this.totalNotification = results.data.filter(this.filtrerNotification).length; 
       console.log('total notification maj '+this.totalNotification)  ;     
     });  
   }
 
   ionViewDidLoad() { 
-       
+       this.updateNotificationBadge();
   }
 
 }

@@ -73,6 +73,10 @@ export class ChatService {
     .pipe(map(response => response.array));
   }
 
+  request(profile) {
+    this.socket.emit('client-request', {profile});
+  }
+
   sendMsg(msg: ChatMessage) {
 
     console.log('sendMsg');

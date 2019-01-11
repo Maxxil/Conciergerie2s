@@ -20,11 +20,11 @@
         <ion-avatar item-start>
             <img src="{{prestationImageUrl + commande.prestation.image}}">
           </ion-avatar>
-      <h2 text-wrap>{{commande.prestation.nom}}</h2>
+      <h2 text-wrap>{{commande.prestation.nom}} {{commande.byC2S}} {{commande.prestataireChoisi}}</h2>
       </ion-item>
 <hr>
       <ion-item>
-      <p> <span  class="label-title">Date: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
+      <p> <span  class="label-title">Date: </span><em >{{commande.date | date: 'dd/MM/yy HH:mm'}}</em></p><br>
       <p>
         <span class="label-title">Client :</span><br>
         <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
@@ -35,15 +35,30 @@
     </ion-item>
   </ion-list>
   <hr>
-  <div  *ngIf="!isEnCours()"  text-center>      
+  <div *ngIf="!isEnCours()"  text-center>      
       <button ion-button color="secondary">Prestataire choisi</button><br><br>             
-      <h2 *ngIf="prestataireChoisiExist()"> {{ prestataireChoisi.utilisateur.nom + " " + prestataireChoisi.utilisateur.prenom}}</h2>
-      <h2 *ngIf="!prestataireChoisiExist()"> Conciergerie Second Souffle</h2>       
+      <h2 *ngIf="prestataireChoisiExist() && !commande.byC2S"> {{ prestataireChoisi.prestataire.utilisateur.nom + " " + prestataireChoisi.prestataire.utilisateur.prenom}}</h2>
+      <p *ngIf="prestataireChoisiExist() && !commande.byC2S"><strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}} € TTC<br><strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC</p>
+      <h2 *ngIf="commande.byC2S"> Conciergerie Second Souffle</h2>       
+      <p *ngIf="commande.byC2S"><strong>Ma date</strong> : {{commande.dateC2S | date: 'dd/MM/yy'}}<br><strong>Mon prix</strong> : {{commande.prixC2S}} € TTC</p>     
     </div>
 
     
     <div  *ngIf="isEnCours()"  text-center>
-        <button ion-button color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>      
+      
+        <ion-list>
+         <ion-item>
+            <span  item-start>Date C2S  : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="commande.dateC2S"></ion-datetime>        
+            
+          </ion-item>  
+          <ion-item>
+            <span  item-start>Prix C2S TTC : </span><ion-input type="number" [(ngModel)]="commande.prixC2S" placeholder="votre prix"></ion-input>
+
+          </ion-item>
+          <button ion-button color="primary"  (click)="validerCommandeC2S()" [disabled]="!(commande.dateC2S && commande.prixC2S)">JE VEUX REALISER AVEC C2S</button>      
+        </ion-list>
+        
+        
     <br><span style="font-size:2em;">OU</span>
     <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
         <ion-list-header>Envoyer l'un des prestataires suivant   <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header> 
@@ -52,7 +67,7 @@
         <ion-label text-wrap text-xs>Nom: {{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
           <br>Date proposée : {{proposition.dateProposee | date: 'dd/MM/yy'}}<br>Prix proposé : {{proposition.prix}} €
         </ion-label><br>
-        <ion-radio [value]="prestataire" (click)="validerCommande()"></ion-radio>
+        <ion-radio [value]="proposition.prestataire" (click)="validerCommande()"></ion-radio>
         <hr>
       </ion-item>
     </ion-list>

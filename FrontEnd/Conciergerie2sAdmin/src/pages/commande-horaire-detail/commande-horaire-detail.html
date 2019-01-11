@@ -22,7 +22,7 @@
                 <img src="{{prestationImageUrl + commande.prestation.image}}">
               </ion-avatar>
           <h2 ion-text text-wrap color="lagon">{{commande.prestation.nom}}</h2>
-          <em  *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy'}}</em>
+          <em  *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em>
           <div item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}} <br>{{commande.prestation.prix * commande.quantite}} € TTC</div>
           </ion-item>
     <hr>
@@ -41,53 +41,20 @@
         </ion-item>
       </ion-list>
       <hr>
-      <div text-center>
-      <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>
-      <button ion-button  *ngIf="!isEnCours(element)" color="secondary">Valide</button>
-      <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
-      <br><span style="font-size:2em;">OU</span>
-    </div>
-      <ion-list *ngIf="commande.prestataireChoisi != null" radio-group [(ngModel)]="commande.prestataireChoisi">
-          <ion-list-header>Liste des prestataires ayant postulé  <ion-badge item-end>{{commande.prestataires.length}}</ion-badge></ion-list-header>
-        <ion-item *ngFor="let prestataire of commande.prestataires">
-          <ion-label>{{prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}</ion-label>
-          <ion-radio [value]="prestataire" (click)="validerCommande()"></ion-radio>
-        </ion-item>
-      </ion-list>
- <!-- <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
-   <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button> 
-  <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>-->
-<!-- 
-  <ion-list>
-    <ion-item>
-      <ion-avatar item-start>
-        <ion-icon name="calendar"></ion-icon> {{commande.date | date: 'dd/MM/yy'}}<br>
-        <ion-icon name="time"></ion-icon> {{commande.heure }}<br>
-      </ion-avatar>
-      <h2>{{commande.prestation.nom}}</h2>
-      <p>{{commande.client.nom + " " + commande.client.prenom}}</p>
-      <ion-note item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}<br>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>
-    </ion-item>
-
-    <ion-item>
-
-    </ion-item>
-  </ion-list>
-
-  <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-      <ion-list-header>Liste des prestataires ayant postulé</ion-list-header>
-    <ion-item *ngFor="let prestataire of commande.prestataires">
-      <ion-label>{{prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}</ion-label>
-      <ion-radio [value]="prestataire"></ion-radio>
-    </ion-item>
-  </ion-list> -->
-
-
-
-
- <!--  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
-   <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button> 
-
-  <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
- -->
+      <div  *ngIf="!isEnCours()"  text-center>      
+          <button ion-button color="secondary">Prestataire choisi</button><br><br>             
+          <h2 *ngIf="prestataireChoisiExist()"> {{ commande.prestataireChoisi.utilisateur.nom + " " + commande.prestataireChoisi.utilisateur.prenom}}</h2>
+          <h2 *ngIf="!prestataireChoisiExist()"> Conciergerie Second Souffle</h2>       
+        </div>
+        <div  *ngIf="isEnCours()"  text-center>
+            <button ion-button color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>      
+        <br><span style="font-size:2em;">OU</span>
+        <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
+            <ion-list-header>Liste des prestataires ayant postulé  <ion-badge item-end>{{commande.prestataires.length}}</ion-badge></ion-list-header>
+          <ion-item *ngFor="let prestataire of commande.prestataires">
+            <ion-label>{{prestataire.utilisateur.nom + " " + prestataire.utilisateur.prenom}}</ion-label>
+            <ion-radio [value]="prestataire" (click)="validerCommande()"></ion-radio>
+          </ion-item>
+        </ion-list>
+        </div>
 </ion-content>

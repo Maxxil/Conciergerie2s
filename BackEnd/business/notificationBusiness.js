@@ -20,7 +20,8 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
 		throw 'Notification doit etre une notification C2S';
     }
     
-    console.log('Notificationobject:',notification);
+    console.log('Notification object : ',notification);
+    console.log('Notification obj : ',obj);
        
 
        
@@ -43,13 +44,13 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
         
         console.log('PushMessage object to Admin',pushMessage);
-       Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+       /*Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });   
+        }); */
     }
     // Envoi à un client
     if(receiver == 1) {
@@ -65,7 +66,13 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
             'userid' : notification.utilisateur
         };
 
-        console.log('PushMessage object to Client',pushMessage);
+       
+
+        let client = obj.client;
+
+        pushMessage.postBody["include_player_ids"] = [client.lastPlayerId];
+
+        console.log('PushMessage object to CLIENT : ',pushMessage);
    /*    Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
@@ -84,10 +91,14 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
             }   
         });   
 
-        console.log('Liste des prestataires',obj.prestataire);
+        
 
         let prestataires = obj.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
-        let playerids = obj.prestataire.map(item => { return item.utilisateur.lastPlayerId});
+        let playerids = obj.prestataire.map(item => { return item.utilisateur.lastPlayerId != null}).filter((item) => item.lastPlayerId != null);
+        
+        console.log('Liste des prestataires \n',obj.prestataire);
+        
+        
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
@@ -99,16 +110,20 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         //  include_player_ids: 
             pushMessage.postBody["include_player_ids"] = playerids;
         console.log('PushMessage object to Prestataire : ',pushMessage);
-       Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+
+        if(playerids.length == 0) {
+            console.log('****** Pas de players Ids');
+        }
+       /*Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
             } else {      
                 console.log(data, httpResponse.statusCode);      
             }      
-        });
+        });*/
     }
 
-    // Envoi à au client et au prestataire
+    // Envoi  au client et au prestataire
     if(receiver == 3) {
 
         let pushMessage = new OpenSignal.Notification({      
@@ -119,28 +134,29 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
 
         let prestataireChoisi = obj.prestataireChoisi;        
         let client = obj.client;
-        pushMessage.postBody['data']  = {
-            'refid': notification.refId,
-            'type': notification.type,
-            'userid' : notification.utilisateur,
-            'prestataireChoisi': prestataireChoisi.lastPlayerId,
-            'client': client.lastPlayerId
-        };
+       if(prestataireChoisi) {
+            pushMessage.postBody['data']  = {
+                'refid': notification.refId,
+                'type': notification.type,
+                'userid' : notification.utilisateur,
+                'prestataireChoisi': prestataireChoisi.lastPlayerId,
+                'client': client.lastPlayerId
+            };
+            
+        } else  {
+            pushMessage.postBody['data']  = {
+                'refid': notification.refId,
+                'type': notification.type,
+                'userid' : notification.utilisateur,                
+                'client': client.lastPlayerId
+            };
+        }
+
 
       
         //  include_player_ids: 
         pushMessage.postBody["include_player_ids"] = [client.lastPlayerId];
-        console.log('PushMessage object to Client : ',pushMessage);
-       /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
-            if (err) {      
-                console.log('Something went wrong...');      
-            } else {      
-                console.log(data, httpResponse.statusCode);      
-            }      
-        });
-*/
-        pushMessage.postBody["include_player_ids"] = [prestataireChoisi.lastPlayerId];
-        console.log('PushMessage object to Prestataire : ',pushMessage);
+        console.log('PushMessage object to Client : \n',pushMessage);
        /* Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
@@ -148,6 +164,23 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
                 console.log(data, httpResponse.statusCode);      
             }      
         });*/
+
+
+       
+        if(prestataireChoisi) {
+            console.log('PushMessage object to Prestataire : \n',pushMessage);
+            pushMessage.postBody["include_player_ids"] = [prestataireChoisi.lastPlayerId];
+    
+
+         /*   Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
+                if (err) {      
+                    console.log('Something went wrong...');      
+                } else {      
+                    console.log(data, httpResponse.statusCode);      
+                }      
+            });*/
+        }
+
     }
           
 }
@@ -217,90 +250,7 @@ module.exports = {
         promise.then(function(elt) {
             sendPushFromNotification(elt, 0); 
         });
-    },    
-    newDevis: function(devis) {
-        prestationBusiness.getByIdWithPrestataire(commande.prestation).then((result) => {
-            let notification = new Notification({
-                utilisateur: devis.client._id,
-                statut: enums.NotificationStatus.NON_LU,
-                type: enums.NotificationType.NOUVEAU_DEVIS,
-                date: new Date(),
-                refId: devis._id,
-                icon: 'briefcase',
-                message: 'Nouveau devis'
-            });        
-            let promise = notification.save();
-            promise.then(function(elt) {
-                sendPushFromNotification(elt, 2,result[0]); 
-            });
-        });
-    },
-    propositionPrestataireSurDevis: function(devis) {
-        console.log('***************************************');
-        console.log('Notification Proposition prestataire', devis);
-        let notification = new Notification({
-            utilisateur: devis.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
-            date: new Date(),
-            refId: devis._id,
-            icon: 'mail',
-            message: "Nouvelle proposition d'un prestataire sur devis"
-        });      
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 0);             
-        });
-    },
-    propositionPrestataire: function(devis) {
-        console.log('***************************************');
-        console.log('Notification Proposition prestataire', devis);
-        let notification = new Notification({
-            utilisateur: devis.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
-            date: new Date(),
-            refId: devis._id,
-            icon: 'mail',
-            message: "Nouvelle proposition d'un prestataire sur une commande"
-        });      
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 0);             
-        });
-    },
-    prestataireChoisi: function(devis) {
-        console.log('***************************************');
-        console.log('Notification Prestataire choisi', devis);
-        let notification = new Notification({
-            utilisateur: devis.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
-            date: new Date(),
-            refId: devis._id,
-            icon: 'mail',
-            message: "Prestation planifiée - Devis à régler"
-        });      
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 3, devis);             
-        });
-    },
-    devisVALIDE: function(devis) {
-        let notification = new Notification({
-            utilisateur: devis.client._id,
-            statut: enums.NotificationStatus.NON_LU,
-            type: enums.NotificationType.DEVIS_VALIDE,
-            date: new Date(),
-            refId: devis._id,
-            icon: 'send',
-            message: 'Votre devis est validé'
-        });        
-        let promise = notification.save();
-        promise.then(function(elt) {
-            sendPushFromNotification(elt, 1, devis);             
-        });
-    },
+    },   
     newCommande: function(commande) {
         console.log('***************************************');
         console.log('Notification New Commande', commande);
@@ -324,6 +274,109 @@ module.exports = {
         
         });
     },
+    newDevis: function(devis) {
+        prestationBusiness.getByIdWithPrestataire(devis.prestation).then((result) => {
+            let notification = new Notification({
+                utilisateur: devis.client._id,
+                statut: enums.NotificationStatus.NON_LU,
+                type: enums.NotificationType.NOUVEAU_DEVIS,
+                date: new Date(),
+                refId: devis._id,
+                icon: 'briefcase',
+                message: 'Nouveau devis'
+            });        
+            let promise = notification.save();
+            promise.then(function(elt) {
+                sendPushFromNotification(elt, 2,result[0]); 
+            });
+        });
+    },     
+    propositionPrestataireSurDevis: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Proposition prestataire', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Nouvelle proposition de devis"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
+    },
+    propositionPrestataire: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Proposition prestataire', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.PROPOSITION_PRESTATAIRE,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Un prestataire a postulé sur une commande"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 0);             
+        });
+    },
+    prestataireChoisi: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Prestataire choisi', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.DEVIS_A_REGLER,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Prestation planifiée - Devis à régler"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 3, devis);             
+        });
+    },
+    prestataireC2SChoisi: function(devis) {
+        console.log('***************************************');
+        console.log('Notification Prestataire choisi', devis);
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type:  enums.NotificationType.DEVIS_A_REGLER,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'mail',
+            message: "Prestation planifiée - Devis à régler"
+        });      
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 3, devis);             
+        });
+    },
+    devisEvent: function(devis) {
+
+    },
+    devisVALIDE: function(devis) {
+        let notification = new Notification({
+            utilisateur: devis.client._id,
+            statut: enums.NotificationStatus.NON_LU,
+            type: enums.NotificationType.DEVIS_VALIDE,
+            date: new Date(),
+            refId: devis._id,
+            icon: 'send',
+            message: 'Votre devis est validé'
+        });        
+        let promise = notification.save();
+        promise.then(function(elt) {
+            sendPushFromNotification(elt, 1, devis);             
+        });
+    },    
     commandeVALIDE: function(commande) {
         let notification = new Notification({
             utilisateur: commande.client._id,
@@ -369,7 +422,7 @@ module.exports = {
         return Notification.updateOne({_id : notification._id} , notification, {upsert : true});
     },
     getAll: function(){
-        return Notification.find({});
+        return Notification.find({}).populate([{path: 'utilisateur' , select : '_id nom prenom'}]);
     },
     getById: function(id){
         return Notification.findById(id);

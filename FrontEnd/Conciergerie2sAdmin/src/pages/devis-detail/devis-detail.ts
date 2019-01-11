@@ -32,7 +32,7 @@ export class DevisDetailPage {
     console.log(this.commande);
 
     if(this.commande.prestataireChoisi) {
-      this.prestataireChoisi  = this.commande.propositions.filter(x => x._id.toString() == this.commande.prestataireChoisi.toString()).pop();
+      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id.toString() == this.commande.prestataireChoisi.toString()).pop();
     } 
     console.log(this.commande);
     console.log(this.prestataireChoisi);
@@ -44,7 +44,30 @@ export class DevisDetailPage {
   }
 
   public validerCommande(){
+    
+    console.log('Valider Commande : ',this.commande);
+    
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
+      if(result.success){
+        this.commande.status = CommandeStatus.VALIDEE;
+        if(result.success){
+       
+          this.alertCtrl.create({
+            title : 'Message',
+            message : "Le prestataire a été choisi",
+            buttons : [{
+              text : 'OK'
+            }]
+          }).present();
+        }
+      }
+    });
+
+  }
+
+  
+  public validerCommandeC2S(){
+    this.commandePvd.validateCommandeC2S(this.commande).subscribe(result =>{
       if(result.success){
         this.commande.status = CommandeStatus.VALIDEE;
         if(result.success){

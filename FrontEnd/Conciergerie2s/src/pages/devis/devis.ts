@@ -44,17 +44,7 @@ export class DevisPage {
     this.today= new Date(); 
   }
 
-  commander(){
-    this.loading.present();
-    this.paypalPvd.payer(this.prestation.nom , 1).subscribe(result => {
-      this.iab.create(result.data);
-      this.loading.dismiss();
-      this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
-      this.devisPvd.add(this.devis).subscribe(result => {
-        this.manageDisplaySuccessOrError(result);
-      })
-    });
-  }
+  
 
   creer() {
     this.devis.status = CommandeStatus.EN_COURS_ANALYSE;

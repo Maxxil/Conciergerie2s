@@ -33,8 +33,14 @@ export class NotificationsPage {
 
   updateNotificationList() {
       this.notificationProv.getAll().subscribe((results) =>{
-        this.notifications = results.data;   
-        this.events.publish('notification:badge', { _badgeValue: results.total}) ;        
+
+        function filtrer(element) { 
+          return (9 != element.type); 
+        } 
+        console.log(results.data);
+        this.notifications = results.data.filter(filtrer);   
+        console.log(this.notifications);
+        this.events.publish('notification:badge', { _badgeValue: this.notifications.length}) ;        
       });
   }
 

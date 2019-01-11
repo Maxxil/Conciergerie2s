@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
@@ -24,8 +24,16 @@ export class CommandeHorairePage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
+    ,public events: Events
     , public commandePvd : CommandeHoraireProvider) {
+
+      
     this.getAll();
+
+    events.subscribe('notification:updated', () => {   
+      console.log('Event notification:updated');  
+      this.getAll();    
+    });
   }
 
   public getAll(){
@@ -38,7 +46,7 @@ export class CommandeHorairePage {
   }
 
   isEnCours(commande){
-    return commande.status == CommandeStatus.EN_COURS_ANALYSE || commande.status == CommandeStatus.EN_COURS_VALIDATION;
+    return commande.status == CommandeStatus.EN_COURS_ANALYSE;
   }
 
   public afficherDetailCommande(commande: CommandeHoraireModel){

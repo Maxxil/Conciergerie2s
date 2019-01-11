@@ -26,12 +26,14 @@ export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire'
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
 export const DEVIS_URL = SERVER_URL + '/devis';
+
 export const COMMANDE_URL = SERVER_URL + '/commande';
 export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 
 export const COMMANDE_FORFAIT_PRESTATAIRE_URL = COMMANDE_FORFAIT_URL + '/prestataire';
 export const COMMANDE_HORAIRE_PRESTATAIRE_URL = COMMANDE_HORAIRE_URL + '/prestataire';
 export const DEVIS_PRESTATAIRE_URL = DEVIS_URL + '/prestataire';
+export const DEVIS_STATUS_URL = DEVIS_URL + '/status';
 
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';

@@ -19,6 +19,7 @@
       <h1>Commander un forfait</h1>
       <h2>{{commande.prestation.nom}}</h2>
       <h3 text-right>Statut : {{ status }}</h3>   
+      <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>  
     </ion-list-header>
     <ion-item>
       <ion-label fixed>Date RDV</ion-label>
@@ -40,8 +41,13 @@
   <div text-right margin>     
     <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.quantite }} €</span>
 </div>
+<div *ngIf="dejapostuler" text-center><br><br>
+  <h2>Vous avez déjà postulé</h2>
+</div> 
 <div text-center>
     <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>
     <button ion-button (click)="annuler()" taupe>Fermer</button>
   </div>
+
+  
 </ion-content>

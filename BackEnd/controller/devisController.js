@@ -36,9 +36,42 @@ router.get('/:id/:token', function (req, res) {
 
 router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
-    var status = req.body.status;
+    var status = req.body.status;    
     var prestataireChoisi = req.body.prestataireChoisi;
     devisBusiness.updateStatus(idCommande,status,prestataireChoisi);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+router.post('/choixprestataire' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;    
+    var prestataireChoisi = req.body.prestataireChoisi;
+    devisBusiness.updateStatus(idCommande,status,prestataireChoisi);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+
+router.post('/c2s' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var prix = req.body.prix;        
+    var date = req.body.date;        
+    devisBusiness.updateC2S(idCommande,prix,date);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+router.post('/status' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;        
+    devisBusiness.updateStatusDevis(idCommande,status);
     res.json({
         success : true
     });
@@ -68,6 +101,7 @@ router.put('/', function(req, res){
         heure : req.body.commande.heure,
         date : req.body.commande.date,
         dateCreation : Date.now(),
+        byC2S: 0,
         status : req.body.commande.status
     });
     devisBusiness.add(commande);
