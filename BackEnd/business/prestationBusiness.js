@@ -20,9 +20,7 @@ module.exports = {
         prestationsResult.forEach(function (prestation) {
             if(prestation.prestataire.length > 0 )
             {
-                prestation.prestataire.forEach(function(prestataire){
-                    console.log("Prestataire");
-                    console.log(prestataire);
+                prestation.prestataire.forEach(function(prestataire){                
                     if(prestataire.utilisateur._id == idUtilisateur){
                         prestations.push(prestation._id);
                     }
@@ -57,8 +55,7 @@ module.exports = {
         if(filename != ''){
             const filepath = "./data/images/prestation/" + filename;
             fs.exists(filepath, function (exist) {
-                if(exist){
-                    console.log("Exist");
+                if(exist){                   
                     fs.unlink(filepath);
                 }
             });

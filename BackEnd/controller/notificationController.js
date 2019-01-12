@@ -9,9 +9,7 @@ router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
     var promise = notificationBusiness.getAll();
-    promise.exec(function (err, result) {
-        console.log("GET NOTIF WITH TOKEN");
-        console.log(result);
+    promise.exec(function (err, result) {      
         res.json({
             success : true,
             data : result,
@@ -24,9 +22,7 @@ router.get('/:token' , function (req, res) {
 
 router.get('/:id/:token', function (req, res) {
     var promise = notificationBusiness.getById(req.params.id);
-    promise.exec(function (err, result) {
-        console.log("GET BY ID - NOTIF");
-        console.log(result);
+    promise.exec(function (err, result) {        
         res.json({
             success : true,
             data : result
@@ -38,11 +34,10 @@ router.get('/:id/:token', function (req, res) {
 
 router.delete('/:id' , function (req, res) {
     var id = req.params.id;
-    console.log('Delete notification id');
+    console.log('Delete notification id'+id);
     notificationBusiness.getById(id).exec(function (err,result) {
       
-        if(result != null){    
-            console.log('Delete notification id '+id);      
+        if(result != null){                  
             notificationBusiness.delete(id);
             res.json({
                 success : true
