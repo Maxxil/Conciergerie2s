@@ -43,7 +43,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         pushMessage.postBody["included_segments"] = ["Active Users"];      
         pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
         
-        console.log('PushMessage object to Admin',pushMessage);
+        console.log('PushMessage object to Admin : \n',pushMessage);
        /*Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
@@ -72,7 +72,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
 
         pushMessage.postBody["include_player_ids"] = [client.lastPlayerId];
 
-        console.log('PushMessage object to CLIENT : ',pushMessage);
+        console.log('PushMessage object to CLIENT : \n',pushMessage);
    /*    Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      
                 console.log('Something went wrong...');      
@@ -109,10 +109,10 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
       
         //  include_player_ids: 
             pushMessage.postBody["include_player_ids"] = playerids;
-        console.log('PushMessage object to Prestataire : ',pushMessage);
+        console.log('PushMessage object to Prestataire : \n',pushMessage);
 
         if(playerids.length == 0) {
-            console.log('****** Pas de players Ids');
+            console.log('>>>>>>****** Pas de players Ids');
         }
        /*Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
             if (err) {      

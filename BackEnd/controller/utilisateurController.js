@@ -74,7 +74,7 @@ router.put('/' , upload.single('image'),function(req, res){
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
-        nomUtilisateur : req.body.utilisateur.nomUtilisateur,
+        nomUtilisateur : req.body.utilisateur.nomUtilisateur.toLowerCase(),
         motDePasse: req.body.utilisateur.motDePasse,
         image: filename,
         role: req.body.utilisateur.role,

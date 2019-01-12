@@ -41,7 +41,7 @@ router.get("/:token" , function (req, res) {
 });
 
 router.post("/", function (req, res) {
-    var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);
+    var promise = loginBusiness.existUser(req.body.nomUtilisateur.toLowerCase(), req.body.motDePasse);
     promise.exec(function(err,result){
         if(result.length == 0){
             res.json({
