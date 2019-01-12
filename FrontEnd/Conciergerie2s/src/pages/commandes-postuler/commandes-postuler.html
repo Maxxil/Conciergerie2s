@@ -71,7 +71,7 @@
               Vous avez été choisi
             </p> 
     
-            <p *ngIf="aDejaPostule(commande) && commande.status == 1">
+            <p *ngIf="aDejaPostule(commande)">
               <strong>Vous avez déjà postulé</strong>
             </p>  
             <p *ngIf="!aDejaPostule(commande) && commande.status == 1">
@@ -128,14 +128,14 @@
           Vous avez été choisi
         </p> 
 
-        <p *ngIf="aDejaPostule(commande) && commande.status == 1">
+        <p *ngIf="aDejaPostule(commande)">
           <strong>Vous avez déjà postulé</strong>
         </p>             
         <p *ngIf="!aDejaPostule(commande) && commande.status == 1">
             <strong>Vous pouvez postuler</strong>
           </p> 
         <ion-note item-end>
-            {{commande.prestataires.length == 0 && commande.status == 2 ? '1' : commande.prestataires.length}} <ion-icon name="mail"></ion-icon>
+            {{commande.prestataires && commande.prestataires.length == 0 && commande.status == 2 ? '1' : commande.prestataires.length}} <ion-icon name="mail"></ion-icon>
             </ion-note>
         </ion-item> 
  
@@ -170,14 +170,14 @@
                 Vous avez été choisi
               </p> 
       
-              <p *ngIf="aDejaPostuleDevis(commande) && commande.status == 1">
+              <p *ngIf="aDejaPostuleDevis(commande)">
                 <strong>Vous avez déjà postulé</strong>
               </p>   
               <p *ngIf="!aDejaPostuleDevis(commande) && commande.status == 1">
                   <strong>Vous pouvez postuler</strong>
                 </p> 
               <ion-note item-end>
-                  {{commande.prestataires.length == 0 && commande.status == 2 ? '1' : commande.prestataires.length}} <ion-icon name="mail"></ion-icon>
+                  {{commande.propositions && commande.propositions.length == 0 && commande.status == 2 ? '1' : commande.propositions.length}} <ion-icon name="mail"></ion-icon>
                   </ion-note>
             </ion-item>
         </ion-card> 
