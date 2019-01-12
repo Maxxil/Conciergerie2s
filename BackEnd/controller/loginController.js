@@ -43,7 +43,9 @@ router.get("/:token" , function (req, res) {
 router.post("/", function (req, res) {
     var promise = loginBusiness.existUser(req.body.nomUtilisateur.toLowerCase(), req.body.motDePasse);
     promise.exec(function(err,result){
+        console.log('LOGIN jwt : ',result);
         if(result.length == 0){
+           console.log('Utilisateur inconnu');
             res.json({
                 success : false,
                 error : Enums.Error.UTILISATEUR_NON_CONNU,
@@ -51,7 +53,7 @@ router.post("/", function (req, res) {
         }
         else{ 
             
-            console.log('jwt : ',result);
+           
             var token = jwt.generateToken(result[0]);
            
             res.json({
