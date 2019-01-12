@@ -244,7 +244,7 @@ module.exports = {
             type: utilisateur.role == '1' ? enums.NotificationType.NOUVEAU_CLIENT: enums.NotificationType.NOUVEAU_PRESTATAIRE,
             date: new Date(),
             refId: utilisateur._id,
-            utilisateur: '0',
+            utilisateur: utilisateur,
             icon:  utilisateur.role == '1' ? 'person-add' : 'contacts',
             message: utilisateur.role == '1' ? 'Nouvelle inscription de client': 'Nouveau prestataire à valider'
         });

@@ -92,8 +92,8 @@ router.put('/' , upload.single('image'),function(req, res){
         ville: req.body.utilisateur.ville,
         historique : []
     });
-    utilisateurBusiness.create(utilisateur);
-    notificationBusiness.newUtilisateur(utilisateur);
+    utilisateurBusiness.create(utilisateur).then(() => notificationBusiness.newUtilisateur(utilisateur));
+   
     res.json({
         success : true
     });
