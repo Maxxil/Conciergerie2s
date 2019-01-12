@@ -24,6 +24,7 @@ import {ValiderPrestatairePage} from "../pages/valider-prestataire/valider-prest
 import {LinkPrestatairePrestataionPage} from "../pages/link-prestataire-prestataion/link-prestataire-prestataion";
 import {PrestatairePage} from "../pages/prestataire/prestataire";
 import {NotificationsPage} from "../pages/notifications/notifications";
+import {SettingPage} from "../pages/setting/setting";
 
 import {ChatPage} from '../pages/chat/chat';
 import { ChatService } from "../providers/chat/chat-service";
@@ -80,7 +81,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     ProfilePage,
     CommandeHoraireDetailPage,
     CommandeForfaitDetailPage,
-    DevisDetailPage
+    DevisDetailPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     ProfilePage,
     CommandeHoraireDetailPage,
     CommandeForfaitDetailPage,
-    DevisDetailPage
+    DevisDetailPage,
+    SettingPage
   ],
   providers: [
     StatusBar,

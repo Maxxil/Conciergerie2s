@@ -30,7 +30,8 @@ export class UtilisateurProvider {
   }
 
   getByCurrentId(): Observable<UtilisateurResult>{
-    return this.http.get<UtilisateurResult>(UTILISATEUR_URL + '/id=' + localStorage.getItem('IdUtilisateur'));
+  console.log('Get current utilisateur '+localStorage.getItem('IdUtilisateur'));
+    return this.http.get<UtilisateurResult>(UTILISATEUR_URL + '/' + localStorage.getItem('IdUtilisateur')+'/'+localStorage.getItem('Token'));
   }
 
   updateWithoutImage(utilisateur: UtilisateurModel): Observable<Result>{

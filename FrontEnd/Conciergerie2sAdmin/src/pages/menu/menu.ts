@@ -15,6 +15,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CommandePage} from "../commande/commande";
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
+import { SettingPage } from '../setting/setting';
 
 @Component({
   selector: 'page-menu',
@@ -110,6 +111,10 @@ export class MenuPage {
 
   openPageProfile(){
     this.rootPage = ProfilePage;
+  }
+
+  openPageSetting(){
+    this.rootPage = SettingPage;
   }
 
   testNotificationEvent() {
