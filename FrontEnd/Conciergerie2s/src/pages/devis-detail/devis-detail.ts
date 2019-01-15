@@ -123,6 +123,30 @@ export class DevisDetailPage {
     });*/
   }
 
+  commanderParCheque(){    
+    // this.loading.present();
+     this.propositionChoisi();
+     console.log(this.proposition);
+     
+    /* this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
+       console.log(result);          
+       var browser = this.iab.create(result.data);
+       this.loading.dismiss();  
+       browser.on('exit').subscribe(() =>{       */
+         this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
+           this.alertCtrl.create().setTitle('Succes')
+               .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
+               .addButton({
+                 text : 'OK',
+                 handler : data => {
+                 this.annuler();
+               }
+           }).present();          
+         });/*
+       }); 
+     });*/
+   }
+
 
   annuler(){
     this.viewCtrl.dismiss();

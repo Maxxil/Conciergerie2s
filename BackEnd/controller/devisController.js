@@ -10,8 +10,7 @@ router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
     var promise = devisBusiness.getAll();
-    promise.exec(function (err, result) {
-        console.log(result);
+    promise.exec(function (err, result) {        
         res.json({
             success : true,
             data : result
@@ -24,8 +23,7 @@ router.get('/:token' , function (req, res) {
 router.get('/:id/:token', function (req, res) {
     var promise = devisBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
-        console.log("GET BY ID - DEVIS");
-        console.log(result);
+       
         res.json({
             success : true,
             data : result
@@ -70,8 +68,17 @@ router.post('/c2s' , function (req, res) {
 
 router.post('/status' , function (req, res) {
     var idCommande = req.body.idCommande;
-    var status = req.body.status;        
-    devisBusiness.updateStatusDevis(idCommande,status);
+  
+    if(req.body.status) {
+        var status = req.body.status;  
+        devisBusiness.updateStatusDevis(idCommande,status);
+    }
+    
+    if( req.body.modepaiement) {
+        var modepaiement = req.body.modepaiement;  
+        devisBusiness.updateModePaiement(idCommande,modepaiement);
+    }
+   // devisBusiness.updateStatusDevis(idCommande,info);
     res.json({
         success : true
     });

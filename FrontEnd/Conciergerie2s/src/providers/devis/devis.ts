@@ -46,4 +46,9 @@ export class DevisProvider {
     return this.http.post<DevisResult>(DEVIS_STATUS_URL,
       {idCommande : commande._id, status : status})
   }
+
+  updateModePaiement(commande: DevisModel, modepaiement: string) : Observable<DevisResult>{    
+    return this.http.post<DevisResult>(DEVIS_STATUS_URL,
+      {idCommande : commande._id, modepaiement: modepaiement})
+  }
 }

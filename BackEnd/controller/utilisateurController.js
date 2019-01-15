@@ -45,7 +45,7 @@ router.get('/:token', function (req, res) {
 
 router.get('/:id/:token', function (req, res) {
 
-    console.log('UtilistaeurController : GET Utilisateir '+req.params.id)
+   // console.log('UtilistaeurController : GET Utilisateir '+req.params.id)
     var promise = utilisateurBusiness.getById(req.params.id);
     promise.exec(function(err,utilisateur){
         res.json({
@@ -57,10 +57,9 @@ router.get('/:id/:token', function (req, res) {
 });
 
 router.get('/prestataire/:token' , function (req, res) {
-    console.log('UtilistaeurController : GET AllPrestataire ');
+   // console.log('UtilistaeurController : GET AllPrestataire ');
     var promise = utilisateurBusiness.getAllPrestataire();
-    promise.exec(function (err,result) {
-        console.log(result);
+    promise.exec(function (err,result) {        
         res.json({
             success : true,
             data : result
@@ -119,9 +118,7 @@ router.post('/image' , upload.single('image') , function (req , res) {
     });
 });
 
-router.post('/', function (req , res) {
-
-    console.log('POST UTILISATEUR : ',req.body.utilisateur);
+router.post('/', function (req , res) {    
     utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
         res.json({
             success : result.ok

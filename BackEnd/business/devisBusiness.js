@@ -56,10 +56,12 @@ module.exports = {
             }]).sort('-dateCreation');
     },
     updateStatus : function (idCommande, status, prestataireChoisi) {
-        Devis.find({_id : idCommande}).exec(function (err, result) {
-            result[0].status = status;
-            result[0].prestataireChoisi = prestataireChoisi;
-            result[0].save().then(() => notificationBusiness.prestataireChoisi(result[0]));
+        Devis.find({_id : idCommande}).populate('prestataireChoisi').exec(function (err, result) {
+            
+            object =  result[0];
+            object.status = status;
+            object.prestataireChoisi = prestataireChoisi;
+            object.save().then(() => notificationBusiness.prestataireChoisi(object));
         })
     },
     updateC2S: function (idCommande, prix, date) {
@@ -77,8 +79,17 @@ module.exports = {
 
     },
     updateStatusDevis : function (idCommande, status) {
+        console.log('Update status devis');
         Devis.find({_id : idCommande}).exec(function (err, result) {
-            result[0].status = status;            
+            result[0].status = status;   
+            result[0].modepaiement = 'paypal';   
+            result[0].save().then(() => notificationBusiness.devisEvent(result[0]));
+        })
+    },
+    updateModePaiement : function (idCommande, modepaiement) {
+        console.log('Update mode paiement devis');
+        Devis.find({_id : idCommande}).exec(function (err, result) {
+            result[0].modepaiement = modepaiement;            
             result[0].save().then(() => notificationBusiness.devisEvent(result[0]));
         })
     },

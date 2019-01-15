@@ -15,7 +15,8 @@ var devis = new mongoose.Schema({
     heure : 'String',
     date : 'Date',
     dateCreation : 'Date',
-    status : 'Number'
+    status : 'Number',
+    modepaiement: 'String'
 });
 
 devis.plugin(autoIncrement.plugin, {model : 'Devis', field : "compteur",startAt: 1,});
