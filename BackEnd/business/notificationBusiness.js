@@ -114,8 +114,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         pushMessage.postBody['data']  = {
             'refid': notification.refId,
             'type': notification.type,
-            'userid' : notification.utilisateur,
-            'prestataires': prestataires
+            'userid' : notification.utilisateur            
         };
 
       
