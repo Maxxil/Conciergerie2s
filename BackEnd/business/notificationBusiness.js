@@ -97,9 +97,10 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         
 
         let prestataires = obj.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
-        let playerids = obj.prestataire.map(item => { return item.utilisateur.lastPlayerId != null}).filter((item) => item.lastPlayerId != null);
+        let playerids = obj.prestataires.map(item => { return item.lastPlayerId;}).filter((item) => item.lastPlayerId != null);
         
-        console.log('Liste des prestataires \n',obj.prestataire);
+        console.log('Liste des prestataires \n',obj.prestataires);
+        console.log('Liste des playerids \n',obj.prestataires);
         
         
         pushMessage.postBody['data']  = {
