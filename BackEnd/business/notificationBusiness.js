@@ -146,6 +146,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
         let prestataireChoisi = obj.prestataireChoisi;        
         let client = obj.client;
        if(prestataireChoisi) {
+           
             pushMessage.postBody['data']  = {
                 'refid': notification.refId,
                 'type': notification.type,
@@ -179,6 +180,11 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
 
        
         if(prestataireChoisi) {
+            pushMessage = new OpenSignal.Notification({      
+                contents: {      
+                    en: 'Vous avez été choisi pour realiser une prestation'               
+                }   
+            }); 
             console.log('PushMessage object to Prestataire : \n',pushMessage);
             pushMessage.postBody["include_player_ids"] = [prestataireChoisi.lastPlayerId];
     
@@ -339,9 +345,12 @@ module.exports = {
     },
     prestataireChoisi: function(devis) {
         console.log('***************************************');
-        console.log('Notification Prestataire choisi', devis);
+        Devis.find({_id : devis._id}).populate([{path : 'prestataireChoisi', populate: {path : "utilisateur" , select:"nom prenom lastPlayerId"} },{path : 'client', select : '_id nom prenom lastPlayerId'}])
+        .exec(function (err, result) {
+            let nDevis = result[0];
+        console.log('Notification Prestataire choisi', nDevis);
         let notification = new Notification({
-            utilisateur: devis.client._id,
+            utilisateur: nDevis.client._id,
             statut: enums.NotificationStatus.NON_LU,
             type:  enums.NotificationType.DEVIS_A_REGLER,
             date: new Date(),
@@ -351,8 +360,9 @@ module.exports = {
         });      
         let promise = notification.save();
         promise.then(function(elt) {
-            sendPushFromNotification(elt, 3, devis);             
+            sendPushFromNotification(elt, 3, nDevis);             
         });
+      });
     },
     prestataireC2SChoisi: function(devis) {
         console.log('***************************************');
