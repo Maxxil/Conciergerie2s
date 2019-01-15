@@ -143,7 +143,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
             }   
         });           
 
-        let prestataireChoisi = obj.prestataireChoisi;        
+        let prestataireChoisi = obj.prestataireChoisi.utilisateur;        
         let client = obj.client;
        if(prestataireChoisi) {
            
@@ -167,6 +167,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
 
       
         //  include_player_ids: 
+        if(client.lastPlayerId) {
         pushMessage.postBody["include_player_ids"] = [client.lastPlayerId];
         console.log('PushMessage object to Client : \n',pushMessage);
         Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
@@ -176,6 +177,10 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
                 console.log(data, httpResponse.statusCode);      
             }      
         });
+        }
+        else {
+            console.log('>>>>>>>>> CLient id sans PlayerId : '+client._id)
+        }
 
 
        
@@ -185,9 +190,9 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
                     en: 'Vous avez été choisi pour realiser une prestation'               
                 }   
             }); 
-            console.log('PushMessage object to Prestataire : \n',pushMessage);
+            
             pushMessage.postBody["include_player_ids"] = [prestataireChoisi.lastPlayerId];
-    
+            console.log('PushMessage object to Prestataire : \n',pushMessage);
 
             Conciergeries2SClient.sendNotification(pushMessage, function (err, httpResponse,data) {      
                 if (err) {      
