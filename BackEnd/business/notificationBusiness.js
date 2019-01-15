@@ -3,6 +3,7 @@ var OpenSignal = require('onesignal-node');
 
 var Notification = require('../model/notificationModel');
 var prestationBusiness = require('./prestationBusiness');
+var Devis = require('./../model/devisModel');
 var enums = require('./../helper/enums');
 var Conciergeries2SClient = new OpenSignal.Client({
     userAuthKey: '',
@@ -92,7 +93,7 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
                 en: notification.message                
             }   
         });   
-
+        
         
 
         let prestataires = obj.prestataire.map(item => { let elt = {}; elt.id=item._id;  elt.lastPlayerId=item.utilisateur.lastPlayerId; return elt;});
@@ -277,6 +278,7 @@ module.exports = {
         });
     },
     newDevis: function(devis) {
+        console.log('NEW DEVIS\n',devis);
         prestationBusiness.getByIdWithPrestataire(devis.prestation).then((result) => {
             let notification = new Notification({
                 utilisateur: devis.client._id,
