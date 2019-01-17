@@ -83,12 +83,12 @@ io.on('connection', (socket) => {
         'type': 'chat-request'           
     };
 
-    /*
+    
     pushMessage.postBody["included_segments"] = ["Active Users"];      
     pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
-    */
+    
 
-   pushMessage.postBody["include_player_ids"] = ['73001d0b-1fda-496e-aaf5-f6d97cff8e7e'];
+   // pushMessage.postBody["include_player_ids"] = ['73001d0b-1fda-496e-aaf5-f6d97cff8e7e'];
     console.log('PushMessage object to Admin For Chat',pushMessage);
     	
     Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
