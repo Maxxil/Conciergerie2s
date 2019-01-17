@@ -42,9 +42,9 @@ io.on('connection', (socket) => {
     socket.prenom = utilisateur.prenom;
     numConnected++;
     allConnected.push(utilisateur);
-    console.log("Utilisateurs :",allConnected);        
-    console.log("new client connect "+socket.nickname+' '+socket.prenom+' id:'+socket.userid);
-    console.log("nb connect "+numConnected);
+    console.log("Utilisateurs connectés :",allConnected);        
+    console.log("Nouveau client connect id:"+socket.userid);
+    console.log("Total connectés "+numConnected);
     console.log("Admin online : "+adminOnline);
    // io.emit('new-client-connect', {user: utilisateur, connected: allConnected, event: 'joined'});        
     io.emit('users-onlines', {onlines: allConnected});
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
     console.log("Utilisateurs :",allConnected);  
     console.log("Admin online : "+adminOnline);
     io.emit('users-onlines', {'onlines': allConnected});
-    io.emit('is-admin-online', {isAdminOnline: true});
+    io.emit('is-admin-online', {isAdminOnline: true, id: utilisateur._id});
   });
 
   
@@ -103,7 +103,8 @@ io.on('connection', (socket) => {
   
   // admin est dispo
   socket.on('c2s-chat-online', (utilisateur) => {  
-    io.emit('is-admin-online', {isAdminOnline: true});
+    console.log('c2s-chat-online : ', utilisateur);
+    io.emit('is-admin-online', {isAdminOnline: true, id:utilisateur});
   });
   
   // Déconnection 
