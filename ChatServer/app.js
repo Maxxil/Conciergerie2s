@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
 
   
 
-  socket.on('client-request', (utilisateur) => {  
+  socket.on('chat-client-request', (utilisateur) => {  
     console.log('\r\nCLIENT Request');
     console.log('----------------------');
     console.log(utilisateur);    
@@ -98,6 +98,10 @@ io.on('connection', (socket) => {
   });
 
   
+  // admin est dispo
+  socket.on('c2s-chat-online', (utilisateur) => {  
+    io.emit('is-admin-online', {isAdminOnline: true});
+  });
   
   // Déconnection 
   socket.on('disconnect', () => {
