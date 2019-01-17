@@ -10,12 +10,13 @@
   <ion-content>
 
       
-    <div class="chat-connect" text-center>
+    <div class="chat-connect" *ngIf="!isConnect" text-center>
         <button ion-button (click)="request()" text-center *ngIf="adminIsOnline">
           Rejoindre le chat</button>
       
-      <button ion-button text-center disabled *ngIf="!adminIsOnline">
-        Administrateur indisponible</button>
+      <button ion-button text-center  (click)="request()" *ngIf="!adminIsOnline">
+        Contacter C2S</button>
+
     </div> 
       <div class="message-wrap" *ngIf="isConnect">
     

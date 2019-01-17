@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController,  } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat/chat-service";
 import { Content } from 'ionic-angular';
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -28,9 +28,15 @@ export class ChatPage {
 
   adminIsOnline = false;
   isConnect = false;
+
+  public loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...'
+  });
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
-    private chatService: ChatService, public alertCtrl : AlertController) {        
+    private chatService: ChatService, public alertCtrl : AlertController
+    , public loader : LoadingController) {        
       // Get the navParams toUserId parameter
     
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
@@ -77,19 +83,11 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-   /* this.chatService.getMsgList()
-      .subscribe((message) =>
-      {
-
-         // Update the messages array
-         this.pushNewMsg(message);
-      });
-*/
-
+    this.isAdminOnline();
   }
 
   request() {
-    let alert = this.alertCtrl.create({
+   /* let alert = this.alertCtrl.create({
       title : 'Message',
       message : "Merci de patienter",
       buttons : [{
@@ -99,9 +97,12 @@ export class ChatPage {
     
     alert.setMessage('Connection en cours Adminonline='+this.adminIsOnline);
     alert.present();
-
+    */
+   this.loading.present();
     this.chatService.request(this.profile);
-    this.isConnect = true;
+
+    
+    
     
   }
 
@@ -130,7 +131,14 @@ export class ChatPage {
     this.chatService.isAdminOnline()
     .subscribe((data) =>
     {     
-       this.adminIsOnline = data.isAdminOnline;
+       this.adminIsOnline = data.isAdminOnline;              
+       this.isConnect = data.isAdminOnline;
+       try {                      
+       this.loading.dismiss();
+       this.toUser.id = data.id;
+
+       } catch{}
+       
     });
   }
 

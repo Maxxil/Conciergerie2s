@@ -51,6 +51,12 @@ export class ChatService {
           console.log(data);
            observer.next(data);
         });
+        this.socket.on('c2s-admin-disconnect', (data) =>
+        {
+          console.log(data);
+           observer.next(data);
+        });
+       
      });
   }
 
@@ -74,7 +80,9 @@ export class ChatService {
   }
 
   request(profile) {
-    this.socket.emit('client-request', {profile});
+    console.log('request chat');
+    return new Promise(resolve =>
+    this.socket.emit('chat-client-request', {profile: profile}));
   }
 
   sendMsg(msg: ChatMessage) {

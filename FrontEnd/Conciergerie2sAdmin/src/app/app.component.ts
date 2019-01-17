@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { App, Platform, Events, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,14 +7,22 @@ import {LoginPage} from "../pages/login/login";
 
 import { OneSignal, OSNotificationPayload } from '@ionic-native/onesignal'
 import { oneSignalAppId, sender_id } from '../model/Url';
-
+import { Socket } from 'ng-socket-io';
+import {ChatPage} from "../pages/chat/chat";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild('myNav') nav: NavController
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private oneSignal: OneSignal, public events: Events) {
+  constructor(platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen, 
+    private oneSignal: OneSignal, 
+    public events: Events,
+    public socket: Socket,
+    public appCtrl: App ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -45,10 +53,10 @@ export class MyApp {
     let message = payload.body; 
     alert(message);
     this.events.publish('notification:updated');
-    if (additionalData != null)
+    /*if (additionalData != null)
     {
       alert('Push opened additionalData type: ' + additionalData["type"]);
-    }
+    }*/
     /*
      OSNotificationPayload payload = notification.payload;
             string message = payload.body;
@@ -73,11 +81,16 @@ export class MyApp {
     var additionalData = payload.additionalData;
     let message = payload.body;
   
-    alert('Push opened body: ' + message);
+    //alert('Push opened body: ' + message);
     if (additionalData != null)
     {
-      alert('Push opened additionalData: ' + additionalData);
-
+      if(additionalData["type"] == 'chat-request') {
+        this.socket.emit('c2s-chat-online', localStorage.getItem('IdUtilisateur'));
+        //this.nav.push(ChatPage);
+        //this.appCtrl.getRootNav().push('HomePage').select(2);
+        this.appCtrl.getRootNav().push(ChatPage);        
+      }
+      //alert('Push opened additionalData: ' + additionalData);
     }
   }
 }

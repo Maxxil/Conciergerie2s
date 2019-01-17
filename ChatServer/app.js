@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
     // Informer les utilisateurs que l'admin n'est plus en ligne
     if(adminOnline && adminOnline === socket.userid) {
         adminOnline = null;
-        io.emit('c2s-admin-disconnect');
+        io.emit('c2s-admin-disconnect',  {isAdminOnline: false});
     }  
     else {
       // Informer tous les utilsiateurs lorsqu'un utilisateur s'est déconnecté
