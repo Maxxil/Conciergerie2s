@@ -9,6 +9,8 @@ import { OneSignal, OSNotificationPayload } from '@ionic-native/onesignal'
 import { oneSignalAppId, sender_id } from '../model/Url';
 import { Socket } from 'ng-socket-io';
 import {ChatPage} from "../pages/chat/chat";
+
+import { NotificationEnum } from "../model/Enums/NotificationEnum";
 @Component({
   templateUrl: 'app.html'
 })
@@ -83,12 +85,17 @@ export class MyApp {
   
     //alert('Push opened body: ' + message);
     if (additionalData != null)
-    {
-      if(additionalData["type"] == 'chat-request') {
-        this.socket.emit('c2s-chat-online', localStorage.getItem('IdUtilisateur'));
-        //this.nav.push(ChatPage);
-        //this.appCtrl.getRootNav().push('HomePage').select(2);
-        this.appCtrl.getRootNav().push(ChatPage);        
+    {     
+      switch(additionalData["type"]) {
+        case  'chat-request': 
+          localStorage.setItem('chat-request',JSON.stringify(additionalData));
+          localStorage.setItem('redirect',additionalData["type"]);
+          break;
+        case NotificationEnum.NOUVELLE_COMMANDE: 
+          //this.nav.push(ChatPage);
+          //this.appCtrl.getRootNav().push(ChatPage);        
+          break;
+      
       }
       //alert('Push opened additionalData: ' + additionalData);
     }

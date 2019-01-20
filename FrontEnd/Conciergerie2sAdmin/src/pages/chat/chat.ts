@@ -75,6 +75,38 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
+    // Vérification si on a  été redirigé par une notification
+    if(localStorage.getItem("chat-request") !== null) {
+
+      var chatRequest = JSON.parse(localStorage.getItem('chat-request')); 
+      
+      this.toUser = {
+        id: chatRequest['userid'],
+        name: 'Client',
+        avatar: './assets/imgs/to-user.jpg'
+      };
+
+      this.fromUser = {
+        id: localStorage.getItem('IdUtilisateur'),
+        name: 'C2S',
+        avatar: './assets/imgs/user.jpg'
+      };
+      this.allUsersOnLine.push({id: chatRequest['userid'], name: chatRequest['username']});
+      this.currentUserId = chatRequest['userid'];  
+      let newMsg: ChatMessage = {
+        messageId: Date.now().toString(),  
+        userId: this.fromUser.id,
+        userName: this.fromUser.name,
+        userAvatar: this.fromUser.avatar,
+        toUserId: this.toUser.id,
+        time: Date.now(),
+        message: 'Bonjour, quel est votre question ?',
+        status: ''
+      };
+      this.chatService.sendMsg(newMsg);
+      localStorage.removeItem('chat-request');   
+      localStorage.removeItem('redirect');
+    }
   }
 
   

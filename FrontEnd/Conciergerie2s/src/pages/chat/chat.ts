@@ -28,11 +28,7 @@ export class ChatPage {
 
   adminIsOnline = false;
   isConnect = false;
-
-  public loading = this.loader.create({
-    spinner: 'hide',
-    content: 'Loading Please Wait...'
-  });
+  loading = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
     private chatService: ChatService, public alertCtrl : AlertController
@@ -53,6 +49,14 @@ export class ChatPage {
         name: 'C2S',
         avatar: './assets/imgs/to-user.jpg'
       };
+
+
+     /* this.loading = this.loader.create({
+        spinner: 'hide',
+        content: 'Loading Please Wait...',
+        dismissOnPageChange: true
+    
+      });*/
     
     });
 
@@ -98,7 +102,14 @@ export class ChatPage {
     alert.setMessage('Connection en cours Adminonline='+this.adminIsOnline);
     alert.present();
     */
-   this.loading.present();
+   /*this.loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...',
+    dismissOnPageChange: true
+
+  });*/
+  this.msgList = [];
+   this.loading = true;
     this.chatService.request(this.profile);
 
     
@@ -133,8 +144,10 @@ export class ChatPage {
     {     
        this.adminIsOnline = data.isAdminOnline;              
        this.isConnect = data.isAdminOnline;
-       try {                      
-       this.loading.dismiss();
+       try {       
+       
+        this.loading = false;
+       
        this.toUser.id = data.id;
 
        } catch{}

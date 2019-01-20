@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, Tabs, App } from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {NotificationsPage} from "../notifications/notifications";
 import {ChatPage} from "../chat/chat";
@@ -27,7 +27,7 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public events: Events,
-    public notificationProv: NotificationProvider) {
+    public notificationProv: NotificationProvider, public app: App) {
     
     this.notificationProv.getAll().subscribe((results) =>{
       
@@ -44,10 +44,14 @@ export class DashboardPage {
         this.chatnotification = payload._badgeValue;      
       });
 
-
       events.subscribe('notification:updated', () => {   
         console.log('Event notification:updated');  
         this.updateNotificationBadge();    
+      });
+
+      events.subscribe('chat:request', () => {   
+        console.log('Event Chat request');  
+        this.redirect();    
       });
     });
    
@@ -69,5 +73,18 @@ export class DashboardPage {
   ionViewDidLoad() { 
        this.updateNotificationBadge();
   }
+
+  ionViewDidEnter() {        
+    //this.redirect();
+  }
+
+  redirect() {
+    if(localStorage.getItem("redirect") !== null && localStorage.getItem("chat-request")) 
+    {
+      const tabsNav = this.app.getNavByIdOrName('dashboard') as Tabs;
+      tabsNav.select(2);
+    }
+  }
+  
 
 }
