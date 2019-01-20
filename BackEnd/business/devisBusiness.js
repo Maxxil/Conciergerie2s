@@ -17,7 +17,17 @@ module.exports = {
         })
     },
     getById : function (idDevis) {
-        return Devis.find({_id : idDevis});
+        return Devis.find({_id : idDevis}).populate([{path : 'prestation'} , {path : 'client'},
+        {
+            path : 'propositions',
+            populate:
+                {
+                    path : 'prestataire' ,
+                    populate : {
+                        path : 'utilisateur', select: 'nom prenom'
+                    }
+                }
+        }]);
     },
     getAll : function () {
         return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'},
