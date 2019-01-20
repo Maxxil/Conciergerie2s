@@ -40,7 +40,7 @@ export class LoginPage {
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           this.socket.emit('c2s-connect', result.user[0]);    
          // this.pushTags(result.user[0]);
-          this.navCtrl.push(MenuPage);          
+          this.navCtrl.setRoot(MenuPage);          
         }
       })
     }
@@ -68,7 +68,7 @@ export class LoginPage {
         localStorage.setItem('Token', result.data);
         this.socket.emit('c2s-connect', result.user[0]);
        // this.pushTags(result.user[0]);
-        this.navCtrl.push(MenuPage);        
+       this.navCtrl.setRoot(MenuPage);        
       }
     });
   }
