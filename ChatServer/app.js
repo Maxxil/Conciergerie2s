@@ -89,9 +89,9 @@ io.on('connection', (socket) => {
     };
 
     
-    pushMessage.postBody["included_segments"] = ["Active Users"];      
-    pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
-    
+    //pushMessage.postBody["included_segments"] = ["Active Users"];      
+    //pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
+    pushMessage.postBody["included_segments"] = ["Chat"];      
 
    // pushMessage.postBody["include_player_ids"] = ['73001d0b-1fda-496e-aaf5-f6d97cff8e7e'];
     console.log('PushMessage object to Admin For Chat',pushMessage);
