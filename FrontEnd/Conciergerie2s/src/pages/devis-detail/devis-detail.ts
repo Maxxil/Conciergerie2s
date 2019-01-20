@@ -8,7 +8,7 @@ import { CommandeForfaitDetailPage } from '../commande-forfait-detail/commande-f
 import { PaypalProvider } from '../../providers/paypal/paypal';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { CommandeStatus } from '../../model/Enums/CommandeStatusEnum';
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the DevisDetailPage page.
  *
@@ -27,10 +27,12 @@ export class DevisDetailPage {
   public status: string = "En cours d'analyse";
   public dejapostuler: boolean = false;
   public proposition : DevisPropositionModel;
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public loading = this.loader.create({
     spinner: 'hide',
     content: 'Loading Please Wait...'
   });
+  public prestataireChoisi: DevisPropositionModel = null;
   constructor(public navCtrl: NavController
               , public devisPvd : DevisProvider
               , public navParams: NavParams
@@ -40,7 +42,10 @@ export class DevisDetailPage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               ,public events: Events) {
-    this.commande = this.navParams.get('Commande');
+    
+    
+   this.commande = this.navParams.get('Commande');
+    
     console.log(this.commande);
     switch(this.commande.status) {
       case 1: this.status = "Envoyé"; break;
@@ -49,6 +54,11 @@ export class DevisDetailPage {
       case 4: this.status = "En attente de validation"; break;
       case 5: this.status = "En attente de paiement"; break;
     }
+
+    if(this.commande.prestataireChoisi) {
+      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id.toString() == this.commande.prestataireChoisi.toString()).pop();
+    } 
+
     this.proposition = new DevisPropositionModel();
     this.dejapostuler = this.aDejaPostule();    
   }
@@ -61,7 +71,6 @@ export class DevisDetailPage {
   peutPostuler() {
     return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
   }
-
 
   postuler(){
     this.devisPvd.souscrirePrestataire(this.commande, this.proposition).subscribe(result =>{

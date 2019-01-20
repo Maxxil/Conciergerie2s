@@ -28,6 +28,11 @@ export class DevisProvider {
     return this.http.put<DevisResult>(DEVIS_URL, {commande : commande, token : this.token});
   }
 
+  
+  get(id) : Observable<DevisResult>{
+    return this.http.get<DevisResult>(DEVIS_URL + '/' +id+'/' +this.token);
+  }
+
   getAll() : Observable<DevisResult>{
     return this.http.get<DevisResult>(DEVIS_URL + '/' + this.token);
   }

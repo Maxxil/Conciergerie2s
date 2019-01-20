@@ -26,7 +26,7 @@ export class NotificationsPage {
       this.notifications = [];    
       
       this.events.subscribe('notification:updated', () => {
-        console.log('notification:updated');
+        
         this.updateNotificationList();
       });
     }
@@ -37,9 +37,9 @@ export class NotificationsPage {
         function filtrer(element) { 
           return (9 != element.type); 
         } 
-        console.log(results.data);
+        
         this.notifications = results.data.filter(filtrer);   
-        console.log(this.notifications);
+        
         this.events.publish('notification:badge', { _badgeValue: this.notifications.length}) ;        
       });
   }
@@ -49,6 +49,19 @@ export class NotificationsPage {
     console.log('ionViewDidLoad NotificationsPage');
     this.updateNotificationList();
   }
+
+  
+delete(notification) {
+  console.log(notification);
+   this.notificationProv.delete(notification).subscribe((result) =>{    
+    this.events.publish('notification:updated');
+  });
+}
+
+open(notification) {
+  console.log('Open notification:',notification);
+} 
+
 
 }
 

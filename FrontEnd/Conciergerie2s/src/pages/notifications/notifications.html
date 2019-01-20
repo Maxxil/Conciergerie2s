@@ -6,15 +6,24 @@
     </ion-navbar>
   
   </ion-header>
-<ion-content padding>
-    <ion-card   *ngFor="let element of notifications">
-        <ion-item  color="light" text-wrap>
-          <ion-icon name="{{ element.icon }}" item-start></ion-icon>
-            {{ element.message }}<br>
-            <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>                                
+<ion-content>
+    <ion-list>
+        <ion-item-sliding #item  *ngFor="let element of notifications">
+          <ion-item  color="light" text-wrap>
+            <ion-icon name="{{ element.icon }}" item-start></ion-icon>
+              {{ element.message }}<br>
+              <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>                                
+          </ion-item> 
+          
+      
+          <ion-item-options side="right">
             <button ion-button (click)="delete(element)" icon-only color="light" item-end>
-                <ion-icon name="trash"></ion-icon>
+              <ion-icon name="trash"></ion-icon>
             </button>
-        </ion-item>            
-    </ion-card> 
+            <button ion-button (click)="open(element)" icon-only color="light" item-end>
+              <ion-icon name="eye"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
  </ion-content>

@@ -14,11 +14,22 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>      
+        <ion-item>
+                <ion-avatar item-start>
+                    <img src="{{prestationImageUrl + commande.prestation.image}}">
+                  </ion-avatar>
+              <h2 text-wrap>{{commande.prestation.nom}}</h2>
+        </ion-item>
+        <ion-item>
+              Demandé le :
+              <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
+        Statut : <em>{{ status }}</em>   
+              </ion-item>
+ <!--    <ion-list-header>      
         <h1>{{commande.prestation.nom}}</h1>
         Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
         Statut : <em>{{ status }}</em>        
-    </ion-list-header>
+    </ion-list-header> -->
     <hr>
     <ion-item>
         <p> <span  class="label-title">Date RDV: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
@@ -55,15 +66,10 @@
       </ion-item>   
   </ion-list>
 
-  <ion-list  *ngIf="apayer()">              
-        <ion-item >      
-           Date proposée : 
-        </ion-item>
-        
-        <ion-item>        
-            Prix proposé TTC : 
-        </ion-item>   
-    </ion-list>
+  <p  *ngIf="apayer()">                  
+        <strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}} € TTC<br>
+        <strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC
+  </p>
   <div text-center>
       <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" [disabled]="!(proposition.dateProposee && proposition.prix)" taupe>Postuler</button>
       <button *ngIf="apayer()" ion-button (click)="commander()"  taupe>Payer en ligne</button>

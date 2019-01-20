@@ -48,7 +48,7 @@ export class LoginPage {
          
           
          
-          this.navCtrl.push(MenuPage);
+          this.navCtrl.setRoot(MenuPage);
         }
       })
     } else {
@@ -81,7 +81,7 @@ export class LoginPage {
             profile.lastPlayerId = playerId;
              this.utilisateurPvd.updateWithoutImage(profile); 
           });
-          this.navCtrl.push(MenuPage);
+          this.navCtrl.setRoot(MenuPage);
         }
       });
   }
@@ -91,7 +91,7 @@ export class LoginPage {
   }
 
   signin(){
-    this.navCtrl.push(SigninPage);
+    this.navCtrl.setRoot(SigninPage);
   }
 
 }
