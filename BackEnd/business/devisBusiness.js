@@ -17,7 +17,7 @@ module.exports = {
         })
     },
     getById : function (idDevis) {
-        return Devis.find({_id : idDevis}).populate([{path : 'prestation'} , {path : 'client'},
+        return Devis.find({_id : idDevis}).populate([{path : 'prestation'} , {path : 'client'}, {path: 'prestataireChoisi'},
         {
             path : 'propositions',
             populate:
@@ -30,7 +30,7 @@ module.exports = {
         }]);
     },
     getAll : function () {
-        return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'},
+        return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'}, {path: 'prestataireChoisi'},
             {
                 path : 'propositions',
                 populate:
@@ -48,7 +48,7 @@ module.exports = {
     getByIdClient : function(idClient){
         return Devis.find({'client' : idClient}).populate('client')
             .populate([
-                {path : 'client'}, {path : 'prestation' },
+                {path : 'client'}, {path : 'prestation' }, {path: 'prestataireChoisi'},
                 {
                     path : 'propositions' , populate :
                     {
