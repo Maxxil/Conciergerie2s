@@ -73,7 +73,7 @@
   <div text-center>
       <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" [disabled]="!(proposition.dateProposee && proposition.prix)" taupe>Postuler</button>
       <button *ngIf="apayer()" ion-button (click)="commander()"  taupe>Payer en ligne</button>
-      <button *ngIf="apayer()" ion-button (click)="commanderParCheque()"  taupe>Payer par cheque</button>
+      <button *ngIf="apayer()" ion-button (click)="commanderhorsligne()"  taupe>Chèque et espèce</button>
       <button ion-button (click)="annuler()" taupe>Fermer</button>
     </div>
 </ion-content>

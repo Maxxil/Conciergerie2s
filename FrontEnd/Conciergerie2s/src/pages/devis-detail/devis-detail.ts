@@ -113,11 +113,11 @@ export class DevisDetailPage {
     this.propositionChoisi();
     console.log(this.proposition);
     
-   /* this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
+    this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
       console.log(result);          
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('exit').subscribe(() =>{       */
+      browser.on('exit').subscribe(() =>{       
         this.devisPvd.updateStatus(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
           this.alertCtrl.create().setTitle('Succes')
               .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
@@ -127,21 +127,17 @@ export class DevisDetailPage {
                 this.annuler();
               }
           }).present();          
-        });/*
+        });
       }); 
-    });*/
+    });
   }
 
-  commanderParCheque(){    
+  commanderhorsligne(){    
     // this.loading.present();
      this.propositionChoisi();
      console.log(this.proposition);
      
-    /* this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
-       console.log(result);          
-       var browser = this.iab.create(result.data);
-       this.loading.dismiss();  
-       browser.on('exit').subscribe(() =>{       */
+    
          this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
            this.alertCtrl.create().setTitle('Succes')
                .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
@@ -151,9 +147,7 @@ export class DevisDetailPage {
                  this.annuler();
                }
            }).present();          
-         });/*
-       }); 
-     });*/
+         });
    }
 
 

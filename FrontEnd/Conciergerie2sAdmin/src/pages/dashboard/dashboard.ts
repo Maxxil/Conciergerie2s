@@ -75,7 +75,7 @@ export class DashboardPage {
   }
 
   ionViewDidEnter() {        
-    //this.redirect();
+    this.redirect();
   }
 
   redirect() {
