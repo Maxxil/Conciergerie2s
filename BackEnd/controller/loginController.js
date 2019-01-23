@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt');
 
 var loginBusiness = require('./../business/loginBusiness');
 var jwt = require('./../helper/tokenHelper');
@@ -41,6 +42,7 @@ router.get("/:token" , function (req, res) {
 router.post("/", function (req, res) {
     var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);
     promise.exec(function(err,result){
+
         if(result.length == 0){
             res.json({
                 success : false,
@@ -48,13 +50,22 @@ router.post("/", function (req, res) {
             });
         }
         else{
-            var token = jwt.generateToken(result[0]);
-            res.json({
-                success : true,
-                error : errorEnum.error.AUCUNE_ERREUR,
-                data: token,
-                user : result
-            });
+            var exist = bcrypt.compareSync(req.body.motDePasse, result[0].motDePasse);
+            if(exist){
+                var token = jwt.generateToken(result[0]);
+                res.json({
+                    success : true,
+                    error : errorEnum.error.AUCUNE_ERREUR,
+                    data: token,
+                    user : result
+                });
+            }
+            else{
+                res.json({
+                    success : false,
+                    error : Enums.Error.UTILISATEUR_NON_CONNU,
+                });
+            }
         }
         res.end();
     })

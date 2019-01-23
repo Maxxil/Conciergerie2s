@@ -5,6 +5,7 @@ import {LoginProvider} from "../../providers/login/login";
 import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {MenuPage} from "../menu/menu";
 import { Socket } from 'ng-socket-io';
+import {MotDePasseOubliePage} from "../mot-de-passe-oublie/mot-de-passe-oublie";
 
 /**
  * Generated class for the LoginPage page.
@@ -21,13 +22,14 @@ import { Socket } from 'ng-socket-io';
 export class LoginPage {
 
   public login: UtilisateurModel;
+  private estConnecte : boolean = false;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public loginPvd : LoginProvider
               , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
     var token = localStorage.getItem('Token');
-    if(token != null){
+    if(token != null && !this.estConnecte){
       this.tryConnect();
     }
   }
@@ -38,6 +40,7 @@ export class LoginPage {
       promise.subscribe((result) => {
         console.log(result);
         if(result.success){
+          this.estConnecte = true;
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           this.socket.emit('client-connect', result.user[0]);
           this.navCtrl.push(MenuPage);
@@ -61,6 +64,7 @@ export class LoginPage {
         }
         else
         {
+          this.estConnecte = true;
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           localStorage.setItem('Token', result.data);
           this.socket.emit('client-connect', result.user[0]);
@@ -71,6 +75,10 @@ export class LoginPage {
 
   facebookConnect(){
 
+  }
+
+  motDePasseOublie(){
+    this.navCtrl.push(MotDePasseOubliePage);
   }
 
   signin(){

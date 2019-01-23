@@ -42,6 +42,10 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 import { CHAT_URL } from '../model/Url';
+import { MotDePasseOublieProvider } from '../providers/mot-de-passe-oublie/mot-de-passe-oublie';
+import {MotDePasseOubliePage} from "../pages/mot-de-passe-oublie/mot-de-passe-oublie";
+import { ChangerMotDePasseProvider } from '../providers/changer-mot-de-passe/changer-mot-de-passe';
+import {ChangerMotDePassePage} from "../pages/changer-mot-de-passe/changer-mot-de-passe";
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -66,7 +70,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeHoraireDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
-    CommandesPostulerPage
+    CommandesPostulerPage,
+    MotDePasseOubliePage,
+    ChangerMotDePassePage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +102,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeHoraireDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
-    CommandesPostulerPage
+    CommandesPostulerPage,
+    MotDePasseOubliePage,
+    ChangerMotDePassePage
   ],
   providers: [
     StatusBar,
@@ -112,7 +120,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeProvider,
     PaypalProvider,
     InAppBrowser,
-    ChatService
+    ChatService,
+    MotDePasseOublieProvider,
+    ChangerMotDePasseProvider
   ]
 })
 export class AppModule {}

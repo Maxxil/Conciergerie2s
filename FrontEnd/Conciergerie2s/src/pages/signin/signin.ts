@@ -53,6 +53,17 @@ export class SigninPage {
         });
         alert.present();
       }
+      else{
+        this.alertCtrl.create({
+          title: 'Erreur',
+          message :"L'utilisateur que vous essayer d'inscrire existe déjà. Essayer avec un nouvel email et nouveau nom d'utilisateur",
+          buttons: [
+            {
+              text: 'OK'
+            }
+          ]
+        })
+      }
     });
   }
 

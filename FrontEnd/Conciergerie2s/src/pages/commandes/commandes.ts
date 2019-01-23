@@ -7,7 +7,6 @@ import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
-import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
 
 @IonicPage()
 @Component({

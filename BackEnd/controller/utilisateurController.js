@@ -66,15 +66,17 @@ router.get('/prestataire/:token' , function (req, res) {
 });
 
 router.put('/' , upload.single('image'),function(req, res){
+    console.log("PUT UTILISATEUR");
     var filename = "";
     if(req.file != null){
         filename = req.file.filename;
     }
+    var hash = bcrypt.hashSync(req.body.utilisateur.motDePasse,saltRounds);
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
         nomUtilisateur : req.body.utilisateur.nomUtilisateur,
-        motDePasse: req.body.utilisateur.motDePasse,
+        motDePasse: hash,
         image: filename,
         role: req.body.utilisateur.role,
         status: req.body.utilisateur.status,
@@ -88,12 +90,24 @@ router.put('/' , upload.single('image'),function(req, res){
         ville: req.body.utilisateur.ville,
         historique : []
     });
-    utilisateurBusiness.create(utilisateur);
-    notificationBusiness.newUtilisateur(utilisateur);
-    res.json({
-        success : true
-    });
-    res.end();
+
+    utilisateurBusiness.existByUsernameOrEmail(utilisateur).exec(function(err,existant){
+        console.log(existant);
+        if(existant.length > 0){
+            res.json({
+                success : false
+            });
+            res.end();
+        }
+        else{
+            utilisateurBusiness.create(utilisateur);
+            notificationBusiness.newUtilisateur(utilisateur);
+            res.json({
+                success : true
+            });
+            res.end();
+        }
+    })
 
 });
 
@@ -106,6 +120,8 @@ router.post('/image' , upload.single('image') , function (req , res) {
     utilisateurBusiness.getById(id).exec(function (err,result) {
         fs.remove('./../data/images/utilisateur/' + result.image);
         result = req.body.utilisateur;
+        var hash = bcrypt.hashSync(result.motDePasse,salt);
+        res.motDePasse = hash;
         result.image = filename;
         result.save();
         res.json({
@@ -116,7 +132,10 @@ router.post('/image' , upload.single('image') , function (req , res) {
 });
 
 router.post('/', function (req , res) {
-    utilisateurBusiness.update(req.body.utilisateur).then(function(result) {
+    var utilisateur =req.body.utilisateur;
+    var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);
+    utilisateur.motDePasse = hash;
+    utilisateurBusiness.update(utilisateur).then(function(result) {
         res.json({
             success : result.ok
         });

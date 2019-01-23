@@ -33,6 +33,10 @@ export const COMMANDE_FORFAIT_PRESTATAIRE_URL = COMMANDE_FORFAIT_URL + '/prestat
 export const COMMANDE_HORAIRE_PRESTATAIRE_URL = COMMANDE_HORAIRE_URL + '/prestataire';
 export const DEVIS_PRESTATAIRE_URL = DEVIS_URL + '/prestataire';
 
+export const MOT_DE_PASSE_OUBLIE_URL = SERVER_URL + '/motDePasseOublie';
+
+export const CHANGER_MOT_DE_PASSE_URL = SERVER_URL + '/changerMotDePasse';
+
 export const UTILISATEUR_PROFILE_URL = UTILISATEUR_URL + '/image/';
 export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
 

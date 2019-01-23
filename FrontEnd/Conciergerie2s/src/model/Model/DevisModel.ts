@@ -1,7 +1,6 @@
 import {UtilisateurModel} from "./UtilisateurModel";
 import {PrestationModel} from "./PrestationModel";
 import {CommandeStatus} from "../CommandeStatusEnum";
-import {PrestataireModel} from "./PrestataireModel";
 import {DevisPropositionModel} from "./DevisPropositionModel";
 
 export class DevisModel{

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ServiceResult} from "../../model/Result/ServiceResult";
-import {LIER_SERVICE_PRESTATION_URL, SERVICE_PRESTATION_URL, SERVICE_URL} from "../../model/Url";
+import {SERVICE_PRESTATION_URL, SERVICE_URL} from "../../model/Url";
 
 /*
   Generated class for the ServiceProvider provider.

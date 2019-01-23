@@ -19,7 +19,6 @@ router.use('/', function (req,res,next) {
                 isAllowed = true;
             }
         });
-        //console.log("Est autorise : " + isAllowed);
         next();
 
     }
@@ -45,5 +44,7 @@ router.use('/commandeHoraire', require('./commandeHoraireController'));
 router.use('/devis' , require('./devisController'));
 router.use('/commande' , require('./commandeController'));
 router.use('/paypal', require('./paypalController'));
+router.use('/motDePasseOublie', require('./motDePasseOublieController'));
+router.use('/changerMotDePasse', require('./changerMotDePasseController'));
 
 module.exports = router;

@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/FrontEnd/Conciergerie2s/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/FrontEnd/Conciergerie2s/www" />
       <excludeFolder url="file://$MODULE_DIR$/FrontEnd/Conciergerie2sAdmin/www" />
       <excludeFolder url="file://$MODULE_DIR$/FrontEnd/test/www" />
