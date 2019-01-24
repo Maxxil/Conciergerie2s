@@ -7,6 +7,19 @@ var Notification = require('../model/notificationModel');
 
 router.use(bodyParser.json());
 
+router.post('/' , function(req , res){
+    console.log('Notification controller post', req.body);
+    var promise = notificationBusiness.readBy(req.body.id, req.body.idUtilisateur);
+    promise.exec(function(err, result){              
+        res.json({
+            success : true,
+            error: Enums.Error.AUCUNE_ERREUR
+        });
+        res.end();
+    });
+});
+
+
 router.get('/:token' , function (req, res) {
     var promise = notificationBusiness.getAll();
     promise.exec(function (err, result) {      
@@ -33,17 +46,6 @@ router.get('/:id/:token', function (req, res) {
 
 
 
-router.post('/' , function(req , res){
-    console.log('Notification controller post', req);
-    var promise = notificationBusiness.readBy(req.body.id, req.body.idUtilisateur);
-    promise.exec(function(err, result){              
-        res.json({
-            success : true,
-            error: Enums.Error.AUCUNE_ERREUR
-        });
-        res.end();
-    });
-});
 
 
 router.delete('/:id' , function (req, res) {
