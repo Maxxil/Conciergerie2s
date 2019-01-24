@@ -13,7 +13,10 @@ var commandeHoraire = new mongoose.Schema({
     duree : 'Number',
     dateCreation : 'Date',
     status : 'number',
-    quantite : 'number'
+    quantite : 'number',
+    dateRealisation: 'Date',
+    note: 'Number'
+
 });
 
 commandeHoraire.plugin(autoIncrement.plugin, {model : 'CommandeHoraire', field : "compteur",startAt: 1});
