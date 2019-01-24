@@ -32,6 +32,19 @@ router.get('/:id/:token', function (req, res) {
 });
 
 
+
+router.post('/' , function(req , res){
+    var promise = notificationBusiness.readBy(req.params.id, req.body.idUtilisateur);
+    promise.exec(function(err, result){      
+        res.json({
+            success : true,
+            error: Enums.Error.AUCUNE_ERREUR
+        });
+        res.end();
+    });
+});
+
+
 router.delete('/:id' , function (req, res) {
     var id = req.params.id;
     console.log('Delete notification id'+id);

@@ -371,7 +371,7 @@ module.exports = {
     },
     prestataireC2SChoisi: function(devis) {
         console.log('***************************************');
-        console.log('Notification Prestataire choisi', devis);
+        console.log('Notification Prestataire C2S choisi', devis);
         let notification = new Notification({
             utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,
@@ -383,7 +383,7 @@ module.exports = {
         });      
         let promise = notification.save();
         promise.then(function(elt) {
-            sendPushFromNotification(elt, 3, devis);             
+            sendPushFromNotification(elt, 1, devis);             
         });
     },
     devisEvent: function(devis) {
@@ -454,7 +454,17 @@ module.exports = {
     getById: function(id){
         return Notification.findById(id);
     },   
+    readBy: function(id,idUtilisateur){
+        return Notification.findById(id, function(err, notification) {
+            if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {
+                notification.readBy.push(idUtilisateur);
+                notification.save();
+                console.log('maj '+id+' $ '+idUtilisateur);
+            }
+        });
+    }, 
     delete: function(id){
         Notification.deleteOne({_id : id}).exec();
     }
+    
 };

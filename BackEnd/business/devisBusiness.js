@@ -1,5 +1,6 @@
 var Devis = require('./../model/devisModel');
 var notificationBusiness = require('./../business/notificationBusiness');
+var Enums = require('./../helper/enums.js');
 module.exports = {
     add : function (devis) {
         devis.save().then(() => notificationBusiness.newDevis(devis));              
@@ -83,7 +84,7 @@ module.exports = {
             result[0].prixC2S = prix;            
             result[0].dateC2S = date;     
             result[0].byC2S = 1;
-            result[0].status = 2;
+            result[0].status = Enums.CommandeStatus.VALIDEE;
             result[0].save().then(() => notificationBusiness.prestataireC2SChoisi(result[0]));
         })
 

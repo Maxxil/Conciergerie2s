@@ -9,7 +9,8 @@ var notification = new mongoose.Schema({
     icon: String,
     type: 'Number',
     refId: String,
-    date : "Date"
+    date : "Date",
+    readBy : [{type : Schema.Types.ObjectId, ref : 'Utilisateur', default : []}],
 });
 
 module.exports = db.model("Notification" , notification);
