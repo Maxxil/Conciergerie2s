@@ -49,7 +49,7 @@ export class DevisPage {
   }
 
   public afficherDetailCommande(commande: DevisModel){
-    console.log(commande);
+    //console.log(commande);
     this.navCtrl.push(DevisDetailPage, {Commande : commande})
   }
 }

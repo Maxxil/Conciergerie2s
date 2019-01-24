@@ -31,8 +31,8 @@
           <p *ngIf="element.client"><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>
           <p *ngIf="element.date"><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p><br>
           <p *ngIf="element.client && element.information"text-wrap><b>Informations fournies par le client</b><br>"{{element.information}}"</p>
-          <p *ngIf="element.byC2S"><br><strong>Prestataire choisi</strong> : C2S<br><strong>Mon prix</strong> : {{element.prixC2S}} € TTC</p>
-          <p *ngIf="!element.byC2S && prestataireChoisi "><strong>Prestataire choisi </strong>: {{ prestataireChoisi.utilisateur.nom + " " + prestataireChoisi.utilisateur.prenom}}<br>
+          <p *ngIf="element.byC2S"><br><strong>Prestataire choisi </strong>: C2S</p>
+          <p *ngIf="!element.byC2S && element.prestataireChoisi "><strong>Prestataire choisi </strong>: {{ element.prestataireChoisi.utilisateur.nom + " " + element.prestataireChoisi.utilisateur.prenom}}<br>
           </p>
         </ion-card-content>
     </ion-card>    

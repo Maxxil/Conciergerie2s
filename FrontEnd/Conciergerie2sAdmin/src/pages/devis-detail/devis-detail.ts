@@ -30,12 +30,11 @@ export class DevisDetailPage {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
-
+    
     if(this.commande.prestataireChoisi) {
-      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id.toString() == this.commande.prestataireChoisi.toString()).pop();
+      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
     } 
-    console.log(this.commande);
-    console.log(this.prestataireChoisi);
+    console.log(this.prestataireChoisi); 
   
   }
  

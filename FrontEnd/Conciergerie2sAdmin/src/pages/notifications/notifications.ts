@@ -37,18 +37,36 @@ export class NotificationsPage {
         function filtrer(element) { 
           return (9 != element.type); 
         } 
+
+        function nonLu(element) {
+          return '0' == element.status;
+        }
         
         this.notifications = results.data.filter(filtrer);   
+
         
-        this.events.publish('notification:badge', { _badgeValue: this.notifications.length}) ;        
+        
+        this.events.publish('notification:badge', { _badgeValue: results.data.filter(nonLu).length}) ;        
       });
   }
 
-  ionViewDidLoad() {
+ionViewDidLoad() {
 
     console.log('ionViewDidLoad NotificationsPage');
-    this.updateNotificationList();
-  }
+    //this.updateNotificationList();
+    this.notificationProv.getAll().subscribe((results) =>{
+      function filtrer(element) { 
+        return (9 != element.type); 
+      } 
+      this.notifications = results.data.filter(filtrer);  
+      let first = this.notifications.pop();
+      this.notificationProv.readByMe(first);
+        /*this.notifications.forEach(element => {
+
+            this.notificationProv.readByMe(element);
+        });*/
+    });
+}
 
   
 delete(notification) {
