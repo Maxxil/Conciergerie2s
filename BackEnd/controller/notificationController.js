@@ -34,7 +34,8 @@ router.get('/:id/:token', function (req, res) {
 
 
 router.post('/' , function(req , res){
-    var promise = notificationBusiness.readBy(req.params.id, req.body.idUtilisateur);
+    console.log()
+    var promise = notificationBusiness.readBy(req.body.id, req.body.idUtilisateur);
     promise.exec(function(err, result){      
         res.json({
             success : true,
