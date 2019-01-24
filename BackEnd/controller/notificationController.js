@@ -7,9 +7,9 @@ var Notification = require('../model/notificationModel');
 
 router.use(bodyParser.json());
 
-router.post('/' , function(req , res){
+router.post('/:id/:IdUtilisateur' , function(req , res){
     console.log('Notification controller post', req.body);
-    var promise = notificationBusiness.readBy(req.body.id, req.body.idUtilisateur);
+    var promise = notificationBusiness.readBy(req.params.id, req.params.idUtilisateur);
     promise.exec(function(err, result){              
         res.json({
             success : true,
