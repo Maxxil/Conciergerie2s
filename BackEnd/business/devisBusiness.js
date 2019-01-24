@@ -30,11 +30,11 @@ module.exports = {
         }]);
     },
     getAll : function () {
-        return Devis.find({}).populate([{path : 'prestation'} , {path : 'client'}, {path: 'prestataireChoisi'},
-            {
-                path : 'propositions',
-                populate:
-                    {
+        return Devis.find({}).populate([
+            {path : 'prestation'} , 
+            {path : 'client'}, 
+            {path: 'prestataireChoisi', populate :{path: 'utilisateur',  select : 'nom prenom'}},
+            {path : 'propositions',populate:{
                         path : 'prestataire' ,
                         populate : {
                             path : 'utilisateur', select: 'nom prenom'

@@ -143,10 +143,10 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
             }   
         });           
 
-        let prestataireChoisi = obj.prestataireChoisi.utilisateur;        
+        
         let client = obj.client;
-       if(prestataireChoisi) {
-           
+       if(obj.prestataireChoisi) {
+            let prestataireChoisi = obj.prestataireChoisi.utilisateur;           
             pushMessage.postBody['data']  = {
                 'refid': notification.refId,
                 'type': notification.type,
