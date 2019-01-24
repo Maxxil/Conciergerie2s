@@ -455,6 +455,8 @@ module.exports = {
         return Notification.findById(id);
     },   
     readBy: function(id,idUtilisateur){
+
+        console.log('Notification business readby');
         return Notification.findById(id, function(err, notification) {
             if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {
                 notification.readBy.push(idUtilisateur);
