@@ -454,14 +454,19 @@ module.exports = {
     getById: function(id){
         return Notification.findById(id);
     },   
-    readBy: function(id,idUtilisateur){
-
-        console.log('Notification business readby');
-        return Notification.findById(id, function(err, notification) {
-            if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {
+    readBy: function(id,idUtilisateur){              
+        return Notification.findById(id, function(err, notification) {            
+            if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {                
                 notification.readBy.push(idUtilisateur);
-                notification.save();
-                console.log('maj '+id+' $ '+idUtilisateur);
+                notification.save();                
+            }
+        });
+    }, 
+    archiveBy: function(id,idUtilisateur){              
+        return Notification.findById(id, function(err, notification) {            
+            if(!err &&  notification.archiveBy.indexOf(idUtilisateur) == -1) {                
+                notification.archiveBy.push(idUtilisateur);
+                notification.save();                
             }
         });
     }, 

@@ -11,6 +11,7 @@ var notification = new mongoose.Schema({
     refId: String,
     date : "Date",
     readBy : [{type : Schema.Types.ObjectId, ref : 'Utilisateur', default : []}],
+    archiveBy : [{type : Schema.Types.ObjectId, ref : 'Utilisateur', default : []}],
 });
 
 module.exports = db.model("Notification" , notification);
