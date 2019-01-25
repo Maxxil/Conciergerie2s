@@ -17,4 +17,12 @@ export class DevisModel{
   date : Date;
   status : CommandeStatus = 1;
   dateCreation : Date;
+  dateC2S : Date;
+  prixC2S : number;
+  byC2S:  number;
+  dateReglement: Date;
+  dateRealisation: Date;
+  modepaiement: 'String';
+  note: number;
+  compteur: number;
 }

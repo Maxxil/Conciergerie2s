@@ -17,6 +17,7 @@ var devis = new mongoose.Schema({
     dateCreation : 'Date',
     status : 'Number',
     modepaiement: 'String',
+    dateReglement: 'Date',
     dateRealisation: 'Date',
     note: 'Number'
 });

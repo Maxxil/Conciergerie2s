@@ -84,7 +84,7 @@ module.exports = {
             result[0].prixC2S = prix;            
             result[0].dateC2S = date;     
             result[0].byC2S = 1;
-            result[0].status = Enums.CommandeStatus.VALIDEE;
+            result[0].status = Enums.CommandeStatus.EN_ATTENTE_PAIEMENT;
             result[0].save().then(() => notificationBusiness.prestataireC2SChoisi(result[0]));
         })
 
@@ -94,6 +94,7 @@ module.exports = {
         Devis.find({_id : idCommande}).exec(function (err, result) {
             result[0].status = status;   
             result[0].modepaiement = 'paypal';   
+            result[0].dateReglement = Date.now();            
             result[0].save().then(() => notificationBusiness.devisEvent(result[0]));
         })
     },
@@ -110,5 +111,13 @@ module.exports = {
             out.push(element._id);
         });
         return out;
+    },
+    updateDateRealisationAndNote : function (idCommande, note, dateRealisation) {
+        console.log('Update daterealisation et note du devis');
+        Devis.find({_id : idCommande}).exec(function (err, result) {
+            result[0].note = note;            
+            result[0].dateRealisation = dateRealisation; 
+            result[0].save().then(() => notificationBusiness.devisEvent(result[0]));
+        })
     }
 };

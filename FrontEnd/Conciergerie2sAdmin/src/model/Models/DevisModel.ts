@@ -19,4 +19,9 @@ export class DevisModel{
   dateCreation : Date;
   dateC2S : Date;
   prixC2S : number;
+  byC2S:  number;
+  dateReglement: Date;
+  dateRealisation: Date;
+  modepaiement: 'String';
+  note: number;
 }

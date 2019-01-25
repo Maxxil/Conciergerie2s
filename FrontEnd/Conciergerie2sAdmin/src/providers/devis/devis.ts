@@ -25,11 +25,10 @@ export class DevisProvider {
     return this.http.get<DevisResult>(DEVIS_URL + '/' + this.token);
   }
 
-  validateCommande(commande: DevisModel) : Observable<DevisResult>{
-    commande.status = CommandeStatus.VALIDEE;
+  validateCommande(commande: DevisModel) : Observable<DevisResult>{   
     console.log('Provider valdiateCommande',commande);
     return this.http.post<DevisResult>(DEVIS_CHOIX_URL,
-      {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi})
+      {idCommande : commande._id, status : CommandeStatus.EN_ATTENTE_PAIEMENT, prestataireChoisi : commande.prestataireChoisi})
   }
 
   validateCommandeC2S(commande: DevisModel) : Observable<DevisResult>{    
