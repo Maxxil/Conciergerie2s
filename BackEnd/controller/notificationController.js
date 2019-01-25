@@ -9,6 +9,19 @@ router.use(bodyParser.urlencoded({
 }));
 router.use(bodyParser.json());
 
+router.post('/:id/:idUtilisateur' , function(req , res){
+    console.log('Notification controller post', req.body);
+    var promise = notificationBusiness.readBy(req.params.id, req.params.idUtilisateur);
+    promise.exec(function(err, result){              
+        res.json({
+            success : true,
+            error: Enums.Error.AUCUNE_ERREUR
+        });
+        res.end();
+    });
+});
+
+
 router.get('/:token' , function (req, res) {
     var promise = notificationBusiness.getAll();
     promise.exec(function (err, result) {      
