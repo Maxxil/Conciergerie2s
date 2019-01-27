@@ -8,11 +8,15 @@ var devis = new mongoose.Schema({
     prestation : {type : Schema.Types.ObjectId, ref : 'Prestation'},
     propositions : [{type : Schema.Types.ObjectId, ref : 'DevisProposition', default : []}],
     prestataireChoisi : {type : Schema.Types.ObjectId, ref : 'Prestataire'},
+    prixC2S : 'Number',
+    dateC2S : 'Date',
+    byC2S: 'Number',
     information : 'String',
     heure : 'String',
     date : 'Date',
     dateCreation : 'Date',
-    status : 'number'
+    status : 'Number',
+    modepaiement: 'String'
 });
 
 devis.plugin(autoIncrement.plugin, {model : 'Devis', field : "compteur",startAt: 1,});

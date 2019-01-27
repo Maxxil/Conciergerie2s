@@ -16,5 +16,7 @@ export class DevisModel{
   heure : string;
   date : Date;
   status : CommandeStatus;
-
+  dateCreation : Date;
+  dateC2S : Date;
+  prixC2S : number;
 }

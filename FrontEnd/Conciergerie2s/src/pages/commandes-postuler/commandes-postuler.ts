@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
@@ -7,7 +7,7 @@ import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeProvider} from "../../providers/commande/commande";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 /**
  * Generated class for the CommandesPostulerPage page.
  *
@@ -22,14 +22,19 @@ import {CommandeProvider} from "../../providers/commande/commande";
 })
 export class CommandesPostulerPage {
 
-  public commandeHoraire: CommandeHoraireModel[];
-  public commandeForfait: CommandeForfaitModel[];
-  public commandeDevis: DevisModel[];
+  public commandesHoraire: CommandeHoraireModel[];
+  public commandesForfait: CommandeForfaitModel[];
+  public commandesDevis: DevisModel[];
   defautseg: string = "horaire";
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+  public currentUserId;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public commandePvd : CommandeProvider) {
+              public commandePvd : CommandeProvider, public events: Events) {
+    this.currentUserId = localStorage.getItem("IdUtilisateur");
     this.getMyCommandes();
-    console.log(localStorage.getItem("MesCommandes"));
+    events.subscribe('refresh:commande', () => {      
+      this.getMyCommandes();
+    });
   }
 
   ionViewDidLoad() {
@@ -38,18 +43,44 @@ export class CommandesPostulerPage {
   }
 
   getMyCommandes() {
+    console.log('getMyCommandes pour postuler');
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commandeHoraire = result.data.commandeHoraire;
-        this.commandeForfait = result.data.commandeForfait;
-        this.commandeDevis = result.data.devis;
+        this.commandesHoraire = result.data.commandeHoraire;
+        this.commandesForfait = result.data.commandeForfait;
+        this.commandesDevis = result.data.devis; 
       }
-    })
-
+    });
 
   }
+
+  aDejaPostule(commande){
+    var prestataires = commande.prestataires;  
+    let result = false;
+    if(prestataires.length > 0) {      
+      prestataires.forEach(element => {
+        if(element.utilisateur == localStorage.getItem('IdUtilisateur')){      
+          result=true;        
+        } 
+      });
+    }
+    return  result;
+  }  
+
+  
+  aDejaPostuleDevis(commande){
+    var propositions = commande.propositions;
+    let result = false;
+    propositions.forEach(element => {      
+      if(element.prestataire.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){
+       result=true;
+      }
+    });
+   
+    return  result;
+  }  
 
   detailCommandeHoraire(commande){
     this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande});

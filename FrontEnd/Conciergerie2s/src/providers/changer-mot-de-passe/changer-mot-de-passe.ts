@@ -20,7 +20,7 @@ export class ChangerMotDePasseProvider {
   public changerMotDePasse(email: string, code: string, nouveauMotDePasse: string) : Observable<Result>{
     var idUtilisateur = localStorage.getItem('IdUtilisateur');
     return this.http.post<Result>( CHANGER_MOT_DE_PASSE_URL, {
-      email : email, code : code, nouveauMotDePasse : nouveauMotDePasse
+      email : email, code : code, motDePasse : nouveauMotDePasse
     });
   }
 

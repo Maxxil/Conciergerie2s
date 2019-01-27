@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { LoginProvider } from '../../providers/login/login';
 import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
 import { Socket } from 'ng-socket-io';
+import { OneSignal } from '@ionic-native/onesignal';
 /**
  * Generated class for the LoginPage page.
  *
@@ -22,7 +23,7 @@ export class LoginPage {
      public navCtrl: NavController
     ,public navParams: NavParams
     ,public loginProvider: LoginProvider
-    ,public alertCtrl: AlertController , public socket: Socket) {
+    ,public alertCtrl: AlertController , public socket: Socket, private oneSignal: OneSignal) {
       this.user = new UtilisateurModel();
       this.tryConnect();
   }
@@ -37,8 +38,9 @@ export class LoginPage {
       promise.subscribe((result) => {
         if(result.success){
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
-          this.socket.emit('c2s-connect', result.user[0]);
-          this.navCtrl.push(MenuPage);
+          this.socket.emit('c2s-connect', result.user[0]);    
+         // this.pushTags(result.user[0]);
+          this.navCtrl.setRoot(MenuPage);          
         }
       })
     }
@@ -65,9 +67,19 @@ export class LoginPage {
         localStorage.setItem("IdUtilisateur" , result.user[0]._id);
         localStorage.setItem('Token', result.data);
         this.socket.emit('c2s-connect', result.user[0]);
-        this.navCtrl.push(MenuPage);
+       // this.pushTags(result.user[0]);
+       this.navCtrl.setRoot(MenuPage);        
       }
     });
   }
+
+  /*pushTags(user: UtilisateurModel) {
+    if (!(<any>window).cordova) {
+      this.oneSignal.sendTags({'username': user.nomUtilisateur, 'nom': user.nom, 'prenom': user.prenom, 'role': user.role});
+      this.oneSignal.setEmail(user.email);
+      //this.oneSignal.setExternalUserId(user._id);
+    }
+  }
+ */
 
 }

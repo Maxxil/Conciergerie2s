@@ -7,7 +7,7 @@ module.exports = {
         prestation.save();
     },
     getAll : function(){
-        return Prestation.find({});
+        return Prestation.find({}).sort('nom');
     },
     getById : function(id){
         return Prestation.findById(id);
@@ -20,9 +20,7 @@ module.exports = {
         prestationsResult.forEach(function (prestation) {
             if(prestation.prestataire.length > 0 )
             {
-                prestation.prestataire.forEach(function(prestataire){
-                    console.log("Prestataire");
-                    console.log(prestataire);
+                prestation.prestataire.forEach(function(prestataire){                
                     if(prestataire.utilisateur._id == idUtilisateur){
                         prestations.push(prestation._id);
                     }
@@ -36,15 +34,15 @@ module.exports = {
             .populate({path : "prestataire" , populate : {path : "utilisateur"}})
     },
     getWithPrestataire : function () {
-        return Prestation.find({}).populate('prestataire');
+        return Prestation.find({}).populate('prestataire').sort('nom');;
     },
     getOnlyWithPrestataires : function(){
         return Prestation.find({}).where("prestataire").ne([])
-            .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}})
+            .populate({path : "prestataire" , populate : {path : "utilisateur", select : "nom prenom"}}).sort('nom');
     },
     getByIdWithPrestataire : function (id) {
         return Prestation.find({_id : id}).populate({
-            path : "prestataire" , populate: {path : "utilisateur" , select:"nom prenom"}
+            path : "prestataire" , populate: {path : "utilisateur" , select:"nom prenom lastPlayerId"}
         });
     },
     update : function(prestation){
@@ -57,8 +55,7 @@ module.exports = {
         if(filename != ''){
             const filepath = "./data/images/prestation/" + filename;
             fs.exists(filepath, function (exist) {
-                if(exist){
-                    console.log("Exist");
+                if(exist){                   
                     fs.unlink(filepath);
                 }
             });

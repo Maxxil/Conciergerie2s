@@ -68,3 +68,23 @@ ion-card img {
     width: 80px;
     height: 80px;
 }
+
+
+span.label-title {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.list-md .item-input:last-child {
+    border: none;
+}
+
+.list-md .item-block .item-inner {
+    border: none;
+}
+
+.input.input-md {
+    padding:0 8px 0px 16px;
+    margin-left:0;  
+    margin-top:0; 
+}

@@ -14,33 +14,66 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>
-        <h1>Commander un devis</h1>
-        <h2>{{commande.prestation.nom}}</h2>
-        <h3 text-right>Statut : {{ status }}</h3>
-    </ion-list-header>
+        <ion-item>
+                <ion-avatar item-start>
+                    <img src="{{prestationImageUrl + commande.prestation.image}}">
+                  </ion-avatar>
+              <h2 text-wrap>{{commande.prestation.nom}}</h2>
+        </ion-item>
+        <ion-item>
+              Demandé le :
+              <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
+        Statut : <em>{{ status }}</em>   
+              </ion-item>
+ <!--    <ion-list-header>      
+        <h1>{{commande.prestation.nom}}</h1>
+        Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
+        Statut : <em>{{ status }}</em>        
+    </ion-list-header> -->
+    <hr>
     <ion-item>
-        <ion-label stacked>Date : </ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="commande.date" readonly></ion-datetime>
-      </ion-item>
-    <ion-item>
-      <ion-label stacked>Informations pour le devis</ion-label>
-      <ion-textarea rows="3" readonly [(ngModel)]="commande.information" id="information" name="information"></ion-textarea>
+        <p> <span  class="label-title">Date RDV: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
+        <p>
+          <span class="label-title">Client :</span><br>
+          <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
+          <span text-wrap>  Tel: {{commande.client.telephoneMobile}}</span><br>
+          <span text-wrap>Ville: {{commande.client.ville}}</span>
+        </p><br>
+        <p text-wrap> <span  class="label-title">Informations fournies par le client : </span><br>{{commande.information}}</p>
     </ion-item>
-    <div *ngIf="peutPostuler()">
-    <ion-item >
-      <ion-label stacked>Date proposée : </ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  [(ngModel)]="proposition.dateProposee"></ion-datetime>
+
+    <ion-item  *ngIf="peutPostuler() && dejapostuler">
+        <h1>  Ma proposition </h1><br>
+        <p>
+            <span class="label-title">Date proposée </span> : <em >{{proposition.dateProposee | date: 'dd/MM/yy'}}</em></p><br>
+            
+        <p><span class="label-title">Prix proposé TTC </span> : <em >{{proposition.prix }}</em> €</p>
+        
     </ion-item>
-    
-    <ion-item>
-      <ion-label staked>Prix proposé</ion-label>
-      <ion-input type="number" [(ngModel)]="proposition.prix"></ion-input>
-    </ion-item>
-  </div>
   </ion-list>
+  <ion-list  *ngIf="peutPostuler() && !dejapostuler">  
+    <br>
+      <ion-list-header>      
+          <h1> Je postule  </h1>
+      </ion-list-header> 
+    
+      <ion-item >      
+        <span item-start>Date proposée : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="proposition.dateProposee"></ion-datetime>
+      </ion-item>
+      
+      <ion-item>        
+          <span item-start>Prix proposé TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
+      </ion-item>   
+  </ion-list>
+
+  <p  *ngIf="apayer()">                  
+        <strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}} € TTC<br>
+        <strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC
+  </p>
   <div text-center>
-      <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" taupe>Postuler</button>
+      <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" [disabled]="!(proposition.dateProposee && proposition.prix)" taupe>Postuler</button>
+      <button *ngIf="apayer()" ion-button (click)="commander()"  taupe>Payer en ligne</button>
+      <button *ngIf="apayer()" ion-button (click)="commanderParCheque()"  taupe>Payer par cheque</button>
       <button ion-button (click)="annuler()" taupe>Fermer</button>
     </div>
 </ion-content>

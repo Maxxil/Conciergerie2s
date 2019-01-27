@@ -8,7 +8,7 @@ var appSettings = require('./../config/appSettings');
 
 router.use(bodyParser.json());
 
-var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
+/*var clientId = "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM";
 //var clientId = "AdXkPhOhJVr8EH2R6Xl7fZFaVgwVW6AhNB80GbWds_N9jypYh9hpfYLkzQMn-keg2InmRhWPhgkWKC-Y";
 var secret = "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM";
 //var secret = "ECf30juZefwSJd5Irfm60vllZsY6-qv5TW2JsSxNy1zPjNKrciCq6LlfaL4UY87ngDW1VpoAQi51ulzS";
@@ -18,7 +18,7 @@ paypal.configure({
     'client_id': clientId,
     'client_secret': secret
 });
-
+*/
 paypalBusiness.get().exec(function (err, result) {
     if(result.length > 0 ){
         clientId = result[0].clientId;
@@ -59,6 +59,7 @@ router.post('/' , function(req , res){
 });
 
 router.put('/createPayment', function (req, res) {
+    console.log('Create payement req : ',req.body);
     var prestation = req.body.prestation;
     amount = req.body.prix;
     var create_payment_json = {
@@ -98,6 +99,10 @@ router.put('/createPayment', function (req, res) {
             });
             res.end();
         } else {
+            
+            console.log('Payment create');
+            console.log('-----------------------------');
+            console.log(payment.links[1].href);
             res.json({
                 success: true,
                 data: payment.links[1].href
@@ -110,7 +115,8 @@ router.put('/createPayment', function (req, res) {
 
 
 router.get('/executePayment', function (req, res) {
-
+    console.log('Payment execute (1)');
+    console.log('-----------------------------');
     var payerId = req.query.PayerID;
     var execute_payment_json = {
         "payer_id": payerId,
@@ -128,6 +134,9 @@ router.get('/executePayment', function (req, res) {
         if (error) {
             throw error;
         } else {
+            console.log('Payment execute');
+            console.log('-----------------------------');
+            console.log(payment);
             // essayer de stocker dans la commande sur mongo la référence du payment généré par paypal
             res.json({
                 success : true
@@ -138,6 +147,9 @@ router.get('/executePayment', function (req, res) {
 });
 
 router.get('/cancelPayment', function (req, res) {
+    
+    console.log('Payment cancel');
+    console.log('-----------------------------');
     res.json({
         success: false
     });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController, Events} from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {Result} from "../../model/Result/Result";
@@ -25,7 +25,8 @@ export class CommandeHoraireDetailPage {
               , public commandeHorairePvd : CommandeHoraireProvider
               , public navParams: NavParams
               , public viewCtrl : ViewController,
-              public alertCtrl : AlertController) {
+              public alertCtrl : AlertController,
+              public events: Events) {
     this.commande = this.navParams.get('Commande');
     switch(this.commande.status) {
       case 1: this.status = "Envoyé"; break;
@@ -56,14 +57,15 @@ export class CommandeHoraireDetailPage {
       alert.setSubTitle('Vous avez déjà postulé.');
       alert.addButton({
         text : 'OK',
-        handler : data => {
+        handler : () => {
           this.annuler();
         }
       });
       alert.present();
     }
     else{
-      this.commandeHorairePvd.souscrirePrestataire(this.commande).subscribe(result =>{     
+      this.commandeHorairePvd.souscrirePrestataire(this.commande).subscribe(result =>{    
+        this.events.publish('refresh:commande'); 
         this.dejapostuler = true;  
         this.manageDisplaySuccessOrError(result);
       });
@@ -77,8 +79,9 @@ export class CommandeHoraireDetailPage {
 
    aDejaPostule(){
     var prestataires = this.commande.prestataires;  
+    this.dejapostuler=false; 
     prestataires.forEach(element => {
-      if(element.utilisateur._id == localStorage.getItem('IdUtilisateur')){      
+      if(element.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){      
         this.dejapostuler=true;        
       }
     });

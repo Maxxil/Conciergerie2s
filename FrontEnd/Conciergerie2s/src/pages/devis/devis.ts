@@ -7,7 +7,7 @@ import {DevisResult} from "../../model/Result/DevisResult";
 import {CommandeStatus} from "../../model/CommandeStatusEnum";
 import {PaypalProvider} from "../../providers/paypal/paypal";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 /**
  * Generated class for the DevisPage page.
  *
@@ -25,6 +25,8 @@ export class DevisPage {
   private prestation : PrestationModel;
   public devis : DevisModel;
   public today;
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+
   public loading = this.loader.create({
     spinner: 'hide',
     content: 'Loading Please Wait...'
@@ -42,15 +44,12 @@ export class DevisPage {
     this.today= new Date(); 
   }
 
-  commander(){
-    this.loading.present();
-    this.paypalPvd.payer(this.prestation.nom , 1).subscribe(result => {
-      this.iab.create(result.data);
-      this.loading.dismiss();
-      this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
-      this.devisPvd.add(this.devis).subscribe(result => {
-        this.manageDisplaySuccessOrError(result);
-      })
+  
+
+  creer() {
+    this.devis.status = CommandeStatus.EN_COURS_ANALYSE;
+    this.devisPvd.add(this.devis).subscribe(result => {
+      this.manageDisplaySuccessOrError(result);
     });
   }
 

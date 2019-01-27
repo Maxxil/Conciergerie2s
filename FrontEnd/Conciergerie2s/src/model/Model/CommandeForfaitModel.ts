@@ -14,5 +14,5 @@ export class CommandeForfaitModel{
   heureDebut : string;
   heureFin : string;
   quantite : number = 1;
-  status : CommandeStatus;
+  status : CommandeStatus = 1;
 }

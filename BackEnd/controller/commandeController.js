@@ -37,11 +37,12 @@ router.get('/:idClient/:token' , function (req, res) {
 
 router.post('/ByIdUtilisateur' , function (req, res) {
     var idUtilisateur  = req.body.idUtilisateur;
-    console.log(idUtilisateur);
+    console.log('Route Commande ByIdutilsiateur', idUtilisateur);
+    
     var prestations = [];
     prestationBusiness.getWitlPrestataireAndUtilisateur(idUtilisateur).exec(function(err,prestationsResult){
         prestations = prestationBusiness.getByIdUtilisateurInPrestataire(prestationsResult, idUtilisateur);
-        console.log(prestations);
+        
         if(prestations.length > 0)
         {
             commandeForfaitBusiness.getByListIdPrestation(prestations).exec(function (err, commandeForfait) {

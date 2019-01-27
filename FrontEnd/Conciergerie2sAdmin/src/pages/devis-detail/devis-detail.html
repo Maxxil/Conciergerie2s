@@ -13,34 +13,65 @@
 </ion-header>
 
 
-<ion-content padding>
-  <button ion-button *ngIf="isEnCours()" color="primary"  (click)="validerCommande()" icon-start> <ion-icon name="briefcase"></ion-icon>C2S</button>
-  <button ion-button item-start *ngIf="!isEnCours(element)" color="secondary">Valide</button>
-  <button ion-button  *ngIf="!isEnCours()" color="secondary">Validé</button>
-
+<ion-content>
+ 
   <ion-list>
     <ion-item>
-      <strong >{{commande.prestation.nom}}</strong><br>
-       Date: <em >{{commande.date | date: 'dd/MM/yy'}}</em><br>
-      <b>Client</b><br><span text-wrap>{{commande.client.nom + " " + commande.client.prenom}}</span><br>
-      <b>Informations</b><br><span class="commande-info-txt" text-wrap>{{commande.information}}</span>
+        <ion-avatar item-start>
+            <img src="{{prestationImageUrl + commande.prestation.image}}">
+          </ion-avatar>
+      <h2 text-wrap>{{commande.prestation.nom}}</h2>
+      </ion-item>
+<hr>
+      <ion-item>
+      <p> <span  class="label-title">Date: </span><em >{{commande.date | date: 'dd/MM/yy HH:mm'}}</em></p><br>
+      <p>
+        <span class="label-title">Client :</span><br>
+        <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
+        <span text-wrap>  Tel: {{commande.client.telephoneMobile}}</span><br>
+        <span text-wrap>Ville: {{commande.client.ville}}</span>
+      </p><br>
+      <p text-wrap> <span  class="label-title">Informations fournies par le client : </span><br>{{commande.information}}</p>
     </ion-item>
   </ion-list>
+  <hr>
+  <div *ngIf="!isEnCours()"  text-center>      
+      <button ion-button color="secondary">Prestataire choisi</button><br><br>             
+      <h2 *ngIf="prestataireChoisiExist() && !commande.byC2S"> {{ prestataireChoisi.prestataire.utilisateur.nom + " " + prestataireChoisi.prestataire.utilisateur.prenom}}</h2>
+      <p *ngIf="prestataireChoisiExist() && !commande.byC2S"><strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}} € TTC<br><strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC</p>
+      <h2 *ngIf="commande.byC2S"> Conciergerie Second Souffle</h2>       
+      <p *ngIf="commande.byC2S"><strong>Ma date</strong> : {{commande.dateC2S | date: 'dd/MM/yy'}}<br><strong>Mon prix</strong> : {{commande.prixC2S}} € TTC</p>     
+    </div>
 
+    
+    <div  *ngIf="isEnCours()"  text-center>
+      
+        <ion-list>
+         <ion-item>
+            <span  item-start>Date C2S  : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="commande.dateC2S"></ion-datetime>        
+            
+          </ion-item>  
+          <ion-item>
+            <span  item-start>Prix C2S TTC : </span><ion-input type="number" [(ngModel)]="commande.prixC2S" placeholder="votre prix"></ion-input>
 
-  <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-      <ion-list-header>Liste des prestataires ayant postulé</ion-list-header>
-    <ion-item *ngFor="let proposition of commande.propositions">
-      <ion-label>{{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
-        <br>Prix proposé : {{proposition.prix}} €
-      </ion-label><br>
-      <ion-radio [value]="prestataire"></ion-radio>
-    </ion-item>
-  </ion-list>
-
-
-
-
+          </ion-item>
+          <button ion-button color="primary"  (click)="validerCommandeC2S()" [disabled]="!(commande.dateC2S && commande.prixC2S)">JE VEUX REALISER AVEC C2S</button>      
+        </ion-list>
+        
+        
+    <br><span style="font-size:2em;">OU</span>
+    <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
+        <ion-list-header>Envoyer l'un des prestataires suivant   <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header> 
+      <hr>
+      <ion-item *ngFor="let proposition of commande.propositions">
+        <ion-label text-wrap text-xs>Nom: {{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}
+          <br>Date proposée : {{proposition.dateProposee | date: 'dd/MM/yy'}}<br>Prix proposé : {{proposition.prix}} €
+        </ion-label><br>
+        <ion-radio [value]="proposition.prestataire" (click)="validerCommande()"></ion-radio>
+        <hr>
+      </ion-item>
+    </ion-list>
+  </div>
 
 
 </ion-content>

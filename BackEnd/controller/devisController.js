@@ -5,13 +5,12 @@ var devisBusiness = require('./../business/devisBusiness');
 var Devis = require('./../model/devisModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
 var devisPropositionBusiness = require('./../business/devisPropositionBusiness');
-
+var notificationBusiness = require('./../business/notificationBusiness');
 router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
     var promise = devisBusiness.getAll();
-    promise.exec(function (err, result) {
-        console.log(result);
+    promise.exec(function (err, result) {        
         res.json({
             success : true,
             data : result
@@ -24,8 +23,7 @@ router.get('/:token' , function (req, res) {
 router.get('/:id/:token', function (req, res) {
     var promise = devisBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
-        console.log("GET BY ID - DEVIS");
-        console.log(result);
+       
         res.json({
             success : true,
             data : result
@@ -36,9 +34,51 @@ router.get('/:id/:token', function (req, res) {
 
 router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
-    var status = req.body.status;
+    var status = req.body.status;    
     var prestataireChoisi = req.body.prestataireChoisi;
     devisBusiness.updateStatus(idCommande,status,prestataireChoisi);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+router.post('/choixprestataire' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var status = req.body.status;    
+    var prestataireChoisi = req.body.prestataireChoisi;
+    devisBusiness.updateStatus(idCommande,status,prestataireChoisi);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+
+router.post('/c2s' , function (req, res) {
+    var idCommande = req.body.idCommande;
+    var prix = req.body.prix;        
+    var date = req.body.date;        
+    devisBusiness.updateC2S(idCommande,prix,date);
+    res.json({
+        success : true
+    });
+    res.end();
+});
+
+router.post('/status' , function (req, res) {
+    var idCommande = req.body.idCommande;
+  
+    if(req.body.status) {
+        var status = req.body.status;  
+        devisBusiness.updateStatusDevis(idCommande,status);
+    }
+    
+    if( req.body.modepaiement) {
+        var modepaiement = req.body.modepaiement;  
+        devisBusiness.updateModePaiement(idCommande,modepaiement);
+    }
+   // devisBusiness.updateStatusDevis(idCommande,info);
     res.json({
         success : true
     });
@@ -68,9 +108,11 @@ router.put('/', function(req, res){
         heure : req.body.commande.heure,
         date : req.body.commande.date,
         dateCreation : Date.now(),
+        byC2S: 0,
         status : req.body.commande.status
     });
     devisBusiness.add(commande);
+    
     res.json({
         success : true
     });

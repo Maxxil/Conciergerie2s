@@ -12,7 +12,7 @@ router.use(bodyParser.json());
 
 router.post('/', function(req, res){
     var promise = utilisateurBusiness.getById(req.body.id);
-    promise.exec(function(err, result){
+    promise.exec(function(err, result){        
         if(result != null){
             result[0].status = Status.status.VALIDE;
             var prestataire = new Prestataire({

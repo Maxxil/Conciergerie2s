@@ -46,5 +46,6 @@ router.use('/commande' , require('./commandeController'));
 router.use('/paypal', require('./paypalController'));
 router.use('/motDePasseOublie', require('./motDePasseOublieController'));
 router.use('/changerMotDePasse', require('./changerMotDePasseController'));
+router.use('/notification', require('./notificationController'));
 
 module.exports = router;

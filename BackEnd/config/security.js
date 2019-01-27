@@ -9,8 +9,8 @@ module.exports = {
     },
     generatePayload : function (user) {
         var name = user.nomUtilisateur;
-        var id = user._id;
-        return {nomUtilisateur : user.nomUtilisateur, _id : user._id};
+        var id = user._id;       
+        return {nomUtilisateur : user.nomUtilisateur, _id : user._id, role: user.role, playerid: user.lastPlayerId};
     },
     encryptPassword : function (password) {
         

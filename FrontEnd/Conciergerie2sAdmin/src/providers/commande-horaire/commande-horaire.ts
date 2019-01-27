@@ -26,8 +26,14 @@ export class CommandeHoraireProvider {
   }
 
   validateCommande(commande: CommandeHoraireModel) : Observable<CommandeHoraireResult>{
-    return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL,
-      {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
+
+    if(commande.prestataireChoisi) { 
+      return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL,
+        {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
+    }
+    
+    return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL,{idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : null})
+    
   }
 
 }

@@ -41,11 +41,15 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
+import { OneSignal } from '@ionic-native/onesignal';
+
 import { CHAT_URL } from '../model/Url';
 import { MotDePasseOublieProvider } from '../providers/mot-de-passe-oublie/mot-de-passe-oublie';
 import {MotDePasseOubliePage} from "../pages/mot-de-passe-oublie/mot-de-passe-oublie";
 import { ChangerMotDePasseProvider } from '../providers/changer-mot-de-passe/changer-mot-de-passe';
 import {ChangerMotDePassePage} from "../pages/changer-mot-de-passe/changer-mot-de-passe";
+
+import { NotificationProvider } from '../providers/notification/notification';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -122,7 +126,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     InAppBrowser,
     ChatService,
     MotDePasseOublieProvider,
-    ChangerMotDePasseProvider
+    ChangerMotDePasseProvider,
+    OneSignal,
+    NotificationProvider
   ]
 })
 export class AppModule {}

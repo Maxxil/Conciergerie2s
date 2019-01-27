@@ -36,35 +36,115 @@ export class SigninPage {
     console.log('ionViewDidLoad SigninPage');
   }
 
+  verifyInput(){
+    if(this.user.nom == "" || this.user.nom == null){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un nom',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
+    if(this.user.prenom == ""){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un prenom',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
+    if(this.user.email == "" || this.user.email == null){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un email',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+    if(this.user.motDePasse == null || this.user.motDePasse == ""){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un mot de passe',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
+    if(this.user.role == 0){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un role',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
+    if(this.user.nomUtilisateur == "" ){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Vous devez saisir un nom utilisateur',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
+
+    return true;
+  }
+
   signin(){
-    this.utilisateurPvd.add(this.user).subscribe((result) =>{
-      if(result.success){
-        var alert = this.alertCtrl.create({
-          title : "Succés",
-          message : "Vous avez été inscrits correctement.",
-          buttons : [
-            {
-              text : 'OK',
-              handler : () =>{
-                this.viewCtrl.dismiss();
+    if(this.verifyInput())
+    {
+      this.utilisateurPvd.add(this.user).subscribe((result) =>{
+        if(result.success){
+          var alert = this.alertCtrl.create({
+            title : "Succés",
+            message : "Vous avez été inscrits correctement.",
+            buttons : [
+              {
+                text : 'OK',
+                handler : () =>{
+                  this.viewCtrl.dismiss();
+                }
               }
-            }
-          ]
-        });
-        alert.present();
-      }
-      else{
-        this.alertCtrl.create({
-          title: 'Erreur',
-          message :"L'utilisateur que vous essayer d'inscrire existe déjà. Essayer avec un nouvel email et nouveau nom d'utilisateur",
-          buttons: [
-            {
-              text: 'OK'
-            }
-          ]
-        })
-      }
-    });
+            ]
+          });
+          alert.present();
+        }
+        else{
+          this.alertCtrl.create({
+            title: 'Erreur',
+            message :"L'utilisateur que vous essayer d'inscrire existe déjà. Essayer avec un nouvel email et nouveau nom d'utilisateur",
+            buttons: [
+              {
+                text: 'OK'
+              }
+            ]
+          }).present();
+        }
+      });
+
+    }
   }
 
 }

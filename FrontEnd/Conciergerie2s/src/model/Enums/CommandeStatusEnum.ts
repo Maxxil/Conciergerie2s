@@ -2,5 +2,10 @@ export enum CommandeStatus {
   EN_COURS_ANALYSE = 1,
   VALIDEE = 2,
   LIVREE = 3,
-  EN_COURS_VALIDATION = 4
+  EN_COURS_VALIDATION = 4,
+  EN_ATTENTE_PAIEMENT = 5,
+  REFUSEE = 6,
+  ANNULEE = 7,
+  PAYEE = 8,
+  TERMINEE = 9
 }

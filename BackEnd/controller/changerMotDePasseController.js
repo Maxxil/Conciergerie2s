@@ -12,19 +12,22 @@ router.post('/', function (req,res) {
     var email = req.body.email;
     var code = req.body.code;
     var motDePasse = req.body.motDePasse;
-    console.log(cache.get(email))
+    console.log(cache.get(email));
     if(code == cache.get(email)){
         console.log("Code correct");
         utilisateurBusiness.existByEmail(email).exec(function (err,result) {
             console.log(result);
             if(result.length>0){
                 var utilisateur = result[0];
-                utilisateur.motDePasse = motDePasse;
-                utilisateurBusiness.update(result[0]);
-                res.json({
-                    success :true
-                });
-                res.end();
+                utilisateur.motDePasse = bcrypt.hashSync( motDePasse, 10);
+                utilisateurBusiness.update(result[0]).then(function (resultUpdate) {
+                    console.log(resultUpdate);
+                    res.json({
+                        success :resultUpdate.ok
+                    });
+                    res.end();
+                })
+
             }
             else{
                 res.json({

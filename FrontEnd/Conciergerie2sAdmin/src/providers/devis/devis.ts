@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {DevisResult} from "../../model/Results/DevisResult";
-import {DEVIS_URL} from "../../model/Url";
+import {DEVIS_URL, DEVIS_C2S_URL, DEVIS_CHOIX_URL} from "../../model/Url";
 import {DevisModel} from "../../model/Models/DevisModel";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 
@@ -27,8 +27,14 @@ export class DevisProvider {
 
   validateCommande(commande: DevisModel) : Observable<DevisResult>{
     commande.status = CommandeStatus.VALIDEE;
-    return this.http.post<DevisResult>(DEVIS_URL,
-      {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
+    console.log('Provider valdiateCommande',commande);
+    return this.http.post<DevisResult>(DEVIS_CHOIX_URL,
+      {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi})
+  }
+
+  validateCommandeC2S(commande: DevisModel) : Observable<DevisResult>{    
+    return this.http.post<DevisResult>(DEVIS_C2S_URL,
+      {idCommande : commande._id, prix : commande.prixC2S, date : commande.dateC2S})
   }
 
 }

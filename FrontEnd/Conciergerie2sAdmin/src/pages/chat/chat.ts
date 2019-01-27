@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat/chat-service";
 import { Content } from 'ionic-angular';
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -20,15 +20,17 @@ export class ChatPage {
   fromUser: UserInfo;
   toUser: UserInfo;
   msgList: ChatMessage[] = [];
+  msgListCurrentUser: ChatMessage[] = [];
   profile : UtilisateurModel;
   editorMsg = '';
+  currentUserId = '';
   @ViewChild('chat_input') messageInput: ElementRef;
   @ViewChild(Content) content: Content;
   allUsersOnLine = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
-    private chatService: ChatService) {        
+    private chatService: ChatService, public alertCtrl : AlertController) {        
       // Get the navParams toUserId parameter
     
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
@@ -73,6 +75,38 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
+    // Vérification si on a  été redirigé par une notification
+    if(localStorage.getItem("chat-request") !== null) {
+
+      var chatRequest = JSON.parse(localStorage.getItem('chat-request')); 
+      
+      this.toUser = {
+        id: chatRequest['userid'],
+        name: 'Client',
+        avatar: './assets/imgs/to-user.jpg'
+      };
+
+      this.fromUser = {
+        id: localStorage.getItem('IdUtilisateur'),
+        name: 'C2S',
+        avatar: './assets/imgs/user.jpg'
+      };
+      this.allUsersOnLine.push({id: chatRequest['userid'], name: chatRequest['username']});
+      this.currentUserId = chatRequest['userid'];  
+      let newMsg: ChatMessage = {
+        messageId: Date.now().toString(),  
+        userId: this.fromUser.id,
+        userName: this.fromUser.name,
+        userAvatar: this.fromUser.avatar,
+        toUserId: this.toUser.id,
+        time: Date.now(),
+        message: 'Bonjour, quel est votre question ?',
+        status: ''
+      };
+      this.chatService.sendMsg(newMsg);
+      localStorage.removeItem('chat-request');   
+      localStorage.removeItem('redirect');
+    }
   }
 
   
@@ -91,8 +125,28 @@ export class ChatPage {
     .subscribe((message) =>
     {     
        this.pushNewMsg(message);
+    });
 
+    this.chatService.retrieveDisconnect()
+    .subscribe((message) =>
+    {     
+      console.log('user is disconnected '+message.user);
+      var user_disconnected = this.allUsersOnLine.filter(item => item.id == message.user).pop();
+      this.allUsersOnLine = this.allUsersOnLine.filter(item => item.id != message.user);
+      this.msgList = this.msgList.filter((x) => {
+        return x.userId != user_disconnected.id && x.toUserId != user_disconnected.id
+      });
 
+      this.msgListCurrentUser = this.msgListCurrentUser.filter((x) => {
+        return x.userId != user_disconnected.id && x.toUserId != user_disconnected.id
+      });
+      this.alertCtrl.create({
+        title : 'Message',
+        message : "L'utilisateur ["+user_disconnected.name+"] a quitté le chat",
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
     });
   }
 
@@ -111,18 +165,45 @@ export class ChatPage {
   }
 
   pushNewMsg(msg: ChatMessage) {
-    console.log(this.allUsersOnLine);
-    if(this.allUsersOnLine.filter(item => item.id== msg.toUserId).length == 0) {
-      if(msg.toUserId ==  this.profile._id)
-        this.allUsersOnLine.push({id: msg.toUserId, name: msg.userName});
+    console.log('pushnewMsg after retreive msg', msg);    
+    if(msg.toUserId ==  this.fromUser.id || msg.userId == this.fromUser.id) {
+      console.log(this.allUsersOnLine);
+      if(this.allUsersOnLine.filter(item => item.id== msg.userId).length == 0) {
+        if(msg.userId !=  this.profile._id) {
+          this.allUsersOnLine.push({id: msg.userId, name: msg.userName});
+          this.currentUserId = msg.userId;     
+        }
+      }
+
+      if(msg.userId !=  this.profile._id) {
+      this.toUser.id = msg.userId;
+      this.toUser.name = msg.userName;      
+      this.currentUserId = msg.userId;
+      }   
+
+      this.msgList.push(msg);
+
+      this.filter();
+
+      console.log(this.msgList);
+      this.scrollToBottom();
     }
-    this.msgList.push(msg);
-    console.log(this.msgList);
-    this.scrollToBottom();
   }
 
-  selectUser(userid) {
-    console.log('Choix utilisateur '+userid);
+  filter() {
+    this.msgListCurrentUser = this.msgList.filter((x) => {
+      return x.userId == this.currentUserId || x.toUserId == this.currentUserId
+    });
+  }
+
+  selectUser(user) {
+
+    this.toUser.id = user.id;
+    this.toUser.name = user.name;
+    this.currentUserId = user.id;
+    this.filter();
+
+    console.log('Choix utilisateur '+this.toUser.id);
   }
 
   sendMsg() {
@@ -140,6 +221,7 @@ export class ChatPage {
       message: this.editorMsg,
       status: ''
     };
+    this.currentUserId = this.toUser.id;
 
     this.chatService.sendMsg(newMsg);
        

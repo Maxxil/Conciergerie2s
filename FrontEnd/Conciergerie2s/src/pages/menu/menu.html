@@ -18,11 +18,11 @@
     <ion-row>
       <ion-list>
           <button menuClose icon-start ion-item (click)="openPageHome()"><ion-icon name="home"></ion-icon>Accueil</button>
-          <button menuClose icon-start ion-item (click)="openPagePostulerCommandes()"><ion-icon name="create"></ion-icon>Accepter des commandes</button>
+          <button *ngIf="peutPostuler" menuClose icon-start ion-item (click)="openPagePostulerCommandes()"><ion-icon name="create"></ion-icon>Accepter des commandes</button>
           <button menuClose icon-start ion-item (click)="openPageMesCommandes()"><ion-icon name="basket"></ion-icon>Mes commandes</button>
           <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
           <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="help"></ion-icon>FAQ</button>
-          <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>
+          <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>          
   
        </ion-list>
     </ion-row>
@@ -36,7 +36,8 @@
             <ion-icon name="power"></ion-icon>
           </button>
           <br><br>
-          <br><br><ion-note>v0.3</ion-note>
+          <br><br><ion-note>v0.8</ion-note>
+          <br><br><ion-note>DEV {{ serveurURL }}</ion-note>
         </ion-col>
       </ion-row>
     </ion-grid>

@@ -14,5 +14,5 @@ export class CommandeHoraireModel{
   date : Date;
   duree : number;
   status : CommandeStatus;
-
+  dateCreation : Date;
 }

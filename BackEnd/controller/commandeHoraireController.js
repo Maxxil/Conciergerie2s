@@ -64,7 +64,11 @@ router.put('/', function(req, res){
         dateCreation : Date.now(),
         status : req.body.commande.status
     });
+    
     commandeHoraireBusiness.add(commande);
+    
+
+    
     res.json({
         success : true
     });

@@ -6,6 +6,7 @@ import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {MenuPage} from "../menu/menu";
 import { Socket } from 'ng-socket-io';
 import {MotDePasseOubliePage} from "../mot-de-passe-oublie/mot-de-passe-oublie";
+import { UtilisateurProvider } from '../../providers/utilisateur/utilisateur';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,6 +27,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               , public loginPvd : LoginProvider
+              , public utilisateurPvd: UtilisateurProvider
               , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
     var token = localStorage.getItem('Token');
@@ -43,9 +45,11 @@ export class LoginPage {
           this.estConnecte = true;
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
           this.socket.emit('client-connect', result.user[0]);
-          this.navCtrl.push(MenuPage);
+          this.navCtrl.setRoot(MenuPage);
         }
       })
+    } else {
+      console.log('erreur try connect');
     }
   }
 
@@ -65,10 +69,17 @@ export class LoginPage {
         else
         {
           this.estConnecte = true;
-          localStorage.setItem("IdUtilisateur" , result.user[0]._id);
+          let user = result.user[0];
+          localStorage.setItem("IdUtilisateur" ,user._id);
           localStorage.setItem('Token', result.data);
-          this.socket.emit('client-connect', result.user[0]);
-          this.navCtrl.push(MenuPage);
+          this.socket.emit('client-connect', user);
+          this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+            let playerId = localStorage.getItem('playerID');
+            let profile = result.data[0];
+            profile.lastPlayerId = playerId;
+             this.utilisateurPvd.updateWithoutImage(profile);
+          });
+          this.navCtrl.setRoot(MenuPage);
         }
       });
   }
@@ -82,7 +93,7 @@ export class LoginPage {
   }
 
   signin(){
-    this.navCtrl.push(SigninPage);
+    this.navCtrl.setRoot(SigninPage);
   }
 
 }

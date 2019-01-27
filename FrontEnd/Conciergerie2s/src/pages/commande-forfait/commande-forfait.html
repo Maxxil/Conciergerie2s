@@ -23,7 +23,7 @@
       </ion-list-header>
     <ion-item>
       <ion-label fixed>Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.date"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  max='2030-12-31'  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.date"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure</ion-label>
@@ -37,8 +37,8 @@
   <div text-right margin>
     <span class="ttc">Total TTC : {{ prestation.prix * commandeForfait.quantite }} €</span>
 </div>
-  <div text-center>
-    <button ion-button (click)="commander()">Commander</button>
+  <div text-center>     
+    <button ion-button (click)="commander()" [disabled]="!(commandeForfait.date && commandeForfait.heureDebut && commandeForfait.quantite>0)">Commander</button>
     <button ion-button (click)="annuler()">Annuler</button>
   </div>
 </ion-content>

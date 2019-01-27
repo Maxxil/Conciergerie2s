@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeProvider} from "../../providers/commande/commande";
 import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
@@ -7,21 +7,34 @@ import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
-
+import {PRESTATION_IMAGE_URL} from "../../model/Url";
 @IonicPage()
 @Component({
   selector: 'page-commandes',
   templateUrl: 'commandes.html',
 })
 export class CommandesPage {
-  public commandeHoraire: CommandeHoraireModel[];
-  public commandeForfait: CommandeForfaitModel[];
-  public commandeDevis: DevisModel[];
+  public commandesHoraire: CommandeHoraireModel[];
+  public commandesForfait: CommandeForfaitModel[];
+  public commandesDevis: DevisModel[];
+  public currentUserId;
   defautseg: string = "horaire";
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public commandePvd : CommandeProvider) {
+              public commandePvd : CommandeProvider, public events: Events) {
+      this.currentUserId = localStorage.getItem("IdUtilisateur");
       this.getMyCommandes();
       console.log(localStorage.getItem("MesCommandes"));
+      events.subscribe('refresh:commande', () => {
+        this.getMyCommandes();
+      });
+
+      events.subscribe('notification:updated', () => {
+        this.getMyCommandes();
+      });
+
+
   }
 
   ionViewDidLoad() {
@@ -34,11 +47,11 @@ export class CommandesPage {
     this.commandePvd.getCommandesClient().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commandeHoraire = result.data.commandeHoraire;
-        this.commandeForfait = result.data.commandeForfait;
-        this.commandeDevis = result.data.devis;
+        this.commandesHoraire = result.data.commandeHoraire;
+        this.commandesForfait = result.data.commandeForfait;
+        this.commandesDevis = result.data.devis;
       }
-    })
+    });
 }
 
   detailCommandeHoraire(commande){

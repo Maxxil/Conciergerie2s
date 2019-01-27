@@ -43,7 +43,9 @@ router.get('/:token', function (req, res) {
     })
 });
 
-router.get('/id=:id/:token', function (req, res) {
+router.get('/:id/:token', function (req, res) {
+
+   // console.log('UtilistaeurController : GET Utilisateir '+req.params.id)
     var promise = utilisateurBusiness.getById(req.params.id);
     promise.exec(function(err,utilisateur){
         res.json({
@@ -55,8 +57,9 @@ router.get('/id=:id/:token', function (req, res) {
 });
 
 router.get('/prestataire/:token' , function (req, res) {
+   // console.log('UtilistaeurController : GET AllPrestataire ');
     var promise = utilisateurBusiness.getAllPrestataire();
-    promise.exec(function (err,result) {
+    promise.exec(function (err,result) {        
         res.json({
             success : true,
             data : result
@@ -76,7 +79,6 @@ router.put('/' , upload.single('image'),function(req, res){
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
         nomUtilisateur : req.body.utilisateur.nomUtilisateur,
-        motDePasse: hash,
         image: filename,
         role: req.body.utilisateur.role,
         status: req.body.utilisateur.status,
@@ -90,10 +92,10 @@ router.put('/' , upload.single('image'),function(req, res){
         ville: req.body.utilisateur.ville,
         historique : []
     });
-
     utilisateurBusiness.existByUsernameOrEmail(utilisateur).exec(function(err,existant){
         console.log(existant);
         if(existant.length > 0){
+            console.log("UTILISATEUR EXISTANT")
             res.json({
                 success : false
             });
@@ -108,7 +110,6 @@ router.put('/' , upload.single('image'),function(req, res){
             res.end();
         }
     })
-
 });
 
 router.post('/image' , upload.single('image') , function (req , res) {

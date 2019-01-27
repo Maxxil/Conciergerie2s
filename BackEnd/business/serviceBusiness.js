@@ -30,8 +30,7 @@ module.exports = {
     },
     deleteImage: function(filename){
         if(filename != ''){
-            const filepath = "./data/images/service/" + filename;
-            console.log(filepath);
+            const filepath = "./data/images/service/" + filename;         
             fs.exists(filepath, function (result) {
                 if(result){
                     fs.unlink(filepath);
@@ -58,8 +57,7 @@ module.exports = {
     },
     deletePrestation : function (idService, idPrestation) {
         console.log("Suppression lien service prestation");
-        Service.find({_id : idService}).exec(function (err, service) {
-            console.log(service);
+        Service.find({_id : idService}).exec(function (err, service) {          
             if(service[0] != null){
                 const index = service[0].prestations.indexOf(idPrestation);
                 service[0].prestations.splice(index,1);

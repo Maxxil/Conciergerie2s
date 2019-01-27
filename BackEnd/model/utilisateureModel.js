@@ -19,7 +19,8 @@ var utilisateur = new mongoose.Schema({
     entreprise: 'String',
     codepostal: 'Number',
     ville:  'String',
-    historique : [{ type: Schema.Types.ObjectId, ref: 'Historique' }]
+    historique : [{ type: Schema.Types.ObjectId, ref: 'Historique' }],
+    lastPlayerId: 'String'
 });
 
 module.exports = db.model("Utilisateur", utilisateur);

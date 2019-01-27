@@ -26,12 +26,14 @@ export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire'
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
 export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
 export const DEVIS_URL = SERVER_URL + '/devis';
+
 export const COMMANDE_URL = SERVER_URL + '/commande';
 export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 
 export const COMMANDE_FORFAIT_PRESTATAIRE_URL = COMMANDE_FORFAIT_URL + '/prestataire';
 export const COMMANDE_HORAIRE_PRESTATAIRE_URL = COMMANDE_HORAIRE_URL + '/prestataire';
 export const DEVIS_PRESTATAIRE_URL = DEVIS_URL + '/prestataire';
+export const DEVIS_STATUS_URL = DEVIS_URL + '/status';
 
 export const MOT_DE_PASSE_OUBLIE_URL = SERVER_URL + '/motDePasseOublie';
 
@@ -43,3 +45,8 @@ export const PAYPAL_URL = SERVER_URL + '/paypal/createPayment';
 export const CHAT_URL = "http://149.56.13.37:5555";
 //export const CHAT_URL = "http://localhost:5555";
 
+
+export const NOTIFICATION_URL : string = SERVER_URL + '/notification';
+
+export const sender_id = '409604466234';
+export const oneSignalAppId = 'aad95661-a550-4d68-a86b-5f72eecc22ed';

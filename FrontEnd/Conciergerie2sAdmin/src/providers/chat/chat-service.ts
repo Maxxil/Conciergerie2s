@@ -54,6 +54,21 @@ export class ChatService {
      });
   }
 
+  
+
+  retrieveDisconnect() : Observable<any>
+  {
+     return new Observable((observer) =>
+     {
+        this.socket.on('c2s-disconnect', (data) =>
+        {
+          console.log('retrieveDisconnect',data);
+           observer.next(data);
+        });
+     });
+  }
+
+
   retrieveUserOnline() : Observable<any>
   {
      return new Observable((observer) =>

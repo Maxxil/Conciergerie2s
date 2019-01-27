@@ -37,12 +37,12 @@ module.exports = {
         return Utilisateur.find({}).select("_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status role");
     },
     getAllPrestataire : function(){
-        return Utilisateur.find({}).where('role').equals(roleEnum.role.PRESTATAIRE)
-            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');
+        return Utilisateur.find({}).where('role').in([roleEnum.role.ADMIN,roleEnum.role.PRESTATAIRE]).sort('-role')
+            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status role');
     },
     getAllPrestataireValides : function () {
         return Utilisateur.find({'status' : statusEnum.status.VALIDE}).where('role').equals(roleEnum.role.PRESTATAIRE)
-            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status')
+            .select('_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status');
     },
     getById : function (id) {
         return Utilisateur.find({_id : id});

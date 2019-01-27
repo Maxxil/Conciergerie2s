@@ -19,6 +19,9 @@
         <ion-list>
             <button ion-item menuClose (click)="openPageHome()">
               Accueil
+            </button> 
+            <button icon-start ion-item menuClose (click)="openPageCommandes()"><ion-icon name="cart"></ion-icon>
+                Les commandes
             </button>
             <ion-list-header ion-item (click)="openSubMenuAFfichage()">Afficher</ion-list-header>
             <ion-list [@openClose]="isDisplayAfficher? 'open' : 'close'" [hidden]="isDisplayAfficher">
@@ -31,9 +34,7 @@
               <button icon-start ion-item menuClose (click)="openPageUtilisateur()"><ion-icon name="people"></ion-icon>
                 Tous les utilisateurs
               </button>
-              <button icon-start ion-item menuClose (click)="openPageCommandes()"><ion-icon name="cart"></ion-icon>
-                Les commandes
-              </button>
+             
             </ion-list >
             <ion-list-header ion-item (click)="openSubMenuAjouter()">Ajouter</ion-list-header>
             <ion-list [@openClose]="isDisplayAjouter? 'open' : 'close'" [hidden]="isDisplayAjouter">
@@ -57,7 +58,9 @@
             <ion-list [@openClose]="isDisplaySettings? 'open' : 'close'" [hidden]="isDisplaySettings"> 
               <button icon-start ion-item menuClose (click)="openPageValiderPrestataire()"><ion-icon name="checkmark-circle"></ion-icon>Validation Inscription prestataire</button>
               <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
+              <button icon-start ion-item menuClose (click)="openPageSetting()"><ion-icon name="cog"></ion-icon>Paramétrages</button>
              <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>
+          
             </ion-list>                        
            <!--  <button ion-item menuClose (click)="openPageDashboard()" >
               Dashboard
@@ -74,7 +77,7 @@
           <button ion-button icon-only (click)="deconnecter()">
             <ion-icon name="power"></ion-icon>
           </button>
-          <br><br><ion-note>v0.3</ion-note>
+          <br><br><ion-note>v0.8</ion-note>
       </ion-col>
       </ion-row>
     </ion-grid>

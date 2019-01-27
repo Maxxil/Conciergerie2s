@@ -28,7 +28,7 @@ export class ProfilePage {
   public isImageUpdated : boolean = false;
   public file : File;
   public role = RoleEnum;
-
+  public localId : string = "";
   constructor(public navCtrl: NavController
               , public utilisateurPvd : UtilisateurProvider
               , public paypalProvider : PaypalProvider
@@ -38,6 +38,7 @@ export class ProfilePage {
 
     this.paypal = new PaypalModel();
     this.profile = new UtilisateurModel();
+    this.localId = localStorage.getItem('IdUtilisateur');
     this.getByCurrentId();
     this.getPaypalInformation();
   }

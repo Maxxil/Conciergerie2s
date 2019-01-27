@@ -11,12 +11,8 @@ export class CommandeHoraireModel{
   prestation : PrestationModel;
   prestataires : PrestataireModel[];
   date : Date;
-  duree : number;
+  duree : number = 1;
   quantite : number = 1;
   heure : string;
-  status : CommandeStatus;
-
-  constructor() {
-    this.duree = 1;
-  }
+  status : CommandeStatus = 1;
 }

@@ -17,18 +17,26 @@
 <ion-content padding>
 
   <ion-list>
+      <ion-list-header>Liste des entreprises</ion-list-header>
     <button ion-item *ngFor="let element of prestataires">
         <ion-label> {{element.nom + " " + element.prenom}}</ion-label>
         <ion-checkbox (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)" color="secondary" checked="false"></ion-checkbox>
         <ion-checkbox (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)" color="secondary" checked="true"></ion-checkbox>
-       
-        <!-- <button (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)">
-          <ion-icon name="checkmark-circle-outline"></ion-icon>
-        </button>
-        <button (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)">
-          <ion-icon name="close-circle"></ion-icon>
-        </button> -->
     </button>
+
+    
   </ion-list>
+
+
+<!--   <ion-list>
+    <ion-list-header>Liste des administrateurs</ion-list-header>
+    <button ion-item *ngFor="let element of adminPrestataires">
+        <ion-label> {{element.nom + " " + element.prenom}}</ion-label>
+        <ion-checkbox (click)="validerPrestataire(element)" *ngIf="!estValidePrestataire(element.status)" color="secondary" checked="false"></ion-checkbox>
+        <ion-checkbox (click)="devaliderPrestataire(element)" *ngIf="estValidePrestataire(element.status)" color="secondary" checked="true"></ion-checkbox>
+    </button>
+
+    
+  </ion-list> -->
 
 </ion-content>

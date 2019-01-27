@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var commandeForfaitBusiness = require('./../business/commandeForfaitBusiness');
 var CommandeForfait = require('./../model/commandeForfaitModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
-
+var notificationBusiness = require('./../business/notificationBusiness');
 router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
@@ -65,7 +65,10 @@ router.put('/', function(req, res){
         quantite : req.body.commande.quantite,
         status : req.body.commande.status
     });
+    
     commandeForfaitBusiness.add(commande);
+    
+    
     res.json({
         success : true
     });

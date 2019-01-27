@@ -1,6 +1,9 @@
 let app = require('express')();
 let http = require('http').Server(app);
 let io = require('socket.io')(http);
+var OpenSignal = require('onesignal-node');
+
+
 var envConfig = require("./config/environnement");
 
 // Allow CORS support and remote requests to the service
@@ -21,6 +24,11 @@ app.get('/', (req, res) =>
 var numConnected = 0;
 var allConnected = [];
 var adminOnline = false;
+
+var Conciergeries2SAdmin = new OpenSignal.Client({
+  userAuthKey: '',
+  app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
+});
  
 io.on('connection', (socket) => {  
 
@@ -34,9 +42,9 @@ io.on('connection', (socket) => {
     socket.prenom = utilisateur.prenom;
     numConnected++;
     allConnected.push(utilisateur);
-    console.log("Utilisateurs :",allConnected);        
-    console.log("new client connect "+socket.nickname+' '+socket.prenom+' id:'+socket.userid);
-    console.log("nb connect "+numConnected);
+    console.log("Utilisateurs connectés :",allConnected);        
+    console.log("Nouveau client connect id:"+socket.userid);
+    console.log("Total connectés "+numConnected);
     console.log("Admin online : "+adminOnline);
    // io.emit('new-client-connect', {user: utilisateur, connected: allConnected, event: 'joined'});        
     io.emit('users-onlines', {onlines: allConnected});
@@ -54,7 +62,54 @@ io.on('connection', (socket) => {
     console.log("Utilisateurs :",allConnected);  
     console.log("Admin online : "+adminOnline);
     io.emit('users-onlines', {'onlines': allConnected});
-    io.emit('is-admin-online', {isAdminOnline: true});
+    io.emit('is-admin-online', {isAdminOnline: true, id: utilisateur._id});
+  });
+
+  
+
+  socket.on('chat-client-request', (utilisateur) => {  
+    console.log('\r\nCLIENT Request');
+    console.log('----------------------');
+    console.log(utilisateur);    
+    console.log("Admin online : "+adminOnline);
+
+    let pushMessage = new OpenSignal.Notification({      
+      headings:  {
+        en: 'Notification du chat'
+      },
+      contents: {      
+          en: utilisateur.profile.nom+' '+utilisateur.profile.prenom+ '('+utilisateur.profile.nomUtilisateur+') veut discuter avec vous'            
+      }   
+    });   
+
+    pushMessage.postBody['data']  = {    
+        'type': 'chat-request',
+        'userid': utilisateur.profile._id,
+        'username': utilisateur.profile.nomUtilisateur           
+    };
+
+    
+    //pushMessage.postBody["included_segments"] = ["Active Users"];      
+    //pushMessage.postBody["excluded_segments"] = ["Banned Users"];  
+    pushMessage.postBody["included_segments"] = ["Chat"];      
+
+   // pushMessage.postBody["include_player_ids"] = ['73001d0b-1fda-496e-aaf5-f6d97cff8e7e'];
+    console.log('PushMessage object to Admin For Chat',pushMessage);
+    	
+    Conciergeries2SAdmin.sendNotification(pushMessage, function (err, httpResponse,data) {      
+        if (err) {      
+            console.log('Something went wrong...');      
+        } else {      
+            console.log(data, httpResponse.statusCode);      
+        }      
+    });
+  });
+
+  
+  // admin est dispo
+  socket.on('c2s-chat-online', (utilisateur) => {  
+    console.log('c2s-chat-online : ', utilisateur);
+    io.emit('is-admin-online', {isAdminOnline: true, id:utilisateur});
   });
   
   // Déconnection 
@@ -64,7 +119,7 @@ io.on('connection', (socket) => {
     // Informer les utilisateurs que l'admin n'est plus en ligne
     if(adminOnline && adminOnline === socket.userid) {
         adminOnline = null;
-        io.emit('c2s-admin-disconnect');
+        io.emit('c2s-admin-disconnect',  {isAdminOnline: false});
     }  
     else {
       // Informer tous les utilsiateurs lorsqu'un utilisateur s'est déconnecté
@@ -72,13 +127,13 @@ io.on('connection', (socket) => {
       allConnected = itemsfilter;
       numConnected = itemsfilter.length;
       console.log("nb connect after disconnect "+numConnected);
-      io.emit('c2s-disconnect', {user: socket.userId, event: 'left'});   
+      io.emit('c2s-disconnect', {user: socket.userid, event: 'left'});   
     }
   }); 
   
   //  Diffusion du message 
   socket.on('new-message', (msg) => {
-    console.log(msg.message.userId+' -> '+msg.message.toUserId);
+    console.log('NEw message : '+msg.message.userId+' -> '+msg.message.toUserId);
     io.emit('message', msg.message);    
     /*let new_message =  msg.message;
     const userId = msg.message.userId;

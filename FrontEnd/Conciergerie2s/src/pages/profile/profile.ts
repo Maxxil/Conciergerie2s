@@ -23,6 +23,7 @@ export class ProfilePage {
   public confirmationMotDePasse : string = "";
   public imageProfileUrl: string = UTILISATEUR_PROFILE_URL;
   public isImageUpdated : boolean = false;
+  public playerId: string = "";
   public file : File;
   public role = RoleEnum;
   constructor(public navCtrl: NavController
@@ -32,6 +33,7 @@ export class ProfilePage {
               , public navParams: NavParams) {
 
     this.profile = new UtilisateurModel();
+    this.playerId = localStorage.getItem('playerID');
     this.getByCurrentId();
   }
 

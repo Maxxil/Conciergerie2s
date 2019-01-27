@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {DevisModel} from "../../model/Models/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
 import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
 /**
  * Generated class for the DevisPage page.
  *
@@ -20,20 +20,26 @@ import {DevisPropositionModel} from "../../model/Models/DevisPropositionModel";
 })
 export class DevisPage {
 
-  public commande : DevisModel[];
+  public commandes : DevisModel[];
   public propositions : DevisPropositionModel[];
-
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
+    ,public events: Events
     , public commandePvd : DevisProvider) {
+     
     this.getAll();
+    events.subscribe('notification:updated', () => {   
+      console.log('Event notification:updated');  
+      this.getAll();    
+    });
   }
 
   public getAll() {
     this.commandePvd.getAll().subscribe(result => {
-      if (result.success) {
-        console.log(result.success);
-        this.commande = result.data;
+      if (result.success) {     
+        this.commandes = result.data;
+        console.log(result);
       }
     })
   }

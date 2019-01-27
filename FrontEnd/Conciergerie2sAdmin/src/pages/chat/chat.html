@@ -12,16 +12,16 @@
       <div margin>          
           <ion-slides slidesPerView="5" spaceBetween="5px">
               <ion-slide *ngFor="let user of allUsersOnLine">
-                  <button ion-button class="chat-user-btn"  (click)="selectUser(user.id)" outline>{{ user.name }}</button>
+                  <button ion-button class="chat-user-btn"  [class.user-actif]="currentUserId === user.id" (click)="selectUser(user)" outline>{{ user.name }}</button>
               </ion-slide>             
             </ion-slides>
       </div>
 
       <div class="message-wrap">
     
-        <div *ngFor="let msg of msgList"
+        <div *ngFor="let msg of msgListCurrentUser"
              class="message"
-             [class.left]=" msg.userId === toUser.id "
+             [class.left]=" msg.userId === toUser.id || !toUser.id "
              [class.right]=" msg.userId === fromUser.id ">         
           <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
           <div class="msg-detail">

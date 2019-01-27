@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
 import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
-
+import { PRESTATION_IMAGE_URL } from './../../model/Url';
+/**
 /**
  * Generated class for the CommandeHorairePage page.
  *
@@ -19,25 +20,33 @@ import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-hor
 })
 export class CommandeHorairePage {
 
-  public commande : CommandeHoraireModel[];
-
+  public commandes : CommandeHoraireModel[];
+  public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   constructor(public navCtrl: NavController
     , public navParams: NavParams
+    ,public events: Events
     , public commandePvd : CommandeHoraireProvider) {
+
+      
     this.getAll();
+
+    events.subscribe('notification:updated', () => {   
+      console.log('Event notification:updated');  
+      this.getAll();    
+    });
   }
 
   public getAll(){
     this.commandePvd.getAll().subscribe(result =>{
       console.log(result);
       if(result.success){
-        this.commande = result.data;
+        this.commandes = result.data;
       }
     })
   }
 
   isEnCours(commande){
-    return commande.status == CommandeStatus.EN_COURS_ANALYSE || commande.status == CommandeStatus.EN_COURS_VALIDATION;
+    return commande.status == CommandeStatus.EN_COURS_ANALYSE;
   }
 
   public afficherDetailCommande(commande: CommandeHoraireModel){

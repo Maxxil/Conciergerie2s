@@ -2,7 +2,7 @@ import { AddPrestationPage } from './../add-prestation/add-prestation';
 import { AddServicePage } from './../add-service/add-service';
 import { ServicePage } from './../service/service';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Nav } from 'ionic-angular';
+import { NavController, NavParams, Nav, Events, Platform } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import {PrestationPage} from "../prestation/prestation";
 import {LinkServicePrestationPage} from "../link-service-prestation/link-service-prestation";
@@ -15,6 +15,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {CommandePage} from "../commande/commande";
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
+import { SettingPage } from '../setting/setting';
+import { ChatPage } from '../chat/chat';
 
 @Component({
   selector: 'page-menu',
@@ -36,11 +38,17 @@ export class MenuPage {
   public isDisplayLink : boolean = false;
   public isDisplayValider : boolean = false;
   public isDisplaySettings : boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
+  constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService, public events: Events) {
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
+  }
+
+  ionViewDidEnter() {
+    this.redirect();
   }
 
   openSubMenuValider(){
@@ -112,9 +120,43 @@ export class MenuPage {
     this.rootPage = ProfilePage;
   }
 
+  openPageSetting(){
+    this.rootPage = SettingPage;
+  }
+
+  testNotificationEvent() {
+    this.events.publish('notification:updated') ; 
+    
+  }
+
   deconnecter(){
     this.chatService.logout(); 
     localStorage.removeItem('Token');
-    this.navCtrl.push(LoginPage);
+    localStorage.removeItem("IdUtilisateur");
+    this.navCtrl.setRoot(LoginPage);
+    this.platform.exitApp();
+  }
+
+  redirect() {    
+    if(localStorage.getItem("redirect") !== null ) 
+    {
+      if(localStorage.getItem("chat-request")) {
+          this.events.publish('chat:request');  
+      }
+      
+      //if(localStorage.getItem('type'))
+    }
+   /* if(localStorage.getItem("redirect") !== null) 
+    {
+      switch(localStorage.getItem("redirect")) {
+          default: this.navCtrl.push(MenuPage);
+      }
+      //alert('push to chatpage');
+      //this.rootPage = ChatPage;
+      this.navCtrl.push(ChatPage);
+      //this.appCtrl.getRootNav().push(ChatPage);  
+      //this.navCtrl.push(ChatPage);
+    }
+    */
   }
 }

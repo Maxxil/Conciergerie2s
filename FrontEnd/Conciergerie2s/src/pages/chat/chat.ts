@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController,  } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat/chat-service";
 import { Content } from 'ionic-angular';
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -27,9 +27,12 @@ export class ChatPage {
   @ViewChild(Content) content: Content;
 
   adminIsOnline = false;
+  isConnect = false;
+  loading = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
-    private chatService: ChatService) {        
+    private chatService: ChatService, public alertCtrl : AlertController
+    , public loader : LoadingController) {        
       // Get the navParams toUserId parameter
     
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
@@ -37,7 +40,7 @@ export class ChatPage {
       
       this.fromUser = {
       id: this.profile._id,
-      name: 'Client',//navParams.get('toUserName')
+      name: this.profile.nomUtilisateur,
       avatar: './assets/imgs/user.jpg'
       };
       
@@ -46,6 +49,14 @@ export class ChatPage {
         name: 'C2S',
         avatar: './assets/imgs/to-user.jpg'
       };
+
+
+     /* this.loading = this.loader.create({
+        spinner: 'hide',
+        content: 'Loading Please Wait...',
+        dismissOnPageChange: true
+    
+      });*/
     
     });
 
@@ -76,15 +87,34 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-   /* this.chatService.getMsgList()
-      .subscribe((message) =>
-      {
+    this.isAdminOnline();
+  }
 
-         // Update the messages array
-         this.pushNewMsg(message);
-      });
-*/
+  request() {
+   /* let alert = this.alertCtrl.create({
+      title : 'Message',
+      message : "Merci de patienter",
+      buttons : [{
+        text : 'OK'
+      }]
+    });
+    
+    alert.setMessage('Connection en cours Adminonline='+this.adminIsOnline);
+    alert.present();
+    */
+   /*this.loading = this.loader.create({
+    spinner: 'hide',
+    content: 'Loading Please Wait...',
+    dismissOnPageChange: true
 
+  });*/
+  this.msgList = [];
+   this.loading = true;
+    this.chatService.request(this.profile);
+
+    
+    
+    
   }
 
   
@@ -109,13 +139,22 @@ export class ChatPage {
   }
 
   isAdminOnline() {
-
-    this.chatService.retrieveMsg()
+    this.chatService.isAdminOnline()
     .subscribe((data) =>
     {     
-       this.isAdminOnline = data.isAdminOnline;
+       this.adminIsOnline = data.isAdminOnline;              
+       this.isConnect = data.isAdminOnline;
+       try {       
+       
+        this.loading = false;
+       
+       this.toUser.id = data.id;
+
+       } catch{}
+       
     });
   }
+
 
   onFocus() {   
     this.content.resize();
@@ -132,10 +171,12 @@ export class ChatPage {
   }
 
   pushNewMsg(msg: ChatMessage) {
-    
-    this.msgList.push(msg);
-    console.log(this.msgList);
-    this.scrollToBottom();
+    console.log('pushnewMsg after retreive msg', msg);    
+    if(msg.toUserId ==  this.fromUser.id || msg.userId == this.fromUser.id) {
+      this.msgList.push(msg);
+      console.log(this.msgList);
+      this.scrollToBottom();
+    }
   }
 
   sendMsg() {

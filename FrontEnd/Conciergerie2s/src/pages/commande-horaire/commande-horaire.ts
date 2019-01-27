@@ -43,20 +43,20 @@ export class CommandeHorairePage {
   }
 
   commander(){
-    this.loading.present();
+  //  this.loading.present();
     console.log("Paiement");
-    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {
-      console.log(result.data);          
-      var browser = this.iab.create(result.data, '_self');
+  /*  this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {
+      console.log(result);          
+      var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('close').subscribe(() =>{
-        this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
+      browser.on('exit').subscribe(() =>{ */      
         this.commandeHorairePvd.add(this.commandeHoraire).subscribe(result => {
+          this.commandeHoraire.status = CommandeStatus.EN_COURS_ANALYSE;
           this.manageDisplaySuccessOrError(result);
-        });
-      });
-     
-    });
+          this.annuler();
+        });/*
+      });     
+    });*/
   }
 
   annuler(){
