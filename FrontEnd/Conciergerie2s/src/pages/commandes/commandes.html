@@ -56,10 +56,10 @@
                     <p  *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV : {{commande.date | date: 'dd/MM/yy'}}</p>
                     <p  *ngIf="commande.heure"><ion-icon name="time"></ion-icon> {{commande.heure }}</p>
                     <p  *ngIf="commande.prestataires.length == 0"><br>
-                        <ion-note>Commande en cours d'analyse</ion-note>
+                      <span ion-text style='color: blue; font-size:1em;' text-wrap>Commande en cours d'analyse</span>
                     </p> 
                     <p *ngIf="commande.prestataires.length > 0"><br>
-                      <ion-note>Intervention en préparation</ion-note>
+                      <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
                   </p> 
                     <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>  
                     </ion-item>
@@ -85,11 +85,11 @@
                 <ion-item>                  
                   <p *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV {{commande.date | date: 'dd/MM/yy'}}</p>
                 
-                <p *ngIf="commande.prestataires.length == 0"><br>
-                    <ion-note>Commande en cours d'analyse</ion-note>
+                <p *ngIf="commande.prestataires.length == 0"><br>         
+                    <span ion-text style='color: blue; font-size:1em;' text-wrap>Commande en cours d'analyse</span>
                 </p>
                 <p *ngIf="commande.prestataires.length > 0"><br>
-                  <ion-note>Intervention en préparation</ion-note>
+                  <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
               </p>  
                   <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>   
                 </ion-item> 
@@ -110,9 +110,15 @@
                 
                   <ion-card-content>                                        
                     <p *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV : {{commande.date | date: 'dd/MM/yy'}}</p>                    
-                    <p  *ngIf="commande.propositions.length == 0"><br>
-                      <ion-note>Devis en cours d'analyse</ion-note>
-                  </p> 
+                    <p  *ngIf="commande.propositions.length == 0 && commande.status == 2"><br>
+                      <span style='color: blue; font-size:1em;' text-wrap>Devis en cours d'analyse</span>
+                    </p>
+                    <p  *ngIf="commande.status == 5"><br>
+                      <span style='color: red; font-size:1em;' text-wrap>Paiement en attente</span>
+                    </p> 
+                    <p  *ngIf="commande.status == 8"><br>
+                      <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
+                    </p>
                   </ion-card-content>
               </ion-card>    
           

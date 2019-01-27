@@ -30,12 +30,11 @@ export class DevisDetailPage {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
-
+    
     if(this.commande.prestataireChoisi) {
-      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id.toString() == this.commande.prestataireChoisi.toString()).pop();
+      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
     } 
-    console.log(this.commande);
-    console.log(this.prestataireChoisi);
+    console.log(this.prestataireChoisi); 
   
   }
  
@@ -49,7 +48,10 @@ export class DevisDetailPage {
     
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
-        this.commande.status = CommandeStatus.VALIDEE;
+        this.commande.status = CommandeStatus.EN_ATTENTE_PAIEMENT;
+        if(this.commande.prestataireChoisi) {
+          this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
+        } 
         if(result.success){
        
           this.alertCtrl.create({
@@ -69,7 +71,7 @@ export class DevisDetailPage {
   public validerCommandeC2S(){
     this.commandePvd.validateCommandeC2S(this.commande).subscribe(result =>{
       if(result.success){
-        this.commande.status = CommandeStatus.VALIDEE;
+        this.commande.status = CommandeStatus.EN_ATTENTE_PAIEMENT;
         if(result.success){
        
           this.alertCtrl.create({

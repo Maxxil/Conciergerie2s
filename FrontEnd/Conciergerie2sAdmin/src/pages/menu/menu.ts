@@ -48,7 +48,7 @@ export class MenuPage {
   }
 
   ionViewDidEnter() {
-    this.redirect();
+    //this.redirect();
   }
 
   openSubMenuValider(){

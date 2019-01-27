@@ -65,15 +65,33 @@
           <span item-start>Prix proposé TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
       </ion-item>   
   </ion-list>
-
-  <p  *ngIf="apayer()">                  
-        <strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}} € TTC<br>
-        <strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC
-  </p>
+<ion-list *ngIf="apayer()" text-center>
+  <ion-item>                  
+    <strong>Date proposée définitive</strong> : {{proposition.dateProposee  | date: 'dd/MM/yy'}}<br>
+     <strong>Montant à régler</strong>  : <span style="font-size:1.5em">{{ proposition.prix }} € TTC</span>
+  </ion-item >
+</ion-list>
+<ion-list *ngIf="commande.status == 8" text-center>
+  <ion-item>                  
+    <strong>Commande n°</strong> : <span style="font-size:1.3em">{{ commande.compteur  }}</span> <br>      
+  </ion-item >
+  <ion-item>                  
+   <strong>Date proposée définitive</strong> : {{proposition.dateProposee  | date: 'dd/MM/yy'}}<br>      
+  </ion-item >
+   <ion-item>                    
+    <strong>Date règlement</strong>  : {{ commande.dateReglement | date: 'dd/MM/yy'}} <br>     
+   </ion-item >
+   <ion-item>                      
+    <strong>Mode règlement</strong>  : {{ commande.modepaiement }} <br>
+   </ion-item>    
+  <ion-item>    
+    <strong>Montant réglé</strong>  : <span style="font-size:1.5em">{{ proposition.prix }} € TTC</span>     
+   </ion-item >  
+</ion-list>
   <div text-center>
       <button *ngIf="peutPostuler() && !dejapostuler" ion-button (click)="postuler()" [disabled]="!(proposition.dateProposee && proposition.prix)" taupe>Postuler</button>
-      <button *ngIf="apayer()" ion-button (click)="commander()"  taupe>Payer en ligne</button>
-      <button *ngIf="apayer()" ion-button (click)="commanderParCheque()"  taupe>Payer par cheque</button>
+      <button *ngIf="apayer()" ion-button (click)="commander()" >Payer en ligne</button>
+      <button *ngIf="apayer()" ion-button (click)="commanderhorsligne()"  >Chèque ou espèce</button><br><br>
       <button ion-button (click)="annuler()" taupe>Fermer</button>
     </div>
 </ion-content>

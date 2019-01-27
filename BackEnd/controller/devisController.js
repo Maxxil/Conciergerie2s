@@ -69,14 +69,16 @@ router.post('/c2s' , function (req, res) {
 router.post('/status' , function (req, res) {
     var idCommande = req.body.idCommande;
   
-    if(req.body.status) {
-        var status = req.body.status;  
-        devisBusiness.updateStatusDevis(idCommande,status);
+    if(req.body.status) {        
+        devisBusiness.updateStatusDevis(idCommande, req.body.status);
     }
     
-    if( req.body.modepaiement) {
-        var modepaiement = req.body.modepaiement;  
-        devisBusiness.updateModePaiement(idCommande,modepaiement);
+    if( req.body.modepaiement) {        
+        devisBusiness.updateModePaiement(idCommande,req.body.modepaiement);
+    }
+
+    if( req.body.note) {        
+        devisBusiness.updateDateRealisationAndNote(idCommande,req.body.note, req.body.dateRealisation);
     }
    // devisBusiness.updateStatusDevis(idCommande,info);
     res.json({

@@ -53,13 +53,24 @@ export class DevisDetailPage {
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
       case 5: this.status = "En attente de paiement"; break;
+      case 8: this.status = "Réglement reçu"; break;
+    }
+ this.proposition = new DevisPropositionModel();
+    if(this.commande.prestataireChoisi) {
+      this.proposition = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
+      console.log(this.proposition);
+      //this.propositionChoisi();
+      //this.proposition.dateProposee =  this.prestataireChoisi.date
+    } 
+    else {
+   
+      if(this.commande.byC2S==1) {
+        this.proposition.prix = this.commande.prixC2S;
+        this.proposition.dateProposee =  this.commande.dateC2S;
+      }
     }
 
-    if(this.commande.prestataireChoisi) {
-      this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id.toString() == this.commande.prestataireChoisi.toString()).pop();
-    } 
-
-    this.proposition = new DevisPropositionModel();
+    console.log('PROPOSITION ',this.proposition);
     this.dejapostuler = this.aDejaPostule();    
   }
 
@@ -97,11 +108,11 @@ export class DevisDetailPage {
   }
 
   propositionChoisi() {
-    var prestataireChoisi = this.commande.prestataireChoisi;
+   // var prestataireChoisi = this.commande.prestataireChoisi;
     var propositions = this.commande.propositions;
     
     propositions.forEach(element => {      
-      if(element.prestataire.utilisateur.toString() == prestataireChoisi._id){
+      if(element.prestataire.utilisateur._id == this.prestataireChoisi._id){
         
         this.proposition = element;
       }
@@ -110,15 +121,25 @@ export class DevisDetailPage {
 
   commander(){    
    // this.loading.present();
-    this.propositionChoisi();
-    console.log(this.proposition);
     
-   /* this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
+  /* if(this.commande.byC2S==0) {
+      /// this.propositionChoisi();
+       console.log(this.proposition);
+   }
+   else {
+     this.proposition = new DevisPropositionModel();
+     this.proposition.prix = this.commande.prixC2S;
+   }*/
+
+   console.log("Paiement paypal ", this.proposition);
+    return; 
+    this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
       console.log(result);          
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('exit').subscribe(() =>{       */
+      browser.on('exit').subscribe(() =>{       
         this.devisPvd.updateStatus(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
+          this.commande.status = CommandeStatus.PAYEE;
           this.alertCtrl.create().setTitle('Succes')
               .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
               .addButton({
@@ -127,21 +148,17 @@ export class DevisDetailPage {
                 this.annuler();
               }
           }).present();          
-        });/*
+        });
       }); 
-    });*/
+    });
   }
 
-  commanderParCheque(){    
+  commanderhorsligne(){    
     // this.loading.present();
-     this.propositionChoisi();
-     console.log(this.proposition);
-     
-    /* this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
-       console.log(result);          
-       var browser = this.iab.create(result.data);
-       this.loading.dismiss();  
-       browser.on('exit').subscribe(() =>{       */
+    // this.propositionChoisi();
+     console.log("Paiement hors ligne ",this.proposition);
+     return;
+    
          this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
            this.alertCtrl.create().setTitle('Succes')
                .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
@@ -151,9 +168,7 @@ export class DevisDetailPage {
                  this.annuler();
                }
            }).present();          
-         });/*
-       }); 
-     });*/
+         });
    }
 
 

@@ -143,10 +143,10 @@ let sendPushFromNotification = (notification, receiver, obj = null)  => {
             }   
         });           
 
-        let prestataireChoisi = obj.prestataireChoisi.utilisateur;        
+        
         let client = obj.client;
-       if(prestataireChoisi) {
-           
+       if(obj.prestataireChoisi) {
+            let prestataireChoisi = obj.prestataireChoisi.utilisateur;           
             pushMessage.postBody['data']  = {
                 'refid': notification.refId,
                 'type': notification.type,
@@ -371,7 +371,7 @@ module.exports = {
     },
     prestataireC2SChoisi: function(devis) {
         console.log('***************************************');
-        console.log('Notification Prestataire choisi', devis);
+        console.log('Notification Prestataire C2S choisi', devis);
         let notification = new Notification({
             utilisateur: devis.client._id,
             statut: enums.NotificationStatus.NON_LU,
@@ -383,7 +383,7 @@ module.exports = {
         });      
         let promise = notification.save();
         promise.then(function(elt) {
-            sendPushFromNotification(elt, 3, devis);             
+            sendPushFromNotification(elt, 1, devis);             
         });
     },
     devisEvent: function(devis) {
@@ -454,7 +454,24 @@ module.exports = {
     getById: function(id){
         return Notification.findById(id);
     },   
+    readBy: function(id,idUtilisateur){              
+        return Notification.findById(id, function(err, notification) {            
+            if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {                
+                notification.readBy.push(idUtilisateur);
+                notification.save();                
+            }
+        });
+    }, 
+    archiveBy: function(id,idUtilisateur){              
+        return Notification.findById(id, function(err, notification) {            
+            if(!err &&  notification.archiveBy.indexOf(idUtilisateur) == -1) {                
+                notification.archiveBy.push(idUtilisateur);
+                notification.save();                
+            }
+        });
+    }, 
     delete: function(id){
         Notification.deleteOne({_id : id}).exec();
     }
+    
 };

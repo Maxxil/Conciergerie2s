@@ -51,31 +51,27 @@ export class MyApp {
 
   private onPushReceived(payload: OSNotificationPayload) {
    
-    var additionalData = payload.additionalData;
+    let additionalData = payload.additionalData;
     let message = payload.body; 
-    alert(message);
+   
     this.events.publish('notification:updated');
-    /*if (additionalData != null)
-    {
-      alert('Push opened additionalData type: ' + additionalData["type"]);
-    }*/
-    /*
-     OSNotificationPayload payload = notification.payload;
-            string message = payload.body;
-            Dictionary<string, object> additionalData = payload.additionalData; 
-
-            if (additionalData != null)
-            {
-                if (additionalData.ContainsKey("screenName"))
-                {
-                    pushScreenName = Convert.ToString(additionalData["screenName"]);
-                }
-                else
-                {
-                    pushScreenName = "";
-                }
-            }
-    */        
+    alert(message)
+     if (additionalData != null)
+     {     
+       switch(additionalData["type"]) {
+         case  'chat-request': 
+           localStorage.setItem('chat-request',JSON.stringify(additionalData));
+           localStorage.setItem('redirect',additionalData["type"]);
+           this.events.publish('chat:request');
+           break;
+         case NotificationEnum.NOUVELLE_COMMANDE: 
+           //this.nav.push(ChatPage);
+           //this.appCtrl.getRootNav().push(ChatPage);        
+           break;
+       
+       }      
+       //alert('Push opened additionalData: ' + additionalData);
+     }
   }
   
   private onPushOpened(payload: OSNotificationPayload) {
@@ -90,6 +86,7 @@ export class MyApp {
         case  'chat-request': 
           localStorage.setItem('chat-request',JSON.stringify(additionalData));
           localStorage.setItem('redirect',additionalData["type"]);
+          this.events.publish('chat:request');
           break;
         case NotificationEnum.NOUVELLE_COMMANDE: 
           //this.nav.push(ChatPage);

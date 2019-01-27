@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat/chat-service";
 import { Content } from 'ionic-angular';
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -30,7 +30,7 @@ export class ChatPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
-    private chatService: ChatService, public alertCtrl : AlertController) {        
+    private chatService: ChatService, public alertCtrl : AlertController, public events: Events) {        
       // Get the navParams toUserId parameter
     
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
@@ -47,6 +47,11 @@ export class ChatPage {
         name: 'Client',
         avatar: './assets/imgs/to-user.jpg'
       };
+
+      this.events.subscribe('chat:request', () => {   
+        console.log('Event Chat request');  
+        this.request();    
+      });
 
     });
 
@@ -75,38 +80,7 @@ export class ChatPage {
   }
 
   ionViewDidEnter() {
-    // Vérification si on a  été redirigé par une notification
-    if(localStorage.getItem("chat-request") !== null) {
-
-      var chatRequest = JSON.parse(localStorage.getItem('chat-request')); 
-      
-      this.toUser = {
-        id: chatRequest['userid'],
-        name: 'Client',
-        avatar: './assets/imgs/to-user.jpg'
-      };
-
-      this.fromUser = {
-        id: localStorage.getItem('IdUtilisateur'),
-        name: 'C2S',
-        avatar: './assets/imgs/user.jpg'
-      };
-      this.allUsersOnLine.push({id: chatRequest['userid'], name: chatRequest['username']});
-      this.currentUserId = chatRequest['userid'];  
-      let newMsg: ChatMessage = {
-        messageId: Date.now().toString(),  
-        userId: this.fromUser.id,
-        userName: this.fromUser.name,
-        userAvatar: this.fromUser.avatar,
-        toUserId: this.toUser.id,
-        time: Date.now(),
-        message: 'Bonjour, quel est votre question ?',
-        status: ''
-      };
-      this.chatService.sendMsg(newMsg);
-      localStorage.removeItem('chat-request');   
-      localStorage.removeItem('redirect');
-    }
+    this.request();
   }
 
   
@@ -146,9 +120,10 @@ export class ChatPage {
         buttons : [{
           text : 'OK'
         }]
-      }).present();
+      }).present();  
     });
   }
+
 
   onFocus() {   
     this.content.resize();
@@ -242,6 +217,51 @@ export class ChatPage {
 
   getMsgIndexById(id: string) {
     return this.msgList.findIndex(e => e.messageId === id)
+  }
+
+  
+  userAlreadyExist(userid) {
+    return this.allUsersOnLine.filter(item => item.id == userid).length > 0;
+  }
+
+  request() {
+    //alert('Request '+localStorage.getItem("chat-request"));
+    if(localStorage.getItem("chat-request") !== null) {
+
+      var chatRequest = JSON.parse(localStorage.getItem('chat-request')); 
+      
+      this.toUser = {
+        id: chatRequest['userid'],
+        name: 'Client',
+        avatar: './assets/imgs/to-user.jpg'
+      };
+
+      this.fromUser = {
+        id: localStorage.getItem('IdUtilisateur'),
+        name: 'C2S',
+        avatar: './assets/imgs/user.jpg'
+      };
+      //alert('Nb users : '+this.allUsersOnLine.length);
+      //alert('Test already '+this.userAlreadyExist(chatRequest['userid']));
+      if(!this.userAlreadyExist(chatRequest['userid'])) {
+        this.allUsersOnLine.push({id: chatRequest['userid'], name: chatRequest['username']});
+        let newMsg: ChatMessage = {
+          messageId: Date.now().toString(),  
+          userId: this.fromUser.id,
+          userName: this.fromUser.name,
+          userAvatar: this.fromUser.avatar,
+          toUserId: this.toUser.id,
+          time: Date.now(),
+          message: 'Bonjour, quel est votre question ?',
+          status: ''
+        };
+        this.chatService.sendMsg(newMsg);
+      }
+      this.currentUserId = chatRequest['userid'];  
+     
+      localStorage.removeItem('chat-request');   
+      localStorage.removeItem('redirect');
+    }
   }
 
   

@@ -13,7 +13,10 @@ var commandeForfait = new mongoose.Schema({
     heureFin : 'String',
     dateCreation : 'Date',
     status : 'number',
-    quantite : 'number'
+    quantite : 'number',
+    dateRealisation: 'Date',
+    note: 'Number'
+
 });
 
 commandeForfait.plugin(autoIncrement.plugin, {model : 'CommandeForfait', field : "compteur",startAt: 1});
