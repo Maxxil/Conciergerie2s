@@ -135,6 +135,7 @@ io.on('connection', (socket) => {
   socket.on('new-message', (msg) => {
     console.log('NEw message : '+msg.message.userId+' -> '+msg.message.toUserId);
     io.emit('message', msg.message);    
+    
     /*let new_message =  msg.message;
     const userId = msg.message.userId;
     const toUserId = msg.message.toUserId;
