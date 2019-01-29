@@ -67,8 +67,8 @@
   </ion-list>
 <ion-list *ngIf="apayer()" text-center>
   <ion-item>                  
-    <strong>Date proposée définitive</strong> : {{proposition.dateProposee  | date: 'dd/MM/yy'}}<br>
-     <strong>Montant à régler</strong>  : <span style="font-size:1.5em">{{ proposition.prix }} € TTC</span>
+    <p><strong>Date proposée définitive</strong><br> {{proposition.dateProposee  | date: 'dd/MM/yy'}}</p><br>
+     <p><strong>Montant à régler</strong><br><span style="font-size:1.5em">{{ proposition.prix }} € TTC</span></p>
   </ion-item >
 </ion-list>
 <ion-list *ngIf="commande.status == 8" text-center>

@@ -1,14 +1,116 @@
 <ion-header>
 
-    <ion-navbar>
-      <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-      <ion-title>Statistiques</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>Statistiques</ion-title>
+  </ion-navbar>
 
-<ion-content padding>
-  <p>
-    Affichage ici d'un résumé statistique de l'application
-  </p>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col  size="12">
+        <ion-card>
+            <ion-card-header>                
+              <ion-card-title>Chiffre d'affaire</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              <p class="chiffre">3500 €</p>
+              <ion-grid>
+                  <ion-row>
+                    <ion-col col-6>
+                        <label>Paypal</label><br>
+                      <span class="chiffre md secondary" item-end>2500 €</span>
+                    </ion-col>
+                    <ion-col col-6>
+                        <label>Cheque ou Espèce</label><br>
+                      <span class="chiffre md secondary" >1000 €</span>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>      
+            </ion-card-content>
+          </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6 fixed>
+        <ion-card>
+            <ion-card-header>                
+              <ion-card-title>Commandes</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content no-padding>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-4>
+                      <label>Total</label><br>
+                    <span class="chiffre xs primary" item-end>20</span>
+                  </ion-col>
+                  <ion-col col-4>
+                      <label>Terminé</label><br>
+                    <span class="chiffre xs secondary" >15</span>
+                  </ion-col>
+                  <ion-col col-4>
+                      <label>En cours</label><br>
+                    <span class="chiffre xs danger" >5</span>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>              
+            </ion-card-content>
+          </ion-card>
+    </ion-col>
+    <ion-col  col-6 fixed>
+        <ion-card>
+            <ion-card-header>                
+              <ion-card-title>Devis</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content no-padding>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-4>
+                        <label>Total</label><br>
+                      <span class="chiffre xs primary" item-end>10</span>
+                    </ion-col>
+                    <ion-col col-4>
+                        <label>Terminé</label><br>
+                      <span class="chiffre xs secondary" >10</span>
+                    </ion-col>
+                    <ion-col col-4>
+                        <label>En cours</label><br>
+                      <span class="chiffre xs danger" >0</span>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>              
+              </ion-card-content>
+          </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col  col-6>
+          <ion-card>
+              <ion-card-header>                
+                <ion-card-title>NB Clients</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                  <p class="chiffre">43</p>
+                </ion-card-content>
+            </ion-card>
+      </ion-col>
+      <ion-col  col-6>
+          <ion-card>
+              <ion-card-header>                
+                <ion-card-title>NB Prestataires</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content>
+                  <p class="chiffre">8</p>
+                </ion-card-content>
+            </ion-card>
+      </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

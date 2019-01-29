@@ -1,3 +1,59 @@
 page-home {
+    .card-title-md {
+        font-size: 1.2em;    
+        font-variant: all-petite-caps;
+        text-align: center;
+        color: #fff; 
+        
+    }
+
+    .card-header-md {
+        padding:0;
+        background-color: color($colors, lagon); 
+    }
+
+    .chiffre {
+        color: color($colors, taupe);
+        font-size: 2.5em;
+        font-weight: 600;
+        text-align: center;
+        
+        &.xs {
+            font-size:1.2em;    
+
+        
+        }
+
+        &.md {
+            font-size:1.8em;    
+
+        
+        }
+       
+    }
+
+    .primary {
+        color: color($colors, primary);
+    }
+
+    .secondary {
+        color: color($colors, secondary);
+    }
+
+    .danger {
+        color: color($colors, danger);
+    }
+
+    label {
+        font-size: 0.7em;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .card-content-md {
+        .col {
+            text-align: center;
+        }
+    }
 
 }

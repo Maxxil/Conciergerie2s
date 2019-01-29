@@ -132,7 +132,7 @@ export class DevisDetailPage {
    }*/
 
    console.log("Paiement paypal ", this.proposition);
-    return; 
+    
     this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
       console.log(result);          
       var browser = this.iab.create(result.data);
@@ -156,8 +156,7 @@ export class DevisDetailPage {
   commanderhorsligne(){    
     // this.loading.present();
     // this.propositionChoisi();
-     console.log("Paiement hors ligne ",this.proposition);
-     return;
+     console.log("Paiement hors ligne ",this.proposition);    
     
          this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
            this.alertCtrl.create().setTitle('Succes')
