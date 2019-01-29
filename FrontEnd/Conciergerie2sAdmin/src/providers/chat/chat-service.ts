@@ -42,6 +42,12 @@ export class ChatService {
     
   }
 
+  online(utilisateur) {
+    return new Promise(resolve =>
+      this.socket.emit('c2s-chat-online', utilisateur));
+    
+  }
+
   retrieveMsg() : Observable<any>
   {
      return new Observable((observer) =>

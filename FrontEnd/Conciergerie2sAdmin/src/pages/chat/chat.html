@@ -12,7 +12,7 @@
       <div margin>          
           <ion-slides slidesPerView="5" spaceBetween="5px">
               <ion-slide *ngFor="let user of allUsersOnLine">
-                  <button ion-button class="chat-user-btn"  [class.user-actif]="currentUserId === user.id" (click)="selectUser(user)" outline>{{ user.name }}</button>
+                  <button ion-button class="chat-user-btn"  [class.user-actif]="currentUserId === user.id" (click)="selectUser(user)" style="font-size: 8px;" outline>{{ user.name }}</button>
               </ion-slide>             
             </ion-slides>
       </div>

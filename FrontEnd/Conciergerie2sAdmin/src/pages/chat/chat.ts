@@ -255,6 +255,7 @@ export class ChatPage {
           message: 'Bonjour, quel est votre question ?',
           status: ''
         };
+        this.chatService.online(localStorage.getItem('IdUtilisateur'));
         this.chatService.sendMsg(newMsg);
       }
       this.currentUserId = chatRequest['userid'];  

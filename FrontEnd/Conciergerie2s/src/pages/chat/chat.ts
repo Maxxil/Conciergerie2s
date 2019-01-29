@@ -144,14 +144,8 @@ export class ChatPage {
     {     
        this.adminIsOnline = data.isAdminOnline;              
        this.isConnect = data.isAdminOnline;
-       try {       
-       
-        this.loading = false;
-       
-       this.toUser.id = data.id;
-
-       } catch{}
-       
+       this.loading = false;       
+       this.toUser.id = data.id;              
     });
   }
 
