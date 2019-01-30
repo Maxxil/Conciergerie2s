@@ -48,5 +48,10 @@ export const CHAT_URL = "http://149.56.13.37:5555";
 
 export const NOTIFICATION_URL : string = SERVER_URL + '/notification';
 
-export const sender_id = '409604466234';
-export const oneSignalAppId = 'aad95661-a550-4d68-a86b-5f72eecc22ed';
+/** PUSH DEV */
+/*export const sender_id = '409604466234';
+export const oneSignalAppId = 'aad95661-a550-4d68-a86b-5f72eecc22ed';*/
+
+/** PUSH PROD */
+export const sender_id = '921957537878';
+export const oneSignalAppId = 'd81fba5f-1718-4098-9df0-0666fe5c4a76';

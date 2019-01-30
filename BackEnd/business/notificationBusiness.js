@@ -5,7 +5,9 @@ var Notification = require('../model/notificationModel');
 var prestationBusiness = require('./prestationBusiness');
 var Devis = require('./../model/devisModel');
 var enums = require('./../helper/enums');
-var Conciergeries2SClient = new OpenSignal.Client({
+
+/** Onsignal DEV */
+/*var Conciergeries2SClient = new OpenSignal.Client({
     userAuthKey: '',
     app: { appAuthKey: 'MzE3ZjZkM2EtNzFjYS00NmJhLTk0MGUtMmVhYjA3MDczZGU3', appId: 'aad95661-a550-4d68-a86b-5f72eecc22ed'}
 });
@@ -13,6 +15,18 @@ var Conciergeries2SClient = new OpenSignal.Client({
 var Conciergeries2SAdmin = new OpenSignal.Client({
     userAuthKey: '',
     app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
+});*/
+
+/** Onsignal PROD */
+var Conciergeries2SClient = new OpenSignal.Client({
+    userAuthKey: '',
+    app: { appAuthKey: 'YTFkNTYzNjMtYWViZS00ZGE4LWE4OWItZGIzMGEyOWJjYzNm', appId: 'd81fba5f-1718-4098-9df0-0666fe5c4a76'}
+});
+
+
+var Conciergeries2SAdmin = new OpenSignal.Client({
+    userAuthKey: '',
+    app: { appAuthKey: 'ZWI3MDM1ZmMtMzJjMi00ZThkLWJlN2ItNWFmZmM5ZWQ1YzQ1', appId: 'affd37ee-8242-4949-b3c5-d4664533a582'}
 });
 
 let sendPushFromNotification = (notification, receiver, obj = null)  => {

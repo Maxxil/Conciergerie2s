@@ -45,7 +45,7 @@ export class MotDePasseOubliePage {
             }
           ],
           title : 'Demande envoyée',
-          message : 'Votre demande a bien été envoyé et sera traitée dans les meilleurs délais.'
+          message : 'Votre demande a bien été envoyée et sera traitée dans les meilleurs délais.'
         }).present();
         this.estAutoriseSaisieMotDePasse = true;
       }
@@ -75,7 +75,7 @@ export class MotDePasseOubliePage {
         if(result.success){
           this.alertCtrl.create({
             title : 'Confirmation',
-            message : "Votre mot de passe a été correctement ",
+            message : "Votre mot de passe a été correctement enregistré",
             buttons : [{
               text : 'OK',
               handler : () =>{

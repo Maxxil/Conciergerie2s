@@ -25,9 +25,17 @@ var numConnected = 0;
 var allConnected = [];
 var adminOnline = false;
 
-var Conciergeries2SAdmin = new OpenSignal.Client({
+/** OpenSignal DEV */
+/*var Conciergeries2SAdmin = new OpenSignal.Client({
   userAuthKey: '',
   app: { appAuthKey: 'NTNmNDc5MWYtNWU3My00MGU3LWJlM2MtYmU3NzQ4NzdkODll', appId: '00a67493-1b44-4110-b724-4d1547cc810c'}
+});*/
+
+/** OpenSignal PROD */
+
+var Conciergeries2SAdmin = new OpenSignal.Client({
+  userAuthKey: '',
+  app: { appAuthKey: 'ZWI3MDM1ZmMtMzJjMi00ZThkLWJlN2ItNWFmZmM5ZWQ1YzQ1', appId: 'affd37ee-8242-4949-b3c5-d4664533a582'}
 });
  
 io.on('connection', (socket) => {  

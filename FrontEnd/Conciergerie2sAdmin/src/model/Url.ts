@@ -39,6 +39,13 @@ export const CHAT_URL = "http://149.56.13.37:5555";
 export const NOTIFICATION_URL : string = SERVER_URL + '/notification';
 //export const CHAT_URL = "http://localhost:5555";
 
-export const sender_id = '1963361158';
+/** Onesignal DEV */
+/*export const sender_id = '1963361158';
 export const oneSignalAppId = '00a67493-1b44-4110-b724-4d1547cc810c';
+/
+
+
+/** Onesignal PROD */
+export const sender_id = '617588498652';
+export const oneSignalAppId = 'affd37ee-8242-4949-b3c5-d4664533a582';
 
