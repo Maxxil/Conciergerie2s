@@ -78,7 +78,8 @@ router.put('/' , upload.single('image'),function(req, res){
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
-        nomUtilisateur : req.body.utilisateur.nomUtilisateur,
+        nomUtilisateur : req.body.utilisateur.nomUtilisateur.toLowerCase(),
+        motDePasse: hash,
         image: filename,
         role: req.body.utilisateur.role,
         status: req.body.utilisateur.status,
@@ -122,6 +123,7 @@ router.post('/image' , upload.single('image') , function (req , res) {
         fs.remove('./../data/images/utilisateur/' + result.image);
         result = req.body.utilisateur;
         var hash = bcrypt.hashSync(result.motDePasse,salt);
+        console.log('Hash post utilisateur image');
         res.motDePasse = hash;
         result.image = filename;
         result.save();
@@ -133,9 +135,22 @@ router.post('/image' , upload.single('image') , function (req , res) {
 });
 
 router.post('/', function (req , res) {
-    var utilisateur =req.body.utilisateur;
-    var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);
+    console.log('Hash post utilisateur');
+    var utilisateur =req.body.utilisateur;    
+    var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);    
     utilisateur.motDePasse = hash;
+    utilisateurBusiness.update(utilisateur).then(function(result) {
+        res.json({
+            success : result.ok
+        });
+        res.end();
+    });
+});
+
+
+router.post('/playerid', function (req , res) {
+    console.log('update playerid');
+    var utilisateur =req.body.utilisateur;    
     utilisateurBusiness.update(utilisateur).then(function(result) {
         res.json({
             success : result.ok
