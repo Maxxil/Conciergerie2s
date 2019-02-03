@@ -10,15 +10,18 @@
   <ion-list>
     <ion-item-sliding #item  *ngFor="let element of notifications">
       <ion-item  color="light" text-wrap>
-        <ion-icon name="{{ element.icon }}" item-start></ion-icon>
-          {{ element.message }}<br>
-          <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>                                
+        <ion-icon name="{{ element.icon }}" [color]="isnotRead(element)  ? 'black' : 'secondary'" item-start></ion-icon>
+          {{ element.message }}    
+        <br>      
+        <ion-note *ngIf="element.utilisateur" text-wrap>Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>              
       </ion-item> 
+
+     
       
   
       <ion-item-options side="right">
-        <button ion-button (click)="delete(element)" icon-only color="light" item-end>
-          <ion-icon name="trash"></ion-icon>
+        <button ion-button (click)="archive(element)" icon-only color="light" item-end>
+          <ion-icon name="archive"></ion-icon>
         </button>
         <button ion-button (click)="open(element)" icon-only color="light" item-end>
           <ion-icon name="eye"></ion-icon> 

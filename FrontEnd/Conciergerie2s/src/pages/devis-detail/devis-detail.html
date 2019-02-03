@@ -73,19 +73,19 @@
 </ion-list>
 <ion-list *ngIf="commande.status == 8" text-center>
   <ion-item>                  
-    <strong>Commande n°</strong> : <span style="font-size:1.3em">{{ commande.compteur  }}</span> <br>      
+    <strong>Commande n°</strong> : <span style="font-size:1.3em">{{ commande.compteur  }}</span>
   </ion-item >
   <ion-item>                  
-   <strong>Date proposée définitive</strong> : {{proposition.dateProposee  | date: 'dd/MM/yy'}}<br>      
+   <strong>Date RDV DEFINITIVE</strong> :<br> {{proposition.dateProposee  | date: 'dd/MM/yy'}}
   </ion-item >
    <ion-item>                    
-    <strong>Date règlement</strong>  : {{ commande.dateReglement | date: 'dd/MM/yy'}} <br>     
+    <strong>Date règlement</strong>  : <br>{{ commande.dateReglement | date: 'dd/MM/yy'}}
    </ion-item >
    <ion-item>                      
-    <strong>Mode règlement</strong>  : {{ commande.modepaiement }} <br>
+    <strong>Mode règlement</strong>  : <br>{{ commande.modepaiement }}
    </ion-item>    
   <ion-item>    
-    <strong>Montant réglé</strong>  : <span style="font-size:1.5em">{{ proposition.prix }} € TTC</span>     
+    <strong>Montant réglé</strong>  : <br><span style="font-size:1.5em">{{ proposition.prix }} € TTC</span>     
    </ion-item >  
 </ion-list>
   <div text-center>

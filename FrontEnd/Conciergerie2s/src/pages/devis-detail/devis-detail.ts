@@ -137,9 +137,11 @@ export class DevisDetailPage {
       console.log(result);          
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('exit').subscribe(() =>{       
+      browser.on('exit').subscribe(() =>{ 
+            
         this.devisPvd.updateStatus(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
           this.commande.status = CommandeStatus.PAYEE;
+          this.commande.dateReglement = Date.now();  
           this.alertCtrl.create().setTitle('Succes')
               .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
               .addButton({

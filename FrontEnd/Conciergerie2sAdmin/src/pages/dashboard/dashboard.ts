@@ -5,6 +5,7 @@ import {NotificationsPage} from "../notifications/notifications";
 import {ChatPage} from "../chat/chat";
 
 import { NotificationProvider } from '../../providers/notification/notification';
+import { NotificationModel } from '../../model/Models/NotificationModel';
 
 /**
  * Generated class for the DashboardPage page.
@@ -57,16 +58,13 @@ export class DashboardPage {
    
   }
 
-  filtrerNotification(element) { 
-    return (9 != element.type); 
+  filtrerNotification(element: NotificationModel) { 
+    return (9 != element.type && !element.readBy.some(x => x.toString() == localStorage.getItem('IdUtilisateur'))); 
   } 
 
   updateNotificationBadge() {
     this.notificationProv.getAll().subscribe((results) =>{
-      console.log(results);
-  
-      this.totalNotification = results.data.filter(this.filtrerNotification).length; 
-      console.log('total notification maj '+this.totalNotification)  ;     
+      this.totalNotification = results.data.filter(this.filtrerNotification).length;       
     });  
   }
 

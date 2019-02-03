@@ -5,6 +5,7 @@ import {TabsPage} from "../tabs/tabs";
 import {CommandesPage} from "../commandes/commandes";
 import {LoginPage} from "../login/login";
 import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
+import {MesCommandesPostuleesPage} from "../mes-commandes-postulees/mes-commandes-postulees";
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
@@ -37,7 +38,7 @@ export class MenuPage {
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
         console.log('send maj playerid', profile);
-        this.utilisateurPvd.updateWithoutImage(profile);      
+        this.utilisateurPvd.updateLastPlayerId(profile);      
         this.peutPostuler = profile.role == 2;
     }
       
@@ -56,7 +57,7 @@ export class MenuPage {
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
         
-        this.utilisateurPvd.updateWithoutImage(profile).subscribe(result =>{ 
+        this.utilisateurPvd.updateLastPlayerId(profile).subscribe(result =>{ 
           console.log('Result udpate profile : ',result);
         });      
         this.peutPostuler = profile.role == 2;
@@ -70,7 +71,13 @@ export class MenuPage {
   }
 
   openPagePostulerCommandes(){
+    
     this.rootPage = CommandesPostulerPage;
+  }
+
+  openPageCommandesPostulees(){
+
+    this.rootPage = MesCommandesPostuleesPage;
   }
 
   openPageMesCommandes(){

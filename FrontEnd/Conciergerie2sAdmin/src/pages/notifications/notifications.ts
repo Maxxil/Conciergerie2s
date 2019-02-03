@@ -34,19 +34,9 @@ export class NotificationsPage {
   updateNotificationList() {
       this.notificationProv.getAll().subscribe((results) =>{
 
-        function filtrer(element) { 
-          return (9 != element.type); 
-        } 
-
-        function nonLu(element) {
-          return '0' == element.status;
-        }
-        
-        this.notifications = results.data.filter(filtrer);   
-
-        
-        
-        this.events.publish('notification:badge', { _badgeValue: results.data.filter(nonLu).length}) ;        
+        this.notifications = results.data.filter(this.isnotArchived);   
+              
+        this.events.publish('notification:badge', { _badgeValue: results.data.filter(this.isnotRead).length}) ;        
       });
   }
 
@@ -55,29 +45,51 @@ ionViewDidLoad() {
     console.log('ionViewDidLoad NotificationsPage');
     //this.updateNotificationList();
     this.notificationProv.getAll().subscribe((results) =>{
-      function filtrer(element) { 
-        return (9 != element.type); 
-      } 
-      this.notifications = results.data.filter(filtrer);  
-      let first = this.notifications.pop();
-      this.notificationProv.readByMe(first);
-        /*this.notifications.forEach(element => {
-
-            this.notificationProv.readByMe(element);
-        });*/
+      
+      this.notifications = results.data.filter(this.isnotArchived); 
+      
     });
 }
 
-  
-delete(notification) {
-  console.log(notification);
-   this.notificationProv.delete(notification).subscribe((result) =>{    
-    this.events.publish('notification:updated');
+isnotArchived(element: NotificationModel) {
+  if(element.archiveBy.length)
+    return (9 != element.type) && (!element.archiveBy.some(x => x.toString() == localStorage.getItem('IdUtilisateur')));
+  else
+    return (9 != element.type);
+}
+
+
+isnotRead(element: NotificationModel) {
+  //console.log(element);
+  if(element.readBy.length)
+    return (9 != element.type && !element.readBy.some(x => x.toString() == localStorage.getItem('IdUtilisateur')));
+  else
+    return (9 != element.type);
+}
+
+archive(notification) {  
+   this.notificationProv.archiveByMe(notification).subscribe(() =>{    
+     notification.status = "1";
+     notification.readBy.push(localStorage.getItem('IdUtilisateur'));
+     let nb = this.notifications.filter(this.isnotRead).length;     
+     this.events.publish('notification:badge', { _badgeValue: nb}) ;            
   });
 }
 
-open(notification) {
-  console.log('Open notification:',notification);
+  
+delete(notification) {  
+   this.notificationProv.delete(notification).subscribe(() =>{        
+    let nb = this.notifications.filter(this.isnotArchived).length;    
+    this.events.publish('notification:badge', { _badgeValue: nb}) ; 
+  });
+}
+
+open(notification) {  
+  this.notificationProv.readByMe(notification).subscribe((reult) =>{    
+    notification.readBy.push(localStorage.getItem('IdUtilisateur'));
+    let nb = this.notifications.filter(this.isnotRead).length;    
+    this.events.publish('notification:badge', { _badgeValue: nb}) ; 
+  });
 } 
 
 

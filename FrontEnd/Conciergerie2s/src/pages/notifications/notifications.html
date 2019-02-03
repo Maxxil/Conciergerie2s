@@ -12,7 +12,8 @@
           <ion-item  color="light" text-wrap>
             <ion-icon name="{{ element.icon }}" item-start></ion-icon>
               {{ element.message }}<br>
-              <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note>                                
+              <ion-note *ngIf="element.utilisateur">Client : {{ element.utilisateur.nom}} {{element.utilisateur.prenom}}</ion-note> 
+              <ion-note item-end>{{ element.date | date: 'dd/MM/yy HH:mm'}}</ion-note>                                  
           </ion-item> 
           
       

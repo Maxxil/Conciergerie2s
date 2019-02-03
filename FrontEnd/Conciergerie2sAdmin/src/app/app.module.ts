@@ -52,6 +52,7 @@ import { OneSignal } from '@ionic-native/onesignal';
 
 import { CHAT_URL } from '../model/Url';
 import { NotificationProvider } from '../providers/notification/notification';
+import { StatistiqueProvider } from '../providers/statistique/statistique';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -137,7 +138,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandeProvider,
     PaypalProvider,
     OneSignal,
-    NotificationProvider
+    NotificationProvider,
+    StatistiqueProvider
   ]
 })
 export class AppModule {}

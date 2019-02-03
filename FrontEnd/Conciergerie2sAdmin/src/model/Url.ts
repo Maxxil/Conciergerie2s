@@ -37,6 +37,7 @@ export const PAYPAL_URL = SERVER_URL + '/paypal';
 export const CHAT_URL = "http://149.56.13.37:5555";
 
 export const NOTIFICATION_URL : string = SERVER_URL + '/notification';
+export const STATISTIQUE_URL : string = SERVER_URL + '/statistique';
 //export const CHAT_URL = "http://localhost:5555";
 
 /** Onesignal DEV */

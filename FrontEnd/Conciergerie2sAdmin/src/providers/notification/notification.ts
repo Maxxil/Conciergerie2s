@@ -27,9 +27,15 @@ export class NotificationProvider {
   public readByMe(notification: NotificationModel) : Observable<NotificationResult>{
     console.log('ReadBy me ', notification);
     //this.token = localStorage.getItem('Token');    
-    return this.http.post<NotificationResult>(NOTIFICATION_URL, {id: notification._id, idUtilisateur: localStorage.getItem('IdUtilisateur')});
+    return this.http.post<NotificationResult>(NOTIFICATION_URL+'/readby', {id: notification._id, idUtilisateur: localStorage.getItem('IdUtilisateur')});
   }
 
+  
+  public archiveByMe(notification: NotificationModel) : Observable<NotificationResult>{
+    console.log('ArchiveBy me ', notification);
+    //this.token = localStorage.getItem('Token');    
+    return this.http.post<NotificationResult>(NOTIFICATION_URL+'/archiveby', {id: notification._id, idUtilisateur: localStorage.getItem('IdUtilisateur')});
+  }
   
 
   public delete(notification: NotificationModel): any {

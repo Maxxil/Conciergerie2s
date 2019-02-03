@@ -32,8 +32,14 @@ export class UtilisateurProvider {
   }
 
   updateWithoutImage(utilisateur: UtilisateurModel): Observable<Result>{
+    console.log('updatewithoutimage');
     return this.http.post<Result>(UTILISATEUR_URL , {utilisateur : utilisateur, token : this.token});
   }
+
+  updateLastPlayerId(utilisateur: UtilisateurModel): Observable<Result>{
+    console.log('updatelastplayerid');
+    return this.http.post<Result>(UTILISATEUR_URL+'/playerid' , {utilisateur : utilisateur});
+  }  
 
   updateWithImage(utilisateur: UtilisateurModel, image: File): Observable<Result>{
     const formData = new FormData();

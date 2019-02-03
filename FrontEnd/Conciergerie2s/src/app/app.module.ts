@@ -36,6 +36,7 @@ import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/comman
 import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postuler";
+import {MesCommandesPostuleesPage} from "../pages/mes-commandes-postulees/mes-commandes-postulees";
 import { PaypalProvider } from '../providers/paypal/paypal';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 
@@ -76,7 +77,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     DevisDetailPage,
     CommandesPostulerPage,
     MotDePasseOubliePage,
-    ChangerMotDePassePage
+    ChangerMotDePassePage,
+    MesCommandesPostuleesPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     DevisDetailPage,
     CommandesPostulerPage,
     MotDePasseOubliePage,
-    ChangerMotDePassePage
+    ChangerMotDePassePage,
+    MesCommandesPostuleesPage
   ],
   providers: [
     StatusBar,

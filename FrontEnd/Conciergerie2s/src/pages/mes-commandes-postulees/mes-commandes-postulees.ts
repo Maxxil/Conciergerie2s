@@ -8,8 +8,9 @@ import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeProvider} from "../../providers/commande/commande";
 import {PRESTATION_IMAGE_URL} from "../../model/Url";
+
 /**
- * Generated class for the CommandesPostulerPage page.
+ * Generated class for the MesCommandesPostuleesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -17,11 +18,12 @@ import {PRESTATION_IMAGE_URL} from "../../model/Url";
 
 @IonicPage()
 @Component({
-  selector: 'page-commandes-postuler',
-  templateUrl: 'commandes-postuler.html',
+  selector: 'page-mes-commandes-postulees',
+  templateUrl: 'mes-commandes-postulees.html',
 })
-export class CommandesPostulerPage {
+export class MesCommandesPostuleesPage {
 
+  
   public commandesHoraire: CommandeHoraireModel[];
   public commandesForfait: CommandeForfaitModel[];
   public commandesDevis: DevisModel[];
@@ -30,13 +32,13 @@ export class CommandesPostulerPage {
   public currentUserId;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public commandePvd : CommandeProvider, public events: Events) {
-    this.currentUserId = localStorage.getItem("IdUtilisateur");
+    this.currentUserId = localStorage.getItem("IdUtilisateur");    
     this.getMyCommandes();
     events.subscribe('refresh:commande', () => {      
       this.getMyCommandes();
     });
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommandesPage');
     this.getMyCommandes();
@@ -44,32 +46,30 @@ export class CommandesPostulerPage {
 
   getMyCommandes() {
     console.log('getMyCommandes pour postuler');
+    
     /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
       console.log(result);
       if(result.success){
+        
         this.commandesHoraire = result.data.commandeHoraire.filter(
-          x => !x.prestataires.some( 
+          x => x.prestataires.some( 
             p => p.utilisateur == this.currentUserId
           )
         );
-       
         
-
         this.commandesForfait = result.data.commandeForfait.filter(
-          x => !x.prestataires.some( 
+          x => x.prestataires.some( 
             p => p.utilisateur == this.currentUserId
           )
         );
         
         this.commandesDevis = result.data.devis.filter(
-          x => !x.propositions.some(
+          x => x.propositions.some(
             p => p.prestataire.utilisateur.toString() == this.currentUserId
             )
-        ); 
-
-
-
+        );      
+        
       }
     });
 
@@ -80,7 +80,7 @@ export class CommandesPostulerPage {
     let result = false;
     if(prestataires.length > 0) {      
       prestataires.forEach(element => {
-        if(element.utilisateur == localStorage.getItem('IdUtilisateur')){      
+        if(element.utilisateur == this.currentUserId){      
           result=true;        
         } 
       });
@@ -93,7 +93,7 @@ export class CommandesPostulerPage {
     var propositions = commande.propositions;
     let result = false;
     propositions.forEach(element => {      
-      if(element.prestataire.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){
+      if(element.prestataire.utilisateur.toString() == this.currentUserId){
        result=true;
       }
     });
@@ -112,5 +112,6 @@ export class CommandesPostulerPage {
   detailDevis(commande){
     this.navCtrl.push(DevisDetailPage, {Commande :commande});
   }
+
 
 }

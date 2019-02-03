@@ -18,7 +18,18 @@
     <ion-row>
       <ion-list>
           <button menuClose icon-start ion-item (click)="openPageHome()"><ion-icon name="home"></ion-icon>Accueil</button>
-          <button *ngIf="peutPostuler" menuClose icon-start ion-item (click)="openPagePostulerCommandes()"><ion-icon name="create"></ion-icon>Accepter des commandes</button>
+          <ion-item-divider *ngIf="peutPostuler">
+            <ion-label>
+              Prestataire
+            </ion-label>
+          </ion-item-divider>          
+          <button *ngIf="peutPostuler" menuClose icon-start ion-item (click)="openPagePostulerCommandes()"><ion-icon name="create"></ion-icon>Postuler</button>
+          <button *ngIf="peutPostuler" menuClose icon-start ion-item (click)="openPageCommandesPostulees()"><ion-icon name="filing"></ion-icon>Commandes postulées</button>
+          <ion-item-divider>
+            <ion-label>
+              Client
+            </ion-label>
+          </ion-item-divider> 
           <button menuClose icon-start ion-item (click)="openPageMesCommandes()"><ion-icon name="basket"></ion-icon>Mes commandes</button>
           <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
           <button menuClose icon-start ion-item (click)="openPageProfile()"><ion-icon name="help"></ion-icon>FAQ</button>
@@ -36,7 +47,7 @@
             <ion-icon name="power"></ion-icon>
           </button>
           <br><br>
-          <br><br><ion-note>v0.9.0</ion-note>
+          <br><br><ion-note>v0.9.1</ion-note>
           <br><br><ion-note>DEV {{ serveurURL }}</ion-note>
         </ion-col>
       </ion-row>

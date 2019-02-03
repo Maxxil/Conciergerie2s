@@ -38,7 +38,7 @@
   <div *ngIf="!isEnCours()"  text-center>      
       <button ion-button color="secondary">Prestataire choisi</button><br><br>             
       <h2 *ngIf="prestataireChoisiExist() && commande.byC2S == 0"> {{ prestataireChoisi.prestataire.utilisateur.nom + " " + prestataireChoisi.prestataire.utilisateur.prenom}}</h2>
-      <p *ngIf="prestataireChoisiExist() && commande.byC2S == 0"><strong>Date proposée</strong> : {{prestataireChoisi.date  | date: 'dd/MM/yy'}}<br><strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC</p>
+      <p *ngIf="prestataireChoisiExist() && commande.byC2S == 0"><strong>Date RDV DEFINITIVE</strong> :<br> {{prestataireChoisi.dateProposee  | date: 'dd/MM/yy'}}<br><strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC</p>
       <h2 *ngIf="commande.byC2S == 1"> Conciergerie Second Souffle</h2>       
       <p *ngIf="commande.byC2S == 1"><strong>Ma date</strong> : {{commande.dateC2S | date: 'dd/MM/yy'}}<br><strong>Mon prix</strong> : {{commande.prixC2S}} € TTC</p>     
       <div *ngIf="commande.status == 8">

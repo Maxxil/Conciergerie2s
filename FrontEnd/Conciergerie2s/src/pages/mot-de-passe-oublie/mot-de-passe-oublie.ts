@@ -79,7 +79,7 @@ export class MotDePasseOubliePage {
             buttons : [{
               text : 'OK',
               handler : () =>{
-                this.navCtrl.push(LoginPage);
+                this.navCtrl.setRoot(LoginPage);
               }
             }]
           }).present();

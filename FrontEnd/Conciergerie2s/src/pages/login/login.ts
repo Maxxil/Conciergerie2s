@@ -77,7 +77,7 @@ export class LoginPage {
             let playerId = localStorage.getItem('playerID');
             let profile = result.data[0];
             profile.lastPlayerId = playerId;
-             this.utilisateurPvd.updateWithoutImage(profile);
+            this.utilisateurPvd.updateLastPlayerId(profile);
           });
           this.navCtrl.setRoot(MenuPage);
         }
