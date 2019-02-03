@@ -122,9 +122,9 @@ router.post('/image' , upload.single('image') , function (req , res) {
     utilisateurBusiness.getById(id).exec(function (err,result) {
         fs.remove('./../data/images/utilisateur/' + result.image);
         result = req.body.utilisateur;
-        var hash = bcrypt.hashSync(result.motDePasse,salt);
         console.log('Hash post utilisateur image');
-        res.motDePasse = hash;
+        //var hash = bcrypt.hashSync(result.motDePasse,salt);       
+        //res.motDePasse = hash;
         result.image = filename;
         result.save();
         res.json({
@@ -137,8 +137,8 @@ router.post('/image' , upload.single('image') , function (req , res) {
 router.post('/', function (req , res) {
     console.log('Hash post utilisateur');
     var utilisateur =req.body.utilisateur;    
-    var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);    
-    utilisateur.motDePasse = hash;
+   // var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);    
+    //utilisateur.motDePasse = hash;
     utilisateurBusiness.update(utilisateur).then(function(result) {
         res.json({
             success : result.ok
