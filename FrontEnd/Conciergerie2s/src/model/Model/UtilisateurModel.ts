@@ -17,4 +17,5 @@ export class UtilisateurModel {
     codepostal: number;
     ville: string;
     lastPlayerId: string;
+    estMotDePasseModifie : boolean = false;
 }

@@ -36,6 +36,7 @@ export class MotDePasseOubliePage {
 
   envoyer(){
     this.motDePasseOubliePvd.demandeMotDePasseOublie(this.email).subscribe( (result) =>{
+      console.log(result);
       if(result.success){
         this.alertCtrl.create({
           buttons : [

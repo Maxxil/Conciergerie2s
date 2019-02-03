@@ -42,6 +42,7 @@ router.get("/:token" , function (req, res) {
 });
 
 router.post("/", function (req, res) {
+    console.log("LOGIN");
     var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);
     promise.exec(function(err,result){
         if(result.length == 0){
@@ -52,7 +53,6 @@ router.post("/", function (req, res) {
             });
         }
         else{
-            console.log(result);
             console.log(req.body.motDePasse);
             console.log(result[0].motDePasse);
             var exist = bcrypt.compareSync(req.body.motDePasse, result[0].motDePasse);

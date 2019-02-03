@@ -4,6 +4,7 @@ var cache = require('memory-cache');
 var bcrypt = require('bcrypt');
 
 var utilisateurBusiness = require('./../business/utilisateurBusiness');
+var jwt = require('./../helper/tokenHelper');
 
 router.use(bodyParser.json());
 
@@ -47,6 +48,41 @@ router.post('/', function (req,res) {
         res.end();
     }
 
+});
+
+router.post('/profile', function (req,res) {
+    var token = req.body.token;
+    var tokenVerify = jwt.verifyToken(token);
+    if(tokenVerify)
+    {
+        jwt.decode(token, function (utilisateur) {
+            utilisateurBusiness.getById(utilisateur._id).exec(function (err,result) {
+                if(bcrypt.compareSync(req.body.ancienMotDePasse, result[0].motDePasse)){
+                    result[0].motDePasse = bcrypt.hashSync(req.body.nouveauMotDePasse, 10);
+                    utilisateurBusiness.update(result[0]).then(function (resultUpdate) {
+                        res.json({
+                            success : resultUpdate.ok
+                        });
+                        res.end();
+                    });
+                }
+                else{
+                    res.json({
+                        success : false
+                    });
+                    res.end();
+                }
+
+            })
+        });
+    }
+    else{
+        res.json({
+            success : false
+        });
+        res.end();
+
+    }
 });
 
 module.exports = router;

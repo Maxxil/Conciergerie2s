@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ChangerMotDePasseProvider} from "../../providers/changer-mot-de-passe/changer-mot-de-passe";
-import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the ChangerMotDePassePage page.
@@ -17,52 +16,59 @@ import {LoginPage} from "../login/login";
 })
 export class ChangerMotDePassePage {
 
-  public ancienMotDePasse : string = '';
-  public nouveauMotDePasse: string = "";
-  public confirmationNouveauMotDePasse : string = "";
-
+  public confirmationMotDePasse : string = "";
+  public motDePasse : string = "";
+  public ancienMotDePasse : string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public changerMotDePassePvd : ChangerMotDePasseProvider,
-              private alertCtrl : AlertController ) {
+              public alertCtrl : AlertController, public changerMotDePassePvd : ChangerMotDePasseProvider) {
   }
 
-  public envoyer(){
-    /*
-    if(this.ancienMotDePasse == this.nouveauMotDePasse){
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ChangerMotDePassePage');
+  }
+
+  public send(){
+    console.log("ENVOYER MOT DE PASSE");
+    if(this.motDePasse == this.ancienMotDePasse){
       this.alertCtrl.create({
         title : 'Erreur',
-        message : "Le nouveau mot de passe est similaire à l'ancien"
+        message : "Votre ancien mot de passe doit être different de l'ancien",
+        buttons : [{
+          text : 'OK'
+        }]
       }).present();
     }
-    if(this.nouveauMotDePasse != this.confirmationNouveauMotDePasse){
+    else if(this.motDePasse != this.confirmationMotDePasse){
       this.alertCtrl.create({
         title : 'Erreur',
-        message : "La confirmation du mot de passe est differente du nouveau mot de passe"
+        message : "La confirmation du mot de passe est different du mot de passe",
+        buttons : [{
+          text : 'OK'
+        }]
       }).present();
     }
-    if(this.nouveauMotDePasse == this.confirmationNouveauMotDePasse){
-      this.changerMotDePassePvd.changerMotDePasse(this.ancienMotDePasse, this.nouveauMotDePasse).subscribe((result) =>{
+    else{
+      this.changerMotDePassePvd.changerMotDePasseDepuisProfile(this.ancienMotDePasse, this.motDePasse).subscribe((result) =>{
         if(result.success){
           this.alertCtrl.create({
-            title : 'Confirmation',
-            message : "Votre mot de passe a été correctement ",
+            title : 'Succés',
+            message : "Votre mot de passe a été modifié avec succés",
             buttons : [{
-              text : 'OK',
-              handler : () =>{
-                this.navCtrl.push(LoginPage);
-              }
+              text : 'OK'
             }]
           }).present();
         }
         else{
           this.alertCtrl.create({
             title : 'Erreur',
-            message : "Une erreur est survenue."
+            message : "Une erreur s'est produite. Veuillez contacter le service technique ou réessayer.",
+            buttons : [{
+              text : 'OK'
+            }]
           }).present();
         }
       })
     }
-    */
   }
 
 }

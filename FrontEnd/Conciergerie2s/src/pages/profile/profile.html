@@ -34,17 +34,7 @@
       <ion-input [(ngModel)]="profile.nomUtilisateur"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Changer de mot de passe</ion-label>
-      <ion-list>
-        <ion-item>
-          <ion-label>Nouveau mot de passe</ion-label>
-          <ion-input [(ngModel)]="profile.motDePasse"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Confirmation nouveau mot de passe</ion-label>
-          <ion-input [(ngModel)]="confirmationMotDePasse"></ion-input>
-        </ion-item>
-      </ion-list>
+      <button ion-button (click)="changerMotDePasse()">Changer de mot de passe</button>
     </ion-item> <ion-item>
         <ion-label>Rôle Utilisateur</ion-label>
       <ion-select [(ngModel)]="profile.role">
@@ -72,7 +62,7 @@
       <ion-label>Telephone mobile</ion-label>
       <ion-input [(ngModel)]="profile.telephoneMobile"></ion-input>
     </ion-item>
-  
+
     <ion-item>
         <ion-label>N° et nom de rue</ion-label>
         <ion-input [(ngModel)]="profile.addresse"></ion-input>
@@ -87,32 +77,5 @@
           </ion-item>
   </ion-list>
   <button ion-button (click)="update()" margin full>Enregistrer</button>
-
-  <!-- <ion-row col-md-12>
-    <ion-col col-md-6>
-      <img src="{{profile.image}}">
-    </ion-col>
-    <ion-col col-md-6>
-      <div id="username">
-        <ion-label floating>Nom d'utilisateur</ion-label>
-        <ion-input value="{{profile.username}}"></ion-input>
-      </div>
-      <div id="password">
-        <button ion-button *ngIf="!isPasswordToUpdate">Modifier le mot de passe</button>
-        <div *ngIf="isPasswordToUpdate">
-          <ion-label floating>Ancien mot de passe</ion-label>
-          <ion-input value="{{profile.oldPassword}}"></ion-input>
-
-          <ion-label floating>Nouveau mot de passe</ion-label>
-          <ion-input value="{{profile.newPassword}}"></ion-input>
-
-          <ion-label floating>Confirmation nouveau mot de passe</ion-label>
-          <ion-input value="{{profile.newPasswordConfirmation}}"></ion-input>
-        </div>
-      </div>
-    </ion-col>
-  </ion-row>
- -->
-
 
 </ion-content>

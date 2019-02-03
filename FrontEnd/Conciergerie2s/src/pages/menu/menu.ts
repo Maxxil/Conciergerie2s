@@ -8,7 +8,6 @@ import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
-import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {SERVER_URL} from "../../model/Url";
 /**
  * Generated class for the MenuPage page.
@@ -28,41 +27,41 @@ export class MenuPage {
   public peutPostuler = false;
   public serveurURL : string = "";
   constructor(public utilisateurPvd : UtilisateurProvider,public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{  
-      
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+
       let profile = result.data[0];
       console.log('My profile',profile)   ;
     if(profile) {
-     
+
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
         console.log('send maj playerid', profile);
-        this.utilisateurPvd.updateWithoutImage(profile);      
+        this.utilisateurPvd.updateWithoutImage(profile);
         this.peutPostuler = profile.role == 2;
     }
-      
-    }); 
+
+    });
     this.serveurURL = SERVER_URL;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{  
-      
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+
       let profile = result.data[0];
-      
+
     if(profile) {
-     
+
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
-        
-        this.utilisateurPvd.updateWithoutImage(profile).subscribe(result =>{ 
+
+        this.utilisateurPvd.updateWithoutImage(profile).subscribe(result =>{
           console.log('Result udpate profile : ',result);
-        });      
+        });
         this.peutPostuler = profile.role == 2;
     }
-      
-    }); 
+
+    });
   }
 
   openPageHome(){
@@ -82,12 +81,12 @@ export class MenuPage {
   }
 
   sendPush() {
-    
+
   }
 
   deconnecter(){
-    this.chatService.logout(); 
-    localStorage.removeItem('IdUtilisateur');    
+    this.chatService.logout();
+    localStorage.removeItem('IdUtilisateur');
     localStorage.removeItem('Token');
     this.navCtrl.push(LoginPage);
     this.platform.exitApp();

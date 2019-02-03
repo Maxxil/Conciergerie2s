@@ -4,7 +4,6 @@ import {DevisModel} from "../../model/Model/DevisModel";
 import {DevisProvider} from "../../providers/devis/devis";
 import {Result} from "../../model/Result/Result";
 import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
-import { CommandeForfaitDetailPage } from '../commande-forfait-detail/commande-forfait-detail';
 import { PaypalProvider } from '../../providers/paypal/paypal';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { CommandeStatus } from '../../model/Enums/CommandeStatusEnum';
@@ -42,10 +41,10 @@ export class DevisDetailPage {
               , public iab : InAppBrowser
               , public loader : LoadingController
               ,public events: Events) {
-    
-    
+
+
    this.commande = this.navParams.get('Commande');
-    
+
     console.log(this.commande);
     switch(this.commande.status) {
       case 1: this.status = "Envoyé"; break;
@@ -61,9 +60,9 @@ export class DevisDetailPage {
       console.log(this.proposition);
       //this.propositionChoisi();
       //this.proposition.dateProposee =  this.prestataireChoisi.date
-    } 
+    }
     else {
-   
+
       if(this.commande.byC2S==1) {
         this.proposition.prix = this.commande.prixC2S;
         this.proposition.dateProposee =  this.commande.dateC2S;
@@ -71,7 +70,7 @@ export class DevisDetailPage {
     }
 
     console.log('PROPOSITION ',this.proposition);
-    this.dejapostuler = this.aDejaPostule();    
+    this.dejapostuler = this.aDejaPostule();
   }
 
   ionViewDidLoad() {
@@ -85,7 +84,7 @@ export class DevisDetailPage {
 
   postuler(){
     this.devisPvd.souscrirePrestataire(this.commande, this.proposition).subscribe(result =>{
-      this.events.publish('refresh:commande'); 
+      this.events.publish('refresh:commande');
       this.dejapostuler = true;
       this.manageDisplaySuccessOrError(result);
     });
@@ -94,7 +93,7 @@ export class DevisDetailPage {
 
   aDejaPostule(){
     var propositions = this.commande.propositions;
-    propositions.forEach(element => {      
+    propositions.forEach(element => {
       if(element.prestataire.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){
         this.dejapostuler=true;
         this.proposition = element;
@@ -110,18 +109,18 @@ export class DevisDetailPage {
   propositionChoisi() {
    // var prestataireChoisi = this.commande.prestataireChoisi;
     var propositions = this.commande.propositions;
-    
-    propositions.forEach(element => {      
+
+    propositions.forEach(element => {
       if(element.prestataire.utilisateur._id == this.prestataireChoisi._id){
-        
+
         this.proposition = element;
       }
-    });   
+    });
   }
 
-  commander(){    
+  commander(){
    // this.loading.present();
-    
+
   /* if(this.commande.byC2S==0) {
       /// this.propositionChoisi();
        console.log(this.proposition);
@@ -132,12 +131,12 @@ export class DevisDetailPage {
    }*/
 
    console.log("Paiement paypal ", this.proposition);
-    
+
     this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
-      console.log(result);          
+      console.log(result);
       var browser = this.iab.create(result.data);
-      this.loading.dismiss();  
-      browser.on('exit').subscribe(() =>{       
+      this.loading.dismiss();
+      browser.on('exit').subscribe(() =>{
         this.devisPvd.updateStatus(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
           this.commande.status = CommandeStatus.PAYEE;
           this.alertCtrl.create().setTitle('Succes')
@@ -147,17 +146,17 @@ export class DevisDetailPage {
                 handler : data => {
                 this.annuler();
               }
-          }).present();          
+          }).present();
         });
-      }); 
+      });
     });
   }
 
-  commanderhorsligne(){    
+  commanderhorsligne(){
     // this.loading.present();
     // this.propositionChoisi();
-     console.log("Paiement hors ligne ",this.proposition);    
-    
+     console.log("Paiement hors ligne ",this.proposition);
+
          this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
            this.alertCtrl.create().setTitle('Succes')
                .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
@@ -166,7 +165,7 @@ export class DevisDetailPage {
                  handler : data => {
                  this.annuler();
                }
-           }).present();          
+           }).present();
          });
    }
 

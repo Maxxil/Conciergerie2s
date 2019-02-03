@@ -4,6 +4,7 @@ import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {UTILISATEUR_PROFILE_URL} from "../../model/Url";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {RoleEnum} from "../../model/Enums/RoleEnum";
+import {ChangerMotDePassePage} from "../changer-mot-de-passe/changer-mot-de-passe";
 
 /**
  * Generated class for the ProfilePage page.
@@ -43,6 +44,7 @@ export class ProfilePage {
 
   getByCurrentId(){
     this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+      console.log(result.data);
       this.profile = result.data[0];
     });
   }
@@ -55,6 +57,10 @@ export class ProfilePage {
     };
     reader.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
+  }
+
+  changerMotDePasse(){
+    this.navCtrl.push(ChangerMotDePassePage);
   }
 
   update(){
