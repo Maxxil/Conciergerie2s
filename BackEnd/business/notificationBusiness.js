@@ -506,6 +506,9 @@ module.exports = {
         return Notification.findById(id, function(err, notification) {            
             if(!err &&  notification.archiveBy.indexOf(idUtilisateur) == -1) {                
                 notification.archiveBy.push(idUtilisateur);
+                if(notification.readBy.indexOf(idUtilisateur) == -1) {  
+                    notification.readBy.push(idUtilisateur);
+                }    
                 notification.save();                
             }
         });
