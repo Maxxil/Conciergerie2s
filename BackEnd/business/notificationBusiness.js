@@ -280,7 +280,9 @@ module.exports = {
             refId: utilisateur._id,
             utilisateur: utilisateur._id,
             icon:  utilisateur.role == '1' ? 'person-add' : 'contacts',
-            message: utilisateur.role == '1' ? 'Nouvelle inscription de client': 'Nouveau prestataire à valider'
+            message: utilisateur.role == '1' ? 'Nouvelle inscription de client': 'Nouveau prestataire à valider',
+            readBy: [],
+            archiveBy: []
         });
         let promise = notification.save();
         promise.then(function(elt) {
@@ -301,7 +303,9 @@ module.exports = {
                 date: new Date(),
                 refId: commande._id,
                 icon: 'cart',
-                message: 'Nouvelle commande de client'
+                message: 'Nouvelle commande de client',
+                readBy: [],
+                archiveBy: []
             });
             let promise = notification.save();
             promise.then(function(elt) {                 
@@ -320,7 +324,9 @@ module.exports = {
                 date: new Date(),
                 refId: devis._id,
                 icon: 'briefcase',
-                message: 'Nouveau devis'
+                message: 'Nouveau devis',
+                readBy: [],
+                archiveBy: []
             });        
             let promise = notification.save();
             promise.then(function(elt) {
@@ -338,7 +344,9 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'mail',
-            message: "Nouvelle proposition de devis"
+            message: "Nouvelle proposition de devis",
+            readBy: [],
+            archiveBy: []
         });      
         let promise = notification.save();
         promise.then(function(elt) {
@@ -355,7 +363,9 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'mail',
-            message: "Un prestataire a postulé sur une commande"
+            message: "Un prestataire a postulé sur une commande",
+            readBy: [],
+            archiveBy: []
         });      
         let promise = notification.save();
         promise.then(function(elt) {
@@ -375,7 +385,9 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'mail',
-            message: "Prestation planifiée - Devis à régler"
+            message: "Prestation planifiée - Devis à régler",
+            readBy: [],
+            archiveBy: []
         });      
         let promise = notification.save();
         promise.then(function(elt) {
@@ -393,7 +405,9 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'mail',
-            message: "Prestation planifiée - Devis à régler"
+            message: "Prestation planifiée - Devis à régler",
+            readBy: [],
+            archiveBy: []
         });      
         let promise = notification.save();
         promise.then(function(elt) {
@@ -411,7 +425,9 @@ module.exports = {
             date: new Date(),
             refId: devis._id,
             icon: 'send',
-            message: 'Votre devis est validé'
+            message: 'Votre devis est validé',
+            readBy: [],
+            archiveBy: []
         });        
         let promise = notification.save();
         promise.then(function(elt) {
@@ -426,7 +442,9 @@ module.exports = {
             date: new Date(),
             refId: commande._id,
             icon: 'basket',
-            message: 'Commande validée.'
+            message: 'Commande validée.',
+            readBy: [],
+            archiveBy: []
         });
         let promise = notification.save();
         promise.then(function(elt) {
@@ -440,7 +458,9 @@ module.exports = {
             type: enums.NotificationType.PRESTATION_TERMINEE_PRESTATAIRE,
             date: new Date(),
             refId: 'id_commande',
-            message: 'Prestation terminée - Notification du prestataire'
+            message: 'Prestation terminée - Notification du prestataire',
+            readBy: [],
+            archiveBy: []
         });
         notification.save();
     },
@@ -451,7 +471,9 @@ module.exports = {
             type: enums.NotificationType.PRESTATION_TERMINEE_CLIENT,
             date: new Date(),
             refId: 'id_commande',
-            message: 'Prestation terminée - Notification du client'
+            message: 'Prestation terminée - Notification du client',
+            readBy: [],
+            archiveBy: []
         });
         notification.save();
     },
