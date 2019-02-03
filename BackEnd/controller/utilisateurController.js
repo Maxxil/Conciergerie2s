@@ -94,7 +94,6 @@ router.put('/' , upload.single('image'),function(req, res){
         historique : []
     });
     utilisateurBusiness.existByUsernameOrEmail(utilisateur).exec(function(err,existant){
-        console.log(existant);
         if(existant.length > 0){
             console.log("UTILISATEUR EXISTANT")
             res.json({
@@ -114,6 +113,7 @@ router.put('/' , upload.single('image'),function(req, res){
 });
 
 router.post('/image' , upload.single('image') , function (req , res) {
+    console.log("UPDATE UTILISATEUR AVEC IMAGE");
     var id = req.body.utilisateur._id;
     var filename = "";
     if(req.file != null){
@@ -121,10 +121,10 @@ router.post('/image' , upload.single('image') , function (req , res) {
     }
     utilisateurBusiness.getById(id).exec(function (err,result) {
         fs.remove('./../data/images/utilisateur/' + result.image);
+        console.log(req.body.utilisateur);
         result = req.body.utilisateur;
+
         console.log('Hash post utilisateur image');
-        //var hash = bcrypt.hashSync(result.motDePasse,salt);       
-        //res.motDePasse = hash;
         result.image = filename;
         result.save();
         res.json({
@@ -136,9 +136,7 @@ router.post('/image' , upload.single('image') , function (req , res) {
 
 router.post('/', function (req , res) {
     console.log('Hash post utilisateur');
-    var utilisateur =req.body.utilisateur;    
-   // var hash = bcrypt.hashSync(utilisateur.motDePasse,saltRounds);    
-    //utilisateur.motDePasse = hash;
+    var utilisateur =req.body.utilisateur;
     utilisateurBusiness.update(utilisateur).then(function(result) {
         res.json({
             success : result.ok
@@ -149,8 +147,9 @@ router.post('/', function (req , res) {
 
 
 router.post('/playerid', function (req , res) {
-    console.log('update playerid');
-    var utilisateur =req.body.utilisateur;    
+    console.log('UPDATE PlayerId');
+    var utilisateur =req.body.utilisateur;
+    console.log(utilisateur);
     utilisateurBusiness.update(utilisateur).then(function(result) {
         res.json({
             success : result.ok

@@ -7,19 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>changerMotDePasse</ion-title>
+    <ion-title>Changer mot de passe</ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-  <ion-item>
-    <ion-label floating>Saisissez votre ancien mot de passe</ion-label>
-    <ion-input type="password" [(ngModel)]="ancienMotDePasse"></ion-input>
-  </ion-item>
-
-
-
-  <button ion-button full (click)="envoyer()">Envoyer</button>
+  <ion-list>
+    <ion-item>
+      <ion-label>Ancien mot de passe</ion-label>
+      <ion-input [(ngModel)]="ancienMotDePasse" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nouveau mot de passe</ion-label>
+      <ion-input [(ngModel)]="motDePasse" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Confirmation nouveau mot de passe</ion-label>
+      <ion-input [(ngModel)]="confirmationMotDePasse"></ion-input>
+    </ion-item>
+    <button ion-button (click)="send()" margin full>Enregistrer</button>
+  </ion-list>
 </ion-content>

@@ -6,7 +6,6 @@ import {Observable} from "rxjs/Observable";
 import {Result} from "../../model/Result/Result";
 import {DEVIS_PRESTATAIRE_URL, DEVIS_URL, DEVIS_STATUS_URL} from "../../model/Url";
 import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
-import { CommandeStatus } from '../../model/Enums/CommandeStatusEnum';
 
 /*
   Generated class for the DevisProvider provider.
@@ -28,7 +27,7 @@ export class DevisProvider {
     return this.http.put<DevisResult>(DEVIS_URL, {commande : commande, token : this.token});
   }
 
-  
+
   get(id) : Observable<DevisResult>{
     return this.http.get<DevisResult>(DEVIS_URL + '/' +id+'/' +this.token);
   }
@@ -47,12 +46,12 @@ export class DevisProvider {
             });
   }
 
-  updateStatus(commande: DevisModel, status: string) : Observable<DevisResult>{    
+  updateStatus(commande: DevisModel, status: string) : Observable<DevisResult>{
     return this.http.post<DevisResult>(DEVIS_STATUS_URL,
       {idCommande : commande._id, status : status})
   }
 
-  updateModePaiement(commande: DevisModel, modepaiement: string) : Observable<DevisResult>{    
+  updateModePaiement(commande: DevisModel, modepaiement: string) : Observable<DevisResult>{
     return this.http.post<DevisResult>(DEVIS_STATUS_URL,
       {idCommande : commande._id, modepaiement: modepaiement})
   }

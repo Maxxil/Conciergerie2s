@@ -23,13 +23,8 @@
         <ion-item>
               Demandé le :
               <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
-        Statut : <em>{{ status }}</em>   
+        Statut : <em>{{ status }}</em>
               </ion-item>
- <!--    <ion-list-header>      
-        <h1>{{commande.prestation.nom}}</h1>
-        Demandé le : <em>{{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</em><br>
-        Statut : <em>{{ status }}</em>        
-    </ion-list-header> -->
     <hr>
     <ion-item>
         <p> <span  class="label-title">Date RDV: </span><em >{{commande.date | date: 'dd/MM/yy'}}</em></p><br>
@@ -46,27 +41,27 @@
         <h1>  Ma proposition </h1><br>
         <p>
             <span class="label-title">Date proposée </span> : <em >{{proposition.dateProposee | date: 'dd/MM/yy'}}</em></p><br>
-            
+
         <p><span class="label-title">Prix proposé TTC </span> : <em >{{proposition.prix }}</em> €</p>
-        
+
     </ion-item>
   </ion-list>
-  <ion-list  *ngIf="peutPostuler() && !dejapostuler">  
+  <ion-list  *ngIf="peutPostuler() && !dejapostuler">
     <br>
-      <ion-list-header>      
+      <ion-list-header>
           <h1> Je postule  </h1>
-      </ion-list-header> 
-    
-      <ion-item >      
+      </ion-list-header>
+
+      <ion-item >
         <span item-start>Date proposée : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="proposition.dateProposee"></ion-datetime>
       </ion-item>
-      
-      <ion-item>        
+
+      <ion-item>
           <span item-start>Prix proposé TTC : </span><ion-input type="number" [(ngModel)]="proposition.prix" placeholder="votre prix"></ion-input>
-      </ion-item>   
+      </ion-item>
   </ion-list>
 <ion-list *ngIf="apayer()" text-center>
-  <ion-item>                  
+  <ion-item>
     <p><strong>Date proposée définitive</strong><br> {{proposition.dateProposee  | date: 'dd/MM/yy'}}</p><br>
      <p><strong>Montant à régler</strong><br><span style="font-size:1.5em">{{ proposition.prix }} € TTC</span></p>
   </ion-item >

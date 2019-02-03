@@ -9,7 +9,6 @@ import {MesCommandesPostuleesPage} from "../mes-commandes-postulees/mes-commande
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
-import {UtilisateurModel} from "../../model/Model/UtilisateurModel";
 import {SERVER_URL} from "../../model/Url";
 /**
  * Generated class for the MenuPage page.
@@ -29,41 +28,46 @@ export class MenuPage {
   public peutPostuler = false;
   public serveurURL : string = "";
   constructor(public utilisateurPvd : UtilisateurProvider,public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{  
-      
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+
       let profile = result.data[0];
       console.log('My profile',profile)   ;
     if(profile) {
-     
+
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
         console.log('send maj playerid', profile);
-        this.utilisateurPvd.updateLastPlayerId(profile);      
+        this.utilisateurPvd.updateLastPlayerId(profile);              
         this.peutPostuler = profile.role == 2;
     }
-      
-    }); 
+
+    });
     this.serveurURL = SERVER_URL;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{  
-      
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
+
       let profile = result.data[0];
-      
+
     if(profile) {
-     
+
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
+<<<<<<< HEAD
         
         this.utilisateurPvd.updateLastPlayerId(profile).subscribe(result =>{ 
+=======
+
+        this.utilisateurPvd.updateWithoutImage(profile).subscribe(result =>{
+>>>>>>> 458ff5c6c15ae50434845d35a0139f1dba11614d
           console.log('Result udpate profile : ',result);
-        });      
+        });
         this.peutPostuler = profile.role == 2;
     }
-      
-    }); 
+
+    });
   }
 
   openPageHome(){
@@ -89,12 +93,12 @@ export class MenuPage {
   }
 
   sendPush() {
-    
+
   }
 
   deconnecter(){
-    this.chatService.logout(); 
-    localStorage.removeItem('IdUtilisateur');    
+    this.chatService.logout();
+    localStorage.removeItem('IdUtilisateur');
     localStorage.removeItem('Token');
     this.navCtrl.push(LoginPage);
     this.platform.exitApp();

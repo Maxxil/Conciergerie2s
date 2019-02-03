@@ -24,4 +24,13 @@ export class ChangerMotDePasseProvider {
     });
   }
 
+  public changerMotDePasseDepuisProfile(ancienMotDePasse : string, nouveauMotDePasse: string) : Observable<Result>{
+    console.log("Envoie Nouveau Mot De passe BACKEND")
+    return this.http.post<Result>( CHANGER_MOT_DE_PASSE_URL + '/profile', {
+      token : localStorage.getItem('Token'),
+      ancienMotDePasse : ancienMotDePasse,
+      nouveauMotDePasse : nouveauMotDePasse
+    });
+  }
+
 }
