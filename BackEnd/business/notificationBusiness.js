@@ -469,10 +469,14 @@ module.exports = {
         return Notification.findById(id);
     },   
     readBy: function(id,idUtilisateur){              
-        return Notification.findById(id, function(err, notification) {            
+        return Notification.findById(id, function(err, notification) {  
+            console.log(notification)          ;
             if(!err &&  notification.readBy.indexOf(idUtilisateur) == -1) {                
                 notification.readBy.push(idUtilisateur);
                 notification.save();                
+            }
+            else {
+                console.log(err);
             }
         });
     }, 
