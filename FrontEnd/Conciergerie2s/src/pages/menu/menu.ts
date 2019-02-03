@@ -55,13 +55,8 @@ export class MenuPage {
 
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
-<<<<<<< HEAD
         
         this.utilisateurPvd.updateLastPlayerId(profile).subscribe(result =>{ 
-=======
-
-        this.utilisateurPvd.updateWithoutImage(profile).subscribe(result =>{
->>>>>>> 458ff5c6c15ae50434845d35a0139f1dba11614d
           console.log('Result udpate profile : ',result);
         });
         this.peutPostuler = profile.role == 2;
