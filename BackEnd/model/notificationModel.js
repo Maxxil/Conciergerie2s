@@ -4,7 +4,7 @@ var db = require('../config/db');
 
 var notification = new mongoose.Schema({
     utilisateur: { type: Schema.Types.ObjectId, ref: 'Utilisateur' },
-    status : 'Number',
+    status : String,
     message: String,
     icon: String,
     type: 'Number',
