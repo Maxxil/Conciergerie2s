@@ -15,15 +15,15 @@
   <ion-list>
     <ion-item>
       <ion-label>Ancien mot de passe</ion-label>
-      <ion-input [(ngModel)]="ancienMotDePasse" ></ion-input>
+      <ion-input type="password" [(ngModel)]="ancienMotDePasse" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Nouveau mot de passe</ion-label>
-      <ion-input [(ngModel)]="motDePasse" ></ion-input>
+      <ion-input type="password" [(ngModel)]="motDePasse" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Confirmation nouveau mot de passe</ion-label>
-      <ion-input [(ngModel)]="confirmationMotDePasse"></ion-input>
+      <ion-input type="password" [(ngModel)]="confirmationMotDePasse"></ion-input>
     </ion-item>
     <button ion-button (click)="send()" margin full>Enregistrer</button>
   </ion-list>
