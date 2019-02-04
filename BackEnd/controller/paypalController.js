@@ -145,7 +145,7 @@ router.get('/executePayment', function (req, res) {
 
             res.type('.js');
             res.send("window.close();");
-        }
+        } 
     });
 });
 
