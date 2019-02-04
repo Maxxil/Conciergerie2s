@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e50ed3f-2ed2-4849-9224-7caecbc679bc" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.module.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.ts" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/changerMotDePasseController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/changerMotDePasseController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/loginController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/loginController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" afterPath="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/UtilisateurModel.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Model/UtilisateurModel.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/menu/menu.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/menu/menu.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/mot-de-passe-oublie/mot-de-passe-oublie.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/mot-de-passe-oublie/mot-de-passe-oublie.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/changer-mot-de-passe/changer-mot-de-passe.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/changer-mot-de-passe/changer-mot-de-passe.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/devis/devis.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/login/login.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/login/login.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,10 +30,13 @@
       <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+            <state relative-caret-position="462">
+              <caret line="78" column="25" lean-forward="false" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
+                <marker date="1549280122116" expanded="true" signature="4378:4386" ph="[...]" />
+                <marker date="1549280122116" expanded="true" signature="4378:4843" ph="{...}" />
+                <marker date="1549280122116" expanded="true" signature="4868:4870" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -69,28 +55,28 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
+            <state relative-caret-position="315">
               <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changer-mot-de-passe.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="changer-mot-de-passe.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="291">
+              <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changerMotDePasseController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="changerMotDePasseController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BackEnd/controller/changerMotDePasseController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="364">
+              <caret line="85" column="3" lean-forward="false" selection-start-line="85" selection-start-column="3" selection-end-line="85" selection-end-column="3" />
               <folding>
                 <marker date="1549217702676" expanded="true" signature="1036:1284" ph="{...}" />
               </folding>
@@ -112,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="50" column="43" lean-forward="true" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+              <caret line="50" column="43" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -123,7 +109,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
               <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-              <folding />
+              <folding>
+                <marker date="1549280122179" expanded="true" signature="3409:3856" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -239,10 +227,10 @@
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/profile/profile.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/providers/changer-mot-de-passe/changer-mot-de-passe.ts" />
         <option value="$PROJECT_DIR$/BackEnd/controller/changerMotDePasseController.js" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html" />
       </list>
     </option>
   </component>
@@ -322,12 +310,6 @@
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
               <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Conciergerie2s" type="462c0819:PsiDirectoryNode" />
-              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Conciergerie2s" type="b2602c69:ProjectViewProjectNode" />
@@ -493,12 +475,12 @@
       <workItem from="1548180954301" duration="4206000" />
       <workItem from="1548606865324" duration="2446000" />
       <workItem from="1549200873367" duration="843000" />
-      <workItem from="1549214052217" duration="3657000" />
+      <workItem from="1549214052217" duration="4402000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220551000" />
+    <option name="totallyTimeSpent" value="221296000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -893,28 +875,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/devis-detail/devis-detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="26" column="25" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-          <folding />
+          <folding>
+            <marker date="1549280122179" expanded="true" signature="3409:3856" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+        <state relative-caret-position="462">
+          <caret line="78" column="25" lean-forward="false" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
+            <marker date="1549280122116" expanded="true" signature="4378:4386" ph="[...]" />
+            <marker date="1549280122116" expanded="true" signature="4378:4843" ph="{...}" />
+            <marker date="1549280122116" expanded="true" signature="4868:4870" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -923,14 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -946,7 +917,7 @@
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="50" column="43" lean-forward="true" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+          <caret line="50" column="43" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -969,11 +940,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BackEnd/controller/changerMotDePasseController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="364">
+          <caret line="85" column="3" lean-forward="false" selection-start-line="85" selection-start-column="3" selection-end-line="85" selection-end-column="3" />
           <folding>
             <marker date="1549217702676" expanded="true" signature="1036:1284" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/changer-mot-de-passe/changer-mot-de-passe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
