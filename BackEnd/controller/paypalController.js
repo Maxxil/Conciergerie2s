@@ -138,10 +138,13 @@ router.get('/executePayment', function (req, res) {
             console.log('-----------------------------');
             console.log(payment);
             // essayer de stocker dans la commande sur mongo la référence du payment généré par paypal
-            res.json({
+            /*res.json({
                 success : true
             });
-            res.end();
+            res.end();*/
+
+            res.type('.js');
+            res.send("window.close();");
         }
     });
 });
