@@ -14,7 +14,7 @@ module.exports = {
         //bcrypt.hash(user.motDePasse, saltRound, function (err,hash) {
             var promise = new Utilisateur({
                 nomUtilisateur : user.nomUtilisateur,
-                motDePasse: hash,
+                motDePasse: user.motDePasse,
                 nom: user.nom,
                 prenom : user.prenom,
                 role : user.role,
