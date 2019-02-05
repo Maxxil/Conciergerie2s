@@ -42,6 +42,17 @@ module.exports = {
         DEVIS_PAYE: 10,
         DEVIS_REFUSE: 11,
         DEVIS_ANNULE: 12
-       
+    },
+    TypePrixEnum : {
+        SPECIALISE : 1,
+        FORFAIT : 2,
+        DEVIS : 3
+    },
+    TypePrestationSpecialiseeEnum : {
+        HEURE : 1,
+        KILOGRAMME : 2,
+        LITRE : 3,
+        QUANTITE : 4,
+        SURFACE : 5
     }
 };

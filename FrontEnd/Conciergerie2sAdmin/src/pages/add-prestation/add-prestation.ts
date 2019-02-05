@@ -7,6 +7,7 @@ import { PRESTATION_IMAGE_URL } from '../../model/Url';
 import { PrestationModel } from '../../model/Models/PrestationModel';
 import {AddPrestationDetailPage} from "../add-prestation-detail/add-prestation-detail";
 import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
+import {TypePrestationSpecialiseeEnum} from "../../model/Enums/TypePrestationSpecialiseeEnum";
 /**
  * Generated class for the AddPrestationPage page.
  *
@@ -26,6 +27,7 @@ export class AddPrestationPage {
   public isImageUploaded : boolean = false;
   public file : File;
   public typePrixEnum = TypePrixEnum;
+  public typePrestationSpecialise = TypePrestationSpecialiseeEnum;
 
 
   constructor(
@@ -46,7 +48,7 @@ export class AddPrestationPage {
     else{
       this.prestation = new PrestationModel();
       this.prestation.details = [];
-      this.prestation.typeprix= TypePrixEnum.HEURE;
+      this.prestation.typeprix= TypePrixEnum.SPECIALISE;
       this.prestation.details = [];
       this.prestation.image = "../../assets/icon/pic.png";
     }

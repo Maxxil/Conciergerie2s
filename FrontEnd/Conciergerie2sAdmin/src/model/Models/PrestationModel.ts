@@ -1,5 +1,6 @@
 import {PrestataireModel} from "./PrestataireModel";
 import {TypePrixEnum} from "../Enums/TypePrixEnum";
+import {TypePrestationSpecialiseeEnum} from "../Enums/TypePrestationSpecialiseeEnum";
 
 export class PrestationModel{
   _id : string;
@@ -8,6 +9,7 @@ export class PrestationModel{
   description: string;
   prix: number;
   typeprix: TypePrixEnum;
+  typePrestationSpecialisee : TypePrestationSpecialiseeEnum;
   prestataire : PrestataireModel[];
   forfait:string;
   details: string[];
@@ -18,7 +20,8 @@ export class PrestationModel{
     this.prix = 1;
     this.forfait = "";
     this.details = [];
-    this.typeprix=TypePrixEnum.HEURE;
+    this.typeprix=TypePrixEnum.DEVIS;
+    this.typePrestationSpecialisee = 0;
     this.image = "../../assets/icon/pic.png";
   }
 

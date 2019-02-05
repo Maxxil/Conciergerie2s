@@ -122,7 +122,8 @@ router.put('/' , upload.single('file'), function(req, res){
                     typeprix: req.body.typeprix,
                     forfait: req.body.forfait,
                     prestataire : [],
-                    details: req.body.details
+                    details: req.body.details,
+                    typePrestationSpecialisee : req.body.typePrestationSpecialisee
                 });
                 prestationBusiness.add(prestation);
                 res.json({

@@ -10,7 +10,8 @@ var prestation = new mongoose.Schema({
     details: ['String'],
     prix: 'Number',
     forfait: 'Number',
-    typeprix: 'Number'  // horaire ou forfait ou sur devis
+    typeprix: 'Number',// horaire ou forfait ou sur devis
+    typePrestationSpecialisee: 'Number'
 });
 
 module.exports = db.model("Prestation" , prestation);
