@@ -29,7 +29,7 @@ export class DevisDetailPage {
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public loading = this.loader.create({
     spinner: 'hide',
-    content: 'Loading Please Wait...'
+    content: 'Merci de patienter...'
   });
   public prestataireChoisi: DevisPropositionModel = null;
   constructor(public navCtrl: NavController
@@ -119,7 +119,7 @@ export class DevisDetailPage {
   }
 
   commander(){
-   // this.loading.present();
+    this.loading.present();
 
   /* if(this.commande.byC2S==0) {
       /// this.propositionChoisi();

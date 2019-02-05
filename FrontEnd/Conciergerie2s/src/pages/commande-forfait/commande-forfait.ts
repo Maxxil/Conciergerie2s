@@ -27,7 +27,7 @@ export class CommandeForfaitPage {
   public today;
   public loading = this.loader.create({
     spinner: 'hide',
-    content: 'Loading Please Wait...'
+    content: 'Merci de patienter...'
   });
   constructor(public navCtrl: NavController
               , public navParams: NavParams
@@ -44,7 +44,7 @@ export class CommandeForfaitPage {
 
   public commander(){
 
-    //this.loading.present();
+    this.loading.present();
     /*console.log("Paiement");
     this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
         this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
@@ -53,19 +53,19 @@ export class CommandeForfaitPage {
           this.loading.dismiss();
         });
     */
-    /*this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
       console.log(result);
       var browser = this.iab.create(result.data);
       this.loading.dismiss();
-      browser.on('exit').subscribe(() =>{       */
+      browser.on('exit').subscribe(() =>{       
         this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{ 
           this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;         
           this.manageDisplaySuccessOrError(result);
           this.annuler();
-        });/*
+        });
       });
 
-    });*/
+    });
 
     
 
