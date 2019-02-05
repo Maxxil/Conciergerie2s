@@ -11,7 +11,7 @@ module.exports = {
         return Utilisateur.find({});
     },
     create : function(user){
-        bcrypt.hash(user.motDePasse, saltRound, function (err,hash) {
+        //bcrypt.hash(user.motDePasse, saltRound, function (err,hash) {
             var promise = new Utilisateur({
                 nomUtilisateur : user.nomUtilisateur,
                 motDePasse: hash,
@@ -29,7 +29,7 @@ module.exports = {
                 ville: user.ville
             });
             Utilisateur.create(promise);
-        })
+      //  })
 
         //promise.save();
     },
