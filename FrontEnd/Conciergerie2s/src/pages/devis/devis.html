@@ -23,7 +23,7 @@
       </ion-list-header>
      <ion-item>
       <ion-label style="font-size:20px;" stacked>Date demandée</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  max='2030-12-31'  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="devis.date"></ion-datetime>
+      <ion-datetime cancelText="Annuler" doneText="Valider" displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"  max='2030-12-31'  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="devis.date"></ion-datetime>
     </ion-item>
      <ion-item>
       <ion-label style="font-size:20px;"  stacked>Détail de votre demande</ion-label><br>

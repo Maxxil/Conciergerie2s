@@ -82,7 +82,12 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre' ],
+      monthShortNames: ['jan', 'fev', 'mar', 'avr', 'mai', 'jui', 'jui', 'aou', 'sep', 'oct', 'nov', 'dec' ],
+      dayNames:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],
+      dayShortNames:['dim','lun','mar','mer','jeu','ven','sam'],
+  }),
     SocketIoModule.forRoot(configChat),
     HttpClientModule,
   ],

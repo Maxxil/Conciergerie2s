@@ -87,7 +87,7 @@ router.put('/createPayment', function (req, res) {
                 "currency": "EUR",
                 "total": amount // garder ici le montant qui correspond auy prix * quantite
             },
-            "description": "This is the payment description."
+            "description": "Vente de services de conciergerie"
         }]
     };
 
