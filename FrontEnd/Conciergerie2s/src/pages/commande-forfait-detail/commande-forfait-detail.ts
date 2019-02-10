@@ -33,17 +33,13 @@ export class CommandeForfaitDetailPage {
       case 2: this.status = "Validée"; break;
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
+      case 8: this.status = "Payée"; break;
       default: this.status = "??"; break;
     } 
-    
-    console.log(localStorage.getItem('IdUtilisateur'));
-    console.log(this.commande);
-    console.log('Peutpostuler',this.peutPostuler());
     this.dejapostuler = this.aDejaPostule();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeForfaitDetailPage');
+  ionViewDidLoad() {    
   }
 
   peutPostuler() {

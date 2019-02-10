@@ -38,38 +38,27 @@ export class CommandesPostulerPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandesPage');
     this.getMyCommandes();
   }
 
   getMyCommandes() {
-    console.log('getMyCommandes pour postuler');
-    /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
-      console.log(result);
       if(result.success){
         this.commandesHoraire = result.data.commandeHoraire.filter(
           x => !x.prestataires.some( 
             p => p.utilisateur == this.currentUserId
           )
-        );
-       
-        
-
+        );               
         this.commandesForfait = result.data.commandeForfait.filter(
           x => !x.prestataires.some( 
             p => p.utilisateur == this.currentUserId
           )
-        );
-        
+        );        
         this.commandesDevis = result.data.devis.filter(
           x => !x.propositions.some(
             p => p.prestataire.utilisateur.toString() == this.currentUserId
             )
         ); 
-
-
-
       }
     });
 

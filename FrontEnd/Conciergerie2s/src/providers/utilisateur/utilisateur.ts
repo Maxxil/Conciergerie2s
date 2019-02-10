@@ -16,28 +16,23 @@ import {UTILISATEUR_URL} from "../../model/Url";
 export class UtilisateurProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello UtilisateurProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 
-  add(utilisateur: UtilisateurModel) : Observable<Result> {
-    console.log(utilisateur);
+  add(utilisateur: UtilisateurModel) : Observable<Result> {    
     return this.http.put<Result>(UTILISATEUR_URL, {utilisateur : utilisateur, token : this.token})
   }
 
-  getByCurrentId(): Observable<UtilisateurResult>{
-    console.log('Get current utilisateur '+localStorage.getItem('IdUtilisateur'));
-      return this.http.get<UtilisateurResult>(UTILISATEUR_URL + '/' + localStorage.getItem('IdUtilisateur')+'/'+localStorage.getItem('Token'));
+  getByCurrentId(): Observable<UtilisateurResult>{    
+    return this.http.get<UtilisateurResult>(UTILISATEUR_URL + '/' + localStorage.getItem('IdUtilisateur')+'/'+localStorage.getItem('Token'));
   }
 
-  updateWithoutImage(utilisateur: UtilisateurModel): Observable<Result>{
-    console.log('updatewithoutimage');
+  updateWithoutImage(utilisateur: UtilisateurModel): Observable<Result>{    
     return this.http.post<Result>(UTILISATEUR_URL , {utilisateur : utilisateur, token : this.token});
   }
 
-  updateLastPlayerId(utilisateur: UtilisateurModel): Observable<Result>{
-    console.log('updatelastplayerid');
+  updateLastPlayerId(utilisateur: UtilisateurModel): Observable<Result>{    
     return this.http.post<Result>(UTILISATEUR_URL+'/playerid' , {utilisateur : utilisateur});
   }  
 

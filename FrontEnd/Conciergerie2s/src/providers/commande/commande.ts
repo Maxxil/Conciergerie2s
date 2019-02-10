@@ -14,13 +14,11 @@ import {COMMANDE_BY_ID_UTILISATEUR, COMMANDE_URL} from "../../model/Url";
 export class CommandeProvider {
 
   private token ;
-  constructor(public http: HttpClient) {
-    console.log('Hello CommandeProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 
   getCommandesClient() : Observable<CommandeResult>{
-
     return this.http.get<CommandeResult>(COMMANDE_URL + '/' + localStorage.getItem('IdUtilisateur')+ '/' + this.token);
   }
 

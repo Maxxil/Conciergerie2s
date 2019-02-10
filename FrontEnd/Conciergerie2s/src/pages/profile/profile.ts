@@ -38,13 +38,11 @@ export class ProfilePage {
     this.getByCurrentId();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+  ionViewDidLoad() {    
   }
 
   getByCurrentId(){
-    this.utilisateurPvd.getByCurrentId().subscribe(result =>{
-      console.log(result.data);
+    this.utilisateurPvd.getByCurrentId().subscribe(result =>{      
       this.profile = result.data[0];
     });
   }
@@ -97,8 +95,7 @@ export class ProfilePage {
     }
   }
 
-  hasImage(){
-    console.log(this.profile.image != null);
+  hasImage(){    
     return this.profile.image != null;
   }
 

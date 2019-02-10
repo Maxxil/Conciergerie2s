@@ -14,13 +14,11 @@ import {LOGIN_URL} from "../../model/Url";
 @Injectable()
 export class LoginProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello LoginProvider Provider');
+  constructor(public http: HttpClient) {    
   }
 
   public connect(user : UtilisateurModel) : Observable<LoginResult>
-  {
-    //var token = localStorage.getItem('Token');
+  {    
     return this.http.post<LoginResult>(LOGIN_URL,user, {headers : new HttpHeaders({
       'Content-Type':  'application/json'
     })});

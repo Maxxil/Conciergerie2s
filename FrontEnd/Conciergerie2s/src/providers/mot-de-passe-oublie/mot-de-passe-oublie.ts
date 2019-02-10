@@ -13,8 +13,7 @@ import {MOT_DE_PASSE_OUBLIE_URL} from "../../model/Url";
 @Injectable()
 export class MotDePasseOublieProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello MotDePasseOublieProvider Provider');
+  constructor(public http: HttpClient) {    
   }
 
   demandeMotDePasseOublie(email : string): Observable<Result>{

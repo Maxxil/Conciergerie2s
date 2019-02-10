@@ -30,19 +30,16 @@ export class MotDePasseOubliePage {
               private alertCtrl : AlertController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MotDePasseOubliePage');
+  ionViewDidLoad() {    
   }
 
   envoyer(){
-    this.motDePasseOubliePvd.demandeMotDePasseOublie(this.email).subscribe( (result) =>{
-      console.log(result);
+    this.motDePasseOubliePvd.demandeMotDePasseOublie(this.email).subscribe( (result) =>{      
       if(result.success){
         this.alertCtrl.create({
           buttons : [
             {
-              text : 'OK',
-
+              text : 'OK'
             }
           ],
           title : 'Demande envoyée',

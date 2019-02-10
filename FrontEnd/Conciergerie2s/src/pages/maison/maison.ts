@@ -18,8 +18,7 @@ export class MaisonPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MaisonPage');
+  ionViewDidLoad() {    
   }
 
 }

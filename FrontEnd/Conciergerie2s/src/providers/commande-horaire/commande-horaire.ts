@@ -16,13 +16,11 @@ import {COMMANDE_HORAIRE_PRESTATAIRE_URL, COMMANDE_HORAIRE_URL} from "../../mode
 export class CommandeHoraireProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello CommandeHoraireProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 
-  public add(commande : CommandeHoraireModel) : Observable<CommandeHoraireResult>{
-    console.log(localStorage.getItem("IdUtilisateur"));
+  public add(commande : CommandeHoraireModel) : Observable<CommandeHoraireResult>{    
     commande.idClient = localStorage.getItem("IdUtilisateur");
     return this.http.put<CommandeHoraireResult>(COMMANDE_HORAIRE_URL, {commande : commande, token : this.token});
   }

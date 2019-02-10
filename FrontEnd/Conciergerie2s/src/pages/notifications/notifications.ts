@@ -30,8 +30,7 @@ export class NotificationsPage {
     public events: Events,
     public devisPvd : DevisProvider) {
       this.notifications = [];    
-      this.events.subscribe('notification:updated', () => {
-        console.log('notification:updated');
+      this.events.subscribe('notification:updated', () => {        
         this.updateNotificationList();
       });
   }
@@ -49,26 +48,20 @@ filtrerNotification(element: NotificationModel) {
    && element.utilisateur._id ==  localStorage.getItem("IdUtilisateur")); 
 } 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationsPage');
+  ionViewDidLoad() {    
     this.updateNotificationList();
   }
 
-  delete(notification) {
-    console.log(notification);
-     this.notificationProv.delete(notification).subscribe((result) =>{
-      console.log(result);
+  delete(notification) {    
+     this.notificationProv.delete(notification).subscribe((result) =>{      
       this.events.publish('notification:updated');
     });
   }
 
-  open(notification: NotificationModel) {
-    console.log(notification);
+  open(notification: NotificationModel) {    
     switch(notification.type) {
-      case NotificationEnum.DEVIS_A_REGLER: 
-        console.log('devis à régler : '+notification.refId); 
-        this.devisPvd.get(notification.refId).subscribe(result => {
-          console.log(result);
+      case NotificationEnum.DEVIS_A_REGLER:         
+        this.devisPvd.get(notification.refId).subscribe(result => {          
           this.navCtrl.push(DevisDetailPage, {'Commande': result.data[0]});
         });                
         break;

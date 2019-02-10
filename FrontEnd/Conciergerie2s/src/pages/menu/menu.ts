@@ -9,7 +9,7 @@ import {MesCommandesPostuleesPage} from "../mes-commandes-postulees/mes-commande
 import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
-import {SERVER_URL} from "../../model/Url";
+import {SERVER_URL, APPVERSION} from "../../model/Url";
 /**
  * Generated class for the MenuPage page.
  *
@@ -27,26 +27,25 @@ export class MenuPage {
   public rootPage : Page= TabsPage;
   public peutPostuler = false;
   public serveurURL : string = "";
+  public appVERSION : string = "";
   constructor(public utilisateurPvd : UtilisateurProvider,public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService) {
     this.utilisateurPvd.getByCurrentId().subscribe(result =>{
 
-      let profile = result.data[0];
-      console.log('My profile',profile)   ;
+    let profile = result.data[0];
+      
     if(profile) {
-
         let playerId = localStorage.getItem('playerID');
         profile.lastPlayerId = playerId;
-        console.log('send maj playerid', profile);
         this.utilisateurPvd.updateLastPlayerId(profile);              
         this.peutPostuler = profile.role == 2;
     }
 
     });
     this.serveurURL = SERVER_URL;
+    this.appVERSION = APPVERSION;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPage');
+  ionViewDidLoad() {  
     this.utilisateurPvd.getByCurrentId().subscribe(result =>{
 
       let profile = result.data[0];
@@ -57,9 +56,8 @@ export class MenuPage {
         profile.lastPlayerId = playerId;
         
         this.utilisateurPvd.updateLastPlayerId(profile).subscribe(result =>{ 
-          console.log('Result udpate profile : ',result);
-        });
-        this.peutPostuler = profile.role == 2;
+          this.peutPostuler = profile.role == 2;  
+        });        
     }
 
     });

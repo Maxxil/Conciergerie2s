@@ -43,18 +43,8 @@ export class CommandeForfaitPage {
   }
 
   public commander(){
-
-    this.loading.present();
-    /*console.log("Paiement");
-    this.commandeForfait.status = CommandeStatus.EN_COURS_ANALYSE;
-        this.commandeForfaitPvd.add(this.commandeForfait).subscribe(result =>{          
-          this.manageDisplaySuccessOrError(result);
-          this.annuler();
-          this.loading.dismiss();
-        });
-    */
-    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{
-      console.log(result);
+    this.loading.present();    
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeForfait.quantite).subscribe(result =>{      
       var browser = this.iab.create(result.data);
       this.loading.dismiss();
       browser.on('exit').subscribe(() =>{       
@@ -65,20 +55,15 @@ export class CommandeForfaitPage {
         });
       });
 
-    });
-
-    
-
+    });    
   }
 
   public annuler(){
     this.navCtrl.pop();
   }
 
-
   manageDisplaySuccessOrError(result : CommandeForfaitResult){
     var alert = this.alertCtrl.create();
-
     if(result.success){
       alert.setTitle('Succes');
       alert.setSubTitle('La commande a été ajouté correctement.');
@@ -96,9 +81,7 @@ export class CommandeForfaitPage {
         text : 'OK'
       })
     }
-
     alert.present();
-
   }
 
 }

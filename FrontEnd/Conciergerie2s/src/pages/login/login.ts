@@ -41,8 +41,7 @@ export class LoginPage {
   tryConnect(){
     var promise = this.loginPvd.tryConnect();
     if(promise != null){
-      promise.subscribe((result) => {
-        console.log(result);
+      promise.subscribe((result) => {        
         if(result.success){
           this.estConnecte = true;
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
@@ -50,9 +49,7 @@ export class LoginPage {
           this.navCtrl.setRoot(MenuPage);
         }
       })
-    } else {
-      console.log('erreur try connect');
-    }
+    } 
   }
 
   connect(){

@@ -15,9 +15,7 @@ import { Result } from '../../model/Result/Result';
 export class NotificationProvider {
  
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello UtilisateurProvider Provider');
-
+  constructor(public http: HttpClient) {    
   }
 
   public getAll() : Observable<NotificationResult>{
@@ -25,9 +23,7 @@ export class NotificationProvider {
     return this.http.get<NotificationResult>(NOTIFICATION_URL+ '/' + this.token);
   }
 
-  public delete(notification: NotificationModel): any {
-    //this.token = localStorage.getItem('Token');
-    //console.log(NOTIFICATION_URL+ '/' + notification._id+ '/' + this.token);
+  public delete(notification: NotificationModel): any {    
     return this.http.delete<Result>(NOTIFICATION_URL+ '/' + notification._id);
   }
 

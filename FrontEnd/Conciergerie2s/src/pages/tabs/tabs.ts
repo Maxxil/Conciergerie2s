@@ -20,20 +20,12 @@ export class TabsPage {
   constructor(public events: Events,
     public notificationProv: NotificationProvider) {
 
-    this.notificationProv.getAll().subscribe((results) =>{
-      
-      
-        this.totalNotification = results.data.filter(this.filtrerNotification).length;     
-        console.log('total notification init '+this.totalNotification)  ;  
-        
-        events.subscribe('notification:badge', payload => {    
-          console.log('Event notification:badge');        
+    this.notificationProv.getAll().subscribe((results) =>{      
+        this.totalNotification = results.data.filter(this.filtrerNotification).length;                     
+        events.subscribe('notification:badge', payload => {                    
           this.totalNotification = payload._badgeValue;      
-        });
-
-        
-      events.subscribe('notification:updated', () => {   
-        console.log('Event notification:updated');  
+        });        
+      events.subscribe('notification:updated', () => {           
         this.updateNotificationBadge();    
       });
 
@@ -46,10 +38,8 @@ export class TabsPage {
   } 
 
   updateNotificationBadge() {
-    this.notificationProv.getAll().subscribe((results) =>{
-      console.log(results);
-      this.totalNotification = results.data.filter(this.filtrerNotification).length; 
-      console.log('total notification maj '+this.totalNotification)  ;     
+    this.notificationProv.getAll().subscribe((results) =>{      
+      this.totalNotification = results.data.filter(this.filtrerNotification).length;           
     });  
   }
 
