@@ -17,6 +17,7 @@ import {ProfilePage} from "../profile/profile";
 import { ChatService } from "../../providers/chat/chat-service";
 import { SettingPage } from '../setting/setting';
 import { ChatPage } from '../chat/chat';
+import { APPVERSION } from '../../model/Url';
 
 @Component({
   selector: 'page-menu',
@@ -38,7 +39,9 @@ export class MenuPage {
   public isDisplayLink : boolean = false;
   public isDisplayValider : boolean = false;
   public isDisplaySettings : boolean = false;
+  public appversion: string ="";
   constructor(public platform: Platform,public navCtrl: NavController, public navParams: NavParams, private chatService: ChatService, public events: Events) {
+    this.appversion = APPVERSION;
   }
 
 

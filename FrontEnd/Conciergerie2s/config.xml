@@ -86,4 +86,5 @@
     <plugin name="onesignal-cordova-plugin" spec="2.4.6" />
     <plugin name="com.paypal.cordova.mobilesdk" spec="3.5.0" />
     <engine name="android" spec="7.1.4" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

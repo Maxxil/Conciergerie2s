@@ -20,6 +20,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/call-number": "^5.0.0",
     "@ionic-native/core": "~4.12.0",
     "@ionic-native/in-app-browser": "^4.17.0",
     "@ionic-native/paypal": "^5.0.0",
@@ -27,6 +28,7 @@
     "@ionic-native/status-bar": "~4.12.0",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
+    "call-number": "1.0.1",
     "card.io.cordova.mobilesdk": "2.1.0",
     "com.paypal.cordova.mobilesdk": "3.5.0",
     "cordova-android": "7.1.4",
@@ -66,7 +68,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "onesignal-cordova-plugin": {},
-      "com.paypal.cordova.mobilesdk": {}
+      "com.paypal.cordova.mobilesdk": {}      
     },
     "platforms": [
       "android"
