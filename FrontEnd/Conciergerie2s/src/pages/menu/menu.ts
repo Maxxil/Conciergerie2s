@@ -7,6 +7,8 @@ import {LoginPage} from "../login/login";
 import {CommandesPostulerPage} from "../commandes-postuler/commandes-postuler";
 import {MesCommandesPostuleesPage} from "../mes-commandes-postulees/mes-commandes-postulees";
 import {ProfilePage} from "../profile/profile";
+import {MentionsPage}  from "../mentions/mentions"
+import { CgvPage } from "../cgv/cgv";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {SERVER_URL, APPVERSION} from "../../model/Url";
@@ -83,6 +85,18 @@ export class MenuPage {
 
   openPageProfile(){
     this.rootPage = ProfilePage;
+  }
+
+  
+
+  openPageCGV(){
+    this.rootPage = CgvPage;
+  }
+
+  
+
+  openPageMentions(){
+    this.rootPage = MentionsPage;
   }
 
   sendPush() {

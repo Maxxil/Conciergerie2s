@@ -49,7 +49,8 @@ import { MotDePasseOublieProvider } from '../providers/mot-de-passe-oublie/mot-d
 import {MotDePasseOubliePage} from "../pages/mot-de-passe-oublie/mot-de-passe-oublie";
 import { ChangerMotDePasseProvider } from '../providers/changer-mot-de-passe/changer-mot-de-passe';
 import {ChangerMotDePassePage} from "../pages/changer-mot-de-passe/changer-mot-de-passe";
-
+import {MentionsPage}  from "../pages/mentions/mentions"
+import { CgvPage } from "../pages/cgv/cgv";
 import { NotificationProvider } from '../providers/notification/notification';
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
@@ -78,7 +79,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandesPostulerPage,
     MotDePasseOubliePage,
     ChangerMotDePassePage,
-    MesCommandesPostuleesPage
+    MesCommandesPostuleesPage,
+    CgvPage,
+    MentionsPage
   ],
   imports: [
     BrowserModule,
@@ -116,7 +119,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandesPostulerPage,
     MotDePasseOubliePage,
     ChangerMotDePassePage,
-    MesCommandesPostuleesPage
+    MesCommandesPostuleesPage,
+    CgvPage,
+    MentionsPage
   ],
   providers: [
     StatusBar,
