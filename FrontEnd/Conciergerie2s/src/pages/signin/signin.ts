@@ -115,6 +115,7 @@ export class SigninPage {
   signin(){
     if(this.verifyInput())
     {
+      console.log(this.user);
       this.utilisateurPvd.add(this.user).subscribe((result) =>{
         if(result.success){
           var alert = this.alertCtrl.create({

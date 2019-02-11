@@ -74,6 +74,7 @@ router.put('/' , upload.single('image'),function(req, res){
     if(req.file != null){
         filename = req.file.filename;
     }
+    console.log(req.body);
     var hash = bcrypt.hashSync(req.body.utilisateur.motDePasse,saltRounds);
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
@@ -102,6 +103,7 @@ router.put('/' , upload.single('image'),function(req, res){
             res.end();
         }
         else{
+            console.log("Utilisateur non existant");
             utilisateurBusiness.create(utilisateur);
             notificationBusiness.newUtilisateur(utilisateur);
             res.json({

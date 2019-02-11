@@ -11,27 +11,25 @@ module.exports = {
         return Utilisateur.find({});
     },
     create : function(user){
-        //bcrypt.hash(user.motDePasse, saltRound, function (err,hash) {
-            var promise = new Utilisateur({
-                nomUtilisateur : user.nomUtilisateur,
-                motDePasse: user.motDePasse,
-                nom: user.nom,
-                prenom : user.prenom,
-                role : user.role,
-                status : statusEnum.status.EN_ATTENTE_VALIDATION,
-                addresse : user.addresse,
-                telephoneMobile : user.telephoneMobile,
-                telephoneFix : user.telephoneFix,
-                email : user.email,
-                siret: user.siret,
-                entreprise: user.entreprise,
-                codepostal: user.codepostal,
-                ville: user.ville
-            });
-            Utilisateur.create(promise);
-      //  })
-
-        //promise.save();
+        var promise = new Utilisateur({
+            nomUtilisateur : user.nomUtilisateur,
+            motDePasse: user.motDePasse,
+            nom: user.nom,
+            prenom : user.prenom,
+            role : user.role,
+            status : statusEnum.status.EN_ATTENTE_VALIDATION,
+            addresse : user.addresse,
+            telephoneMobile : user.telephoneMobile,
+            telephoneFix : user.telephoneFix,
+            email : user.email,
+            siret: user.siret,
+            entreprise: user.entreprise,
+            codepostal: user.codepostal,
+            ville: user.ville
+        });
+        console.log("Utilisateur à ajouter");
+        console.log(promise);
+        Utilisateur.create(promise);
     },
     getAll : function () {
         return Utilisateur.find({}).select("_id nom prenom nomUtilisateur image addresse telephoneMobile telephoneFix email status role");

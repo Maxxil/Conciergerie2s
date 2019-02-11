@@ -145,7 +145,8 @@ router.get('/executePayment', function (req, res) {
 
             res.set('Content-Type', 'text/html');
             res.send("<html><body><p style='text-align:center; width:100%'>Paiement accepté. Merci de <a href='#' onclick='return self.close();'>fermer</a> cette fenetre pour retoruner à l'application</p></body></html>");
-        } 
+            res.end();
+        }
     });
 });
 
