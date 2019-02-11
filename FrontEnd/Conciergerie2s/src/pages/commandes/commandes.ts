@@ -25,7 +25,6 @@ export class CommandesPage {
               public commandePvd : CommandeProvider, public events: Events) {
       this.currentUserId = localStorage.getItem("IdUtilisateur");
       this.getMyCommandes();
-      console.log(localStorage.getItem("MesCommandes"));
       events.subscribe('refresh:commande', () => {
         this.getMyCommandes();
       });
@@ -37,15 +36,12 @@ export class CommandesPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandesPage');
+  ionViewDidLoad() {    
     this.getMyCommandes();
   }
 
-  getMyCommandes() {
-    /* TODO  Filtrer sur les commandes de l'utilisateur connecté soit en tant que client ou en tant que prestataire getAll(idClient) **/
-    this.commandePvd.getCommandesClient().subscribe(result =>{
-      console.log(result);
+  getMyCommandes() {    
+    this.commandePvd.getCommandesClient().subscribe(result =>{      
       if(result.success){
         this.commandesHoraire = result.data.commandeHoraire;
         this.commandesForfait = result.data.commandeForfait;

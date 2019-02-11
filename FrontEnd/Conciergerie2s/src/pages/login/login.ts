@@ -7,7 +7,7 @@ import {MenuPage} from "../menu/menu";
 import { Socket } from 'ng-socket-io';
 import {MotDePasseOubliePage} from "../mot-de-passe-oublie/mot-de-passe-oublie";
 import { UtilisateurProvider } from '../../providers/utilisateur/utilisateur';
-import {SERVER_URL} from "../../model/Url";
+import {SERVER_URL,APPVERSION} from "../../model/Url";
 /**
  * Generated class for the LoginPage page.
  *
@@ -24,6 +24,7 @@ export class LoginPage {
 
   public login: UtilisateurModel;
   public serveurURL : string = "";
+  public appVERSION : string = "";
   private estConnecte : boolean = false;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
@@ -32,6 +33,7 @@ export class LoginPage {
               , public alertCtrl : AlertController, public socket: Socket) {
     this.login = new UtilisateurModel();
     this.serveurURL = SERVER_URL;
+    this.appVERSION = APPVERSION;
     var token = localStorage.getItem('Token');
     if(token != null && !this.estConnecte){
       this.tryConnect();
@@ -41,8 +43,7 @@ export class LoginPage {
   tryConnect(){
     var promise = this.loginPvd.tryConnect();
     if(promise != null){
-      promise.subscribe((result) => {
-        console.log(result);
+      promise.subscribe((result) => {        
         if(result.success){
           this.estConnecte = true;
           localStorage.setItem("IdUtilisateur" , result.user[0]._id);
@@ -50,9 +51,7 @@ export class LoginPage {
           this.navCtrl.setRoot(MenuPage);
         }
       })
-    } else {
-      console.log('erreur try connect');
-    }
+    } 
   }
 
   connect(){

@@ -5,6 +5,7 @@ import { LoginProvider } from '../../providers/login/login';
 import {UtilisateurModel} from "../../model/Models/UtilisateurModel";
 import { Socket } from 'ng-socket-io';
 import { OneSignal } from '@ionic-native/onesignal';
+import { APPVERSION } from '../../model/Url';
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,13 +20,16 @@ import { OneSignal } from '@ionic-native/onesignal';
 })
 export class LoginPage {
   public user: UtilisateurModel;
+  public appversion: string = "";
   constructor(
      public navCtrl: NavController
     ,public navParams: NavParams
     ,public loginProvider: LoginProvider
     ,public alertCtrl: AlertController , public socket: Socket, private oneSignal: OneSignal) {
+      this.appversion = APPVERSION;
       this.user = new UtilisateurModel();
       this.tryConnect();
+      
   }
 
   ionViewDidLoad() {

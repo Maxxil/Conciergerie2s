@@ -17,8 +17,7 @@ import {DevisPropositionModel} from "../../model/Model/DevisPropositionModel";
 export class DevisProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello DevisProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 

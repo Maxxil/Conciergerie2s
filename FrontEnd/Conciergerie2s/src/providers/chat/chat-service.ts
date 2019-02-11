@@ -47,13 +47,11 @@ export class ChatService {
      return new Observable((observer) =>
      {
         this.socket.on('is-admin-online', (data) =>
-        {
-          console.log(data);
+        {          
            observer.next(data);
         });
         this.socket.on('c2s-admin-disconnect', (data) =>
-        {
-          console.log(data);
+        {          
            observer.next(data);
         });
        
@@ -65,9 +63,7 @@ export class ChatService {
      return new Observable((observer) =>
      {
         this.socket.on('message', (data) =>
-        {
-          console.log('restreiveMsg');
-          console.log(data);
+        {          
            observer.next(data);
         });
      });
@@ -79,15 +75,12 @@ export class ChatService {
     .pipe(map(response => response.array));
   }
 
-  request(profile) {
-    console.log('request chat');
+  request(profile) {    
     return new Promise(resolve =>
     this.socket.emit('chat-client-request', {profile: profile}));
   }
 
   sendMsg(msg: ChatMessage) {
-
-    console.log('sendMsg');
     return new Promise(resolve =>
        this.socket.emit('new-message', { message: msg}));
   }

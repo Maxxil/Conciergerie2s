@@ -24,8 +24,7 @@ export class ServiceProvider {
   }
 
   public getByIdWithPrestation(id) : Observable<ServiceResult>{
-    this.token = localStorage.getItem('Token');
-    console.log(this.token);
+    this.token = localStorage.getItem('Token');    
     return this.http.get<ServiceResult>(SERVICE_PRESTATION_URL + '/' + id + '/' + this.token);
   }
 

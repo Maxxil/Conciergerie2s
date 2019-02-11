@@ -1,6 +1,12 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import {InAppBrowser} from "@ionic-native/in-app-browser";
+
+
+
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -9,8 +15,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {ServicesPage} from "../pages/services/services";
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 import {LoginPage} from "../pages/login/login";
 import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
@@ -38,7 +43,7 @@ import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postuler";
 import {MesCommandesPostuleesPage} from "../pages/mes-commandes-postulees/mes-commandes-postulees";
 import { PaypalProvider } from '../providers/paypal/paypal';
-import {InAppBrowser} from "@ionic-native/in-app-browser";
+
 
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
@@ -49,8 +54,11 @@ import { MotDePasseOublieProvider } from '../providers/mot-de-passe-oublie/mot-d
 import {MotDePasseOubliePage} from "../pages/mot-de-passe-oublie/mot-de-passe-oublie";
 import { ChangerMotDePasseProvider } from '../providers/changer-mot-de-passe/changer-mot-de-passe';
 import {ChangerMotDePassePage} from "../pages/changer-mot-de-passe/changer-mot-de-passe";
-
+import {MentionsPage}  from "../pages/mentions/mentions"
+import { CgvPage } from "../pages/cgv/cgv";
 import { NotificationProvider } from '../providers/notification/notification';
+
+
 const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
 
 @NgModule({
@@ -78,11 +86,18 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandesPostulerPage,
     MotDePasseOubliePage,
     ChangerMotDePassePage,
-    MesCommandesPostuleesPage
+    MesCommandesPostuleesPage,
+    CgvPage,
+    MentionsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'décembre' ],
+      monthShortNames: ['jan', 'fev', 'mar', 'avr', 'mai', 'jui', 'jui', 'aou', 'sep', 'oct', 'nov', 'dec' ],
+      dayNames:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],
+      dayShortNames:['dim','lun','mar','mer','jeu','ven','sam'],
+  }),
     SocketIoModule.forRoot(configChat),
     HttpClientModule,
   ],
@@ -111,7 +126,9 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     CommandesPostulerPage,
     MotDePasseOubliePage,
     ChangerMotDePassePage,
-    MesCommandesPostuleesPage
+    MesCommandesPostuleesPage,
+    CgvPage,
+    MentionsPage
   ],
   providers: [
     StatusBar,
@@ -131,7 +148,7 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     MotDePasseOublieProvider,
     ChangerMotDePasseProvider,
     OneSignal,
-    NotificationProvider
+    NotificationProvider  
   ]
 })
 export class AppModule {}

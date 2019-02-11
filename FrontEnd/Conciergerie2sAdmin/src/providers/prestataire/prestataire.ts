@@ -19,9 +19,10 @@ export class PrestataireProvider {
     console.log('Hello PrestataireProvider Provider');
   }
 
-  getAllUtilisateurPrestataire() : Observable<PrestataireResult>{
+  getAllUtilisateurPrestataire() : Observable<any>{
     this.token = localStorage.getItem('Token');
-    return this.http.get<PrestataireResult>(UTILISATEUR_PRESTATAIRE + '/' + this.token);
+    console.log(UTILISATEUR_PRESTATAIRE + '/' + this.token);
+    return this.http.get<any>(UTILISATEUR_PRESTATAIRE);
   }
 
   public getAllPrestataire(): Observable<PrestataireResult>{

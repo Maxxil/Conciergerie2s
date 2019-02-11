@@ -20,8 +20,7 @@ export class PayementPage {
     this.prix = this.navParams.get('Prix');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PayementPage');
+  ionViewDidLoad() {    
   }
 
 }

@@ -35,8 +35,7 @@ export class PrestationsPage {
 
   public getServiceWithPrestations(){
     this.servicePvd.getByIdWithPrestation(this.service._id).subscribe(result =>{
-      this.service = result.data[0];
-      console.log(result);
+      this.service = result.data[0];      
     })
   }
 

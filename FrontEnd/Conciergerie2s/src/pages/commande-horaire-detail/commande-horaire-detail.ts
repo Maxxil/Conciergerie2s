@@ -33,23 +33,19 @@ export class CommandeHoraireDetailPage {
       case 2: this.status = "Validée"; break;
       case 3: this.status = "Livrée"; break;
       case 4: this.status = "En attente de validation"; break;
+      case 8: this.status = "Payée"; break;
     } 
-    console.log(localStorage.getItem('IdUtilisateur'));
-    console.log(this.commande);
-    console.log('Peutpostuler',this.peutPostuler());
     this.dejapostuler = this.aDejaPostule();
   
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeForfaitDetailPage');
+  ionViewDidLoad() {    
   }
   peutPostuler() {
     return (this.commande.client._id !== localStorage.getItem('IdUtilisateur'));
   } 
 
-  postuler(){
-    console.log(this.aDejaPostule());
+  postuler(){    
     if(this.aDejaPostule())
     {
       var alert = this.alertCtrl.create();
@@ -90,7 +86,6 @@ export class CommandeHoraireDetailPage {
 
   manageDisplaySuccessOrError(result : Result){
     var alert = this.alertCtrl.create();
-
     if(result.success){
       alert.setTitle('Succes');
       alert.setSubTitle('Vous avez postulé avec succés.');
@@ -108,8 +103,6 @@ export class CommandeHoraireDetailPage {
         text : 'OK'
       })
     }
-
     alert.present();
-
   }
 }

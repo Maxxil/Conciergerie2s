@@ -43,23 +43,19 @@ export class DevisDetailPage {
               ,public events: Events) {
 
 
-   this.commande = this.navParams.get('Commande');
+  this.commande = this.navParams.get('Commande');
 
-    console.log(this.commande);
-    switch(this.commande.status) {
-      case 1: this.status = "Envoyé"; break;
-      case 2: this.status = "Validée"; break;
-      case 3: this.status = "Livrée"; break;
-      case 4: this.status = "En attente de validation"; break;
-      case 5: this.status = "En attente de paiement"; break;
-      case 8: this.status = "Réglement reçu"; break;
-    }
+  switch(this.commande.status) {
+    case 1: this.status = "Envoyé"; break;
+    case 2: this.status = "Validée"; break;
+    case 3: this.status = "Livrée"; break;
+    case 4: this.status = "En attente de validation"; break;
+    case 5: this.status = "En attente de paiement"; break;
+    case 8: this.status = "Réglement reçu"; break;
+  }
  this.proposition = new DevisPropositionModel();
     if(this.commande.prestataireChoisi) {
-      this.proposition = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
-      console.log(this.proposition);
-      //this.propositionChoisi();
-      //this.proposition.dateProposee =  this.prestataireChoisi.date
+      this.proposition = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();     
     }
     else {
 
@@ -67,14 +63,12 @@ export class DevisDetailPage {
         this.proposition.prix = this.commande.prixC2S;
         this.proposition.dateProposee =  this.commande.dateC2S;
       }
-    }
-
-    console.log('PROPOSITION ',this.proposition);
+    }    
     this.dejapostuler = this.aDejaPostule();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DevisDetailPage');
+    
   }
 
 
@@ -106,10 +100,8 @@ export class DevisDetailPage {
     return this.commande.status == 5 && this.commande.client._id == localStorage.getItem('IdUtilisateur');
   }
 
-  propositionChoisi() {
-   // var prestataireChoisi = this.commande.prestataireChoisi;
+  propositionChoisi() {   
     var propositions = this.commande.propositions;
-
     propositions.forEach(element => {
       if(element.prestataire.utilisateur._id == this.prestataireChoisi._id){
 
@@ -119,25 +111,11 @@ export class DevisDetailPage {
   }
 
   commander(){
-    this.loading.present();
-
-  /* if(this.commande.byC2S==0) {
-      /// this.propositionChoisi();
-       console.log(this.proposition);
-   }
-   else {
-     this.proposition = new DevisPropositionModel();
-     this.proposition.prix = this.commande.prixC2S;
-   }*/
-
-   console.log("Paiement paypal ", this.proposition);
-
-    this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {
-      console.log(result);
+    this.loading.present();  
+    this.paypalPvd.payer(this.commande.prestation.nom , this.proposition.prix).subscribe(result => {      
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
-      browser.on('exit').subscribe(() =>{ 
-            
+      browser.on('exit').subscribe(() =>{                     
         this.devisPvd.updateStatus(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
           this.commande.status = CommandeStatus.PAYEE;
           this.commande.dateReglement = Date.now();  
@@ -154,21 +132,17 @@ export class DevisDetailPage {
     });
   }
 
-  commanderhorsligne(){
-    // this.loading.present();
-    // this.propositionChoisi();
-     console.log("Paiement hors ligne ",this.proposition);
-
-         this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
-           this.alertCtrl.create().setTitle('Succes')
-               .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
-               .addButton({
-                 text : 'OK',
-                 handler : data => {
-                 this.annuler();
-               }
-           }).present();
-         });
+  commanderhorsligne(){                 
+    this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
+      this.alertCtrl.create().setTitle('Succes')
+          .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
+          .addButton({
+            text : 'OK',
+            handler : data => {
+            this.annuler();
+          }
+      }).present();
+    });
    }
 
 
@@ -178,7 +152,6 @@ export class DevisDetailPage {
 
   manageDisplaySuccessOrError(result : Result){
     var alert = this.alertCtrl.create();
-
     if(result.success){
       alert.setTitle('Succes');
       alert.setSubTitle('Vous avez postulé avec succés.');
@@ -196,9 +169,7 @@ export class DevisDetailPage {
         text : 'OK'
       })
     }
-
     alert.present();
-
   }
 
 }

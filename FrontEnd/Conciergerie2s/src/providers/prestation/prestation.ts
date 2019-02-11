@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {} from './../../model/Result/'
 import {PrestationResult} from "../../model/Result/PrestationResult";
 import {LIER_PRESTATION_PRESTATAIRE_URL, PRESTATION_URL} from "../../model/Url";
 /*
@@ -14,8 +13,7 @@ import {LIER_PRESTATION_PRESTATAIRE_URL, PRESTATION_URL} from "../../model/Url";
 export class PrestationProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello PrestationProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 

@@ -50,8 +50,8 @@ export class HomePage {
         if(this.stats.commandeForfaits)
           this.totalCA+=this.stats.commandeForfaits.total;                              
         
-          this.totalUtilisateur = this.stats.utilisateurs[0].count;                        
-          this.totalPrestataire = this.stats.utilisateurs[1].count;
+          this.totalUtilisateur = this.stats.utilisateurs.filter(x => x._id.role == 1).pop().count;                        
+          this.totalPrestataire = this.stats.utilisateurs.filter(x => x._id.role == 2).pop().count;                        
 
           this.totalCommande.total = this.stats.commandeUnites.count+this.stats.commandeForfaits.count;
           this.stats.commandeUnites.status.forEach(element => {            

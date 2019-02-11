@@ -14,8 +14,7 @@ import {PAYPAL_URL} from "../../model/Url";
 export class PaypalProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello PaypalProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 

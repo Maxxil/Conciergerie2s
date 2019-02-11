@@ -32,8 +32,7 @@ export class SigninPage {
     this.user = new UtilisateurModel();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SigninPage');
+  ionViewDidLoad() {    
   }
 
   verifyInput(){

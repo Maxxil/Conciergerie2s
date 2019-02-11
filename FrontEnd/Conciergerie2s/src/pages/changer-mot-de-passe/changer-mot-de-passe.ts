@@ -23,12 +23,10 @@ export class ChangerMotDePassePage {
               public alertCtrl : AlertController, public changerMotDePassePvd : ChangerMotDePasseProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChangerMotDePassePage');
+  ionViewDidLoad() {    
   }
 
-  public send(){
-    console.log("ENVOYER MOT DE PASSE");
+  public send(){    
     if(this.motDePasse == this.ancienMotDePasse){
       this.alertCtrl.create({
         title : 'Erreur',

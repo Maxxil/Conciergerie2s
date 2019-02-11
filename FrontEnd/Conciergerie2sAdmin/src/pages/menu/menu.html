@@ -58,9 +58,7 @@
             <ion-list [@openClose]="isDisplaySettings? 'open' : 'close'" [hidden]="isDisplaySettings"> 
               <button icon-start ion-item menuClose (click)="openPageValiderPrestataire()"><ion-icon name="checkmark-circle"></ion-icon>Validation Inscription prestataire</button>
               <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="person"></ion-icon>Mon compte</button>
-              <button icon-start ion-item menuClose (click)="openPageSetting()"><ion-icon name="cog"></ion-icon>Paramétrages</button>
-             <button icon-start ion-item menuClose (click)="openPageProfile()"><ion-icon name="clipboard"></ion-icon>Mentions légales</button>
-          
+              <button icon-start ion-item menuClose (click)="openPageSetting()"><ion-icon name="cog"></ion-icon>Paramétrages</button>                       
             </ion-list>                        
            <!--  <button ion-item menuClose (click)="openPageDashboard()" >
               Dashboard
@@ -77,7 +75,7 @@
           <button ion-button icon-only (click)="deconnecter()">
             <ion-icon name="power"></ion-icon>
           </button>
-          <br><br><ion-note>v0.9.1</ion-note>
+          <br><br><ion-note>v{{appversion}}</ion-note>
       </ion-col>
       </ion-row>
     </ion-grid>

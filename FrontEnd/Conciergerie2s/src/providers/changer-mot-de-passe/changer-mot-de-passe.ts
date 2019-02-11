@@ -13,8 +13,7 @@ import {CHANGER_MOT_DE_PASSE_URL} from "../../model/Url";
 @Injectable()
 export class ChangerMotDePasseProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello ChangerMotDePasseProvider Provider');
+  constructor(public http: HttpClient) {    
   }
 
   public changerMotDePasse(email: string, code: string, nouveauMotDePasse: string) : Observable<Result>{
@@ -24,8 +23,7 @@ export class ChangerMotDePasseProvider {
     });
   }
 
-  public changerMotDePasseDepuisProfile(ancienMotDePasse : string, nouveauMotDePasse: string) : Observable<Result>{
-    console.log("Envoie Nouveau Mot De passe BACKEND")
+  public changerMotDePasseDepuisProfile(ancienMotDePasse : string, nouveauMotDePasse: string) : Observable<Result>{    
     return this.http.post<Result>( CHANGER_MOT_DE_PASSE_URL + '/profile', {
       token : localStorage.getItem('Token'),
       ancienMotDePasse : ancienMotDePasse,

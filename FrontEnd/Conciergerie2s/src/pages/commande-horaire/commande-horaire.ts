@@ -43,10 +43,8 @@ export class CommandeHorairePage {
   }
 
   commander(){
-    this.loading.present();
-    console.log("Paiement");
-    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {
-      console.log(result);          
+    this.loading.present();    
+    this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeHoraire.quantite).subscribe(result => {         
       var browser = this.iab.create(result.data);
       this.loading.dismiss();  
       browser.on('exit').subscribe(() =>{       

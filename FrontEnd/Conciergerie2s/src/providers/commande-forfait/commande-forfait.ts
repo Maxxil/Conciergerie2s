@@ -16,8 +16,7 @@ import {COMMANDE_FORFAIT_URL, COMMANDE_FORFAIT_PRESTATAIRE_URL} from "../../mode
 export class CommandeForfaitProvider {
 
   private token;
-  constructor(public http: HttpClient) {
-    console.log('Hello CommandeForfaitProvider Provider');
+  constructor(public http: HttpClient) {    
     this.token = localStorage.getItem('Token');
   }
 

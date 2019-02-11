@@ -32,9 +32,7 @@ export class ChatPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
      public utilisateurPvd : UtilisateurProvider,
     private chatService: ChatService, public alertCtrl : AlertController
-    , public loader : LoadingController) {        
-      // Get the navParams toUserId parameter
-    
+    , public loader : LoadingController) {          
       this.utilisateurPvd.getByCurrentId().subscribe(result =>{
         this.profile = result.data[0];
       
@@ -48,20 +46,8 @@ export class ChatPage {
         id: '5bf826ab20945653e180b496',
         name: 'C2S',
         avatar: './assets/imgs/to-user.jpg'
-      };
-
-
-     /* this.loading = this.loader.create({
-        spinner: 'hide',
-        content: 'Loading Please Wait...',
-        dismissOnPageChange: true
-    
-      });*/
-    
+      };    
     });
-
-    //this.getMsg(); 
-    
   }
 
   detectNetworkConnection() : void
@@ -76,13 +62,11 @@ export class ChatPage {
          
       })
       .catch((error) =>
-      {
-        console.log(error);
+      {        
       });
    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatPage');
+  ionViewDidLoad() {    
     this.detectNetworkConnection();
   }
 
@@ -90,37 +74,14 @@ export class ChatPage {
     this.isAdminOnline();
   }
 
-  request() {
-   /* let alert = this.alertCtrl.create({
-      title : 'Message',
-      message : "Merci de patienter",
-      buttons : [{
-        text : 'OK'
-      }]
-    });
-    
-    alert.setMessage('Connection en cours Adminonline='+this.adminIsOnline);
-    alert.present();
-    */
-   /*this.loading = this.loader.create({
-    spinner: 'hide',
-    content: 'Loading Please Wait...',
-    dismissOnPageChange: true
-
-  });*/
-  this.msgList = [];
-   this.loading = true;
+  request() {   
+    this.msgList = [];
+    this.loading = true;
     this.chatService.request(this.profile);
-
-    
-    
-    
   }
 
   
-  ionViewWillLeave() {
-    // unsubscribe
-   // this.events.unsubscribe('chat:received');
+  ionViewWillLeave() {  
   }
 
     /**
@@ -128,13 +89,10 @@ export class ChatPage {
    * @returns {Promise<ChatMessage[]>}
    */
   getMsg() {
-
     this.chatService.retrieveMsg()
     .subscribe((message) =>
     {     
        this.pushNewMsg(message);
-
-
     });
   }
 
@@ -165,10 +123,8 @@ export class ChatPage {
   }
 
   pushNewMsg(msg: ChatMessage) {
-    console.log('pushnewMsg after retreive msg', msg);    
     if(msg.toUserId ==  this.fromUser.id || msg.userId == this.fromUser.id) {
       this.msgList.push(msg);
-      console.log(this.msgList);
       this.scrollToBottom();
     }
   }
@@ -176,8 +132,6 @@ export class ChatPage {
   sendMsg() {
     if (!this.editorMsg.trim()) return;
 
-    // Mock message
-    //const id = Date.now().toString();
     let newMsg: ChatMessage = {
       messageId: Date.now().toString(),
       userId: this.fromUser.id,
@@ -190,10 +144,8 @@ export class ChatPage {
     };
 
     this.chatService.sendMsg(newMsg);
-       
-    
+           
     this.editorMsg = '';
-
     
     this.focus();
   
@@ -209,9 +161,5 @@ export class ChatPage {
   getMsgIndexById(id: string) {
     return this.msgList.findIndex(e => e.messageId === id)
   }
-
   
-
-
-
 }

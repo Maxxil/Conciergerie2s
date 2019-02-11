@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the MaisonPage page.
+ * Generated class for the CgvPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,15 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-maison',
-  templateUrl: 'maison.html',
+  selector: 'page-cgv',
+  templateUrl: 'cgv.html',
 })
-export class MaisonPage {
+export class CgvPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CgvPage');
   }
 
 }
