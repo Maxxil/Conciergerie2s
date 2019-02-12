@@ -26,18 +26,18 @@ export class CommandeForfaitDetailPage {
     , public navParams: NavParams
     , public commandePvd : CommandeForfaitProvider
     , public alertCtrl : AlertController) {
-    console.log("Commande horaire détail");
+    console.log("Commande specialisee détail");
 
-    this.commande = this.navParams.get('Commande');   
+    this.commande = this.navParams.get('Commande');
     console.log(this.commande);
-  
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeHoraireDetailPage');
+    console.log('ionViewDidLoad CommandeSpecialiseeDetailPage');
   }
 
-  public validerCommande(){     
+  public validerCommande(){
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
         this.commande.status = CommandeStatus.VALIDEE;

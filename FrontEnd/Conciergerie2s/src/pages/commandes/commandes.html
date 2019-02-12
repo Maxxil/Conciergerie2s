@@ -30,48 +30,35 @@
 <ion-content padding>
     <div [ngSwitch]="defautseg">
         <ion-list *ngSwitchCase="'horaire'">
-          <!--   <button ion-item *ngFor="let commande of commandeHoraire" (click)="detailCommandeHoraire(commande)">
-                
-              <ion-avatar item-start>
-                <ion-icon name="calendar"></ion-icon> {{commande.dateCreation | date: 'dd/MM/yy'}}<br>
-                <ion-icon name="time"></ion-icon>  {{commande.dateCreation | date: 'HH:mm'}}<br>
-              </ion-avatar>
-              
-
-              <h2 text-wrap>{{commande.prestation.nom}}</h2>
-              <em>{{commande.date | date: 'dd/MM/yy'}} {{ commande.heure }}</em>
-
-              <ion-note item-end >{{commande.prestation.prix * commande.quantite}} €</ion-note>
-            </button> -->
-            <ion-card *ngFor="let commande of commandesHoraire" (click)="detailCommandeHoraire(commande)">
+            <ion-card *ngFor="let commande of commandesHoraire" (click)="detailCommandeSpecialisee(commande)">
                 <ion-item>
                     <h2 text-wrap>{{commande.prestation.nom}}</h2>
                     <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
                     <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}</ion-note>
                   </ion-item>
-                
+
                   <img src="{{prestationImageUrl + commande.prestation.image}}">
-                
-                  <ion-item>                    
+
+                  <ion-item>
                     <p  *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV : {{commande.date | date: 'dd/MM/yy'}}</p>
                     <p  *ngIf="commande.heure"><ion-icon name="time"></ion-icon> {{commande.heure }}</p>
                     <p  *ngIf="commande.prestataires.length == 0"><br>
                       <span ion-text style='color: blue; font-size:1em;' text-wrap>Commande en cours d'analyse</span>
-                    </p> 
+                    </p>
                     <p *ngIf="commande.prestataires.length > 0"><br>
                       <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
-                  </p> 
-                    <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>  
+                  </p>
+                    <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>
                     </ion-item>
                     <ion-item>
-                   
-                   
-                  </ion-item> 
-            </ion-card>  
+
+
+                  </ion-item>
+            </ion-card>
         </ion-list>
         <ion-list *ngSwitchCase="'forfait'">
 
-                     
+
             <ion-card *ngFor="let commande of commandesForfait" (click)="detailCommandeForfait(commande)">
 
                 <ion-item>
@@ -79,55 +66,55 @@
                   <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
                   <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}}</ion-note>
                 </ion-item>
-              
+
                 <img src="{{prestationImageUrl + commande.prestation.image}}">
-              
-                <ion-item>                  
+
+                <ion-item>
                   <p *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV {{commande.date | date: 'dd/MM/yy'}}</p>
-                
-                <p *ngIf="commande.prestataires.length == 0"><br>         
+
+                <p *ngIf="commande.prestataires.length == 0"><br>
                     <span ion-text style='color: blue; font-size:1em;' text-wrap>Commande en cours d'analyse</span>
                 </p>
                 <p *ngIf="commande.prestataires.length > 0"><br>
                   <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
-              </p>  
-                  <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>   
-                </ion-item> 
-                
-        
-            </ion-card> 
+              </p>
+                  <ion-note class="prix" item-end>{{commande.prestation.prix * commande.quantite}} € TTC</ion-note>
+                </ion-item>
+
+
+            </ion-card>
           </ion-list>
           <ion-list *ngSwitchCase="'devis'">
 
               <ion-card *ngFor="let commande of commandesDevis" (click)="detailDevis(commande)">
 
                   <ion-item>
-                    <h2 text-wrap>{{commande.prestation.nom}}</h2>   
-                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>     
+                    <h2 text-wrap>{{commande.prestation.nom}}</h2>
+                    <p *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
                   </ion-item>
-                
+
                   <img src="{{prestationImageUrl + commande.prestation.image}}">
-                
-                  <ion-card-content>                                        
-                    <p *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV : {{commande.date | date: 'dd/MM/yy'}}</p>                    
+
+                  <ion-card-content>
+                    <p *ngIf="commande.date"><ion-icon name="calendar"></ion-icon> Date RDV : {{commande.date | date: 'dd/MM/yy'}}</p>
                     <p  *ngIf="commande.propositions.length == 0 && commande.status == 2"><br>
                       <span style='color: blue; font-size:1em;' text-wrap>Devis en cours d'analyse</span>
                     </p>
                     <p  *ngIf="commande.status == 5"><br>
                       <span style='color: red; font-size:1em;' text-wrap>Paiement en attente</span>
-                    </p> 
+                    </p>
                     <p  *ngIf="commande.status == 8"><br>
                       <span style='color: #009900; font-size:1em;' text-wrap>Réalisation programmée</span>
                     </p>
                   </ion-card-content>
-              </ion-card>    
-          
+              </ion-card>
+
               <!-- <button ion-item *ngFor="let commande of commandeDevis" (click)="detailDevis(commande)">
                   <div item-start>
-                      <ion-icon name="calendar"></ion-icon> {{commande.dateCreation | date: 'dd/MM/yy'}}                   
+                      <ion-icon name="calendar"></ion-icon> {{commande.dateCreation | date: 'dd/MM/yy'}}
                   </div>
                   <h2 text-wrap>{{commande.prestation.nom}}</h2>
-                  <ion-note item-end >Pour le  : {{commande.date | date: 'dd/MM/yy'}}</ion-note>                                   
+                  <ion-note item-end >Pour le  : {{commande.date | date: 'dd/MM/yy'}}</ion-note>
               </button> -->
             </ion-list>
     </div>

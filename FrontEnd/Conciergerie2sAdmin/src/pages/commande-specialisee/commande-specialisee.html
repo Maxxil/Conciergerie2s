@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CommandeHorairePage page.
+  Generated template for the CommandeSpecialiseePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -23,31 +23,31 @@
           <p *ngIf="element.dateCreation">Créé le {{element.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
           <ion-note class="prix" item-end><ion-icon name="basket"></ion-icon> {{element.quantite}}</ion-note>
         </ion-item>
-      
+
         <img src="{{prestationImageUrl + element.prestation.image}}">
-      
+
         <ion-item>
-          <p><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>    
+          <p><b>Client : </b><span text-wrap>{{element.client.nom + " " + element.client.prenom}}</span></p>
           <p><ion-icon name="calendar"></ion-icon> {{element.date | date: 'dd/MM/yy'}}</p>
           <p><ion-icon name="time"></ion-icon> {{element.heure }}</p>
-          <ion-note class="prix" item-end>{{element.prestation.prix * element.quantite}} € TTC</ion-note>  
+          <ion-note class="prix" item-end>{{element.prestation.prix * element.quantite}} € TTC</ion-note>
           </ion-item>
           <ion-item>
               <p *ngIf="element.prestataires.length > 0">
-                  <b>Nombre de réponses : </b><span text-wrap>{{element.prestataires.length}}</span><br>            
-              </p> 
+                  <b>Nombre de réponses : </b><span text-wrap>{{element.prestataires.length}}</span><br>
+              </p>
           <p *ngIf="element.status > 1 && element.prestataireChoisi">
               <b>Prestataire choisi : </b><span text-wrap>{{element.prestataireChoisi.utilisateur.nom + " " + element.prestataireChoisi.utilisateur.prenom}}</span>
-          </p> 
+          </p>
           <p *ngIf="element.status > 1 && !element.prestataireChoisi">
               <b>Prestation réalisée par C2S</b>
-          </p> 
+          </p>
           <p  *ngIf="element.status == 1 && element.prestataires.length == 0">
               <ion-note>Aucun prestataire n'a répondu</ion-note>
-          </p> 
-        </ion-item> 
- 
-    </ion-card>  
+          </p>
+        </ion-item>
+
+    </ion-card>
 
 
   <!--<ion-list>

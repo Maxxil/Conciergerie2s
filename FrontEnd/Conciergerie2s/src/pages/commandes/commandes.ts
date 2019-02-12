@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {CommandeProvider} from "../../providers/commande/commande";
-import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
+import {CommandeSpecialiseeModel} from "../../model/Model/CommandeSpecialiseeModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
-import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
+import {CommandeSpecialiseeDetailPage} from "../commande-specialisee-detail/commande-specialisee-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
 import {PRESTATION_IMAGE_URL} from "../../model/Url";
@@ -14,7 +14,7 @@ import {PRESTATION_IMAGE_URL} from "../../model/Url";
   templateUrl: 'commandes.html',
 })
 export class CommandesPage {
-  public commandesHoraire: CommandeHoraireModel[];
+  public commandesHoraire: CommandeSpecialiseeModel[];
   public commandesForfait: CommandeForfaitModel[];
   public commandesDevis: DevisModel[];
   public currentUserId;
@@ -36,22 +36,22 @@ export class CommandesPage {
 
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     this.getMyCommandes();
   }
 
-  getMyCommandes() {    
-    this.commandePvd.getCommandesClient().subscribe(result =>{      
+  getMyCommandes() {
+    this.commandePvd.getCommandesClient().subscribe(result =>{
       if(result.success){
-        this.commandesHoraire = result.data.commandeHoraire;
+        this.commandesHoraire = result.data.commandeSpecialisee;
         this.commandesForfait = result.data.commandeForfait;
         this.commandesDevis = result.data.devis;
       }
     });
 }
 
-  detailCommandeHoraire(commande){
-    this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande});
+  detailCommandeSpecialisee(commande){
+    this.navCtrl.push(CommandeSpecialiseeDetailPage, {Commande : commande});
   }
 
   detailCommandeForfait(commande){

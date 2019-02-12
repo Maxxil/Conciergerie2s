@@ -7,9 +7,9 @@ export const HTTP_OPTIONS = {
     };
 ;
 
-export const SERVER_URL : string = "http://149.56.13.37:4444";
+//export const SERVER_URL : string = "http://149.56.13.37:4444";
 export const APPVERSION : string = "1.0.0"
-//export const SERVER_URL : string = "http://localhost:4444";
+export const SERVER_URL : string = "http://localhost:4444";
 export const LOGIN_URL: string = SERVER_URL + '/login';
 export const PRESTATION_URL : string = SERVER_URL + '/prestation';
 export const SERVICE_URL : string = SERVER_URL + '/service';
@@ -25,14 +25,14 @@ export const DEVALIDER_PRESTATAIRE : string = SERVER_URL + '/devaliderPrestatair
 export const UTILISATEUR_URL : string = SERVER_URL + '/utilisateur';
 export const UTILISATEUR_PRESTATAIRE : string = UTILISATEUR_URL + '/prestataire';
 export const COMMANDE_FORFAIT_URL = SERVER_URL + '/commandeForfait';
-export const COMMANDE_HORAIRE_URL = SERVER_URL + '/commandeHoraire';
+export const COMMANDE_SPECIALISEE_URL = SERVER_URL + '/commandeSpecialisee';
 export const DEVIS_URL = SERVER_URL + '/devis';
 
 export const COMMANDE_URL = SERVER_URL + '/commande';
 export const COMMANDE_BY_ID_UTILISATEUR = COMMANDE_URL + '/ByIdUtilisateur';
 
 export const COMMANDE_FORFAIT_PRESTATAIRE_URL = COMMANDE_FORFAIT_URL + '/prestataire';
-export const COMMANDE_HORAIRE_PRESTATAIRE_URL = COMMANDE_HORAIRE_URL + '/prestataire';
+export const COMMANDE_SPECIALISEE_PRESTATAIRE_URL = COMMANDE_SPECIALISEE_URL + '/prestataire';
 export const DEVIS_PRESTATAIRE_URL = DEVIS_URL + '/prestataire';
 export const DEVIS_STATUS_URL = DEVIS_URL + '/status';
 

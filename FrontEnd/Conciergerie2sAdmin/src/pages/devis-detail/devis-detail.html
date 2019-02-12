@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CommandeHoraireDetailPage page.
+  Generated template for the CommandeSpecialiseeDetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -14,7 +14,7 @@
 
 
 <ion-content>
- 
+
   <ion-list>
     <ion-item>
         <ion-avatar item-start>
@@ -35,40 +35,40 @@
     </ion-item>
   </ion-list>
   <hr>
-  <div *ngIf="!isEnCours()"  text-center>      
-      <button ion-button color="secondary">Prestataire choisi</button><br><br>             
+  <div *ngIf="!isEnCours()"  text-center>
+      <button ion-button color="secondary">Prestataire choisi</button><br><br>
       <h2 *ngIf="prestataireChoisiExist() && commande.byC2S == 0"> {{ prestataireChoisi.prestataire.utilisateur.nom + " " + prestataireChoisi.prestataire.utilisateur.prenom}}</h2>
       <p *ngIf="prestataireChoisiExist() && commande.byC2S == 0"><strong>Date RDV DEFINITIVE</strong> :<br> {{prestataireChoisi.dateProposee  | date: 'dd/MM/yy':'UTC'}}<br><strong>Prix proposé</strong> : {{ prestataireChoisi.prix }} € TTC</p>
-      <h2 *ngIf="commande.byC2S == 1"> Conciergerie Second Souffle</h2>       
-      <p *ngIf="commande.byC2S == 1"><strong>Ma date</strong> : {{commande.dateC2S | date: 'dd/MM/yy':'UTC'}}<br><strong>Mon prix</strong> : {{commande.prixC2S}} € TTC</p>     
+      <h2 *ngIf="commande.byC2S == 1"> Conciergerie Second Souffle</h2>
+      <p *ngIf="commande.byC2S == 1"><strong>Ma date</strong> : {{commande.dateC2S | date: 'dd/MM/yy':'UTC'}}<br><strong>Mon prix</strong> : {{commande.prixC2S}} € TTC</p>
       <div *ngIf="commande.status == 8">
-          <strong>Commande n°</strong> : <span style="font-size:1.3em">{{ commande.compteur  }}</span> <br> 
-          <strong>Date règlement</strong>  : {{ commande.dateReglement | date: 'dd/MM/yy':'UTC'}} <br>   
+          <strong>Commande n°</strong> : <span style="font-size:1.3em">{{ commande.compteur  }}</span> <br>
+          <strong>Date règlement</strong>  : {{ commande.dateReglement | date: 'dd/MM/yy':'UTC'}} <br>
           <strong>Mode règlement</strong>  : {{ commande.modepaiement }}
-      </div>     
-     
-  
+      </div>
+
+
     </div>
 
-    
+
     <div  *ngIf="isEnCours()"  text-center>
-      
+
         <ion-list>
          <ion-item>
-            <span  item-start>Date C2S  : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="commande.dateC2S"></ion-datetime>        
-            
-          </ion-item>  
+            <span  item-start>Date C2S  : </span><ion-datetime displayFormat="DD/MM/YYYY" placeholder="jj/mm/aaaa" pickerFormat="DD MMMM YYYY"  max='2030-12-31' [(ngModel)]="commande.dateC2S"></ion-datetime>
+
+          </ion-item>
           <ion-item>
             <span  item-start>Prix C2S TTC : </span><ion-input type="number" [(ngModel)]="commande.prixC2S" placeholder="votre prix"></ion-input>
 
           </ion-item>
-          <button ion-button color="primary"  (click)="validerCommandeC2S()" [disabled]="!(commande.dateC2S && commande.prixC2S)">JE VEUX REALISER AVEC C2S</button>      
+          <button ion-button color="primary"  (click)="validerCommandeC2S()" [disabled]="!(commande.dateC2S && commande.prixC2S)">JE VEUX REALISER AVEC C2S</button>
         </ion-list>
-        
-        
+
+
     <br><span style="font-size:2em;">OU</span>
     <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
-        <ion-list-header>Envoyer l'un des prestataires suivant   <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header> 
+        <ion-list-header>Envoyer l'un des prestataires suivant   <ion-badge item-end>{{commande.propositions.length}}</ion-badge></ion-list-header>
       <hr>
       <ion-item *ngFor="let proposition of commande.propositions">
         <ion-label text-wrap text-xs>Nom: {{proposition.prestataire.utilisateur.nom + " " + proposition.prestataire.utilisateur.prenom}}

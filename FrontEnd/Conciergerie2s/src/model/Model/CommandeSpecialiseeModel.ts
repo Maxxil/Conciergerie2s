@@ -1,18 +1,18 @@
 import {UtilisateurModel} from "./UtilisateurModel";
 import {PrestationModel} from "./PrestationModel";
-import {CommandeStatus} from "../Enums/CommandeStatusEnum";
+import {CommandeStatus} from "../CommandeStatusEnum";
 import {PrestataireModel} from "./PrestataireModel";
 
-export class CommandeHoraireModel{
-  _id : string;
+export class CommandeSpecialiseeModel{
+  _id: string;
   idClient : string;
   client: UtilisateurModel;
   idPrestation : string;
   prestation : PrestationModel;
   prestataires : PrestataireModel[];
-  prestataireChoisi : PrestataireModel;
   date : Date;
-  duree : number;
-  status : CommandeStatus;
-  dateCreation : Date;
+  duree : number = 1;
+  quantite : number = 1;
+  heure : string;
+  status : CommandeStatus = 1;
 }

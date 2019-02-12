@@ -1,5 +1,5 @@
 var Devis = require('./../model/devisModel');
-var CommandeHoraire = require('./../model/commandHoraireModel');
+var CommandeSpecialisee = require('../model/commandSpecialiseeModel');
 var CommandeForfait = require('./../model/commandeForfaitModel');
 var Utilisateur = require('./../model/utilisateureModel');
 var Prestataire = require('./../model/prestataireModel');
@@ -47,7 +47,7 @@ module.exports = {
     },
     cmdHoraire: function() {        
         
-        return CommandeHoraire.find({})  .populate([
+        return CommandeSpecialisee.find({})  .populate([
             {path : 'prestation'}]); 
     },
     cmdForfait: function() {        
@@ -56,7 +56,7 @@ module.exports = {
             {path : 'prestation'}]);
     },
     cmdUnitesByStatus: function() {
-        return CommandeHoraire.aggregate(
+        return CommandeSpecialisee.aggregate(
             [              
                  {
                     $group: {

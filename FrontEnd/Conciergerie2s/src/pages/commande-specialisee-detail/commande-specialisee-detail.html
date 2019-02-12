@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CommandeHoraireDetailPage page.
+  Generated template for the CommandeSpecialiseeDetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -18,7 +18,7 @@
     <ion-list-header>
       <h1>Détail de la commande</h1>
       <h2 text-left>{{commande.prestation.nom}}</h2>
-      <h3 text-right>Statut : {{ status }}</h3>      
+      <h3 text-right>Statut : {{ status }}</h3>
     </ion-list-header>
     <ion-item>
       <ion-label fixed>Date RDV</ion-label>
@@ -36,9 +36,9 @@
       <ion-label fixed>Quantité</ion-label>
       <ion-input type="number" min="1" [(ngModel)]="commande.quantite" readonly></ion-input>
     </ion-item>
-  
-  </ion-list>  
-  <div text-right margin>     
+
+  </ion-list>
+  <div text-right margin>
       <span class="ttc">Total TTC : {{ commande.prestation.prix * commande.quantite }} €</span>
   </div>
   <div text-center>

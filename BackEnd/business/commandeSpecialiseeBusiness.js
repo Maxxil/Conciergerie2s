@@ -1,4 +1,4 @@
-var CommandeHoraire = require('./../model/commandHoraireModel');
+var CommandeSpecialisee = require('../model/commandSpecialiseeModel');
 var notificationBusiness = require('./../business/notificationBusiness');
 var enums = require('./../helper/enums');
 
@@ -13,7 +13,7 @@ module.exports = {
        
     },
     addPrestataire : function (idCommande, idPrestataire) {
-        CommandeHoraire.find({_id : idCommande}).exec(function (err,result) {
+        CommandeSpecialisee.find({_id : idCommande}).exec(function (err,result) {
             if(result != null || result.length == 1){
                 result[0].prestataires.push(idPrestataire);
                 result[0].status = enums.CommandeStatus.EN_COURS_VALIDATION;
@@ -23,10 +23,10 @@ module.exports = {
         })
     },
     getById : function (idCommande) {
-        return CommandeHoraire.find({_id : idCommande});
+        return CommandeSpecialisee.find({_id : idCommande});
     },
     getAll : function () {
-        return CommandeHoraire.find({})  .populate([
+        return CommandeSpecialisee.find({})  .populate([
             {path : 'prestation'} , 
             {path : 'client'},
             {path : 'prestataireChoisi', populate :{path: 'utilisateur',  select : 'nom prenom'}},
@@ -34,22 +34,22 @@ module.exports = {
         .sort('-dateCreation');
     },
     getByIdClient : function(idClient){
-        return CommandeHoraire.find({'client' : idClient})
+        return CommandeSpecialisee.find({'client' : idClient})
             .populate([ {path : 'client'}, {path : 'prestation' }
                 ,{path : 'prestataires' , populate : {path: 'utilisateur' , select : '_id'}}]).sort('-dateCreation');
     },
     getByIdPrestation : function (idPrestation) {
-        return CommandeHoraire.find({'prestation._id' : idPrestation}).sort('-dateCreation');
+        return CommandeSpecialisee.find({'prestation._id' : idPrestation}).sort('-dateCreation');
     },
     getByListIdPrestation : function (idsPrestations) {
-        return CommandeHoraire.find({'prestation' : {'$in' : idsPrestations}}) .populate([
+        return CommandeSpecialisee.find({'prestation' : {'$in' : idsPrestations}}) .populate([
             {path : 'prestation' },
             {path : 'client' , select : '_id nom prenom telephoneMobile ville codepostal email'}, 
             {path : 'prestataires' , populate : {path: 'client' , select : '_id nom prenom'}}                
         ]).sort('-dateCreation');
     },
     updateStatus : function (idCommande, status,prestataireChoisi) {
-        CommandeHoraire.find({_id : idCommande}) .populate([ 
+        CommandeSpecialisee.find({_id : idCommande}) .populate([
             {path : 'client',  select : '_id nom prenom lastPlayerId'}, 
             {path : 'prestataireChoisi', 
                 populate :{path: 'utilisateur',  select : '_id nom prenom lastPlayerId'} }

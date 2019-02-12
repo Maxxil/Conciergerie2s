@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
-import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
+import {CommandeSpecialiseePage} from "../commande-specialisee/commande-specialisee";
 import {DevisPage} from "../devis/devis";
 
 /**
@@ -19,7 +19,7 @@ import {DevisPage} from "../devis/devis";
 export class CommandePage {
 
   tab1Root = CommandeForfaitPage;
-  tab2Root = CommandeHorairePage;
+  tab2Root = CommandeSpecialiseePage;
   tab3Root = DevisPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

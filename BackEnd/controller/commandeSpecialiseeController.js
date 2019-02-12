@@ -1,14 +1,14 @@
 var router = require('express').Router();
 var bodyParser = require('body-parser');
 
-var commandeHoraireBusiness = require('./../business/commandeHoraireBusiness');
-var CommandeHoraire = require('./../model/commandHoraireModel');
+var commandeSpecialiseeBusiness = require('../business/commandeSpecialiseeBusiness');
+var CommandeSpecialisee = require('../model/commandSpecialiseeModel');
 var prestataireBusiness = require('./../business/prestataireBusiness');
 
 router.use(bodyParser.json());
 
 router.get('/:token' , function (req, res) {
-    var promise = commandeHoraireBusiness.getAll();
+    var promise = commandeSpecialiseeBusiness.getAll();
     promise.exec(function (err, result) {
         res.json({
             success : true,
@@ -19,7 +19,7 @@ router.get('/:token' , function (req, res) {
 });
 
 router.get('/:id/:token', function (req, res) {
-    var promise = commandeHoraireBusiness.getById(req.params.id);
+    var promise = commandeSpecialiseeBusiness.getById(req.params.id);
     promise.exec(function (err, result) {
         res.json({
             success : true,
@@ -33,7 +33,7 @@ router.post('/' , function (req, res) {
     var idCommande = req.body.idCommande;
     var status = req.body.status;
     var prestataireChoisi = req.body.prestataireChoisi;
-    commandeHoraireBusiness.updateStatus(idCommande,status,prestataireChoisi);
+    commandeSpecialiseeBusiness.updateStatus(idCommande,status,prestataireChoisi);
     res.json({
         success : true
     });
@@ -44,7 +44,7 @@ router.post('/prestataire' , function (req, res) {
     var idCommande = req.body.idCommande;
     var idUtilisateur = req.body.idUtilisateur;
     prestataireBusiness.getByIdUtilisateur(idUtilisateur).exec(function(err, prestataire){
-        commandeHoraireBusiness.addPrestataire(idCommande, prestataire[0]._id);
+        commandeSpecialiseeBusiness.addPrestataire(idCommande, prestataire[0]._id);
         res.json({
             success: true
         });
@@ -53,7 +53,7 @@ router.post('/prestataire' , function (req, res) {
 });
 
 router.put('/', function(req, res){
-    var commande = new CommandeHoraire({
+    var commande = new CommandeSpecialisee({
         client : req.body.commande.idClient,
         prestation : req.body.commande.idPrestation,
         prestataire : [],
@@ -64,11 +64,9 @@ router.put('/', function(req, res){
         dateCreation : Date.now(),
         status : req.body.commande.status
     });
-    
-    commandeHoraireBusiness.add(commande);
-    
 
-    
+    commandeSpecialiseeBusiness.add(commande);
+
     res.json({
         success : true
     });

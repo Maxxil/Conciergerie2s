@@ -28,16 +28,16 @@ import { ChatService } from "../providers/chat/chat-service";
 import {PrestationsPage} from "../pages/prestations/prestations";
 import { PrestationProvider } from '../providers/prestation/prestation';
 import {LoginProvider} from "../providers/login/login";
-import {CommandeHorairePage} from "../pages/commande-horaire/commande-horaire";
+import {CommandeSpecialiseePage} from "../pages/commande-specialisee/commande-specialisee";
 import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
 import {DevisPage} from "../pages/devis/devis";
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
-import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
+import { CommandeSpcialiseeProvider } from '../providers/commande-specialisee/commande-specialisee';
 import { DevisProvider } from '../providers/devis/devis';
 import {CommandesPage} from '../pages/commandes/commandes';
 import { CommandeProvider } from '../providers/commande/commande';
 import {MenuPage} from "../pages/menu/menu";
-import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/commande-horaire-detail";
+import {CommandeSpecialiseeDetailPage} from "../pages/commande-specialisee-detail/commande-specialisee-detail";
 import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import {CommandesPostulerPage} from "../pages/commandes-postuler/commandes-postuler";
@@ -75,12 +75,12 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     NotificationsPage,
     ProfilePage,
     ChatPage,
-    CommandeHorairePage,
+    CommandeSpecialiseePage,
     CommandeForfaitPage,
     DevisPage,
     CommandesPage,
     MenuPage,
-    CommandeHoraireDetailPage,
+    CommandeSpecialiseeDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
     CommandesPostulerPage,
@@ -115,12 +115,12 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     NotificationsPage,
     ProfilePage,
     ChatPage,
-    CommandeHorairePage,
+    CommandeSpecialiseePage,
     CommandeForfaitPage,
     DevisPage,
     CommandesPage,
     MenuPage,
-    CommandeHoraireDetailPage,
+    CommandeSpecialiseeDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
     CommandesPostulerPage,
@@ -139,7 +139,7 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     PrestationProvider,
     LoginProvider,
     CommandeForfaitProvider,
-    CommandeHoraireProvider,
+    CommandeSpcialiseeProvider,
     DevisProvider,
     CommandeProvider,
     PaypalProvider,
@@ -148,7 +148,7 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     MotDePasseOublieProvider,
     ChangerMotDePasseProvider,
     OneSignal,
-    NotificationProvider  
+    NotificationProvider
   ]
 })
 export class AppModule {}

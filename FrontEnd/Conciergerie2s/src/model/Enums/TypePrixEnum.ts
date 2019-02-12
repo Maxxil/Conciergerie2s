@@ -1,5 +1,5 @@
 export enum TypePrixEnum {
-  HEURE = 1,
+  SPECIALISE = 1,
   FORFAIT = 2,
   DEVIS = 3
 }

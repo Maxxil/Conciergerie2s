@@ -79,6 +79,7 @@ router.post('/image', upload.single('file'), function (req, res) {
             result.typeprix= prestation.typeprix;
             result.forfait= prestation.forfait;
             result.details= prestation.details;
+            result.typePrestationSpecialise = prestation.typePrestationSpecialise;
             prestationBusiness.update(result).then(function (success) {
                 res.json({
                     success : success.ok

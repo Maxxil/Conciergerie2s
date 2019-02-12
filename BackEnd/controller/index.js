@@ -40,7 +40,7 @@ router.use('/prestataire', require('./prestataireController'));
 router.use('/validerPrestataire' , require('./validerPrestatire'));
 router.use('/devaliderPrestataire', require('./devaliderPrestataire'));
 router.use('/commandeForfait', require('./commandeForfaitController'));
-router.use('/commandeHoraire', require('./commandeHoraireController'));
+router.use('/commandeSpecialisee', require('./commandeSpecialiseeController'));
 router.use('/devis' , require('./devisController'));
 router.use('/commande' , require('./commandeController'));
 router.use('/paypal', require('./paypalController'));

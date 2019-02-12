@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import {CommandeHoraireDetailPage} from "../commande-horaire-detail/commande-horaire-detail";
+import {CommandeSpecialiseeDetailPage} from "../commande-specialisee-detail/commande-specialisee-detail";
 import {CommandeForfaitDetailPage} from "../commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../devis-detail/devis-detail";
-import {CommandeHoraireModel} from "../../model/Model/CommandeHoraireModel";
+import {CommandeSpecialiseeModel} from "../../model/Model/CommandeSpecialiseeModel";
 import {CommandeForfaitModel} from "../../model/Model/CommandeForfaitModel";
 import {DevisModel} from "../../model/Model/DevisModel";
 import {CommandeProvider} from "../../providers/commande/commande";
@@ -22,7 +22,7 @@ import {PRESTATION_IMAGE_URL} from "../../model/Url";
 })
 export class CommandesPostulerPage {
 
-  public commandesHoraire: CommandeHoraireModel[];
+  public commandesHoraire: CommandeSpecialiseeModel[];
   public commandesForfait: CommandeForfaitModel[];
   public commandesDevis: DevisModel[];
   defautseg: string = "horaire";
@@ -32,7 +32,7 @@ export class CommandesPostulerPage {
               public commandePvd : CommandeProvider, public events: Events) {
     this.currentUserId = localStorage.getItem("IdUtilisateur");
     this.getMyCommandes();
-    events.subscribe('refresh:commande', () => {      
+    events.subscribe('refresh:commande', () => {
       this.getMyCommandes();
     });
   }
@@ -44,54 +44,54 @@ export class CommandesPostulerPage {
   getMyCommandes() {
     this.commandePvd.getCommandesByIdUtilisateur().subscribe(result =>{
       if(result.success){
-        this.commandesHoraire = result.data.commandeHoraire.filter(
-          x => !x.prestataires.some( 
+        this.commandesHoraire = result.data.commandeSpecialisee.filter(
+          x => !x.prestataires.some(
             p => p.utilisateur == this.currentUserId
           )
-        );               
+        );
         this.commandesForfait = result.data.commandeForfait.filter(
-          x => !x.prestataires.some( 
+          x => !x.prestataires.some(
             p => p.utilisateur == this.currentUserId
           )
-        );        
+        );
         this.commandesDevis = result.data.devis.filter(
           x => !x.propositions.some(
             p => p.prestataire.utilisateur.toString() == this.currentUserId
             )
-        ); 
+        );
       }
     });
 
   }
 
   aDejaPostule(commande){
-    var prestataires = commande.prestataires;  
+    var prestataires = commande.prestataires;
     let result = false;
-    if(prestataires.length > 0) {      
+    if(prestataires.length > 0) {
       prestataires.forEach(element => {
-        if(element.utilisateur == localStorage.getItem('IdUtilisateur')){      
-          result=true;        
-        } 
+        if(element.utilisateur == localStorage.getItem('IdUtilisateur')){
+          result=true;
+        }
       });
     }
     return  result;
-  }  
+  }
 
-  
+
   aDejaPostuleDevis(commande){
     var propositions = commande.propositions;
     let result = false;
-    propositions.forEach(element => {      
+    propositions.forEach(element => {
       if(element.prestataire.utilisateur.toString() == localStorage.getItem('IdUtilisateur')){
        result=true;
       }
     });
-   
-    return  result;
-  }  
 
-  detailCommandeHoraire(commande){
-    this.navCtrl.push(CommandeHoraireDetailPage, {Commande : commande});
+    return  result;
+  }
+
+  detailCommandeSpecialisee(commande){
+    this.navCtrl.push(CommandeSpecialiseeDetailPage, {Commande : commande});
   }
 
   detailCommandeForfait(commande){

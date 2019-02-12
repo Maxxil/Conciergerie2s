@@ -35,7 +35,6 @@ export class LinkPrestatairePrestataionPage {
     this.getPrestations();
     console.log("Get PRESTATION with PRESTATAIRES");
     this.getPrestationsWithPrestataires();
-
   }
 
   ionViewDidLoad() {
@@ -51,8 +50,7 @@ export class LinkPrestatairePrestataionPage {
   public getPrestatairesValides(){
     console.log("getPrestatairesValides");
     this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
-      console.log(this.prestataires);
-      this.prestataires = results.data;
+      this.prestataires = results.data.filter(element => element.utilisateur != null);
     })
   }
 
@@ -66,19 +64,19 @@ export class LinkPrestatairePrestataionPage {
   public linkPrestationToPRestataire(){
 
     let hasPrestataire = false;
-    if(this.selectedPrestation != null && this.selectedPrestataire != null){   
-      
+    if(this.selectedPrestation != null && this.selectedPrestataire != null){
+
 
       let prestations = this.prestationWithPrestataire.filter(elt =>
            elt._id == this.selectedPrestation.toString()
       );
       if(prestations && prestations.length > 0) {
-        
+
         let prestation = prestations[0];
         console.log(prestation);
         hasPrestataire =  prestation.prestataire.some(elt => elt._id == this.selectedPrestataire.toString());
-             
-      }      
+
+      }
 
       if(!hasPrestataire) {
         this.prestationPvd.linkPrestationToPrestataire(this.selectedPrestation, this.selectedPrestataire).subscribe((result) =>{
@@ -97,7 +95,7 @@ export class LinkPrestatairePrestataionPage {
             text : 'OK'
           }]
         }).present();
-      
+
       }
     }
     else{

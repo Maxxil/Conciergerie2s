@@ -30,30 +30,30 @@ export class DevisDetailPage {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
     console.log(this.commande);
-    
+
     if(this.commande.prestataireChoisi) {
       this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
-    } 
-    console.log(this.prestataireChoisi); 
-  
+    }
+    console.log(this.prestataireChoisi);
+
   }
- 
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeHoraireDetailPage');
+    console.log('ionViewDidLoad CommandeSpecialiseeDetailPage');
   }
 
   public validerCommande(){
-    
+
     console.log('Valider Commande : ',this.commande);
-    
+
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
         this.commande.status = CommandeStatus.EN_ATTENTE_PAIEMENT;
         if(this.commande.prestataireChoisi) {
           this.prestataireChoisi  = this.commande.propositions.filter(x => x.prestataire._id == this.commande.prestataireChoisi._id).pop();
-        } 
+        }
         if(result.success){
-       
+
           this.alertCtrl.create({
             title : 'Message',
             message : "Le prestataire a été choisi",
@@ -67,13 +67,13 @@ export class DevisDetailPage {
 
   }
 
-  
+
   public validerCommandeC2S(){
     this.commandePvd.validateCommandeC2S(this.commande).subscribe(result =>{
       if(result.success){
         this.commande.status = CommandeStatus.EN_ATTENTE_PAIEMENT;
         if(result.success){
-       
+
           this.alertCtrl.create({
             title : 'Message',
             message : "Le prestataire a été choisi",

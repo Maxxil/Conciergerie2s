@@ -1,5 +1,6 @@
 import {PrestataireModel} from "./PrestataireModel";
 import {TypePrixEnum} from "../Enums/TypePrixEnum";
+import {TypePrestationSpecialiseeEnum} from "../Enums/TypePrestationSpecialiseeEnum";
 
 export class PrestationModel{
   _id : string;
@@ -11,4 +12,6 @@ export class PrestationModel{
   prestataires : PrestataireModel[];
   forfait:string;
   details: string[];
+  typePrestationSpecialisee : TypePrestationSpecialiseeEnum;
+
 }

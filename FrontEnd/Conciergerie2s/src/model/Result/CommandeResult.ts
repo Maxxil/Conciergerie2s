@@ -1,4 +1,4 @@
-import {CommandeHoraireModel} from "../Model/CommandeHoraireModel";
+import {CommandeSpecialiseeModel} from "../Model/CommandeSpecialiseeModel";
 import {CommandeForfaitModel} from "../Model/CommandeForfaitModel";
 import {DevisModel} from "../Model/DevisModel";
 import {DevisPropositionModel} from "../Model/DevisPropositionModel";
@@ -7,7 +7,7 @@ export class CommandeResult{
   success : boolean;
   error : ErrorEnum;
   data : {
-    commandeHoraire : CommandeHoraireModel[],
+    commandeSpecialisee : CommandeSpecialiseeModel[],
     commandeForfait : CommandeForfaitModel[],
     devis : DevisModel[],
     devisProposition : DevisPropositionModel[];

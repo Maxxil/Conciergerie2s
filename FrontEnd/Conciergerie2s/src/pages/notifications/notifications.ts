@@ -6,8 +6,6 @@ import { NotificationEnum } from '../../model/Enums/NotificationEnum'
 import {DevisDetailPage} from '../../pages/devis-detail/devis-detail';
 import {DevisProvider} from '../../providers/devis/devis'
 
-//import {CommandeForfaitDetailPage} from '../../pages/commande-forfait-detail';
-//import {CommandeHoraireDetailPage} from '../../pages/commande-horaire-detail';
 
 /**
  * Generated class for the NotificationsPage page.
@@ -23,50 +21,50 @@ import {DevisProvider} from '../../providers/devis/devis'
 })
 export class NotificationsPage {
   notifications : NotificationModel[];
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
     public viewCtrl: ViewController,
-    public notificationProv: NotificationProvider, 
+    public notificationProv: NotificationProvider,
     public events: Events,
     public devisPvd : DevisProvider) {
-      this.notifications = [];    
-      this.events.subscribe('notification:updated', () => {        
+      this.notifications = [];
+      this.events.subscribe('notification:updated', () => {
         this.updateNotificationList();
       });
   }
 
   updateNotificationList() {
-    this.notificationProv.getAll().subscribe((results) =>{      
-      this.notifications = results.data.filter(this.filtrerNotification);         
-      this.events.publish('notification:badge', { _badgeValue: this.notifications.length}) ;        
-    }); 
+    this.notificationProv.getAll().subscribe((results) =>{
+      this.notifications = results.data.filter(this.filtrerNotification);
+      this.events.publish('notification:badge', { _badgeValue: this.notifications.length}) ;
+    });
 }
 
 
-filtrerNotification(element: NotificationModel) { 
+filtrerNotification(element: NotificationModel) {
   return ((9 == element.type || 7 == element.type)
-   && element.utilisateur._id ==  localStorage.getItem("IdUtilisateur")); 
-} 
+   && element.utilisateur._id ==  localStorage.getItem("IdUtilisateur"));
+}
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     this.updateNotificationList();
   }
 
-  delete(notification) {    
-     this.notificationProv.delete(notification).subscribe((result) =>{      
+  delete(notification) {
+     this.notificationProv.delete(notification).subscribe((result) =>{
       this.events.publish('notification:updated');
     });
   }
 
-  open(notification: NotificationModel) {    
+  open(notification: NotificationModel) {
     switch(notification.type) {
-      case NotificationEnum.DEVIS_A_REGLER:         
-        this.devisPvd.get(notification.refId).subscribe(result => {          
+      case NotificationEnum.DEVIS_A_REGLER:
+        this.devisPvd.get(notification.refId).subscribe(result => {
           this.navCtrl.push(DevisDetailPage, {'Commande': result.data[0]});
-        });                
+        });
         break;
     }
-     
+
   }
 
-} 
+}

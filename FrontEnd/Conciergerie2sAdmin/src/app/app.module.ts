@@ -32,18 +32,18 @@ import { ChatService } from "../providers/chat/chat-service";
 import { UtilisateurProvider } from '../providers/utilisateur/utilisateur';
 import {UtilisateurPage} from "../pages/utilisateur/utilisateur";
 import {UtilisateurDetailPage} from "../pages/utilisateur-detail/utilisateur-detail";
-import { CommandeHoraireProvider } from '../providers/commande-horaire/commande-horaire';
+import { CommandeSpecialiseeProvider } from '../providers/commande-specialisee/commande-specialisee';
 import { CommandeForfaitProvider } from '../providers/commande-forfait/commande-forfait';
 import { DevisProvider } from '../providers/devis/devis';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CommandePage} from '../pages/commande/commande';
 import {DevisPage} from '../pages/devis/devis';
-import {CommandeHorairePage} from "../pages/commande-horaire/commande-horaire";
+import {CommandeSpecialiseePage} from "../pages/commande-specialisee/commande-specialisee";
 import {CommandeForfaitPage} from "../pages/commande-forfait/commande-forfait";
 import { CommandeProvider } from '../providers/commande/commande';
 import { PaypalProvider } from '../providers/paypal/paypal';
 import {ProfilePage} from "../pages/profile/profile";
-import {CommandeHoraireDetailPage} from "../pages/commande-horaire-detail/commande-horaire-detail";
+import {CommandeSpecialiseeDetailPage} from "../pages/commande-specialisee-detail/commande-specialisee-detail";
 import {CommandeForfaitDetailPage} from "../pages/commande-forfait-detail/commande-forfait-detail";
 import {DevisDetailPage} from "../pages/devis-detail/devis-detail";
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
@@ -77,17 +77,17 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     UtilisateurDetailPage,
     CommandePage,
     DevisPage,
-    CommandeHorairePage,
+    CommandeSpecialiseePage,
     CommandeForfaitPage,
     ProfilePage,
-    CommandeHoraireDetailPage,
+    CommandeSpecialiseeDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
     SettingPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),    
+    IonicModule.forRoot(MyApp),
     SocketIoModule.forRoot(configChat),
     HttpClientModule,
     BrowserAnimationsModule
@@ -114,10 +114,10 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     UtilisateurDetailPage,
     CommandePage,
     DevisPage,
-    CommandeHorairePage,
+    CommandeSpecialiseePage,
     CommandeForfaitPage,
     ProfilePage,
-    CommandeHoraireDetailPage,
+    CommandeSpecialiseeDetailPage,
     CommandeForfaitDetailPage,
     DevisDetailPage,
     SettingPage
@@ -132,7 +132,7 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     PrestataireProvider,
     ChatService,
     UtilisateurProvider,
-    CommandeHoraireProvider,
+    CommandeSpecialiseeProvider,
     CommandeForfaitProvider,
     DevisProvider,
     CommandeProvider,

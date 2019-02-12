@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
-import {CommandeHoraireProvider} from "../../providers/commande-horaire/commande-horaire";
+import {CommandeSpecialiseeModel} from "../../model/Models/CommandeSpecialiseeModel";
+import {CommandeSpecialiseeProvider} from "../../providers/commande-specialisee/commande-specialisee";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
 import { PrestataireModel } from '../../model/Models/PrestataireModel';
 /**
- * Generated class for the CommandeHoraireDetailPage page.
+ * Generated class for the CommandeSpecialiseeDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,28 +15,28 @@ import { PrestataireModel } from '../../model/Models/PrestataireModel';
 @IonicPage()
 @Component({
   selector: 'page-commande-horaire-detail',
-  templateUrl: 'commande-horaire-detail.html',
+  templateUrl: 'commande-specialisee-detail.html',
 })
-export class CommandeHoraireDetailPage {
+export class CommandeSpecialiseeDetailPage {
 
-  public commande : CommandeHoraireModel;
+  public commande : CommandeSpecialiseeModel;
   public prestationImageUrl : string = PRESTATION_IMAGE_URL;
   public prestataireChoisi: PrestataireModel = null;
   constructor(public navCtrl: NavController
               , public navParams: NavParams
-              , public commandePvd : CommandeHoraireProvider
+              , public commandePvd : CommandeSpecialiseeProvider
               , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
-    this.commande = this.navParams.get('Commande'); 
+    this.commande = this.navParams.get('Commande');
     console.log(this.commande);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CommandeHoraireDetailPage');
+    console.log('ionViewDidLoad CommandeSpecialiseeDetailPage');
   }
 
-  public validerCommande(){ 
-    
+  public validerCommande(){
+
     this.commandePvd.validateCommande(this.commande).subscribe(result =>{
       if(result.success){
        this.commande.status = CommandeStatus.VALIDEE;
@@ -52,7 +52,7 @@ export class CommandeHoraireDetailPage {
 
   }
 
-  
+
   prestataireChoisiExist() {
     return this.commande.prestataireChoisi != null;
   }

@@ -5,7 +5,7 @@ import {ServiceProvider} from "../../providers/service/service";
 import {PrestationModel} from "../../model/Model/PrestationModel";
 import {DevisPage} from "../devis/devis";
 import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
-import {CommandeHorairePage} from "../commande-horaire/commande-horaire";
+import {CommandeSpecialiseePage} from "../commande-specialisee/commande-specialisee";
 import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
 import {PRESTATION_IMAGE_URL} from "../../model/Url";
 
@@ -35,7 +35,7 @@ export class PrestationsPage {
 
   public getServiceWithPrestations(){
     this.servicePvd.getByIdWithPrestation(this.service._id).subscribe(result =>{
-      this.service = result.data[0];      
+      this.service = result.data[0];
     })
   }
 
@@ -47,9 +47,9 @@ export class PrestationsPage {
     if(prestation.typeprix == TypePrixEnum.FORFAIT){
       this.navCtrl.push(CommandeForfaitPage, {Prestation : prestation});
     }
-    if(prestation.typeprix == TypePrixEnum.HEURE)
+    if(prestation.typeprix == TypePrixEnum.SPECIALISE)
     {
-      this.navCtrl.push(CommandeHorairePage, {Prestation : prestation});
+      this.navCtrl.push(CommandeSpecialiseePage, {Prestation : prestation});
     }
   }
 

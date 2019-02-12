@@ -2,7 +2,7 @@ var router = require('express').Router();
 var bodyParser = require('body-parser');
 
 var commandeForfaitBusiness = require('./../business/commandeForfaitBusiness');
-var commandeHoraireBusiness = require('./../business/commandeHoraireBusiness');
+var commandeSpecialiseeBusiness = require('../business/commandeSpecialiseeBusiness');
 var devisBusiness = require('./../business/devisBusiness');
 var devisPropositionBusiness = require('./../business/devisPropositionBusiness');
 var prestationBusiness = require('./../business/prestationBusiness');
@@ -13,7 +13,7 @@ router.get('/:idClient/:token' , function (req, res) {
     var idClient = req.params.idClient;
 
     commandeForfaitBusiness.getByIdClient(idClient).exec(function (err,commandeForfait) {
-        commandeHoraireBusiness.getByIdClient(idClient).exec(function (err,commandeHoraire) {
+        commandeSpecialiseeBusiness.getByIdClient(idClient).exec(function (err,commandeSpecialisee) {
             devisBusiness.getByIdClient(idClient).exec(function (err,devis) {
                 devisPropositionBusiness.getByListIdDevis(devisBusiness.selectIds(devis)).exec(function(err,devisPropositions){
                     console.log("Devis propositions");
@@ -21,7 +21,7 @@ router.get('/:idClient/:token' , function (req, res) {
                     res.json({
                         success : true,
                         data : {
-                            commandeHoraire : commandeHoraire,
+                            commandeSpecialisee : commandeSpecialisee,
                             commandeForfait : commandeForfait,
                             devis : devis,
                             devisProposition : devisPropositions
@@ -46,12 +46,12 @@ router.post('/ByIdUtilisateur' , function (req, res) {
         if(prestations.length > 0)
         {
             commandeForfaitBusiness.getByListIdPrestation(prestations).exec(function (err, commandeForfait) {
-                commandeHoraireBusiness.getByListIdPrestation(prestations).exec(function (err, commandeHoraire) {
+                commandeSpecialiseeBusiness.getByListIdPrestation(prestations).exec(function (err, commandeSpecialisee) {
                     devisBusiness.getByListIdPrestation(prestations).exec(function (err,devis) {
                         res.json({
                             success : true,
                             data : {
-                                commandeHoraire : commandeHoraire,
+                                commandeSpecialisee : commandeSpecialisee,
                                 commandeForfait : commandeForfait,
                                 devis : devis
                             }

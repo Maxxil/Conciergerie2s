@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {CommandeHoraireResult} from "../../model/Results/CommandeHoraireResult";
+import {CommandeSpecialiseeResult} from "../../model/Results/CommandeSpecialiseeResult";
 import {COMMANDE_HORAIRE_URL} from "../../model/Url";
-import {CommandeHoraireModel} from "../../model/Models/CommandeHoraireModel";
+import {CommandeSpecialiseeModel} from "../../model/Models/CommandeSpecialiseeModel";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 
 /*
@@ -13,27 +13,27 @@ import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
   and Angular DI.
 */
 @Injectable()
-export class CommandeHoraireProvider {
+export class CommandeSpecialiseeProvider {
 
   private token;
   constructor(public http: HttpClient) {
     console.log('Hello CommandeHoraireProvider Provider');
   }
 
-  getAll() : Observable<CommandeHoraireResult>{
+  getAll() : Observable<CommandeSpecialiseeResult>{
     this.token = localStorage.getItem('Token');
-    return this.http.get<CommandeHoraireResult>(COMMANDE_HORAIRE_URL + '/' + this.token);
+    return this.http.get<CommandeSpecialiseeResult>(COMMANDE_HORAIRE_URL + '/' + this.token);
   }
 
-  validateCommande(commande: CommandeHoraireModel) : Observable<CommandeHoraireResult>{
+  validateCommande(commande: CommandeSpecialiseeModel) : Observable<CommandeSpecialiseeResult>{
 
-    if(commande.prestataireChoisi) { 
-      return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL,
+    if(commande.prestataireChoisi) {
+      return this.http.post<CommandeSpecialiseeResult>(COMMANDE_HORAIRE_URL,
         {idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : commande.prestataireChoisi._id})
     }
-    
-    return this.http.post<CommandeHoraireResult>(COMMANDE_HORAIRE_URL,{idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : null})
-    
+
+    return this.http.post<CommandeSpecialiseeResult>(COMMANDE_HORAIRE_URL,{idCommande : commande._id, status : CommandeStatus.VALIDEE, prestataireChoisi : null})
+
   }
 
 }

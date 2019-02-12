@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CommandeHoraireDetailPage page.
+  Generated template for the CommandeSpecialiseeDetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detail commande horaire</ion-title>
+    <ion-title>Detail commande specialisee</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -35,19 +35,19 @@
             <span text-wrap > Nom: {{commande.client.nom }} Prénom: {{commande.client.prenom}}</span><br>
             <span text-wrap>  Tel: {{commande.client.telephoneMobile}}</span><br>
             <span text-wrap>Ville: {{commande.client.ville}}</span>
-          </p>    <br>  
-          
-          
+          </p>    <br>
+
+
         </ion-item>
       </ion-list>
       <hr>
-      <div  *ngIf="!isEnCours()"  text-center>      
-          <button ion-button color="secondary">Prestataire choisi</button><br><br>             
+      <div  *ngIf="!isEnCours()"  text-center>
+          <button ion-button color="secondary">Prestataire choisi</button><br><br>
           <h2 *ngIf="prestataireChoisiExist()"> {{ commande.prestataireChoisi.utilisateur.nom + " " + commande.prestataireChoisi.utilisateur.prenom}}</h2>
-          <h2 *ngIf="!prestataireChoisiExist()"> Conciergerie Second Souffle</h2>       
+          <h2 *ngIf="!prestataireChoisiExist()"> Conciergerie Second Souffle</h2>
         </div>
         <div  *ngIf="isEnCours()"  text-center>
-            <button ion-button color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>      
+            <button ion-button color="primary"  (click)="validerCommande()" >JE VEUX REALISER AVEC C2S</button>
         <br><span style="font-size:2em;">OU</span>
         <ion-list radio-group [(ngModel)]="commande.prestataireChoisi">
             <ion-list-header>Liste des prestataires ayant postulé  <ion-badge item-end>{{commande.prestataires.length}}</ion-badge></ion-list-header>
