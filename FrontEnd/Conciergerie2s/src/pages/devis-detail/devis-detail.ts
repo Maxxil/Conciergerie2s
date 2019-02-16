@@ -135,7 +135,7 @@ export class DevisDetailPage {
   commanderhorsligne(){                 
     this.devisPvd.updateModePaiement(this.commande, CommandeStatus.PAYEE.toString()).subscribe(result => {
       this.alertCtrl.create().setTitle('Succes')
-          .setSubTitle('Merci pour votre paiement. Nous vous contacterons pour confirmer le RDV.')
+          .setSubTitle('Merci de bien vouloir faire l\'appoint ou le nécessaire pour votre règlement. Nous vous contacterons pour confirmer le RDV.')
           .addButton({
             text : 'OK',
             handler : data => {

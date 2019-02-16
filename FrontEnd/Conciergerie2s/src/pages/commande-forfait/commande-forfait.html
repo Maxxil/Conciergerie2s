@@ -27,7 +27,7 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Heure</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.heureDebut"></ion-datetime>
+      <ion-datetime cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeForfait.heureDebut"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label fixed>Quantité</ion-label>

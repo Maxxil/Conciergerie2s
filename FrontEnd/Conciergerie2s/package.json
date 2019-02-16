@@ -68,7 +68,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "onesignal-cordova-plugin": {},
-      "com.paypal.cordova.mobilesdk": {}      
+      "com.paypal.cordova.mobilesdk": {}
     },
     "platforms": [
       "android"

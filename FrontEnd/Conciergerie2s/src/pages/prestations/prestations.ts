@@ -8,6 +8,7 @@ import {CommandeForfaitPage} from "../commande-forfait/commande-forfait";
 import {CommandeSpecialiseePage} from "../commande-specialisee/commande-specialisee";
 import {TypePrixEnum} from "../../model/Enums/TypePrixEnum";
 import {PRESTATION_IMAGE_URL} from "../../model/Url";
+import { TypePrestationSpecialiseeEnum } from '../../model/Enums/TypePrestationSpecialiseeEnum';
 
 /**
  * Generated class for the PrestationsPage page.
@@ -52,5 +53,20 @@ export class PrestationsPage {
       this.navCtrl.push(CommandeSpecialiseePage, {Prestation : prestation});
     }
   }
+
+  
+  public getTypeLibelle(prestation : PrestationModel) {
+    let type = "";
+    switch(Number(prestation.typePrestationSpecialisee)) {
+      case TypePrestationSpecialiseeEnum.HEURE: type = '/ h';break;
+      case TypePrestationSpecialiseeEnum.KILOGRAMME: type = '/ kg';break;
+      case TypePrestationSpecialiseeEnum.LITRE: type = '/ litre';break;
+      case TypePrestationSpecialiseeEnum.SURFACE: type = '/ m²';break;
+    }
+
+    return type;
+  }
+
+
 
 }

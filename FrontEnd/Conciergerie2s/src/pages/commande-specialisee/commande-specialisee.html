@@ -19,25 +19,21 @@
       <ion-list-header>
           <h1>Commander une prestation</h1>
           <h2>{{prestation.nom}}</h2>
-          <h3 *ngIf="prestation.typePrestationSpecialisee == typePrestationSpecialisee.HEURE">{{prestation.prix}} € / h</h3>
-        <h3 *ngIf="prestation.typePrestationSpecialisee == typePrestationSpecialisee.SURFACE">{{prestation.prix}} € / m²</h3>
-        <h3 *ngIf="prestation.typePrestationSpecialisee == typePrestationSpecialisee.QUANTITE">{{prestation.prix}} € / unite</h3>
-        <h3 *ngIf="prestation.typePrestationSpecialisee == typePrestationSpecialisee.LITRE">{{prestation.prix}} € / l</h3>
-        <h3 *ngIf="prestation.typePrestationSpecialisee == typePrestationSpecialisee.KILOGRAMME">{{prestation.prix}} € / kg</h3>
+          <h3>{{prestation.prix}} € {{ getTypeLibellePrix() }}</h3>       
 
         <p *ngIf="commandeSpecialisee.dateCreation">Créé le {{commandeSpecialisee.dateCreation | date: 'dd/MM/yy HH:mm'}}</p>
         </ion-list-header>
 
         <ion-item>
-            <ion-label fixed>Date</ion-label>
+            <ion-label fixed>Date rdv :</ion-label>
             <ion-datetime cancelText="Annuler" doneText="Valider" displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"   max='2030-12-31' min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeSpecialisee.date"></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label fixed>Heure</ion-label>
-            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeSpecialisee.heure"></ion-datetime>
+            <ion-label fixed>Heure rdv : </ion-label>
+            <ion-datetime cancelText="Annuler" doneText="Valider" displayFormat="HH:mm" pickerFormat="HH:mm"  min="{{ today | date: 'yyyy-MM-dd'}}" [(ngModel)]="commandeSpecialisee.heure"></ion-datetime>
         </ion-item>
     <ion-item>
-      <ion-label fixed>Quantité</ion-label>
+      <ion-label>Quantité : </ion-label>
       <ion-input type="number" min="1" [(ngModel)]="commandeSpecialisee.quantite"></ion-input>
     </ion-item>
   </ion-list>
