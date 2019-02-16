@@ -44,15 +44,7 @@
       </ion-item>
     </ion-list>
     <ion-list>
-        <ion-list-header class="list-header">Tarif</ion-list-header>
-        <ion-item>
-            <ion-label floating>Prix de la prestation</ion-label>
-            <ion-input type="number" required name="prix" id="prix" [(ngModel)]="prestation.prix"></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-label floating>Forfait de la prestation</ion-label>
-              <ion-input type="number" required name="forfait" id="forfait" [(ngModel)]="prestation.forfait"></ion-input>
-            </ion-item>
+        <ion-list-header class="list-header">Type de prestation</ion-list-header>                 
           <ion-item>
             <ion-label floating>Type de prix par defaut (specialisee, forfait ou devis)</ion-label>
             <ion-select id="typeprix" name="typeprix" [(ngModel)]="prestation.typeprix">
@@ -70,6 +62,15 @@
               <ion-option value="{{typePrestationSpecialise.QUANTITE}}">Quantite</ion-option>
               <ion-option value="{{typePrestationSpecialise.SURFACE}}">Surface</ion-option>
             </ion-select>
+          </ion-item>
+        <ion-list-header class="list-header">Tarif de prestation</ion-list-header>
+          <ion-item  *ngIf="prestation.typeprix == typePrixEnum.FORFAIT">
+              <ion-label floating>Tarif du Forfait</ion-label>
+              <ion-input type="number" required name="forfait" id="forfait" [(ngModel)]="prestation.forfait"></ion-input>
+          </ion-item>            
+          <ion-item  *ngIf="prestation.typeprix == typePrixEnum.SPECIALISE">
+            <ion-label floating>Tarif spécialisé</ion-label>
+            <ion-input type="number" required name="prix" id="prix" [(ngModel)]="prestation.prix"></ion-input>
           </ion-item>
     </ion-list>
 
