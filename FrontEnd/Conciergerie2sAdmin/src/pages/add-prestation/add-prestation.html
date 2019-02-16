@@ -55,7 +55,7 @@
           </ion-item>
           <ion-item *ngIf="prestation.typeprix == typePrixEnum.SPECIALISE">
             <ion-label floating>Type d'unité</ion-label>
-            <ion-select  okText="OK" cancelText="Annuler" id="typePrestationSpecialisee" name="typeprix" [(ngModel)]="prestation.typePrestationSpecialisee">
+            <ion-select  okText="OK" cancelText="Annuler" id="typePrestationSpecialisee" name="typePrestationSpecialisee" [(ngModel)]="prestation.typePrestationSpecialisee">
               <ion-option value="{{typePrestationSpecialise.HEURE}}">Heure</ion-option>
               <ion-option value="{{typePrestationSpecialise.KILOGRAMME}}">Kg</ion-option>
               <ion-option value="{{typePrestationSpecialise.LITRE}}">Litre</ion-option>
