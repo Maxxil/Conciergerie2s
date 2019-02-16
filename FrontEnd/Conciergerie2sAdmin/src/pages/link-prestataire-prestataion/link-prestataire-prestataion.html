@@ -18,7 +18,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Prestations</ion-label>
-      <ion-select [(ngModel)]="selectedPrestation">
+      <ion-select okText="OK" cancelText="Annuler" [(ngModel)]="selectedPrestation">
         <ion-option *ngFor="let element of prestations" value="{{element._id}}">
           {{element.nom}}
         </ion-option>
@@ -27,7 +27,7 @@
 
     <ion-item>
       <ion-label>Prestataires</ion-label>
-      <ion-select  [(ngModel)]="selectedPrestataire">
+      <ion-select okText="OK" cancelText="Annuler"  [(ngModel)]="selectedPrestataire">
         <ion-option *ngFor="let element of prestataires" value="{{element._id}}">
           {{element.utilisateur.nom + " " + element.utilisateur.prenom}}
         </ion-option>

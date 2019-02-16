@@ -46,18 +46,18 @@
     <ion-list>
         <ion-list-header class="list-header">Type de prestation</ion-list-header>                 
           <ion-item>
-            <ion-label floating>Type de prix par defaut (specialisee, forfait ou devis)</ion-label>
-            <ion-select id="typeprix" name="typeprix" [(ngModel)]="prestation.typeprix">
+            <ion-label floating>Type de prix </ion-label>
+            <ion-select okText="OK" cancelText="Annuler" id="typeprix" name="typeprix" [(ngModel)]="prestation.typeprix">
               <ion-option value="{{typePrixEnum.SPECIALISE}}">Specialise</ion-option>
               <ion-option value="{{typePrixEnum.FORFAIT}}">Forfait</ion-option>
               <ion-option value="{{typePrixEnum.DEVIS}}">Sur devis</ion-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="prestation.typeprix == typePrixEnum.SPECIALISE">
-            <ion-label floating>Type de prestation specialisee (heure, kilogramme, litre, quantite ou surface)</ion-label>
-            <ion-select id="typePrestationSpecialisee" name="typeprix" [(ngModel)]="prestation.typePrestationSpecialisee">
+            <ion-label floating>Type d'unité</ion-label>
+            <ion-select  okText="OK" cancelText="Annuler" id="typePrestationSpecialisee" name="typeprix" [(ngModel)]="prestation.typePrestationSpecialisee">
               <ion-option value="{{typePrestationSpecialise.HEURE}}">Heure</ion-option>
-              <ion-option value="{{typePrestationSpecialise.KILOGRAMME}}">Kilogramme</ion-option>
+              <ion-option value="{{typePrestationSpecialise.KILOGRAMME}}">Kg</ion-option>
               <ion-option value="{{typePrestationSpecialise.LITRE}}">Litre</ion-option>
               <ion-option value="{{typePrestationSpecialise.QUANTITE}}">Quantite</ion-option>
               <ion-option value="{{typePrestationSpecialise.SURFACE}}">Surface</ion-option>

@@ -37,7 +37,7 @@
       <button ion-button (click)="changerMotDePasse()">Changer de mot de passe</button>
     </ion-item> <ion-item>
         <ion-label>Rôle Utilisateur</ion-label>
-      <ion-select [(ngModel)]="profile.role">
+      <ion-select okText="OK" cancelText="Annuler" [(ngModel)]="profile.role">
         <ion-option value="1">CLIENT</ion-option>
         <ion-option value="2">PRESTATAIRE</ion-option>
       </ion-select>
