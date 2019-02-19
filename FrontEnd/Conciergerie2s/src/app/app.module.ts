@@ -56,6 +56,7 @@ import { ChangerMotDePasseProvider } from '../providers/changer-mot-de-passe/cha
 import {ChangerMotDePassePage} from "../pages/changer-mot-de-passe/changer-mot-de-passe";
 import {MentionsPage}  from "../pages/mentions/mentions"
 import { CgvPage } from "../pages/cgv/cgv";
+import { FaqPage } from "../pages/faq/faq";
 import { NotificationProvider } from '../providers/notification/notification';
 
 
@@ -88,7 +89,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     ChangerMotDePassePage,
     MesCommandesPostuleesPage,
     CgvPage,
-    MentionsPage
+    MentionsPage,
+    FaqPage
   ],
   imports: [
     BrowserModule,
@@ -128,7 +130,8 @@ const configChat: SocketIoConfig = { url: CHAT_URL, options: {}} ;
     ChangerMotDePassePage,
     MesCommandesPostuleesPage,
     CgvPage,
-    MentionsPage
+    MentionsPage,
+    FaqPage
   ],
   providers: [
     StatusBar,

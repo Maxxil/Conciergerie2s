@@ -46,7 +46,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Role</ion-label>
-      <ion-select [(ngModel)]="user.role">
+      <ion-select okText="OK" cancelText="Annuler" [(ngModel)]="user.role">
         <ion-option value="1">CLIENT</ion-option>
         <ion-option value="2">PRESTATAIRE</ion-option>
       </ion-select>

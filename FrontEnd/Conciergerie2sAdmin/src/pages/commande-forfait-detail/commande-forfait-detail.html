@@ -22,7 +22,7 @@
               </ion-avatar>
           <h2 ion-text text-wrap color="lagon">{{commande.prestation.nom}}</h2>
           <em  *ngIf="commande.dateCreation">Créé le {{commande.dateCreation | date: 'dd/MM/yy HH:mm':'UTC'}}</em>
-          <div item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}} <br>{{commande.prestation.prix * commande.quantite}} € TTC</div>
+          <div style="font-size:12px" item-end><ion-icon name="basket"></ion-icon> {{commande.quantite}} <br>{{commande.prestation.prix * commande.quantite}} € TTC</div>
           </ion-item>
          <hr>
           <ion-item>

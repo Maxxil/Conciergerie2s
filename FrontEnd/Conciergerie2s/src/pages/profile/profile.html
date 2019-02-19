@@ -14,9 +14,9 @@
 
 
 <ion-content padding>
-  <ion-label>Mon profil : {{ profile._id }}</ion-label>
+   <!--<ion-label>Mon profil : {{ profile._id }}</ion-label>
   <ion-label>PlayerId local : {{ playerId }}</ion-label>
-  <ion-label>PlayerId storage : {{ profile.lastPlayerId }}</ion-label>
+  <ion-label>PlayerId storage : {{ profile.lastPlayerId }}</ion-label>-->
   <button ion-button (click)="update()">Enregistrer</button>
   <ion-list>
    <!-- <img src="{{imageProfileUrl + profile.image}}" (click)="importImage()" *ngIf="hasImage()">
@@ -37,7 +37,7 @@
       <button ion-button (click)="changerMotDePasse()">Changer de mot de passe</button>
     </ion-item> <ion-item>
         <ion-label>Rôle Utilisateur</ion-label>
-      <ion-select [(ngModel)]="profile.role">
+      <ion-select okText="OK" cancelText="Annuler" [(ngModel)]="profile.role">
         <ion-option value="1">CLIENT</ion-option>
         <ion-option value="2">PRESTATAIRE</ion-option>
       </ion-select>

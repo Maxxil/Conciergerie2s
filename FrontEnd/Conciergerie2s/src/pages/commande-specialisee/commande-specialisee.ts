@@ -86,4 +86,29 @@ export class CommandeSpecialiseePage {
     alert.present();
   }
 
+  
+  public getTypeLibellePrix() {
+    let type = "";
+    switch(Number(this.prestation.typePrestationSpecialisee)) {
+      case TypePrestationSpecialiseeEnum.HEURE: type = '/ h';break;
+      case TypePrestationSpecialiseeEnum.KILOGRAMME: type = '/ kg';break;
+      case TypePrestationSpecialiseeEnum.LITRE: type = '/ litre';break;
+      case TypePrestationSpecialiseeEnum.SURFACE: type = '/ m²';break;
+    }
+
+    return type;
+  }
+
+  public getTypeLibelleInput() {
+    let type = "";
+    switch(Number(this.prestation.typePrestationSpecialisee)) {
+      case TypePrestationSpecialiseeEnum.HEURE: type = "Quantité en Heures";break;
+      case TypePrestationSpecialiseeEnum.KILOGRAMME: type = 'Quantité en Kilos';break;
+      case TypePrestationSpecialiseeEnum.LITRE: type = 'Quantité en Litres';break;
+      case TypePrestationSpecialiseeEnum.SURFACE: type = 'Superficie';break;
+    }
+
+    return type;
+  }
+
 }

@@ -9,6 +9,7 @@ import {MesCommandesPostuleesPage} from "../mes-commandes-postulees/mes-commande
 import {ProfilePage} from "../profile/profile";
 import {MentionsPage}  from "../mentions/mentions"
 import { CgvPage } from "../cgv/cgv";
+import { FaqPage } from "../faq/faq";
 import { ChatService } from "../../providers/chat/chat-service";
 import {UtilisateurProvider} from "../../providers/utilisateur/utilisateur";
 import {SERVER_URL, APPVERSION} from "../../model/Url";
@@ -97,6 +98,10 @@ export class MenuPage {
 
   openPageMentions(){
     this.rootPage = MentionsPage;
+  }
+
+  openPageFaq(){
+    this.rootPage = FaqPage;
   }
 
   sendPush() {

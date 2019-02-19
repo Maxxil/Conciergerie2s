@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {CommandeSpecialiseeModel} from "../../model/Models/CommandeSpecialiseeModel";
 import {CommandeSpecialiseeProvider} from "../../providers/commande-specialisee/commande-specialisee";
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
+import {TypePrestationSpecialiseeEnum} from "../../model/Enums/TypePrestationSpecialiseeEnum";
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
 import { PrestataireModel } from '../../model/Models/PrestataireModel';
 /**
@@ -28,6 +29,7 @@ export class CommandeSpecialiseeDetailPage {
               , public alertCtrl : AlertController) {
     console.log("Commande horaire détail");
     this.commande = this.navParams.get('Commande');
+    
     console.log(this.commande);
   }
 
@@ -60,6 +62,18 @@ export class CommandeSpecialiseeDetailPage {
 
   isEnCours(){
     return this.commande.status == CommandeStatus.EN_COURS_ANALYSE || this.commande.status == CommandeStatus.EN_COURS_VALIDATION;
+  }
+
+  public getTypeLibelle() {
+    let type = "";
+    switch(Number(this.commande.prestation.typePrestationSpecialisee)) {
+      case TypePrestationSpecialiseeEnum.HEURE: type = 'H';break;
+      case TypePrestationSpecialiseeEnum.KILOGRAMME: type = 'Kg';break;
+      case TypePrestationSpecialiseeEnum.LITRE: type = 'L';break;
+      case TypePrestationSpecialiseeEnum.SURFACE: type = 'M²';break;
+    }
+
+    return type;
   }
 
 }

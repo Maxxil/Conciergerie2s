@@ -5,6 +5,7 @@ import {CommandeSpecialiseeProvider} from "../../providers/commande-specialisee/
 import {CommandeStatus} from "../../model/Enums/CommandeStatusEnum";
 import {CommandeSpecialiseeDetailPage} from "../commande-specialisee-detail/commande-specialisee-detail";
 import { PRESTATION_IMAGE_URL } from './../../model/Url';
+import { TypePrestationSpecialiseeEnum } from '../../model/Enums/TypePrestationSpecialiseeEnum';
 /**
 /**
  * Generated class for the CommandeSpecialiseePage page.
@@ -52,4 +53,18 @@ export class CommandeSpecialiseePage {
   public afficherDetailCommande(commande: CommandeSpecialiseeModel){
     this.navCtrl.push(CommandeSpecialiseeDetailPage, {Commande : commande})
   }
+
+  public getTypeLibelle(commande: CommandeSpecialiseeModel) {
+    let type = "";
+    switch(Number(commande.prestation.typePrestationSpecialisee)) {
+      case TypePrestationSpecialiseeEnum.HEURE: type = 'H';break;
+      case TypePrestationSpecialiseeEnum.KILOGRAMME: type = 'Kg';break;
+      case TypePrestationSpecialiseeEnum.LITRE: type = 'L';break;
+      case TypePrestationSpecialiseeEnum.SURFACE: type = 'M²';break;
+    }
+
+    return type;
+  }
+
+
 }

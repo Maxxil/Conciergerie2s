@@ -26,7 +26,7 @@ paypalBusiness.get().exec(function (err, result) {
         if(clientId != '' && secret != '')
         {
             paypal.configure({
-                'mode': 'sandbox', //sandbox or live
+                'mode': 'live', //sandbox or live
                 'client_id': clientId,
                 'client_secret': secret
             });
@@ -144,7 +144,7 @@ router.get('/executePayment', function (req, res) {
             res.end();*/
 
             res.set('Content-Type', 'text/html');
-            res.send("<html><body><p style='text-align:center; width:100%'>Paiement accepté. Merci de <a href='#' onclick='return self.close();'>fermer</a> cette fenetre pour retoruner à l'application</p></body></html>");
+            res.send("<html><body><p style='text-align:center; width:100%; font-size:30px;'>Paiement accepté. Merci de fermer cette fenetre pour retourner à l'application</p></body></html>");
             res.end();
         }
     });
