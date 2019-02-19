@@ -65,11 +65,13 @@ router.post('/' , function(req, res){
 });
 
 router.post('/image', upload.single('file'), function (req, res) {
+    console.log("PRESTATION UPDATE AVEC IMAGE");
     var prestation = JSON.parse(req.body.prestation);
     var filename = "";
     if(req.file != null){
         filename = req.file.filename;
     }
+    console.log(filename);
     prestationBusiness.getById(prestation._id).exec(function(err,result){
         if(result != null){
             result.image = filename;
@@ -87,7 +89,8 @@ router.post('/image', upload.single('file'), function (req, res) {
                 res.end();
             }).catch(function (error) {
                 res.json({
-                    success: false
+                    success: false,
+                    filename : filename
                 });
                 res.end();
             })

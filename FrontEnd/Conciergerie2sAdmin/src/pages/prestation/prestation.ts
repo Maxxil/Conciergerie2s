@@ -52,6 +52,7 @@ export class PrestationPage {
         this.nbprestation = results.data.length;
       })
     }
+    console.log(this.prestations);
   }
 
   refresh(refresher: Refresher){

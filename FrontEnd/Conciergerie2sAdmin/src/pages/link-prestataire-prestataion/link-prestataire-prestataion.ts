@@ -33,7 +33,6 @@ export class LinkPrestatairePrestataionPage {
               , public alertCtrl : AlertController) {
     this.getPrestatairesValides();
     this.getPrestations();
-    console.log("Get PRESTATION with PRESTATAIRES");
     this.getPrestationsWithPrestataires();
   }
 
@@ -48,7 +47,6 @@ export class LinkPrestatairePrestataionPage {
   }
 
   public getPrestatairesValides(){
-    console.log("getPrestatairesValides");
     this.prestatairePvd.getAllPrestataire().subscribe((results) =>{
       this.prestataires = results.data.filter(element => element.utilisateur != null);
     })
@@ -73,7 +71,6 @@ export class LinkPrestatairePrestataionPage {
       if(prestations && prestations.length > 0) {
 
         let prestation = prestations[0];
-        console.log(prestation);
         hasPrestataire =  prestation.prestataire.some(elt => elt._id == this.selectedPrestataire.toString());
 
       }
@@ -87,7 +84,6 @@ export class LinkPrestatairePrestataionPage {
         })
       }
       else  {
-        console.log("Ajout impossible du prestataire "+this.selectedPrestataire);
         this.alertCtrl.create({
           title : 'Important',
           message : "Ce prestataire est déjà lié à cette prestation !",

@@ -4,4 +4,5 @@ export class PrestationResult {
   success: boolean;
   error: Error;
   data : PrestationModel[];
+  filename : string = "";
 }

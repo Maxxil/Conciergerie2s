@@ -15,7 +15,6 @@ router.get("/:token" , function (req, res) {
     if(tokenVerify)
     {
         jwt.decode(req.params.token, function(user){
-            console.log('jwt after decode: ',user);
             res.json({
                 success : true,
                 error : Enums.Error.AUCUNE_ERREUR,

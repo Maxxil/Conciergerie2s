@@ -53,7 +53,6 @@ router.post('/prestataire' , function (req, res) {
 });
 
 router.put('/', function(req, res){
-    console.log(req.body);
     var commande = new CommandeForfait({
         client : req.body.commande.idClient,
         prestation : req.body.commande.idPrestation,

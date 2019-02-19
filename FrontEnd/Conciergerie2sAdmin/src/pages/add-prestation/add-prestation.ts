@@ -123,7 +123,6 @@ export class AddPrestationPage {
 
   manageDisplaySuccessOrError(result : PrestationResult){
     var alert = this.alertCtrl.create();
-
     if(result.success){
       if(this.isUpdateModal()){
         alert.setTitle('Succes');
@@ -131,6 +130,7 @@ export class AddPrestationPage {
         alert.addButton({
           text : 'OK',
           handler : data => {
+            this.prestation.image = result.filename == "" ? this.prestation.image : result.filename;
             this.close();
           }
         })

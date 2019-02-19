@@ -51,6 +51,7 @@ export class PrestationProvider {
   }
 
   updateWithImage(prestation: PrestationModel, image: File): Observable<PrestationResult> {
+    console.log("UPDATE Prestation avec IMAGE")
     const formData = new FormData();
     formData.append('file', image, 'image');
     formData.append('prestation', JSON.stringify(prestation));

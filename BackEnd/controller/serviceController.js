@@ -82,8 +82,9 @@ router.post('/image' , upload.single('file') , function(req, res){
             serviceBusiness.update(result).then(function() {
                     res.json({
                         success: true,
-                        error: errorEnum.error.AUCUNE_ERREUR
-                    })
+                        error: errorEnum.error.AUCUNE_ERREUR,
+                        filename : filename
+                    });
                     res.end();
                 }
             ).catch(function () {

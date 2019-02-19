@@ -110,7 +110,7 @@ export class AddServicePage {
 
   manageDisplaySuccessOrError(result : ServiceResult){
     var alert = this.alertCtrl.create();
-
+    this.service.image = result.filename == "" ? this.service.image : result.filename;
     if(result.success){
       if(!this.isUpdateModal()){
         alert.setTitle('Succes');
