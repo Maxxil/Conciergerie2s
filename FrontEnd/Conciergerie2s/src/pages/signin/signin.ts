@@ -32,7 +32,7 @@ export class SigninPage {
     this.user = new UtilisateurModel();
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
   }
 
   verifyInput(){
@@ -83,7 +83,7 @@ export class SigninPage {
 
     }
 
-    if(this.user.role == 0){
+    if(this.user.role == 0 || this.user.role == null){
       this.alertCtrl.create({
         title : 'Erreur',
         message : 'Vous devez saisir un role',
@@ -107,6 +107,7 @@ export class SigninPage {
 
     }
 
+    console.log(this.user.role)
 
     return true;
   }

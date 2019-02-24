@@ -75,6 +75,7 @@ router.put('/' , upload.single('image'),function(req, res){
         filename = req.file.filename;
     }
     var hash = bcrypt.hashSync(req.body.utilisateur.motDePasse,saltRounds);
+    console.log(req.body.utilisateur);
     var utilisateur = new Utilisateur({
         nom: req.body.utilisateur.nom,
         prenom: req.body.utilisateur.prenom,
