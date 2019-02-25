@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e50ed3f-2ed2-4849-9224-7caecbc679bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.html" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.ts" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" afterPath="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signin.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="signin.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
@@ -85,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="21">
@@ -107,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>devisProposition</find>
       <find>prestataires</find>
       <find>proposition</find>
       <find>motDePasse</find>
@@ -137,6 +134,7 @@
       <find>&quot;com.paypal.cordova.mobilesdk&quot;: {}</find>
       <find>com.paypal.cordova.mobilesdk</find>
       <find>ios</find>
+      <find>1.0.2</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Programmes\Conciergerie2s\FrontEnd\Conciergerie2s\</dir>
@@ -196,10 +194,10 @@
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/package.json" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2sAdmin/src/model/Url.ts" />
         <option value="$PROJECT_DIR$/BackEnd/controller/utilisateurController.js" />
-        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.ts" />
         <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/pages/signin/signin.html" />
+        <option value="$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml" />
       </list>
     </option>
   </component>
@@ -417,12 +415,12 @@
       <workItem from="1549904797227" duration="7125000" />
       <workItem from="1550515495227" duration="874000" />
       <workItem from="1550559124484" duration="3929000" />
-      <workItem from="1551029827637" duration="3484000" />
+      <workItem from="1551029827637" duration="3553000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="241128000" />
+    <option name="totallyTimeSpent" value="241197000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,6 +439,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23955579" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33940774" sideWeight="0.51877314" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.49814913" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.49814913" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -453,7 +452,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.49814913" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -852,14 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/src/model/Url.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -882,6 +872,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontEnd/Conciergerie2s/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="45" lean-forward="false" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
           <folding />
         </state>
       </provider>
