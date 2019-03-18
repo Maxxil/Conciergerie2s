@@ -45,18 +45,18 @@ router.post("/", function (req, res) {
     var promise = loginBusiness.existUser(req.body.nomUtilisateur, req.body.motDePasse);
     promise.exec(function(err,result){
         if(result.length == 0){
-           console.log('Utilisateur inconnu');
+           console.log('Utilisateur inconnu : '+req.body.nomUtilisateur);
             res.json({
                 success : false,
                 error : Enums.Error.UTILISATEUR_NON_CONNU
             });
         }
         else{
-            console.log(req.body.motDePasse);
-            console.log(result[0].motDePasse);
+            console.log('Controle du mot de passe')
+            console.log('-- Mot de passe saisi :'+req.body.motDePasse);            
             var exist = bcrypt.compareSync(req.body.motDePasse, result[0].motDePasse);
             if(exist){
-                console.log(exist);
+                console.log('===> Mot de passe ok');
                 var token = jwt.generateToken(result[0]);
                 res.json({
                     success : true,
@@ -66,7 +66,7 @@ router.post("/", function (req, res) {
                 });
             }
             else{
-                console.log(exist);
+                console.log('===> Mot de passe ko');
                 res.json({
                     success : false,
                     error : Enums.Error.UTILISATEUR_NON_CONNU,
