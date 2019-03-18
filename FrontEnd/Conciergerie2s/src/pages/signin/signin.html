@@ -16,27 +16,27 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label floating>Nom</ion-label>
+      <ion-label floating>Nom *</ion-label>
       <ion-input type="text" name="nom" id="nom" [(ngModel)]="user.nom" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Prenom</ion-label>
+      <ion-label floating>Prenom *</ion-label>
       <ion-input type="text" name="prenom" id="prenom" [(ngModel)]="user.prenom" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Email</ion-label>
+      <ion-label floating>Email *</ion-label>
       <ion-input type="email" name="email" id="email" [(ngModel)]="user.email" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Nom d'utilisateur</ion-label>
+      <ion-label floating>Nom d'utilisateur *</ion-label>
       <ion-input type="text" name="nomUtilisateur" id="nomUtilisateur" [(ngModel)]="user.nomUtilisateur" required></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Mot de passe</ion-label>
+      <ion-label floating>Mot de passe *</ion-label>
       <ion-input type="password" name="motDePasse" id="motDePasse" [(ngModel)]="user.motDePasse" requried></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Confirmation du mot de passe</ion-label>
+      <ion-label floating>Confirmation du mot de passe *</ion-label>
       <ion-input type="password" name="confirmationMotDePasse" id="confirmationMotDePasse" [(ngModel)]="confirmationMotDePasse" required></ion-input>
     </ion-item>
     <ion-item>
@@ -45,7 +45,7 @@
       <input type="file" name="image" id="image" (change)="uploadImage($event)" hidden>
     </ion-item>
     <ion-item>
-      <ion-label floating>Role</ion-label>
+      <ion-label floating>Role *</ion-label>
       <ion-select okText="OK" cancelText="Annuler" [(ngModel)]="user.role">
         <ion-option value="1">CLIENT</ion-option>
         <ion-option value="2">PRESTATAIRE</ion-option>

@@ -107,6 +107,18 @@ export class SigninPage {
 
     }
 
+    if(this.user.nomUtilisateur.trim().indexOf(" ") != -1 ){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : "Le nom d'utilisateur ne dois pas contenir d'espace",
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
     console.log(this.user.role)
 
     return true;
