@@ -4,7 +4,9 @@
 
 module.exports = {
     protocol : "mongodb",
-    server : "localhost",
+    server : "149.56.13.37",
     port : '27017',
-    dbname : 'Conciergerie2s'
+    dbname : 'Conciergerie2s',
+    user: 'api',
+    password: 'conciergerie2sApi2019!'
 };

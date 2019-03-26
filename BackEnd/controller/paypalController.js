@@ -20,7 +20,7 @@ paypal.configure({
 });
 */
 paypalBusiness.get().exec(function (err, result) {
-    if(result.length > 0 ){
+    if(result && result.length > 0 ){
         clientId = result[0].clientId;
         secret = result[0].secret;
         if(clientId != '' && secret != '')

@@ -36,9 +36,16 @@ app.use('/' , require('./controller'));
 
 
 app.listen(port, function() {
-    console.log("API is running on port: " + port);
-    utilisateurBusiness.any().exec(function(err, result){
-        if(result == null || result.length == 0)
+    console.log("-- API starting on port: " + port);
+    utilisateurBusiness.any().exec(function(err, result){       
+        
+        if (err) {
+            console.log("API exit : mongodb not connected");
+            process.exit(1);
+        }
+
+        console.log("-- API is running on port: " + port);
+        /*if(result == null || result.length == 0)
         {
             console.log("Ajout de l'admin");
             var user = {
@@ -47,7 +54,7 @@ app.listen(port, function() {
                 role : roleEnum.role.ADMIN
             };
             utilisateurBusiness.create(user);
-        }
+        }*/
 
        //notificationBusiness.sendPushClient();
 

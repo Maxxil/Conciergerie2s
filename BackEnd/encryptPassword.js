@@ -12,7 +12,6 @@ utilisateur.find({}).exec(function (err,result) {
             user.motDePasse = hash;
             utilisateurBusiness.update(user).exec();
         }
-
-    })
-
+    });
+    process.exit(1);
 });
