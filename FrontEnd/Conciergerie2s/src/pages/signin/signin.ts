@@ -83,6 +83,18 @@ export class SigninPage {
 
     }
 
+    if(this.user.motDePasse != this.confirmationMotDePasse){
+      this.alertCtrl.create({
+        title : 'Erreur',
+        message : 'Les mots de passe ne sont pas identiques ! Merci de vérifier.',
+        buttons : [{
+          text : 'OK'
+        }]
+      }).present();
+      return false;
+
+    }
+
     if(this.user.role == 0 || this.user.role == null){
       this.alertCtrl.create({
         title : 'Erreur',
@@ -110,7 +122,7 @@ export class SigninPage {
     if(this.user.nomUtilisateur.trim().indexOf(" ") != -1 ){
       this.alertCtrl.create({
         title : 'Erreur',
-        message : "Le nom d'utilisateur ne dois pas contenir d'espace",
+        message : "Le nom d'utilisateur ne doit pas contenir d'espace",
         buttons : [{
           text : 'OK'
         }]
@@ -132,12 +144,13 @@ export class SigninPage {
         if(result.success){
           var alert = this.alertCtrl.create({
             title : "Succés",
-            message : "Vous avez été inscrits correctement.",
+            message : "Vous avez été inscrit correctement.",
             buttons : [
               {
                 text : 'OK',
                 handler : () =>{
                   this.viewCtrl.dismiss();
+
                 }
               }
             ]
@@ -158,6 +171,9 @@ export class SigninPage {
       });
 
     }
+  }
+  annuler() {
+    this.viewCtrl.dismiss();
   }
 
 }
