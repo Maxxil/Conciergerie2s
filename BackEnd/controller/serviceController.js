@@ -42,7 +42,8 @@ router.get('/:token', function(req, res){
 });
 
 router.get('/:id/:token', function(req, res){
-    serviceBusiness.getById(res.params.id).exec(function(err, result){
+    console.log(req);
+    serviceBusiness.getById(req.params.id).exec(function(err, result){
         res.json({
             data : result
         });

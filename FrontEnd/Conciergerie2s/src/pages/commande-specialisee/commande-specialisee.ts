@@ -8,6 +8,7 @@ import {CommandeStatus} from "../../model/CommandeStatusEnum";
 import {PaypalProvider} from "../../providers/paypal/paypal";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {TypePrestationSpecialiseeEnum} from "../../model/Enums/TypePrestationSpecialiseeEnum";
+import { InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the CommandeSpecialiseePage page.
@@ -45,15 +46,23 @@ export class CommandeSpecialiseePage {
   }
 
   commander(){
+
+    const options: InAppBrowserOptions = {
+      zoom: 'no',
+      location: 'no'
+    }
+    
     this.loading.present();
     this.paypalPvd.payer(this.prestation.nom , this.prestation.prix*this.commandeSpecialisee.quantite).subscribe(result => {
-      var browser = this.iab.create(result.data);
-      this.loading.dismiss();
-      browser.on('exit').subscribe(() =>{
+      
+      const browser = this.iab.create(result.data,'_self',options);
+      
+      browser.on('exit').subscribe(event =>{
         this.commandeSpecialiseePvd.add(this.commandeSpecialisee).subscribe(result => {
           this.commandeSpecialisee.status = CommandeStatus.EN_COURS_ANALYSE;
           this.manageDisplaySuccessOrError(result);
           this.annuler();
+          this.loading.dismiss();
         });
       });
     });
